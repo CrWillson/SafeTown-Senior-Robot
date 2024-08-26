@@ -1,0 +1,4 @@
+-- add shortcut for input mapsize and colomn and row 
+-- add Tile class to clean up code and make it work better
+-- create overlay program to add destinations 
+-- modify DRC to shows number of issue and location of issues
