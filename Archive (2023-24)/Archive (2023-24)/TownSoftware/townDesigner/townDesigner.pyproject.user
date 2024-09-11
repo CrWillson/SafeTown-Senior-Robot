@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 14.0.1, 2024-09-04T17:56:45. -->
+<!-- Written by QtCreator 14.0.1, 2024-09-09T13:04:08. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -181,7 +181,7 @@
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">mainwindow.py</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.C:/Users/zcraig/Documents/git/clone/safetown2024-2025/Archive (2023-24)/Archive (2023-24)/TownSoftware/townDesigner/mainwindow.py</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/zcraig/Documents/git/clone/safetown2024-2025/Archive (2023-24)/Archive (2023-24)/TownSoftware/townDesigner/mainwindow.py</value>
-    <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">false</value>
+    <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">true</value>
     <value type="QString" key="PythonEditor.RunConfiguation.Script">C:\Users\zcraig\Documents\git\clone\safetown2024-2025\Archive (2023-24)\Archive (2023-24)\TownSoftware\townDesigner\mainwindow.py</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>

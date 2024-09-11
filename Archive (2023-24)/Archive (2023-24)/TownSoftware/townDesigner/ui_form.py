@@ -46,10 +46,10 @@ class Ui_MainWindow(object):
         self.frame.setMaximumSize(QSize(283, 16777215))
         self.frame.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame.setFrameShadow(QFrame.Shadow.Raised)
-        self.widget = QWidget(self.frame)
-        self.widget.setObjectName(u"widget")
-        self.widget.setGeometry(QRect(10, 8, 265, 591))
-        self.verticalLayout_2 = QVBoxLayout(self.widget)
+        self.layoutWidget = QWidget(self.frame)
+        self.layoutWidget.setObjectName(u"layoutWidget")
+        self.layoutWidget.setGeometry(QRect(10, 8, 265, 591))
+        self.verticalLayout_2 = QVBoxLayout(self.layoutWidget)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout = QVBoxLayout()
@@ -57,12 +57,12 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setSpacing(9)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.columnLabel = QLabel(self.widget)
+        self.columnLabel = QLabel(self.layoutWidget)
         self.columnLabel.setObjectName(u"columnLabel")
 
         self.horizontalLayout_2.addWidget(self.columnLabel)
 
-        self.rowLabel = QLabel(self.widget)
+        self.rowLabel = QLabel(self.layoutWidget)
         self.rowLabel.setObjectName(u"rowLabel")
 
         self.horizontalLayout_2.addWidget(self.rowLabel)
@@ -73,7 +73,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3 = QHBoxLayout()
         self.horizontalLayout_3.setSpacing(0)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.columnTextEdit = QTextEdit(self.widget)
+        self.columnTextEdit = QTextEdit(self.layoutWidget)
         self.columnTextEdit.setObjectName(u"columnTextEdit")
         self.columnTextEdit.setMinimumSize(QSize(81, 31))
         self.columnTextEdit.setMaximumSize(QSize(81, 31))
@@ -85,7 +85,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3.addWidget(self.columnTextEdit)
 
-        self.columnUpButton = QPushButton(self.widget)
+        self.columnUpButton = QPushButton(self.layoutWidget)
         self.columnUpButton.setObjectName(u"columnUpButton")
         self.columnUpButton.setMinimumSize(QSize(22, 31))
         self.columnUpButton.setMaximumSize(QSize(21, 31))
@@ -93,7 +93,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3.addWidget(self.columnUpButton)
 
-        self.columnDownButton = QPushButton(self.widget)
+        self.columnDownButton = QPushButton(self.layoutWidget)
         self.columnDownButton.setObjectName(u"columnDownButton")
         self.columnDownButton.setMinimumSize(QSize(22, 31))
         self.columnDownButton.setMaximumSize(QSize(21, 31))
@@ -105,7 +105,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3.addItem(self.horizontalSpacer)
 
-        self.rowTextEdit = QTextEdit(self.widget)
+        self.rowTextEdit = QTextEdit(self.layoutWidget)
         self.rowTextEdit.setObjectName(u"rowTextEdit")
         self.rowTextEdit.setMinimumSize(QSize(81, 31))
         self.rowTextEdit.setMaximumSize(QSize(81, 31))
@@ -117,7 +117,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3.addWidget(self.rowTextEdit)
 
-        self.rowUpButton = QPushButton(self.widget)
+        self.rowUpButton = QPushButton(self.layoutWidget)
         self.rowUpButton.setObjectName(u"rowUpButton")
         self.rowUpButton.setMinimumSize(QSize(22, 31))
         self.rowUpButton.setMaximumSize(QSize(21, 31))
@@ -125,7 +125,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3.addWidget(self.rowUpButton)
 
-        self.rowDownButton = QPushButton(self.widget)
+        self.rowDownButton = QPushButton(self.layoutWidget)
         self.rowDownButton.setObjectName(u"rowDownButton")
         self.rowDownButton.setMinimumSize(QSize(22, 31))
         self.rowDownButton.setMaximumSize(QSize(21, 31))
@@ -136,7 +136,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addLayout(self.horizontalLayout_3)
 
-        self.submitButton = QPushButton(self.widget)
+        self.submitButton = QPushButton(self.layoutWidget)
         self.submitButton.setObjectName(u"submitButton")
         self.submitButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.submitButton.setMouseTracking(False)
@@ -150,7 +150,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addItem(self.rightPanelSpacer)
 
-        self.scrollArea = QScrollArea(self.widget)
+        self.scrollArea = QScrollArea(self.layoutWidget)
         self.scrollArea.setObjectName(u"scrollArea")
         self.scrollArea.setMinimumSize(QSize(251, 291))
         self.scrollArea.setMaximumSize(QSize(264, 291))
@@ -171,6 +171,9 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
+        self.columnUpButton.pressed.connect(self.columnTextEdit.update)
+        self.columnDownButton.pressed.connect(self.columnTextEdit.update)
+        self.submitButton.pressed.connect(self.frame_2.update)
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi

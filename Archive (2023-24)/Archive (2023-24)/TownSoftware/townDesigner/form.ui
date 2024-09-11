@@ -56,7 +56,7 @@
         <property name="frameShadow">
          <enum>QFrame::Shadow::Raised</enum>
         </property>
-        <widget class="QWidget" name="">
+        <widget class="QWidget" name="layoutWidget">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -344,5 +344,54 @@
   </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>columnUpButton</sender>
+   <signal>pressed()</signal>
+   <receiver>columnTextEdit</receiver>
+   <slot>update()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>666</x>
+     <y>54</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>635</x>
+     <y>54</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>columnDownButton</sender>
+   <signal>pressed()</signal>
+   <receiver>columnTextEdit</receiver>
+   <slot>update()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>692</x>
+     <y>72</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>631</x>
+     <y>70</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>submitButton</sender>
+   <signal>pressed()</signal>
+   <receiver>frame_2</receiver>
+   <slot>update()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>701</x>
+     <y>98</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>463</x>
+     <y>151</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
