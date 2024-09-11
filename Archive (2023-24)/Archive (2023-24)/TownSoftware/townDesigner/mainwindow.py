@@ -14,6 +14,10 @@ class MainWindow(QMainWindow):
         super().__init__(parent)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        
+    def on_enter_pressed(self):
+        text = self.ui.columnTextEdit.toPlainText()
+        print("Enter key pressed! Text content:", text)
 
 
 if __name__ == "__main__":
