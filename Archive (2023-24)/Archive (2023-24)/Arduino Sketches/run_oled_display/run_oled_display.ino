@@ -35,9 +35,11 @@ DisplayOurValues disp = DisplayOurValues();
 
 // MAIN FUNCTIONS
 void setup() {
+  setup1();
 }
 
 void loop() {
+  loop1();
 }
 
 void setup1() {

@@ -28,13 +28,13 @@ Adafruit_SSD1306 adaSSD1306(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 // Constructor
 DisplayOurValues::DisplayOurValues()
 {
-	setup();
+	// setup();
 }
 
 // setup function. Must be run in any sketch that writes to the OLED - taken from Adafruit
 void DisplayOurValues::setup(void) {
 	 // initialize serial monitor
-	 Serial.begin(9600);
+	 Serial.begin(115200); // baud rate
 
 	 // SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
 	 if(!adaSSD1306.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
@@ -161,7 +161,8 @@ void DisplayOurValues::displayIRValues() {
 	adaSSD1306.clearDisplay();
 	
 	// choose text settings
-	adaSSD1306.setTextSize(1);             
+	adaSSD1306.setTextSize(1);         
+	adaSSD1306.setTextColor(SSD1306_WHITE); // Draw white text    
 	adaSSD1306.setCursor(0,0); 
 	
 	// read the IR sensors
@@ -173,7 +174,7 @@ void DisplayOurValues::displayIRValues() {
 	// post the IR ADC values to the OLED buffer
 	adaSSD1306.print("Down IR: ");
 	adaSSD1306.println(down);
-	adaSSD1306.print("Front IR; ");
+	adaSSD1306.print("Front IR: ");
 	adaSSD1306.println(front);
 	adaSSD1306.print("Inner Left IR: ");
 	adaSSD1306.println(inner);
@@ -212,6 +213,11 @@ void DisplayOurValues::goToMenu() {
 				case 3:
 					// go to the DISPLAYIR menu
 					setMenuType(DISPLAYIR);
+					break;
+				// if the current index is 3...
+				case 4:
+					// go to the DISPLAYIR menu
+					setMenuType(SAVE);
 					break;
 				// if the current index is any other value...
 				default:
@@ -353,12 +359,17 @@ void DisplayOurValues::goToMenu() {
 				};
 			}
 			break;
+		case SAVE:
+			{
+				setMenuType(MAIN);
+			}
+			break;
 		default: //CONFIRMSELECTION
 			// reset the starting/ending point selection menu array values to their defaults
 			setMenuItem(STARTPTLETS, 1, "A");
 			setMenuItem(STARTPTNUMS, 1, "1");
-			setMenuItem(ENDPTLETS, 1, "A");
-			setMenuItem(ENDPTNUMS, 1, "1");
+			setMenuItem(ENDPTLETS, 1, "C");
+			setMenuItem(ENDPTNUMS, 1, "5");
 			switch (index) {
 				case 2:
 					// if the selected point is confirmed, go back to the MAIN menu
@@ -507,6 +518,14 @@ void DisplayOurValues::setMenuIndex(int index) {
 	
 }
 
+void DisplayOurValues::decrementMenuIndex() {
+	setMenuIndex(((getMenuIndex()+getMenuLength()-3)%(getMenuLength()-1))+1);
+}
+
+void DisplayOurValues::incrementMenuIndex() {
+	setMenuIndex(((getMenuIndex())%(getMenuLength()-1))+1);
+}
+
 // display the current menu's array items on the OLED
 void DisplayOurValues::displayMenu() {
 	// if the updateScreen flag is true (otherwise don't waste time/power rewriting the screen)
@@ -540,7 +559,8 @@ void DisplayOurValues::displayMenu() {
 	
 		// clear the OLED buffer, & choose text settings
 		adaSSD1306.clearDisplay();
-		adaSSD1306.setTextSize(1);             
+		adaSSD1306.setTextSize(1);     
+		adaSSD1306.setTextColor(SSD1306_WHITE); // Draw white text
 		adaSSD1306.setCursor(startPx,0);  
 		
 		// print the values of the current menu
@@ -615,6 +635,8 @@ String DisplayOurValues::getMenuItem(menuTypes menu, int index) {
 			return displayValueMenu[index];
 		case DISPLAYIR:
 			return displayIRMenu[index];
+		case SAVE:
+			return saveMenu[index];
 		default:
 			return "";
 	};

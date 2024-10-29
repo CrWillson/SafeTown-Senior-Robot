@@ -22,7 +22,8 @@ class DisplayOurValues {
 		ENDPTLETS,
 		ENDPTNUMS,
 		CONFIRMSELECTION,
-		DISPLAYIR
+		DISPLAYIR,
+		SAVE
 	};
   
 	// initializing, setup, and testing functions
@@ -39,6 +40,8 @@ class DisplayOurValues {
 	
 	// attribute-setting functions
 	void setMenuIndex(int index);
+	void incrementMenuIndex();
+	void decrementMenuIndex();
 	void setMenuType(menuTypes type);
 	void setUpdateScreen(bool update);	
 	void setMenuItem(menuTypes menu, int index, String val);
@@ -57,7 +60,7 @@ class DisplayOurValues {
 	// variables to hold menu array lengths
 	// WILL NEED TO CHANGE BASED ON WHAT YOU PUT IN THE MENUS
 	static const int numRowsOnScreen = 4;
-	static const int mainLength = 4;
+	static const int mainLength = 5;
 	static const int navLength = 4;
 	static const int selPtLetsLength = 2;
 	static const int selPtNumsLength = 2;
@@ -66,9 +69,9 @@ class DisplayOurValues {
 	static const int displayIRMenuLength = 8;
 	
 	// IR pin values
-	const int front_ir_pin = 26;
+	const int front_ir_pin = 28;
 	const int in_ir_pin = 27;
-	const int out_ir_pin = 28;
+	const int out_ir_pin = 26;
 	const int down_ir_pin = 29;
 	
 	// variables to hold number of town rows and number of town columns
@@ -93,7 +96,7 @@ class DisplayOurValues {
 	menuTypes menuType = MAIN;
 
 	// menu arrays
-	String mainMenu[mainLength] = {"MENU:", "1. End/Start Select", "2. Display Pin Value", "3. Display IR Values"};
+	String mainMenu[mainLength] = {"MENU:", "1. End/Start Select", "2. Display Pin Value", "3. Display IR Values", "4. Collect IR Data"};
 	String navMenu[navLength] = {"NAV MENU:", "1. Select Start Point", "2. Select End Point", "3. Back"};
 	String startPtLetters[selPtLetsLength] = {"Select Start Row:", "A"};
 	String startPtNums[selPtNumsLength] = {"Select Start Col:", "1"};
@@ -102,6 +105,7 @@ class DisplayOurValues {
 	String confirmSelection[confirmSelectionLength] = {"Confirm Point:", "Selected:", "1. Confirm", "2. Change"};
 	String displayValueMenu[displayValueMenuLength] = {"Select GPIO Pin:", "0", ""};
 	String displayIRMenu[displayIRMenuLength] = {"Down IR: ", "", "Front IR: ", "", "Inner Left IR: ", "", "Outer Left IR: ", ""};
+	String saveMenu[1] = {"Output data"};
 	// be able to read out the value on an ADC as well
 
 };

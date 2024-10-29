@@ -1,6 +1,18 @@
+////////////////////////////////////////////////////////////////////////////////
+// Filename: Junior_bot.ino
+// Author: SafeTown (2022-2024)
+// Purpose: Latest version of functional software for the junior robot.
+////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+// Setup
+////////////////////////////////////////////////////////////////////////////////
+// Library Declarations
 #include <Servo.h>
 #include <Motor.h>
+#include <DisplayOurValues.h> // used for display
 
+// Line-following constants
 #define OUTSIDE_MAX 900
 #define INSIDE_MAX  850
 #define ASYMPTOTE   85
@@ -11,7 +23,7 @@
 #define FRONT_THRES 400
 #define DOWN_THRES  300
 
-
+// Pin I/O definitions
 #define STOP     17
 #define START    16
 #define DISP_SDA 4
@@ -36,10 +48,65 @@
 #define IR_O     26
 #define IR_D     29
 
+// Steering variables
 Servo steer;
 long pos;
 
+// Display variables
+DisplayOurValues display = DisplayOurValues(); // initialize display
 
+// Encoder variables
+bool encoderChange = false; // track encoder changes
+
+// Data collection variables
+int timeOffset = 0;
+int samplePointer = 0;
+bool collectData = false;
+String dataOutput = "";
+const int NUM_SAMPLES = 100;
+int times[NUM_SAMPLES] = {};
+int downSamples[NUM_SAMPLES] = {};
+int frontSamples[NUM_SAMPLES] = {};
+int innerLeftSamples[NUM_SAMPLES] = {};
+int outerLeftSamples[NUM_SAMPLES] = {};
+bool printData = false;
+int sampleTargetTime = 0;
+bool bulldozerMode = true;
+
+// Data collection parameters
+int sampleRate = 20; // Units: samples/s
+int sampleInterval = 1000/sampleRate; // Units: ms/sample
+
+// Encoder left turn
+void ENC_B_GO() {
+  if (encoderChange) {
+    display.decrementMenuIndex();
+  }
+  encoderChange = !encoderChange;
+}
+
+// Encoder right turn
+void ENC_A_GO() {
+  if (encoderChange) {
+    display.incrementMenuIndex();
+  }
+  encoderChange = !encoderChange;
+}
+
+// Encoder press
+void ENC_S_GO() {
+  encoderChange = false;
+  if (display.getMenuType() == 10) { // 10 is the temporary hardcoded number for SAVE
+    printData = true;
+  }
+  display.goToMenu();
+  if (display.getMenuType() == 10) { // 10 is the temporary hardcoded number for SAVE
+    timeOffset = int(millis());
+    samplePointer = 0;
+    sampleTargetTime = 0;
+    collectData = true;
+  }
+}
 
 //XY where X stands for direction going to (straight, left, or right) and Y stands for direction coming from (straight, left, or right)
 //X from Y
@@ -56,35 +123,38 @@ long pos;
   RR
 }*/
 
+// Navigation variables
 int gps_i = 0;
 const int gps_size = 4;
 //0 is straight, 1 is left, 2 is right
 const int gps[] = {0, 1, 2, 0};
 
-
-
+// Obstacle detection variables
 long cycle = 0;
 long oldTime = 0, obstacleTime = 0;
 long led_time = 0;
 long oldTimeDiff = 0;
 
+// Turning calibration variables
 const int turn_rad = 50; //50 for MARS
 const int center = 70; //70 is center for MARS
 
+// Line-following variables
 int inside, outside;
 long error;
 long sum, difference;
+long error_history[256] = {0};
+int error_hi = 0;
+const int eh_size = 256;
 
+// Motor variables
 Motor left_motor(LEFT_A, LEFT_B);
 Motor right_motor(RIGHT_A, RIGHT_B);
 const int speed = 128;
 bool right_brake = true, left_brake = true;
 bool left = false, right = false;
 
-long error_history[256] = {0};
-int error_hi = 0;
-const int eh_size = 256;
-
+// FSM states
 enum State {
   STOPPED = 0,
   FOLLOWING = 2,
@@ -95,7 +165,6 @@ enum State {
   INTERSECTION_FOR = 6,
   TRAFFIC = 7,
   PARKED = 8,
-  
 }
 volatile state = State::STOPPED;
 State oldState = State::STOPPED;
@@ -124,6 +193,18 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(START), startISR, RISING);
   attachInterrupt(digitalPinToInterrupt(STOP), haltISR, RISING);
 
+  // Display setup
+  display.setup();
+  // digitalWrite(YELLOW, LOW);
+  // digitalWrite(RED, HIGH);
+  // digitalWrite(GREEN, HIGH);
+  // Encoder setup
+  pinMode(ENC_B, INPUT);
+  pinMode(ENC_A, INPUT);
+  pinMode(ENC_S, INPUT);
+  attachInterrupt(digitalPinToInterrupt(ENC_B), ENC_B_GO, RISING);
+  attachInterrupt(digitalPinToInterrupt(ENC_A), ENC_A_GO, RISING);
+  attachInterrupt(digitalPinToInterrupt(ENC_S), ENC_S_GO, RISING);
 
   steer.attach(SERVO);
 
@@ -131,18 +212,64 @@ void setup() {
   right_motor.begin();
 }
 
+
+
+
 void loop() {
   inside = analogRead(IR_I);
   outside = analogRead(IR_O);
   difference = outside - inside;
   sum = outside + inside;
-  /*if ((millis() % 100) == 0) {
-    Serial.println("Inside: " + String(inside));
-    Serial.println("Outside: " + String(outside));
-    Serial.println("Difference: " + String(difference));
-    Serial.println("Sum: " + String(sum));
-    Serial.print("\n\n\n");
-  }*/
+
+  // Write to OLED display
+  display.setUpdateScreen(true);
+  display.displayMenu();
+
+  // Collect IR data
+  int time = int(millis()) - timeOffset;
+  if (collectData && time >= sampleTargetTime + sampleInterval) {
+    int down = analogRead(IR_D);
+    int front = analogRead(IR_F);
+    int innerLeft = analogRead(IR_I);
+    int outerLeft = analogRead(IR_O);
+    downSamples[samplePointer] = down;
+    frontSamples[samplePointer] = front;
+    innerLeftSamples[samplePointer] = innerLeft;
+    outerLeftSamples[samplePointer] = outerLeft;
+    times[samplePointer] = time;
+    Serial.println("Collecting data: " + String(samplePointer+1) + "/" + String(NUM_SAMPLES));
+    samplePointer++;
+    sampleTargetTime += sampleInterval;
+    if (samplePointer >= NUM_SAMPLES) {
+      collectData = false;
+    }
+  }
+
+  // use brake light to indicate data collection mode
+  if (collectData) {
+    digitalWrite(BRAKE_LIGHT, HIGH);
+  }
+
+  if (printData) {
+    Serial.println("-----BEGIN DATA-----");
+    Serial.println("DATA TYPE: IR_Sensors");
+    Serial.println("Sample,Millis,Down,Front,InnerLeft,OuterLeft");
+    for (int i = 0; i < NUM_SAMPLES; i++) {
+      Serial.print(i+1);
+      Serial.print(",");
+      Serial.print(times[i]);
+      Serial.print(",");
+      Serial.print(downSamples[i]);
+      Serial.print(",");
+      Serial.print(frontSamples[i]);
+      Serial.print(",");
+      Serial.print(innerLeftSamples[i]);
+      Serial.print(",");
+      Serial.println(outerLeftSamples[i]);
+    }
+    Serial.println("-----END DATA-----");
+    printData = false;
+  }
 
   stateLEDs(state);
   switch (state) {
@@ -169,9 +296,11 @@ void loop() {
           state = State::FAR;
         }
       } else if (analogRead(IR_F) < FRONT_THRES) { 
-        oldState = state;
-        state = State::TRAFFIC;
-        obstacleTime = millis();
+        if (!bulldozerMode) {
+          oldState = state;
+          state = State::TRAFFIC;
+          obstacleTime = millis();
+        }
       } else if (analogRead(IR_D) < DOWN_THRES) {
         oldTime = millis();
         state = State::INTERSECTION_WAIT;
@@ -192,9 +321,11 @@ void loop() {
       if (sum < SUM_MIN) {
         state = State::FOLLOWING;
       } else if (analogRead(IR_F) < FRONT_THRES) { 
-        oldState = state;
-        state = State::TRAFFIC;
-        obstacleTime = millis();
+        if (!bulldozerMode) {
+          oldState = state;
+          state = State::TRAFFIC;
+          obstacleTime = millis();
+        }
       } else if (analogRead(IR_D) < DOWN_THRES) {
         oldTime = millis();
         state = State::INTERSECTION_WAIT;
@@ -214,9 +345,11 @@ void loop() {
       if (sum < SUM_MIN) {
         state = State::FOLLOWING;
       } else if (analogRead(IR_F) < FRONT_THRES) { 
-        oldState = state;
-        state = State::TRAFFIC;
-        obstacleTime = millis();
+        if (!bulldozerMode) {
+          oldState = state;
+          state = State::TRAFFIC;
+          obstacleTime = millis();
+        }
       }
       break;
     case State::STOPPED:
@@ -239,10 +372,12 @@ void loop() {
       left = gps[gps_i] == 1;
       right = gps[gps_i] == 2;
       if (analogRead(IR_F) < FRONT_THRES) { //if intersection is NOT clear, wait until it is
-        oldState = state;
-        state = State::TRAFFIC;
-        obstacleTime = millis();
-        oldTimeDiff = millis() - oldTime;
+        if (!bulldozerMode) {
+          oldState = state;
+          state = State::TRAFFIC;
+          obstacleTime = millis();
+          oldTimeDiff = millis() - oldTime;
+        }
       } else if (millis() > oldTime + 1000) { //otherwise, wait 1 second and then GO GO GO!
         oldTime = millis();
         switch (gps[gps_i]) {
@@ -265,10 +400,12 @@ void loop() {
       pos = center + error;
       steer.write(pos);
       if (analogRead(IR_F) < FRONT_THRES) { 
-        oldState = state;
-        state = State::TRAFFIC;
-        obstacleTime = millis();
-        oldTimeDiff = millis() - oldTime;
+        if (!bulldozerMode) {
+          oldState = state;
+          state = State::TRAFFIC;
+          obstacleTime = millis();
+          oldTimeDiff = millis() - oldTime;
+        }
       } else if (millis() > oldTime + (520 * 128 / speed)) {
         oldTime = millis();
         state = State::INTERSECTION_NAV;
@@ -308,10 +445,12 @@ void loop() {
       }
       //makes us wait 0.25 seconds before being able to switch to avoid reading the white line on 3 way intersections
       if (analogRead(IR_F) < FRONT_THRES) { 
-        oldState = state;
-        state = State::TRAFFIC;
-        obstacleTime = millis();
-        oldTimeDiff = millis() - oldTime;
+        if (!bulldozerMode) {
+          oldState = state;
+          state = State::TRAFFIC;
+          obstacleTime = millis();
+          oldTimeDiff = millis() - oldTime;
+        }
       } else if (millis() > oldTime + 200 && sum < SUM_MIN) {
         state = State::FOLLOWING;
         gps_i = (gps_i + 1) % gps_size;
@@ -377,10 +516,12 @@ void loop() {
   //LED Control
 
   //brake lights are on if we are braking
-  if(right_brake && left_brake) {
-    digitalWrite(BRAKE_LIGHT, HIGH);
-  } else {
-    digitalWrite(BRAKE_LIGHT, LOW);
+  if (!collectData) {
+    if(right_brake && left_brake) {
+      digitalWrite(BRAKE_LIGHT, HIGH);
+    } else {
+      digitalWrite(BRAKE_LIGHT, LOW);
+    }
   }
 
   //left lights blink on and off with a period of 1 second, otherwise are off
