@@ -72,6 +72,7 @@ int outerLeftSamples[NUM_SAMPLES] = {};
 bool printData = false;
 int sampleTargetTime = 0;
 bool bulldozerMode = true;
+int loopCounter = 0;
 
 // Data collection parameters
 int sampleRate = 20; // Units: samples/s
@@ -216,14 +217,18 @@ void setup() {
 
 
 void loop() {
+  loopCounter++;
   inside = analogRead(IR_I);
   outside = analogRead(IR_O);
   difference = outside - inside;
   sum = outside + inside;
 
   // Write to OLED display
-  display.setUpdateScreen(true);
-  display.displayMenu();
+  if (loopCounter >= 10000) {
+    display.setUpdateScreen(true);
+    display.displayMenu();
+    loopCounter = 0;
+  }
 
   // Collect IR data
   int time = int(millis()) - timeOffset;
