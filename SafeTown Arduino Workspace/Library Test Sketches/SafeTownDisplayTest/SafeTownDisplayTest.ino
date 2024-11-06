@@ -86,4 +86,5 @@ void loop() {
   // display.display();
   // delay(100);
   // display.loop();
+  display.displayMenu();
 }

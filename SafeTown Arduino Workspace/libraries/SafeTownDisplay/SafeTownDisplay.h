@@ -2,6 +2,7 @@
 #define SafeTownDisplay_h
 
 #include "Arduino.h"
+#include "MenuItem.h"
 #include <SPI.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>
@@ -14,7 +15,12 @@ class SafeTownDisplay {
     void setup();
     void loop();
     void select();
-    MenuItem menu = MenuItem(adaSSD1306);
+    MenuItem menu;
+    void menuSetup();
     int c;
+    int numLines;
+    MenuItem* currentMenu = &menu;
+    void displayMenu();
+    int currentIndex = 0;
 };
 #endif
