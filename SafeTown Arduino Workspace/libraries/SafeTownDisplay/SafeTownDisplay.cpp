@@ -79,7 +79,7 @@ void SafeTownDisplay::displayMenu() {
     if (i == currentIndex) {
       adaSSD1306.setTextColor(SSD1306_BLACK, SSD1306_WHITE);
     }
-    adaSSD1306.println((currentMenu->getSubMenuItemContent(i)).c_str());
+    adaSSD1306.println(currentMenu->getSubMenuItemContent(i));
   }
   adaSSD1306.display();
 }

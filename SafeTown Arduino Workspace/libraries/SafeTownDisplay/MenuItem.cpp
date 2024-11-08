@@ -45,9 +45,9 @@ void MenuItem::setParent(MenuItem *parent)
 
 void MenuItem::addSubMenuItem(String newContent)
 {
-  MenuItem newItem = MenuItem(newContent);
-  newItem.setParent(this);
-  SubMenuItems.push_back(&newItem);
+  MenuItem *newItem = new MenuItem(newContent);
+  newItem->setParent(this);
+  SubMenuItems.push_back(newItem);
 }
 
 String MenuItem::getContent()
@@ -70,5 +70,5 @@ String MenuItem::getSubMenuItemContent(int index)
     String subContent = subMenuItem->getContent();
     return subContent;
   }
-  return "ERROR";
+  return "NULL";
 }

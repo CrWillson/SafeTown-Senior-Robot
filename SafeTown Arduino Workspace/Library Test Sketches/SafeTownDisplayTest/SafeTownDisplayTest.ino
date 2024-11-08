@@ -68,6 +68,7 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(ENC_A), ENC_A_GO, RISING);
   attachInterrupt(digitalPinToInterrupt(ENC_S), ENC_S_GO, RISING);
   display.setup();
+  // display.displayMenu();
 }
 
 void loop() {
@@ -86,5 +87,8 @@ void loop() {
   // display.display();
   // delay(100);
   // display.loop();
+  Serial.println(millis());
+  // display.setup();
   display.displayMenu();
+  delay(1000);
 }
