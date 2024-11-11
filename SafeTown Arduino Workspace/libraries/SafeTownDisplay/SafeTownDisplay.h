@@ -13,7 +13,6 @@ class SafeTownDisplay {
   public:
     SafeTownDisplay();
     void setup();
-    void loop();
     void select();
     MenuItem menu;
     void menuSetup();
@@ -22,5 +21,15 @@ class SafeTownDisplay {
     MenuItem* currentMenu = &menu;
     void displayMenu();
     int currentIndex = 0;
+    void selectCurrentItem();
+    void decrementMenuIndex();
+    void incrementMenuIndex();
+    bool runSelectedAction = false;
+    static void displayIRValues();
+    // IR pin values
+    const static int front_ir_pin = 28;
+    const static int in_ir_pin = 27;
+    const static int out_ir_pin = 26;
+    const static int down_ir_pin = 29;
 };
 #endif
