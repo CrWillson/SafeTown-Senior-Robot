@@ -35,12 +35,8 @@ void SafeTownDisplay::setup() {
     for(;;); // Don't proceed, loop forever
   }
   adaSSD1306.clearDisplay();
-  menu.SetDisplay(adaSSD1306);
+  // menu.SetDisplay(adaSSD1306);
   menuSetup();
-}
-
-void SafeTownDisplay::select() {
-  menu.select();
 }
 
 void SafeTownDisplay::displayIRValues() {
@@ -74,7 +70,6 @@ void SafeTownDisplay::displayIRValues() {
 
 void SafeTownDisplay::menuSetup() {
   menu = MenuItem("MAIN");
-  menu.makeRoot();
   menu.addSubMenuItem("View IR Sensor Values");
   menu.getSubMenuItem(0)->setAction(displayIRValues);
   menu.addSubMenuItem("Item #2");

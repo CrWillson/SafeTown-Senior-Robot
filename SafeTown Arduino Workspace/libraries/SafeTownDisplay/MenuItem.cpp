@@ -12,70 +12,72 @@
 MenuItem::MenuItem()
 {
 }
+
+// Constructor for setting content
 MenuItem::MenuItem(String content)
 {
   this->content = content;
 }
 
-void MenuItem::SetDisplay(Adafruit_SSD1306& display)
-{
-  this->display = &display;
-}
+// Unnecessary?
+// Give the MenuItem access to the display
+// void MenuItem::SetDisplay(Adafruit_SSD1306& display)
+// {
+//   this->display = &display;
+// }
 
-void MenuItem::select()
-{
-  // c++;
-  // display->clearDisplay();
-  // display->setTextSize(1);
-  // display->setTextColor(SSD1306_WHITE);
-  // display->setCursor(0, 0);
-  // display->println(c);
-  // display->display();
-}
-
+// Return the number of SubMenuItems a MenuItem has (including "Back" item)
 int MenuItem::getNumItems()
 {
   return SubMenuItems.size();
 }
 
+// Set the MenuItem's parent
 void MenuItem::setParent(MenuItem *parent)
 {
   this->parent = parent;
 }
 
+// Get the MenuItem's parent pointer
 MenuItem* MenuItem::getParent()
 {
   return parent;
 }
 
+// Add a SubMenuItem to MenuItem's vector
 void MenuItem::addSubMenuItem(String newContent)
 {
   if (getNumItems() == 0 && !isRoot()) {
+    // If this is the first SubMenuItem, then create a "Back" item
     MenuItem* newItem = new MenuItem("<- Back");
     newItem->setParent(this);
     newItem->makeBack();
     SubMenuItems.push_back(newItem);
   }
+  // Create new MenuItem with this item as its parent
   MenuItem* newItem = new MenuItem(newContent);
   newItem->setParent(this);
   newItem->setIndex(getNumItems());
   SubMenuItems.push_back(newItem);
-  makeSelectable();
 }
 
+// Set the MenuItem's index
 void MenuItem::setIndex(int index) {
   this->index = index;
 }
 
+// Get the MenuItem's index
 int MenuItem::getIndex() {
   return index;
 }
 
+// Get the MenuItem's content
 String MenuItem::getContent()
 {
   return content;
 }
 
+// Get a SubMenuItem
 MenuItem* MenuItem::getSubMenuItem(int index)
 {
   if (index >= 0 && index < getNumItems()) {
@@ -84,6 +86,7 @@ MenuItem* MenuItem::getSubMenuItem(int index)
   return nullptr;
 }
 
+// Get a SubMenuItem's content
 String MenuItem::getSubMenuItemContent(int index)
 {
   MenuItem* subMenuItem = getSubMenuItem(index);
@@ -94,45 +97,44 @@ String MenuItem::getSubMenuItemContent(int index)
   return "NULL";
 }
 
+// Check if the MenuItem is selectable (i.e. it has SubMenuItems)
 bool MenuItem::isSelectable()
 {
-  return selectable;
+  return (getNumItems() > 0);
 }
 
-void MenuItem::makeSelectable()
-{
-  selectable = true;
-}
-
+// Check if the MenuItem is the root
 bool MenuItem::isRoot()
 {
-  return root;
+  return (parent == nullptr);
 }
 
-void MenuItem::makeRoot()
-{
-  root = true;
-}
-
+// Check if the MenuItem is a "Back" item
 bool MenuItem::isBack()
 {
   return back;
 }
 
+// Make the MenuItem a "Back" item
 void MenuItem::makeBack()
 {
   back = true;
 }
 
+// Set the MenuItem's action
 void MenuItem::setAction(void (*selectAction)())
 {
   this->selectAction = selectAction;
   action = true;
 }
+
+// Check if a MenuItem has an action
 bool MenuItem::hasAction()
 {
   return action;
 }
+
+// Do the MenuItem's action
 void MenuItem::doAction()
 {
   selectAction();

@@ -13,7 +13,6 @@ class SafeTownDisplay {
   public:
     SafeTownDisplay();
     void setup();
-    void select();
     MenuItem menu;
     void menuSetup();
     int c;

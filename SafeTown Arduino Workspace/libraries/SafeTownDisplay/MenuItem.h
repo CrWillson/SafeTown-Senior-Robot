@@ -10,14 +10,8 @@ class MenuItem {
   public:
     MenuItem();
     MenuItem(String content);
-    void SetDisplay(Adafruit_SSD1306& display);
-    Adafruit_SSD1306* display;
-    std::vector<MenuItem *> SubMenuItems;
-    MenuItem* parent = nullptr;
-    String content = "";
-    void select();
-    int c = 0;
-    int index = -1;
+    // void SetDisplay(Adafruit_SSD1306& display);
+    // Adafruit_SSD1306* display;
     void setIndex(int index);
     int getIndex();
     int getNumItems();
@@ -27,19 +21,21 @@ class MenuItem {
     String getContent();
     MenuItem* getSubMenuItem(int index);
     String getSubMenuItemContent(int index);
-    bool selectable = false;
     bool isSelectable();
-    void makeSelectable();
-    bool root = false;
     bool isRoot();
-    void makeRoot();
-    bool back = false;
     bool isBack();
     void makeBack();
-    void (*selectAction)() = nullptr;
-    bool action = false;
     void setAction(void (*selectAction)());
     bool hasAction();
     void doAction();
+
+  private:
+    std::vector<MenuItem *> SubMenuItems; // Store SubMenuItems
+    MenuItem* parent = nullptr; // Parent pointer
+    String content = ""; // Content to display
+    int index = -1; // A MenuItem's index within its parent
+    bool action = false;
+    bool back = false; // True when MenuItem is a "Back" item
+    void (*selectAction)() = nullptr; // The action a MenuItem does (only when there are no SubMenuItems)
 };
 #endif
