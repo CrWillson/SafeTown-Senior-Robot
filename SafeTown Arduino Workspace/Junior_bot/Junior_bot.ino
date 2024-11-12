@@ -138,7 +138,7 @@ long oldTimeDiff = 0;
 
 // Turning calibration variables
 const int turn_rad = 50; //50 for MARS
-const int center = 70; //70 is center for MARS
+const int center = 70; //70 is center for MARS, 75 for NEPTUNE
 
 // Line-following variables
 int inside, outside;
@@ -352,6 +352,9 @@ void loop() {
           state = State::TRAFFIC;
           obstacleTime = millis();
         }
+      } else if (analogRead(IR_D) < DOWN_THRES) {
+        oldTime = millis();
+        state = State::INTERSECTION_WAIT;
       }
       break;
     case State::STOPPED:
