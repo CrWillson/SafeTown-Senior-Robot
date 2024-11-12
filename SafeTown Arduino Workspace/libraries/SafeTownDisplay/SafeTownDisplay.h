@@ -13,11 +13,11 @@ class SafeTownDisplay {
   public:
     SafeTownDisplay();
     void setup();
-    MenuItem menu;
+    MenuItem mainMenu;
     void menuSetup();
     int c;
     int numLines;
-    MenuItem* currentMenu = &menu;
+    MenuItem* currentMenu = &mainMenu;
     void displayMenu();
     int currentIndex = 0;
     void selectCurrentItem();

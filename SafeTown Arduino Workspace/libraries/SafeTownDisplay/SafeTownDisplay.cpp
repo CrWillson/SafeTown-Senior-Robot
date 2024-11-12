@@ -35,7 +35,7 @@ void SafeTownDisplay::setup() {
     for(;;); // Don't proceed, loop forever
   }
   adaSSD1306.clearDisplay();
-  // menu.SetDisplay(adaSSD1306);
+  // mainMenu.SetDisplay(adaSSD1306);
   menuSetup();
 }
 
@@ -69,50 +69,50 @@ void SafeTownDisplay::displayIRValues() {
 }
 
 void SafeTownDisplay::menuSetup() {
-  menu = MenuItem("MAIN");
-  menu.addSubMenuItem("View IR Sensor Values");
-  menu.getSubMenuItem(0)->setAction(displayIRValues);
-  menu.addSubMenuItem("Item #2");
-  menu.getSubMenuItem(1)->addSubMenuItem("Item #2.1");
-  menu.getSubMenuItem(1)->getSubMenuItem(1)->addSubMenuItem("Item #2.1.1");
-  menu.getSubMenuItem(1)->getSubMenuItem(1)->addSubMenuItem("Item #2.1.2");
-  menu.getSubMenuItem(1)->getSubMenuItem(1)->addSubMenuItem("Item #2.1.3");
-  menu.getSubMenuItem(1)->getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Item #2.1.3.1");
-  menu.getSubMenuItem(1)->getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Item #2.1.3.2");
-  menu.getSubMenuItem(1)->getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Item #2.1.3.3");
-  menu.getSubMenuItem(1)->getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Item #2.1.3.4");
-  menu.getSubMenuItem(1)->getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Item #2.1.3.5");
-  menu.getSubMenuItem(1)->addSubMenuItem("Item #2.2");
-  menu.getSubMenuItem(1)->addSubMenuItem("Item #2.3");
-  menu.getSubMenuItem(1)->addSubMenuItem("Item #2.4");
-  menu.getSubMenuItem(1)->addSubMenuItem("Item #2.5");
-  menu.getSubMenuItem(1)->addSubMenuItem("Item #2.6");
-  menu.addSubMenuItem("Item #3");
-  menu.getSubMenuItem(2)->addSubMenuItem("Item #3.1");
-  menu.getSubMenuItem(2)->addSubMenuItem("Item #3.2");
-  menu.getSubMenuItem(2)->addSubMenuItem("Item #3.3");
-  menu.getSubMenuItem(2)->addSubMenuItem("Item #3.4");
-  menu.getSubMenuItem(2)->addSubMenuItem("Item #3.5");
-  menu.getSubMenuItem(2)->addSubMenuItem("Item #3.6");
-  menu.addSubMenuItem("Item #4");
-  menu.getSubMenuItem(3)->addSubMenuItem("Item #4.1");
-  menu.getSubMenuItem(3)->addSubMenuItem("Item #4.2");
-  menu.getSubMenuItem(3)->addSubMenuItem("Item #4.3");
-  menu.getSubMenuItem(3)->addSubMenuItem("Item #4.4");
-  menu.getSubMenuItem(3)->addSubMenuItem("Item #4.5");
-  menu.getSubMenuItem(3)->addSubMenuItem("Item #4.6");
-  menu.addSubMenuItem("Item #5");
-  menu.getSubMenuItem(4)->addSubMenuItem("Item #5.1");
-  menu.getSubMenuItem(4)->addSubMenuItem("Item #5.2");
-  menu.getSubMenuItem(4)->addSubMenuItem("Item #5.3");
-  menu.getSubMenuItem(4)->addSubMenuItem("Item #5.4");
-  menu.getSubMenuItem(4)->addSubMenuItem("Item #5.5");
-  menu.getSubMenuItem(4)->addSubMenuItem("Item #5.6");
-  menu.addSubMenuItem("Item #6");
-  menu.addSubMenuItem("Item #7");
-  menu.addSubMenuItem("Item #8");
-  menu.addSubMenuItem("Item #9");
-  menu.addSubMenuItem("Item #10");
+  mainMenu = MenuItem("MAIN MENU");
+  mainMenu.addSubMenuItem("1. View IR Values");
+  mainMenu.getSubMenuItem(0)->setAction(displayIRValues);
+  mainMenu.addSubMenuItem("Item #2");
+  mainMenu.getSubMenuItem(1)->addSubMenuItem("Item #2.1");
+  mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->addSubMenuItem("Item #2.1.1");
+  mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->addSubMenuItem("Item #2.1.2");
+  mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->addSubMenuItem("Item #2.1.3");
+  mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Item #2.1.3.1");
+  mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Item #2.1.3.2");
+  mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Item #2.1.3.3");
+  mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Item #2.1.3.4");
+  mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Item #2.1.3.5");
+  mainMenu.getSubMenuItem(1)->addSubMenuItem("Item #2.2");
+  mainMenu.getSubMenuItem(1)->addSubMenuItem("Item #2.3");
+  mainMenu.getSubMenuItem(1)->addSubMenuItem("Item #2.4");
+  mainMenu.getSubMenuItem(1)->addSubMenuItem("Item #2.5");
+  mainMenu.getSubMenuItem(1)->addSubMenuItem("Item #2.6");
+  mainMenu.addSubMenuItem("Item #3");
+  mainMenu.getSubMenuItem(2)->addSubMenuItem("Item #3.1");
+  mainMenu.getSubMenuItem(2)->addSubMenuItem("Item #3.2");
+  mainMenu.getSubMenuItem(2)->addSubMenuItem("Item #3.3");
+  mainMenu.getSubMenuItem(2)->addSubMenuItem("Item #3.4");
+  mainMenu.getSubMenuItem(2)->addSubMenuItem("Item #3.5");
+  mainMenu.getSubMenuItem(2)->addSubMenuItem("Item #3.6");
+  mainMenu.addSubMenuItem("Item #4");
+  mainMenu.getSubMenuItem(3)->addSubMenuItem("Item #4.1");
+  mainMenu.getSubMenuItem(3)->addSubMenuItem("Item #4.2");
+  mainMenu.getSubMenuItem(3)->addSubMenuItem("Item #4.3");
+  mainMenu.getSubMenuItem(3)->addSubMenuItem("Item #4.4");
+  mainMenu.getSubMenuItem(3)->addSubMenuItem("Item #4.5");
+  mainMenu.getSubMenuItem(3)->addSubMenuItem("Item #4.6");
+  mainMenu.addSubMenuItem("Item #5");
+  mainMenu.getSubMenuItem(4)->addSubMenuItem("Item #5.1");
+  mainMenu.getSubMenuItem(4)->addSubMenuItem("Item #5.2");
+  mainMenu.getSubMenuItem(4)->addSubMenuItem("Item #5.3");
+  mainMenu.getSubMenuItem(4)->addSubMenuItem("Item #5.4");
+  mainMenu.getSubMenuItem(4)->addSubMenuItem("Item #5.5");
+  mainMenu.getSubMenuItem(4)->addSubMenuItem("Item #5.6");
+  mainMenu.addSubMenuItem("Item #6");
+  mainMenu.addSubMenuItem("Item #7");
+  mainMenu.addSubMenuItem("Item #8");
+  mainMenu.addSubMenuItem("Item #9");
+  mainMenu.addSubMenuItem("Item #10");
 }
 
 void SafeTownDisplay::displayMenu() {
@@ -152,24 +152,18 @@ void SafeTownDisplay::displayMenu() {
 }
 
 void SafeTownDisplay::selectCurrentItem() {
-  // Serial.println("Selected");
   if (!runSelectedAction) {
-    // Serial.println("Not running action");
     MenuItem* selected = currentMenu->getSubMenuItem(currentIndex);
-    if (selected->isSelectable()) {
-      // Serial.println("Is selectable");
+    if (selected->isParent()) {
       currentMenu = selected;
       currentIndex = 1;
     } else if (selected->isBack()) {
-      // Serial.println("Is back");
       currentIndex = currentMenu->getIndex();
       currentMenu = currentMenu->getParent();
     } else if (selected->hasAction()) {
-      // Serial.println("Has action");
       runSelectedAction = true;
     }
   } else {
-    // Serial.println("Running action");
     runSelectedAction = false;
   }
 }

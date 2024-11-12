@@ -196,9 +196,9 @@ void setup() {
 
   // Display setup
   display.setup();
-  // digitalWrite(YELLOW, LOW);
-  // digitalWrite(RED, HIGH);
-  // digitalWrite(GREEN, HIGH);
+  digitalWrite(YELLOW, LOW);
+  digitalWrite(RED, LOW);
+  digitalWrite(GREEN, LOW);
   // Encoder setup
   pinMode(ENC_B, INPUT);
   pinMode(ENC_A, INPUT);

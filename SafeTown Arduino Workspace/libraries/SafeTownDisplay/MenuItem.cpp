@@ -98,7 +98,7 @@ String MenuItem::getSubMenuItemContent(int index)
 }
 
 // Check if the MenuItem is selectable (i.e. it has SubMenuItems)
-bool MenuItem::isSelectable()
+bool MenuItem::isParent()
 {
   return (getNumItems() > 0);
 }

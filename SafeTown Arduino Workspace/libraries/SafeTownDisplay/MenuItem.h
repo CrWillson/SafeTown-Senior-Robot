@@ -21,7 +21,7 @@ class MenuItem {
     String getContent();
     MenuItem* getSubMenuItem(int index);
     String getSubMenuItemContent(int index);
-    bool isSelectable();
+    bool isParent();
     bool isRoot();
     bool isBack();
     void makeBack();
