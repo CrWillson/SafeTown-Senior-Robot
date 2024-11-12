@@ -607,7 +607,7 @@ int map_pos(int diff) {
 }
 
 int in_speed(int servo_pos) {
-  const float wheel_radius = 10; //(mm)
+  const float wheel_radius = 18; //(mm) Joshua changed from 10
   const float wheel_base = 86; //(mm), measured from front wheel axle to rear wheel axle
   const float wheel_dist = 40; //(mm), measure from inside of front right wheel to inside of front left wheel
 
@@ -623,7 +623,7 @@ int in_speed(int servo_pos) {
 }
 
 int out_speed(int servo_pos) { //same as in_speed, but turn_radius is + wheel_dist / 2 instead of -
-  const float wheel_radius = 10; //(mm)
+  const float wheel_radius = 18; //(mm) Joshua changed from 10
   const float wheel_base = 86; //(mm), measured from front wheel axle to rear wheel axle
   const float wheel_dist = 40; //(mm), measure from inside of front right wheel to inside of front left wheel
 
