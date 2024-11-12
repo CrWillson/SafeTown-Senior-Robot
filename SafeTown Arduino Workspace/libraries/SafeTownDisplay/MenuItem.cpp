@@ -7,6 +7,7 @@
 // libraries and inclusions
 #include "Arduino.h"
 #include "MenuItem.h"
+#include "SafeTownDisplay.h"
 
 // Constructor
 MenuItem::MenuItem()
@@ -77,6 +78,12 @@ String MenuItem::getContent()
   return content;
 }
 
+// Set the MenuItem's content
+void MenuItem::setContent(String content)
+{
+  this->content = content;
+}
+
 // Get a SubMenuItem
 MenuItem* MenuItem::getSubMenuItem(int index)
 {
@@ -128,6 +135,13 @@ void MenuItem::setAction(void (*selectAction)())
   action = true;
 }
 
+// Set the MenuItem's action
+void MenuItem::setAction2(void (*selectAction2)(SafeTownDisplay*))
+{
+  this->selectAction2 = selectAction2;
+  action = true;
+}
+
 // Check if a MenuItem has an action
 bool MenuItem::hasAction()
 {
@@ -135,7 +149,24 @@ bool MenuItem::hasAction()
 }
 
 // Do the MenuItem's action
-void MenuItem::doAction()
+void MenuItem::doAction(SafeTownDisplay* displayLibInst)
 {
-  selectAction();
+  if (selectAction != nullptr) {
+    selectAction();
+  }
+  if (selectAction2 != nullptr) {
+    selectAction2(displayLibInst);
+  }
+  
+}
+
+// Get the MenuItem's bool data
+bool MenuItem::getBoolData()
+{
+  return boolData;
+}
+
+void MenuItem::setBoolData(bool boolData)
+{
+  this->boolData = boolData;
 }

@@ -6,6 +6,8 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
+class SafeTownDisplay; // forward declaration
+
 class MenuItem {
   public:
     MenuItem();
@@ -19,6 +21,7 @@ class MenuItem {
     MenuItem* getParent();
     void addSubMenuItem(String newContent);
     String getContent();
+    void setContent(String content);
     MenuItem* getSubMenuItem(int index);
     String getSubMenuItemContent(int index);
     bool isParent();
@@ -26,8 +29,11 @@ class MenuItem {
     bool isBack();
     void makeBack();
     void setAction(void (*selectAction)());
+    void setAction2(void (*selectAction2)(SafeTownDisplay*));
     bool hasAction();
-    void doAction();
+    void doAction(SafeTownDisplay* displayLibInst);
+    bool getBoolData();
+    void setBoolData(bool boolData);
 
   private:
     std::vector<MenuItem *> SubMenuItems; // Store SubMenuItems
@@ -37,5 +43,7 @@ class MenuItem {
     bool action = false;
     bool back = false; // True when MenuItem is a "Back" item
     void (*selectAction)() = nullptr; // The action a MenuItem does (only when there are no SubMenuItems)
+    void (*selectAction2)(SafeTownDisplay*) = nullptr;
+    bool boolData = true;
 };
 #endif

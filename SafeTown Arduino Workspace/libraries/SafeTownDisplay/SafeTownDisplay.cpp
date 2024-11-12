@@ -68,51 +68,97 @@ void SafeTownDisplay::displayIRValues() {
 	adaSSD1306.display();
 }
 
+void SafeTownDisplay::collectData() {
+
+}
+
+void SafeTownDisplay::outputData() {
+  
+}
+
+void SafeTownDisplay::toggleDownIR() {
+  
+}
+
+void SafeTownDisplay::toggleFrontIR() {
+  
+}
+
+void SafeTownDisplay::toggleInnerLeftIR() {
+  
+}
+
+void SafeTownDisplay::toggleOuterLeftIR(SafeTownDisplay* displayLibInst) {
+  MenuItem* selected = displayLibInst->currentMenu->getSubMenuItem(displayLibInst->currentIndex);
+  selected->setBoolData(!selected->getBoolData());
+  // outputOuterLeftIR = !outputOuterLeftIR;
+  String newContent = "Outer Left IR: FALSE";
+  if (selected->getBoolData()) {
+    newContent = "Outer Left IR: TRUE";
+  }
+  selected->setContent(newContent);
+  displayLibInst->runSelectedAction = false;
+}
+
 void SafeTownDisplay::menuSetup() {
   mainMenu = MenuItem("MAIN MENU");
-  mainMenu.addSubMenuItem("1. View IR Values");
+  mainMenu.addSubMenuItem("View IR Sensor Values");
   mainMenu.getSubMenuItem(0)->setAction(displayIRValues);
-  mainMenu.addSubMenuItem("Item #2");
-  mainMenu.getSubMenuItem(1)->addSubMenuItem("Item #2.1");
-  mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->addSubMenuItem("Item #2.1.1");
-  mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->addSubMenuItem("Item #2.1.2");
-  mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->addSubMenuItem("Item #2.1.3");
-  mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Item #2.1.3.1");
-  mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Item #2.1.3.2");
-  mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Item #2.1.3.3");
-  mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Item #2.1.3.4");
-  mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Item #2.1.3.5");
-  mainMenu.getSubMenuItem(1)->addSubMenuItem("Item #2.2");
-  mainMenu.getSubMenuItem(1)->addSubMenuItem("Item #2.3");
-  mainMenu.getSubMenuItem(1)->addSubMenuItem("Item #2.4");
-  mainMenu.getSubMenuItem(1)->addSubMenuItem("Item #2.5");
-  mainMenu.getSubMenuItem(1)->addSubMenuItem("Item #2.6");
-  mainMenu.addSubMenuItem("Item #3");
-  mainMenu.getSubMenuItem(2)->addSubMenuItem("Item #3.1");
-  mainMenu.getSubMenuItem(2)->addSubMenuItem("Item #3.2");
-  mainMenu.getSubMenuItem(2)->addSubMenuItem("Item #3.3");
-  mainMenu.getSubMenuItem(2)->addSubMenuItem("Item #3.4");
-  mainMenu.getSubMenuItem(2)->addSubMenuItem("Item #3.5");
-  mainMenu.getSubMenuItem(2)->addSubMenuItem("Item #3.6");
-  mainMenu.addSubMenuItem("Item #4");
-  mainMenu.getSubMenuItem(3)->addSubMenuItem("Item #4.1");
-  mainMenu.getSubMenuItem(3)->addSubMenuItem("Item #4.2");
-  mainMenu.getSubMenuItem(3)->addSubMenuItem("Item #4.3");
-  mainMenu.getSubMenuItem(3)->addSubMenuItem("Item #4.4");
-  mainMenu.getSubMenuItem(3)->addSubMenuItem("Item #4.5");
-  mainMenu.getSubMenuItem(3)->addSubMenuItem("Item #4.6");
-  mainMenu.addSubMenuItem("Item #5");
-  mainMenu.getSubMenuItem(4)->addSubMenuItem("Item #5.1");
-  mainMenu.getSubMenuItem(4)->addSubMenuItem("Item #5.2");
-  mainMenu.getSubMenuItem(4)->addSubMenuItem("Item #5.3");
-  mainMenu.getSubMenuItem(4)->addSubMenuItem("Item #5.4");
-  mainMenu.getSubMenuItem(4)->addSubMenuItem("Item #5.5");
-  mainMenu.getSubMenuItem(4)->addSubMenuItem("Item #5.6");
-  mainMenu.addSubMenuItem("Item #6");
-  mainMenu.addSubMenuItem("Item #7");
-  mainMenu.addSubMenuItem("Item #8");
-  mainMenu.addSubMenuItem("Item #9");
-  mainMenu.addSubMenuItem("Item #10");
+  mainMenu.addSubMenuItem("Data Collection");
+  mainMenu.getSubMenuItem(1)->addSubMenuItem("Collect Data");
+  mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->setAction(collectData);
+  mainMenu.getSubMenuItem(1)->addSubMenuItem("Output Data");
+  mainMenu.getSubMenuItem(1)->getSubMenuItem(2)->setAction(outputData);
+  mainMenu.getSubMenuItem(1)->addSubMenuItem("Data Settings");
+  mainMenu.getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Down IR: TRUE");
+  mainMenu.getSubMenuItem(1)->getSubMenuItem(3)->getSubMenuItem(1)->setAction(toggleDownIR);
+  mainMenu.getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Front IR: TRUE");
+  mainMenu.getSubMenuItem(1)->getSubMenuItem(3)->getSubMenuItem(2)->setAction(toggleFrontIR);
+  mainMenu.getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Inner Left IR: TRUE");
+  mainMenu.getSubMenuItem(1)->getSubMenuItem(3)->getSubMenuItem(3)->setAction(toggleInnerLeftIR);
+  mainMenu.getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Outer Left IR: TRUE");
+  mainMenu.getSubMenuItem(1)->getSubMenuItem(3)->getSubMenuItem(4)->setAction2(toggleOuterLeftIR);
+//   mainMenu.addSubMenuItem("Item #2");
+//   mainMenu.getSubMenuItem(1)->addSubMenuItem("Item #2.1");
+//   mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->addSubMenuItem("Item #2.1.1");
+//   mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->addSubMenuItem("Item #2.1.2");
+//   mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->addSubMenuItem("Item #2.1.3");
+//   mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Item #2.1.3.1");
+//   mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Item #2.1.3.2");
+//   mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Item #2.1.3.3");
+//   mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Item #2.1.3.4");
+//   mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Item #2.1.3.5");
+//   mainMenu.getSubMenuItem(1)->addSubMenuItem("Item #2.2");
+//   mainMenu.getSubMenuItem(1)->addSubMenuItem("Item #2.3");
+//   mainMenu.getSubMenuItem(1)->addSubMenuItem("Item #2.4");
+//   mainMenu.getSubMenuItem(1)->addSubMenuItem("Item #2.5");
+//   mainMenu.getSubMenuItem(1)->addSubMenuItem("Item #2.6");
+//   mainMenu.addSubMenuItem("Item #3");
+//   mainMenu.getSubMenuItem(2)->addSubMenuItem("Item #3.1");
+//   mainMenu.getSubMenuItem(2)->addSubMenuItem("Item #3.2");
+//   mainMenu.getSubMenuItem(2)->addSubMenuItem("Item #3.3");
+//   mainMenu.getSubMenuItem(2)->addSubMenuItem("Item #3.4");
+//   mainMenu.getSubMenuItem(2)->addSubMenuItem("Item #3.5");
+//   mainMenu.getSubMenuItem(2)->addSubMenuItem("Item #3.6");
+//   mainMenu.addSubMenuItem("Item #4");
+//   mainMenu.getSubMenuItem(3)->addSubMenuItem("Item #4.1");
+//   mainMenu.getSubMenuItem(3)->addSubMenuItem("Item #4.2");
+//   mainMenu.getSubMenuItem(3)->addSubMenuItem("Item #4.3");
+//   mainMenu.getSubMenuItem(3)->addSubMenuItem("Item #4.4");
+//   mainMenu.getSubMenuItem(3)->addSubMenuItem("Item #4.5");
+//   mainMenu.getSubMenuItem(3)->addSubMenuItem("Item #4.6");
+//   mainMenu.addSubMenuItem("Item #5");
+//   mainMenu.getSubMenuItem(4)->addSubMenuItem("Item #5.1");
+//   mainMenu.getSubMenuItem(4)->addSubMenuItem("Item #5.2");
+//   mainMenu.getSubMenuItem(4)->addSubMenuItem("Item #5.3");
+//   mainMenu.getSubMenuItem(4)->addSubMenuItem("Item #5.4");
+//   mainMenu.getSubMenuItem(4)->addSubMenuItem("Item #5.5");
+//   mainMenu.getSubMenuItem(4)->addSubMenuItem("Item #5.6");
+//   mainMenu.addSubMenuItem("Item #6");
+//   mainMenu.addSubMenuItem("Item #7");
+//   mainMenu.addSubMenuItem("Item #8");
+//   mainMenu.addSubMenuItem("Item #9");
+//   mainMenu.addSubMenuItem("Item #10");
 }
 
 void SafeTownDisplay::displayMenu() {
@@ -147,7 +193,7 @@ void SafeTownDisplay::displayMenu() {
     }
     adaSSD1306.display();
   } else {
-    currentMenu->getSubMenuItem(currentIndex)->doAction();
+    currentMenu->getSubMenuItem(currentIndex)->doAction(this);
   }
 }
 
