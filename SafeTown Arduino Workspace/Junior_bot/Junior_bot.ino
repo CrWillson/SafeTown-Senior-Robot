@@ -71,6 +71,7 @@ int innerLeftSamples[NUM_SAMPLES] = {};
 int outerLeftSamples[NUM_SAMPLES] = {};
 bool printData = false;
 int sampleTargetTime = 0;
+
 bool bulldozerMode = true;
 int loopCounter = 0;
 

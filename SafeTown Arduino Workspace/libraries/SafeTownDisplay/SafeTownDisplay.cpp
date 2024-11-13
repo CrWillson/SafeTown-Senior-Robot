@@ -39,7 +39,7 @@ void SafeTownDisplay::setup() {
   menuSetup();
 }
 
-void SafeTownDisplay::displayIRValues() {
+void SafeTownDisplay::displayIRValues(SafeTownDisplay* displayLibInst) {
   // clear the OLED buffer
 	adaSSD1306.clearDisplay();
 	
@@ -68,101 +68,87 @@ void SafeTownDisplay::displayIRValues() {
 	adaSSD1306.display();
 }
 
-void SafeTownDisplay::collectData() {
+void SafeTownDisplay::collectData(SafeTownDisplay* displayLibInst) {
 
 }
 
-void SafeTownDisplay::outputData() {
+void SafeTownDisplay::outputData(SafeTownDisplay* displayLibInst) {
   
 }
 
-void SafeTownDisplay::toggleDownIR() {
-  
-}
-
-void SafeTownDisplay::toggleFrontIR() {
-  
-}
-
-void SafeTownDisplay::toggleInnerLeftIR() {
-  
-}
-
-void SafeTownDisplay::toggleOuterLeftIR(SafeTownDisplay* displayLibInst) {
-  MenuItem* selected = displayLibInst->currentMenu->getSubMenuItem(displayLibInst->currentIndex);
-  selected->setBoolData(!selected->getBoolData());
-  // outputOuterLeftIR = !outputOuterLeftIR;
-  String newContent = "Outer Left IR: FALSE";
-  if (selected->getBoolData()) {
-    newContent = "Outer Left IR: TRUE";
-  }
-  selected->setContent(newContent);
+void SafeTownDisplay::toggleData(SafeTownDisplay* displayLibInst) {
+  // MenuItem* selected = displayLibInst->currentMenu->getSubMenuItem(displayLibInst->currentIndex);
+ 
+  // String currContent = selected->getContent();
+  // if (selected->getBoolData()) {
+  //   selected->setContent(currContent.substring(0, currContent.length()-4) + "FALSE");
+  // } else {
+  //   selected->setContent(currContent.substring(0, currContent.length()-5) + "TRUE");
+  // }
+  // selected->setBoolData(!selected->getBoolData());
+  displayLibInst->currentMenu->getSubMenuItem(displayLibInst->currentIndex)->toggleBoolData();
   displayLibInst->runSelectedAction = false;
 }
 
+void SafeTownDisplay::changeIntData(SafeTownDisplay* displayLibInst) {
+  displayLibInst->encoderAction = true;
+}
+
 void SafeTownDisplay::menuSetup() {
+  // MAIN MENU
   mainMenu = MenuItem("MAIN MENU");
+
+  // MAIN MENU > View IR Sensor Values
   mainMenu.addSubMenuItem("View IR Sensor Values");
   mainMenu.getSubMenuItem(0)->setAction(displayIRValues);
+
+  // MAIN MENU > Data Collection
   mainMenu.addSubMenuItem("Data Collection");
+
+  // MAIN MENU > Data Collection > Collect Data
   mainMenu.getSubMenuItem(1)->addSubMenuItem("Collect Data");
   mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->setAction(collectData);
+
+  // MAIN MENU > Data Collection > Output Data
   mainMenu.getSubMenuItem(1)->addSubMenuItem("Output Data");
   mainMenu.getSubMenuItem(1)->getSubMenuItem(2)->setAction(outputData);
+
+  // MAIN MENU > Data Collection > Data Settings
   mainMenu.getSubMenuItem(1)->addSubMenuItem("Data Settings");
-  mainMenu.getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Down IR: TRUE");
-  mainMenu.getSubMenuItem(1)->getSubMenuItem(3)->getSubMenuItem(1)->setAction(toggleDownIR);
-  mainMenu.getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Front IR: TRUE");
-  mainMenu.getSubMenuItem(1)->getSubMenuItem(3)->getSubMenuItem(2)->setAction(toggleFrontIR);
-  mainMenu.getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Inner Left IR: TRUE");
-  mainMenu.getSubMenuItem(1)->getSubMenuItem(3)->getSubMenuItem(3)->setAction(toggleInnerLeftIR);
-  mainMenu.getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Outer Left IR: TRUE");
-  mainMenu.getSubMenuItem(1)->getSubMenuItem(3)->getSubMenuItem(4)->setAction2(toggleOuterLeftIR);
-//   mainMenu.addSubMenuItem("Item #2");
-//   mainMenu.getSubMenuItem(1)->addSubMenuItem("Item #2.1");
-//   mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->addSubMenuItem("Item #2.1.1");
-//   mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->addSubMenuItem("Item #2.1.2");
-//   mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->addSubMenuItem("Item #2.1.3");
-//   mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Item #2.1.3.1");
-//   mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Item #2.1.3.2");
-//   mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Item #2.1.3.3");
-//   mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Item #2.1.3.4");
-//   mainMenu.getSubMenuItem(1)->getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Item #2.1.3.5");
-//   mainMenu.getSubMenuItem(1)->addSubMenuItem("Item #2.2");
-//   mainMenu.getSubMenuItem(1)->addSubMenuItem("Item #2.3");
-//   mainMenu.getSubMenuItem(1)->addSubMenuItem("Item #2.4");
-//   mainMenu.getSubMenuItem(1)->addSubMenuItem("Item #2.5");
-//   mainMenu.getSubMenuItem(1)->addSubMenuItem("Item #2.6");
-//   mainMenu.addSubMenuItem("Item #3");
-//   mainMenu.getSubMenuItem(2)->addSubMenuItem("Item #3.1");
-//   mainMenu.getSubMenuItem(2)->addSubMenuItem("Item #3.2");
-//   mainMenu.getSubMenuItem(2)->addSubMenuItem("Item #3.3");
-//   mainMenu.getSubMenuItem(2)->addSubMenuItem("Item #3.4");
-//   mainMenu.getSubMenuItem(2)->addSubMenuItem("Item #3.5");
-//   mainMenu.getSubMenuItem(2)->addSubMenuItem("Item #3.6");
-//   mainMenu.addSubMenuItem("Item #4");
-//   mainMenu.getSubMenuItem(3)->addSubMenuItem("Item #4.1");
-//   mainMenu.getSubMenuItem(3)->addSubMenuItem("Item #4.2");
-//   mainMenu.getSubMenuItem(3)->addSubMenuItem("Item #4.3");
-//   mainMenu.getSubMenuItem(3)->addSubMenuItem("Item #4.4");
-//   mainMenu.getSubMenuItem(3)->addSubMenuItem("Item #4.5");
-//   mainMenu.getSubMenuItem(3)->addSubMenuItem("Item #4.6");
-//   mainMenu.addSubMenuItem("Item #5");
-//   mainMenu.getSubMenuItem(4)->addSubMenuItem("Item #5.1");
-//   mainMenu.getSubMenuItem(4)->addSubMenuItem("Item #5.2");
-//   mainMenu.getSubMenuItem(4)->addSubMenuItem("Item #5.3");
-//   mainMenu.getSubMenuItem(4)->addSubMenuItem("Item #5.4");
-//   mainMenu.getSubMenuItem(4)->addSubMenuItem("Item #5.5");
-//   mainMenu.getSubMenuItem(4)->addSubMenuItem("Item #5.6");
-//   mainMenu.addSubMenuItem("Item #6");
-//   mainMenu.addSubMenuItem("Item #7");
-//   mainMenu.addSubMenuItem("Item #8");
-//   mainMenu.addSubMenuItem("Item #9");
-//   mainMenu.addSubMenuItem("Item #10");
+
+  // MAIN MENU > Data Collection > Data Settings > Sample Rate
+  mainMenu.getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Sample Rate (Hz)", 20, 1, 100);
+  settingSampleRate = mainMenu.getSubMenuItem(1)->getSubMenuItem(3)->getSubMenuItem(1);
+  settingSampleRate->setAction(changeIntData);
+
+  // MAIN MENU > Data Collection > Data Settings > Sample Time
+  mainMenu.getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Sample Time (s)", 5, 1, 10);
+  settingSampleTime = mainMenu.getSubMenuItem(1)->getSubMenuItem(3)->getSubMenuItem(2);
+  settingSampleTime->setAction(changeIntData);
+
+  // MAIN MENU > Data Collection > Data Settings > Down IR
+  mainMenu.getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Down IR", true);
+  settingDownIR = mainMenu.getSubMenuItem(1)->getSubMenuItem(3)->getSubMenuItem(3);
+  settingDownIR->setAction(toggleData);
+
+  // MAIN MENU > Data Collection > Data Settings > Front IR
+  mainMenu.getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Front IR", true);
+  settingFrontIR = mainMenu.getSubMenuItem(1)->getSubMenuItem(3)->getSubMenuItem(4);
+  settingFrontIR->setAction(toggleData);
+
+  // MAIN MENU > Data Collection > Data Settings > Inner Left IR
+  mainMenu.getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Inner Left IR", true);
+  settingInnerLeftIR = mainMenu.getSubMenuItem(1)->getSubMenuItem(3)->getSubMenuItem(5);
+  settingInnerLeftIR->setAction(toggleData);
+
+  // MAIN MENU > Data Collection > Data Settings > Outer Left IR
+  mainMenu.getSubMenuItem(1)->getSubMenuItem(3)->addSubMenuItem("Outer Left IR", true);
+  settingOuterLeftIR = mainMenu.getSubMenuItem(1)->getSubMenuItem(3)->getSubMenuItem(6);
+  settingOuterLeftIR->setAction(toggleData);
 }
 
 void SafeTownDisplay::displayMenu() {
-  if (!runSelectedAction) {
+  if (!runSelectedAction || encoderAction) {
     String menuTitle = currentMenu->getContent();
     int numItems = currentMenu->getNumItems();
 
@@ -197,7 +183,7 @@ void SafeTownDisplay::displayMenu() {
   }
 }
 
-void SafeTownDisplay::selectCurrentItem() {
+void SafeTownDisplay::encoderPress() {
   if (!runSelectedAction) {
     MenuItem* selected = currentMenu->getSubMenuItem(currentIndex);
     if (selected->isParent()) {
@@ -211,23 +197,28 @@ void SafeTownDisplay::selectCurrentItem() {
     }
   } else {
     runSelectedAction = false;
+    encoderAction = false;
   }
 }
 
-void SafeTownDisplay::decrementMenuIndex() {
+void SafeTownDisplay::encoderLeft() {
   if (!runSelectedAction) {
     int numItems = currentMenu->getNumItems();
     currentIndex = (currentIndex + numItems - 1) % numItems;
     Serial.print("currentIndex: ");
     Serial.println(currentIndex);
+  } else if (encoderAction) {
+    currentMenu->getSubMenuItem(currentIndex)->decrementIntData();
   }
 }
 
-void SafeTownDisplay::incrementMenuIndex() {
+void SafeTownDisplay::encoderRight() {
   if (!runSelectedAction) {
     int numItems = currentMenu->getNumItems();
     currentIndex = (currentIndex + 1) % numItems;
     Serial.print("currentIndex: ");
     Serial.println(currentIndex);
+  } else if (encoderAction) {
+    currentMenu->getSubMenuItem(currentIndex)->incrementIntData();
   }
 }

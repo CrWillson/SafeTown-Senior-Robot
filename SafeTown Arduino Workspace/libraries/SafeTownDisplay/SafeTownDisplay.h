@@ -15,31 +15,33 @@ class SafeTownDisplay {
     void setup();
     MenuItem mainMenu;
     void menuSetup();
-    int c;
     int numLines;
     MenuItem* currentMenu = &mainMenu;
     void displayMenu();
     int currentIndex = 0;
-    void selectCurrentItem();
-    void decrementMenuIndex();
-    void incrementMenuIndex();
-    bool runSelectedAction = false;
-    static void displayIRValues();
-    static void collectData();
-    static void outputData();
-    static void toggleDownIR();
-    static void toggleFrontIR();
-    static void toggleInnerLeftIR();
-    static void toggleOuterLeftIR(SafeTownDisplay* displayLibInst);
+    void encoderPress();
+    void encoderLeft();
+    void encoderRight();
+    bool runSelectedAction = false; // Denotes whether an action is currently being run for a MenuItem
+    bool encoderAction = false; // Denotes whether the currently run action is an encoder input action
+    static void displayIRValues(SafeTownDisplay* displayLibInst);
+    static void collectData(SafeTownDisplay* displayLibInst);
+    static void outputData(SafeTownDisplay* displayLibInst);
+    static void toggleData(SafeTownDisplay* displayLibInst);
+    static void changeIntData(SafeTownDisplay* displayLibInst);
 
     // IR pin values
     const static int front_ir_pin = 28;
     const static int in_ir_pin = 27;
     const static int out_ir_pin = 26;
     const static int down_ir_pin = 29;
-    // static bool outputDownIR = true;
-    // static bool outputFrontIR = true;
-    // static bool outputInnerLeftIR = true;
-    // static bool outputOuterLeftIR = true;
+
+    // Data collection
+    MenuItem* settingSampleRate;
+    MenuItem* settingSampleTime;
+    MenuItem* settingDownIR;
+    MenuItem* settingFrontIR;
+    MenuItem* settingInnerLeftIR;
+    MenuItem* settingOuterLeftIR;
 };
 #endif
