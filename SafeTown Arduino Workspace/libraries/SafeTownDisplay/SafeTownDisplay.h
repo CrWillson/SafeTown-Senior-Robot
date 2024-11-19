@@ -30,6 +30,7 @@ class SafeTownDisplay {
     static void outputData(SafeTownDisplay* displayLibInst);
     static void toggleData(SafeTownDisplay* displayLibInst);
     static void changeIntData(SafeTownDisplay* displayLibInst);
+    void printToScreen(String s);
 
     // IR pin values
     const static int front_ir_pin = 28;

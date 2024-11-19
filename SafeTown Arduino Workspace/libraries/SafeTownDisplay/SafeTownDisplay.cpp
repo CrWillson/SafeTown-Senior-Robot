@@ -22,8 +22,7 @@ Adafruit_SSD1306 adaSSD1306(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 //NOTE: Size 1 font seems to be 7 pixels tall
 
 // Constructor
-SafeTownDisplay::SafeTownDisplay()
-{
+SafeTownDisplay::SafeTownDisplay() {
   numLines = SCREEN_HEIGHT/8;
 }
 
@@ -37,17 +36,16 @@ void SafeTownDisplay::setup() {
   adaSSD1306.clearDisplay();
   // mainMenu.SetDisplay(adaSSD1306);
   menuSetup();
+  adaSSD1306.clearDisplay();
+  adaSSD1306.setTextSize(1);         
+  adaSSD1306.setTextColor(SSD1306_WHITE); // Draw white text    
+  adaSSD1306.setCursor(0,0);
 }
 
 void SafeTownDisplay::displayIRValues(SafeTownDisplay* displayLibInst) {
   if (displayLibInst->updateScreen) {
     // clear the OLED buffer
     adaSSD1306.clearDisplay();
-    
-    // choose text settings
-    adaSSD1306.setTextSize(1);         
-    adaSSD1306.setTextColor(SSD1306_WHITE); // Draw white text    
-    adaSSD1306.setCursor(0,0); 
     
     // read the IR sensors
     int down = analogRead(down_ir_pin);
@@ -70,6 +68,16 @@ void SafeTownDisplay::displayIRValues(SafeTownDisplay* displayLibInst) {
   }
 }
 
+void SafeTownDisplay::printToScreen(String s)
+{
+  adaSSD1306.clearDisplay();
+  adaSSD1306.setTextSize(1);         
+  adaSSD1306.setTextColor(SSD1306_WHITE); // Draw white text    
+  adaSSD1306.setCursor(0,0);
+  adaSSD1306.println(s);
+  adaSSD1306.display();
+}
+
 void SafeTownDisplay::collectData(SafeTownDisplay* displayLibInst) {
   if (displayLibInst->resetData) {
     displayLibInst->sampleRate = displayLibInst->settingSampleRate->getIntData();
@@ -80,34 +88,11 @@ void SafeTownDisplay::collectData(SafeTownDisplay* displayLibInst) {
     displayLibInst->samplesToCollect = displayLibInst->sampleRate*displayLibInst->sampleTime;
     displayLibInst->resetData = false;
     displayLibInst->timeOffset = millis();
-    // adaSSD1306.clearDisplay();
-    Serial.println("---reset---");
   }
-
-  // Serial.println("---looping---");
 
   // collect data and store in array
   double time = millis() - displayLibInst->timeOffset;
-  // Serial.print("time: ");
-  // Serial.println(time);
-  // Serial.print("displayLibInst->sampleTargetTime: ");
-  // Serial.println(displayLibInst->sampleTargetTime);
-  // Serial.print("displayLibInst->sampleInterval: ");
-  // Serial.println(displayLibInst->sampleInterval);
   if (time >= displayLibInst->sampleTargetTime + displayLibInst->sampleInterval) {
-    if (displayLibInst->updateScreen) {
-      adaSSD1306.clearDisplay();
-      adaSSD1306.setTextSize(1);         
-      adaSSD1306.setTextColor(SSD1306_WHITE); // Draw white text    
-      adaSSD1306.setCursor(0,0);
-    }
-    // Serial.print("time: ");
-    // Serial.println(time);
-    // Serial.print("displayLibInst->sampleTargetTime: ");
-    // Serial.println(displayLibInst->sampleTargetTime);
-    // Serial.print("displayLibInst->sampleInterval: ");
-    // Serial.println(displayLibInst->sampleInterval);
-
     int currentSample = displayLibInst->samplePointer;
     displayLibInst->downSamples[currentSample] = analogRead(down_ir_pin);
     displayLibInst->frontSamples[currentSample] = analogRead(front_ir_pin);
@@ -123,13 +108,15 @@ void SafeTownDisplay::collectData(SafeTownDisplay* displayLibInst) {
     }
 
     // output result
-    if (displayLibInst->updateScreen) {
-      adaSSD1306.println("Collecting Data");
-      adaSSD1306.print(displayLibInst->samplePointer);
-      adaSSD1306.print("/");
-      adaSSD1306.print(displayLibInst->samplesToCollect);
-      adaSSD1306.display();
-    }
+    adaSSD1306.clearDisplay();
+    adaSSD1306.setTextSize(1);         
+    adaSSD1306.setTextColor(SSD1306_WHITE); // Draw white text    
+    adaSSD1306.setCursor(0,0);
+    adaSSD1306.println("Collecting Data");
+    adaSSD1306.print(displayLibInst->samplePointer);
+    adaSSD1306.print("/");
+    adaSSD1306.println(displayLibInst->samplesToCollect);
+    adaSSD1306.display();
   }
 }
 
@@ -138,15 +125,6 @@ void SafeTownDisplay::outputData(SafeTownDisplay* displayLibInst) {
 }
 
 void SafeTownDisplay::toggleData(SafeTownDisplay* displayLibInst) {
-  // MenuItem* selected = displayLibInst->currentMenu->getSubMenuItem(displayLibInst->currentIndex);
- 
-  // String currContent = selected->getContent();
-  // if (selected->getBoolData()) {
-  //   selected->setContent(currContent.substring(0, currContent.length()-4) + "FALSE");
-  // } else {
-  //   selected->setContent(currContent.substring(0, currContent.length()-5) + "TRUE");
-  // }
-  // selected->setBoolData(!selected->getBoolData());
   displayLibInst->currentMenu->getSubMenuItem(displayLibInst->currentIndex)->toggleBoolData();
   displayLibInst->runSelectedAction = false;
 }
