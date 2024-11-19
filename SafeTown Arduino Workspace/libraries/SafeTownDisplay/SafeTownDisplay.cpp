@@ -40,36 +40,97 @@ void SafeTownDisplay::setup() {
 }
 
 void SafeTownDisplay::displayIRValues(SafeTownDisplay* displayLibInst) {
-  // clear the OLED buffer
-	adaSSD1306.clearDisplay();
-	
-	// choose text settings
-	adaSSD1306.setTextSize(1);         
-	adaSSD1306.setTextColor(SSD1306_WHITE); // Draw white text    
-	adaSSD1306.setCursor(0,0); 
-	
-	// read the IR sensors
-	int down = analogRead(down_ir_pin);
-	int front = analogRead(front_ir_pin);
-	int inner = analogRead(in_ir_pin);
-	int outer = analogRead(out_ir_pin);
-	
-	// post the IR ADC values to the OLED buffer
-	adaSSD1306.print("Down IR: ");
-	adaSSD1306.println(down);
-	adaSSD1306.print("Front IR: ");
-	adaSSD1306.println(front);
-	adaSSD1306.print("Inner Left IR: ");
-	adaSSD1306.println(inner);
-	adaSSD1306.print("Outer Left IR: ");
-	adaSSD1306.println(outer);
+  if (displayLibInst->updateScreen) {
+    // clear the OLED buffer
+    adaSSD1306.clearDisplay();
+    
+    // choose text settings
+    adaSSD1306.setTextSize(1);         
+    adaSSD1306.setTextColor(SSD1306_WHITE); // Draw white text    
+    adaSSD1306.setCursor(0,0); 
+    
+    // read the IR sensors
+    int down = analogRead(down_ir_pin);
+    int front = analogRead(front_ir_pin);
+    int inner = analogRead(in_ir_pin);
+    int outer = analogRead(out_ir_pin);
+    
+    // post the IR ADC values to the OLED buffer
+    adaSSD1306.print("Down IR: ");
+    adaSSD1306.println(down);
+    adaSSD1306.print("Front IR: ");
+    adaSSD1306.println(front);
+    adaSSD1306.print("Inner Left IR: ");
+    adaSSD1306.println(inner);
+    adaSSD1306.print("Outer Left IR: ");
+    adaSSD1306.println(outer);
 
-	// post the OLED buffer (which now holds the IR ADC values) to the OLED (write to the screen)
-	adaSSD1306.display();
+    // post the OLED buffer (which now holds the IR ADC values) to the OLED (write to the screen)
+    adaSSD1306.display();
+  }
 }
 
 void SafeTownDisplay::collectData(SafeTownDisplay* displayLibInst) {
+  if (displayLibInst->resetData) {
+    displayLibInst->sampleRate = displayLibInst->settingSampleRate->getIntData();
+    displayLibInst->sampleTime = displayLibInst->settingSampleTime->getIntData();
+    displayLibInst->sampleInterval = 1000.0/displayLibInst->sampleRate;
+    displayLibInst->samplePointer = 0;
+    displayLibInst->sampleTargetTime = 0;
+    displayLibInst->samplesToCollect = displayLibInst->sampleRate*displayLibInst->sampleTime;
+    displayLibInst->resetData = false;
+    displayLibInst->timeOffset = millis();
+    // adaSSD1306.clearDisplay();
+    Serial.println("---reset---");
+  }
 
+  // Serial.println("---looping---");
+
+  // collect data and store in array
+  double time = millis() - displayLibInst->timeOffset;
+  // Serial.print("time: ");
+  // Serial.println(time);
+  // Serial.print("displayLibInst->sampleTargetTime: ");
+  // Serial.println(displayLibInst->sampleTargetTime);
+  // Serial.print("displayLibInst->sampleInterval: ");
+  // Serial.println(displayLibInst->sampleInterval);
+  if (time >= displayLibInst->sampleTargetTime + displayLibInst->sampleInterval) {
+    if (displayLibInst->updateScreen) {
+      adaSSD1306.clearDisplay();
+      adaSSD1306.setTextSize(1);         
+      adaSSD1306.setTextColor(SSD1306_WHITE); // Draw white text    
+      adaSSD1306.setCursor(0,0);
+    }
+    // Serial.print("time: ");
+    // Serial.println(time);
+    // Serial.print("displayLibInst->sampleTargetTime: ");
+    // Serial.println(displayLibInst->sampleTargetTime);
+    // Serial.print("displayLibInst->sampleInterval: ");
+    // Serial.println(displayLibInst->sampleInterval);
+
+    int currentSample = displayLibInst->samplePointer;
+    displayLibInst->downSamples[currentSample] = analogRead(down_ir_pin);
+    displayLibInst->frontSamples[currentSample] = analogRead(front_ir_pin);
+    displayLibInst->innerLeftSamples[currentSample] = analogRead(in_ir_pin);
+    displayLibInst->outerLeftSamples[currentSample] = analogRead(out_ir_pin);
+    displayLibInst->times[currentSample] = time;
+    Serial.println("Collecting data: " + String(currentSample+1) + "/" + String(displayLibInst->samplesToCollect));
+    displayLibInst->samplePointer++;
+    displayLibInst->sampleTargetTime += displayLibInst->sampleInterval;
+    if (displayLibInst->samplePointer >= displayLibInst->samplesToCollect) {
+      displayLibInst->resetData = true;
+      displayLibInst->runSelectedAction = false;
+    }
+
+    // output result
+    if (displayLibInst->updateScreen) {
+      adaSSD1306.println("Collecting Data");
+      adaSSD1306.print(displayLibInst->samplePointer);
+      adaSSD1306.print("/");
+      adaSSD1306.print(displayLibInst->samplesToCollect);
+      adaSSD1306.display();
+    }
+  }
 }
 
 void SafeTownDisplay::outputData(SafeTownDisplay* displayLibInst) {
@@ -147,8 +208,9 @@ void SafeTownDisplay::menuSetup() {
   settingOuterLeftIR->setAction(toggleData);
 }
 
-void SafeTownDisplay::displayMenu() {
-  if (!runSelectedAction || encoderAction) {
+void SafeTownDisplay::displayMenu(bool updateScreen) {
+  this->updateScreen = updateScreen;
+  if (updateScreen && (!runSelectedAction || encoderAction)) {
     String menuTitle = currentMenu->getContent();
     int numItems = currentMenu->getNumItems();
 
@@ -178,7 +240,7 @@ void SafeTownDisplay::displayMenu() {
       adaSSD1306.println(currentMenu->getSubMenuItemContent(i));
     }
     adaSSD1306.display();
-  } else {
+  } else if (runSelectedAction) {
     currentMenu->getSubMenuItem(currentIndex)->doAction(this);
   }
 }
@@ -198,6 +260,7 @@ void SafeTownDisplay::encoderPress() {
   } else {
     runSelectedAction = false;
     encoderAction = false;
+    resetData = true;
   }
 }
 

@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Filename: SafeTownDisplayTest.ino
-// Author: SafeTown (2022-2024)
+// Author: SafeTown (2023-2025)
 // Purpose: Used for testing the SafeTownDisplayLibrary
 ////////////////////////////////////////////////////////////////////////////////
 #include <SPI.h>
@@ -50,6 +50,6 @@ void setup() {
 }
 
 void loop() {
-  display.displayMenu();
+  display.displayMenu(true);
   delay(50);
 }

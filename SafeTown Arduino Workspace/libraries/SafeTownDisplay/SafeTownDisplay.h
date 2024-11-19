@@ -17,8 +17,9 @@ class SafeTownDisplay {
     void menuSetup();
     int numLines;
     MenuItem* currentMenu = &mainMenu;
-    void displayMenu();
+    void displayMenu(bool updateScreen);
     int currentIndex = 0;
+    bool updateScreen = true;
     void encoderPress();
     void encoderLeft();
     void encoderRight();
@@ -43,5 +44,22 @@ class SafeTownDisplay {
     MenuItem* settingFrontIR;
     MenuItem* settingInnerLeftIR;
     MenuItem* settingOuterLeftIR;
+    double timeOffset = 0;
+    int samplePointer = 0;
+    // bool collectData = false;
+    String dataOutput = "";
+    const static int NUM_SAMPLES = 1000;
+    int times[NUM_SAMPLES] = {};
+    int downSamples[NUM_SAMPLES] = {};
+    int frontSamples[NUM_SAMPLES] = {};
+    int innerLeftSamples[NUM_SAMPLES] = {};
+    int outerLeftSamples[NUM_SAMPLES] = {};
+    bool printData = false;
+    int sampleTargetTime = 0;
+    bool resetData = true;
+    int samplesToCollect;
+    int sampleRate;
+    int sampleTime;
+    double sampleInterval;
 };
 #endif
