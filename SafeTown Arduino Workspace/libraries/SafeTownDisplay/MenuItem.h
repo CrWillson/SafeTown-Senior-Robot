@@ -15,9 +15,7 @@ class MenuItem {
     MenuItem();
     MenuItem(String content);
     MenuItem(String content, bool boolData);
-    MenuItem(String content, int intData, int minIntData, int maxIntData);
-    // void SetDisplay(Adafruit_SSD1306& display);
-    // Adafruit_SSD1306* display;
+    MenuItem(String content, int intData, int minIntData, int maxIntData, int incIntData);
     void setIndex(int index);
     int getIndex();
     int getNumItems();
@@ -25,7 +23,7 @@ class MenuItem {
     MenuItem* getParent();
     void addSubMenuItem(String newContent);
     void addSubMenuItem(String newContent, bool boolData);
-    void addSubMenuItem(String newContent, int intData, int minIntData, int maxIntData);
+    void addSubMenuItem(String newContent, int intData, int minIntData, int maxIntData, int incIntData);
     String getContent();
     void setContent(String content);
     MenuItem* getSubMenuItem(int index);
@@ -46,6 +44,8 @@ class MenuItem {
     void setMinIntData(int minIntData);
     int getMaxIntData();
     void setMaxIntData(int maxIntData);
+    int getIncIntData();
+    void setIncIntData(int setIncIntData);
     void decrementIntData();
     void incrementIntData();
 
@@ -63,8 +63,9 @@ class MenuItem {
     int intData = -1;
     int minIntData = -1;
     int maxIntData = -1;
+    int incIntData = -1;
     void createMenuItem(String newContent);
     void createMenuItem(String newContent, bool boolData);
-    void createMenuItem(String newContent, int intData, int minIntData, int maxIntData);
+    void createMenuItem(String newContent, int intData, int minIntData, int maxIntData, int incIntData);
 };
 #endif

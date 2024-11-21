@@ -29,21 +29,15 @@ MenuItem::MenuItem(String content, bool boolData)
 }
 
 // Constructor for setting content
-MenuItem::MenuItem(String content, int intData, int minIntData, int maxIntData)
+MenuItem::MenuItem(String content, int intData, int minIntData, int maxIntData, int incIntData)
 {
   setContent(content);
   setIntData(intData);
   setMinIntData(minIntData);
   setMaxIntData(maxIntData);
+  setIncIntData(incIntData);
   hasIntData = true;
 }
-
-// Unnecessary?
-// Give the MenuItem access to the display
-// void MenuItem::SetDisplay(Adafruit_SSD1306& display)
-// {
-//   this->display = &display;
-// }
 
 // Return the number of SubMenuItems a MenuItem has (including "Back" item)
 int MenuItem::getNumItems()
@@ -85,9 +79,9 @@ void MenuItem::createMenuItem(String newContent, bool boolData)
 }
 
 // Create new MenuItem with this item as its parent
-void MenuItem::createMenuItem(String newContent, int intData, int minIntData, int maxIntData)
+void MenuItem::createMenuItem(String newContent, int intData, int minIntData, int maxIntData, int incIntData)
 {
-  MenuItem* newItem = new MenuItem(newContent, intData, minIntData, maxIntData);
+  MenuItem* newItem = new MenuItem(newContent, intData, minIntData, maxIntData, incIntData);
   newItem->setParent(this);
   newItem->setIndex(getNumItems());
   SubMenuItems.push_back(newItem);
@@ -114,13 +108,13 @@ void MenuItem::addSubMenuItem(String newContent, bool boolData)
 }
 
 // Add a SubMenuItem to MenuItem's vector
-void MenuItem::addSubMenuItem(String newContent, int intData, int minIntData, int maxIntData)
+void MenuItem::addSubMenuItem(String newContent, int intData, int minIntData, int maxIntData, int incIntData)
 {
   if (getNumItems() == 0 && !isRoot()) {
     // If this is the first SubMenuItem, then create a "Back" item
     createMenuItem(BACK_TEXT);
   }
-  createMenuItem(newContent, intData, minIntData, maxIntData);
+  createMenuItem(newContent, intData, minIntData, maxIntData, incIntData);
 }
 
 // Set the MenuItem's index
@@ -273,18 +267,30 @@ void MenuItem::setMaxIntData(int maxIntData)
   this->maxIntData = maxIntData;
 }
 
+// Set the MenuItem's increment int data
+void MenuItem::setIncIntData(int incIntData)
+{
+  this->incIntData = incIntData;
+}
+
+// Get the MenuItem's increment int data
+int MenuItem::getIncIntData()
+{
+  return incIntData;
+}
+
 // Decrement (if above min) the MenuItem's int data
 void MenuItem::decrementIntData()
 {
-  if (intData > minIntData) {
-    intData--;
+  if (intData - incIntData >= minIntData) {
+    intData -= incIntData;
   }
 }
 
 // Increment (if below max) the MenuItem's int data
 void MenuItem::incrementIntData()
 {
-  if (intData < maxIntData) {
-    intData++;
+  if (intData + incIntData <= maxIntData) {
+    intData += incIntData;
   }
 }
