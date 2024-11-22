@@ -7,10 +7,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Setup
 ////////////////////////////////////////////////////////////////////////////////
+
 // Library Declarations
 #include <Servo.h>
 #include <Motor.h>
-// #include <DisplayOurValues.h> // used for display
 #include <SafeTownDisplay.h>
 
 // Line-following constants
@@ -54,37 +54,17 @@ Servo steer;
 long pos;
 
 // Display variables
-// DisplayOurValues display = DisplayOurValues(); // initialize display
 SafeTownDisplay display = SafeTownDisplay(); // initialize display
 
 // Encoder variables
 bool encoderChange = false; // track encoder changes
 
-// Data collection variables
-// int timeOffset = 0;
-// int samplePointer = 0;
-// bool collectData = false;
-// String dataOutput = "";
-// const int NUM_SAMPLES = 100;
-// int times[NUM_SAMPLES] = {};
-// int downSamples[NUM_SAMPLES] = {};
-// int frontSamples[NUM_SAMPLES] = {};
-// int innerLeftSamples[NUM_SAMPLES] = {};
-// int outerLeftSamples[NUM_SAMPLES] = {};
-// bool printData = false;
-// int sampleTargetTime = 0;
-
 bool bulldozerMode = true;
 int loopCounter = 0;
-
-// Data collection parameters
-// int sampleRate = 20; // Units: samples/s
-// int sampleInterval = 1000/sampleRate; // Units: ms/sample
 
 // Encoder left turn
 void ENC_B_GO() {
   if (encoderChange) {
-    // display.decrementMenuIndex();
     display.encoderLeft();
   }
   encoderChange = !encoderChange;
@@ -93,7 +73,6 @@ void ENC_B_GO() {
 // Encoder right turn
 void ENC_A_GO() {
   if (encoderChange) {
-    // display.incrementMenuIndex();
     display.encoderRight();
   }
   encoderChange = !encoderChange;
@@ -103,16 +82,6 @@ void ENC_A_GO() {
 void ENC_S_GO() {
   encoderChange = false;
   display.encoderPress();
-  // if (display.getMenuType() == 10) { // 10 is the temporary hardcoded number for SAVE
-  //   printData = true;
-  // }
-  // display.goToMenu();
-  // if (display.getMenuType() == 10) { // 10 is the temporary hardcoded number for SAVE
-  //   timeOffset = int(millis());
-  //   samplePointer = 0;
-  //   sampleTargetTime = 0;
-  //   collectData = true;
-  // }
 }
 
 //XY where X stands for direction going to (straight, left, or right) and Y stands for direction coming from (straight, left, or right)
@@ -202,9 +171,11 @@ void setup() {
 
   // Display setup
   display.setup();
+
   digitalWrite(YELLOW, LOW);
   digitalWrite(RED, LOW);
   digitalWrite(GREEN, LOW);
+
   // Encoder setup
   pinMode(ENC_B, INPUT);
   pinMode(ENC_A, INPUT);
@@ -220,66 +191,17 @@ void setup() {
 }
 
 void loop() {
-  loopCounter++;
   inside = analogRead(IR_I);
   outside = analogRead(IR_O);
   difference = outside - inside;
   sum = outside + inside;
 
   // Write to OLED display
+  loopCounter++;
   if (loopCounter >= 10000) {
-    // display.setUpdateScreen(true);
-    // display.displayMenu();
     loopCounter = 0;
   }
-
   display.displayMenu(loopCounter == 0);
-
-  // Collect IR data
-  // int time = int(millis()) - timeOffset;
-  // if (collectData && time >= sampleTargetTime + sampleInterval) {
-  //   int down = analogRead(IR_D);
-  //   int front = analogRead(IR_F);
-  //   int innerLeft = analogRead(IR_I);
-  //   int outerLeft = analogRead(IR_O);
-  //   downSamples[samplePointer] = down;
-  //   frontSamples[samplePointer] = front;
-  //   innerLeftSamples[samplePointer] = innerLeft;
-  //   outerLeftSamples[samplePointer] = outerLeft;
-  //   times[samplePointer] = time;
-  //   Serial.println("Collecting data: " + String(samplePointer+1) + "/" + String(NUM_SAMPLES));
-  //   samplePointer++;
-  //   sampleTargetTime += sampleInterval;
-  //   if (samplePointer >= NUM_SAMPLES) {
-  //     collectData = false;
-  //   }
-  // }
-
-  // use brake light to indicate data collection mode
-  // if (collectData) {
-  //   digitalWrite(BRAKE_LIGHT, HIGH);
-  // }
-
-  // if (printData) {
-  //   Serial.println("-----BEGIN DATA-----");
-  //   Serial.println("DATA TYPE: IR_Sensors");
-  //   Serial.println("Sample,Millis,Down,Front,InnerLeft,OuterLeft");
-  //   for (int i = 0; i < NUM_SAMPLES; i++) {
-  //     Serial.print(i+1);
-  //     Serial.print(",");
-  //     Serial.print(times[i]);
-  //     Serial.print(",");
-  //     Serial.print(downSamples[i]);
-  //     Serial.print(",");
-  //     Serial.print(frontSamples[i]);
-  //     Serial.print(",");
-  //     Serial.print(innerLeftSamples[i]);
-  //     Serial.print(",");
-  //     Serial.println(outerLeftSamples[i]);
-  //   }
-  //   Serial.println("-----END DATA-----");
-  //   printData = false;
-  // }
 
   stateLEDs(state);
   switch (state) {
@@ -526,13 +448,11 @@ void loop() {
   //LED Control
 
   //brake lights are on if we are braking
-  // if (!collectData) {
-    if(right_brake && left_brake) {
-      digitalWrite(BRAKE_LIGHT, HIGH);
-    } else {
-      digitalWrite(BRAKE_LIGHT, LOW);
-    }
-  // }
+  if(right_brake && left_brake) {
+    digitalWrite(BRAKE_LIGHT, HIGH);
+  } else {
+    digitalWrite(BRAKE_LIGHT, LOW);
+  }
 
   //left lights blink on and off with a period of 1 second, otherwise are off
   if (left && millis() % 1000 > 500) {

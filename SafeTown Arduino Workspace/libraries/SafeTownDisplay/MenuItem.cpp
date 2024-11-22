@@ -1,15 +1,24 @@
-/*
-  SafeTownDisplay.cpp - Revamped library for displaying system values (based on DisplayOurValues)
-  Created by Benjamin Kinard, October 1, 2024.
-  Released into the public domain.
-*/
+////////////////////////////////////////////////////////////////////////////////
+// Filename: MenuItem.cpp
+// Created: 10-1-2024
+// Modified: 11-22-2024
+// Author: Benjamin Kinard (SafeTown)
+// Purpose: Data structure for populating a SafeTownDisplay menu. Uses a linked
+//          list structure, with MenuItem objects containing a vector of child
+//          MenuItem objects that point back to their parent. If it has no
+//          children, a MenuItem can have an action passed to it as a function
+//          pointer. It can also store data in boolean or integer form and
+//          manipulate it using the provided member functions.
+////////////////////////////////////////////////////////////////////////////////
 
-// libraries and inclusions
-#include "Arduino.h"
+////////////////////////////////////////////////////////////////////////////////
+// Setup and constructors
+////////////////////////////////////////////////////////////////////////////////
+
+// Include header file
 #include "MenuItem.h"
-#include "SafeTownDisplay.h"
 
-// Constructor
+// Constructor (default)
 MenuItem::MenuItem()
 {
 }
@@ -20,7 +29,7 @@ MenuItem::MenuItem(String content)
   setContent(content);
 }
 
-// Constructor for setting content
+// Constructor for setting content with boolean data
 MenuItem::MenuItem(String content, bool boolData)
 {
   setContent(content);
@@ -28,7 +37,7 @@ MenuItem::MenuItem(String content, bool boolData)
   hasBoolData = true;
 }
 
-// Constructor for setting content
+// Constructor for setting content with integer data
 MenuItem::MenuItem(String content, int intData, int minIntData, int maxIntData, int incIntData)
 {
   setContent(content);
@@ -39,23 +48,9 @@ MenuItem::MenuItem(String content, int intData, int minIntData, int maxIntData, 
   hasIntData = true;
 }
 
-// Return the number of SubMenuItems a MenuItem has (including "Back" item)
-int MenuItem::getNumItems()
-{
-  return SubMenuItems.size();
-}
-
-// Set the MenuItem's parent
-void MenuItem::setParent(MenuItem *parent)
-{
-  this->parent = parent;
-}
-
-// Get the MenuItem's parent pointer
-MenuItem* MenuItem::getParent()
-{
-  return parent;
-}
+////////////////////////////////////////////////////////////////////////////////
+// Create new MenuItems and add to the descendant vector (private)
+////////////////////////////////////////////////////////////////////////////////
 
 // Create new MenuItem with this item as its parent
 void MenuItem::createMenuItem(String newContent)
@@ -87,6 +82,10 @@ void MenuItem::createMenuItem(String newContent, int intData, int minIntData, in
   SubMenuItems.push_back(newItem);
 }
 
+////////////////////////////////////////////////////////////////////////////////
+// Create new MenuItems and add to the descendant vector (public)
+////////////////////////////////////////////////////////////////////////////////
+
 // Add a SubMenuItem to MenuItem's vector
 void MenuItem::addSubMenuItem(String newContent)
 {
@@ -115,6 +114,28 @@ void MenuItem::addSubMenuItem(String newContent, int intData, int minIntData, in
     createMenuItem(BACK_TEXT);
   }
   createMenuItem(newContent, intData, minIntData, maxIntData, incIntData);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Getters and setters
+////////////////////////////////////////////////////////////////////////////////
+
+// Return the number of SubMenuItems a MenuItem has (including "Back" item)
+int MenuItem::getNumItems()
+{
+  return SubMenuItems.size();
+}
+
+// Set the MenuItem's parent
+void MenuItem::setParent(MenuItem *parent)
+{
+  this->parent = parent;
+}
+
+// Get the MenuItem's parent pointer
+MenuItem* MenuItem::getParent()
+{
+  return parent;
 }
 
 // Set the MenuItem's index
