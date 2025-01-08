@@ -69,14 +69,15 @@ int downSamples[NUM_SAMPLES] = {};
 int frontSamples[NUM_SAMPLES] = {};
 int innerLeftSamples[NUM_SAMPLES] = {};
 int outerLeftSamples[NUM_SAMPLES] = {};
+int errorSamples[NUM_SAMPLES] = {};
 bool printData = false;
 int sampleTargetTime = 0;
 bool bulldozerMode = true;
 int loopCounter = 0;
 
 // Data collection parameters
-int sampleRate = 20; // Units: samples/s
-int sampleInterval = 1000/sampleRate; // Units: ms/sample
+int sampleRate = 1; // Units: samples/s was 2560
+int sampleInterval = 50/sampleRate; // Units: ms/sample was 128000
 
 // Encoder left turn
 void ENC_B_GO() {
@@ -137,13 +138,15 @@ long led_time = 0;
 long oldTimeDiff = 0;
 
 // Turning calibration variables
-const int turn_rad = 50; //50 for MARS
-const int center = 70; //70 is center for MARS, 75 for NEPTUNE
+const int turn_rad = 50; //50 for MARS, 79 for NEPTUNE
+const int center = 75; //70 is center for MARS, 75 for NEPTUNE
 
 // Line-following variables
 int inside, outside;
-long error;
-long sum, difference;
+long error = 0;
+long last_error = 0; // added by Joshua for tracking last loop's error
+long running_error = 0; // added by Joshua for tracking running error
+long sum, difference, dist_derivative, last_difference; // added dist_derivative & last_difference
 long error_history[256] = {0};
 int error_hi = 0;
 const int eh_size = 256;
@@ -238,6 +241,7 @@ void loop() {
     frontSamples[samplePointer] = front;
     innerLeftSamples[samplePointer] = innerLeft;
     outerLeftSamples[samplePointer] = outerLeft;
+    errorSamples[samplePointer] = last_error;
     times[samplePointer] = time;
     Serial.println("Collecting data: " + String(samplePointer+1) + "/" + String(NUM_SAMPLES));
     samplePointer++;
@@ -255,7 +259,7 @@ void loop() {
   if (printData) {
     Serial.println("-----BEGIN DATA-----");
     Serial.println("DATA TYPE: IR_Sensors");
-    Serial.println("Sample,Millis,Down,Front,InnerLeft,OuterLeft");
+    Serial.println("Sample,Millis,Down,Front,InnerLeft,OuterLeft,Error");
     for (int i = 0; i < NUM_SAMPLES; i++) {
       Serial.print(i+1);
       Serial.print(",");
@@ -267,7 +271,9 @@ void loop() {
       Serial.print(",");
       Serial.print(innerLeftSamples[i]);
       Serial.print(",");
-      Serial.println(outerLeftSamples[i]);
+      Serial.print(outerLeftSamples[i]);
+      Serial.print(",");
+      Serial.println(errorSamples[i]);
     }
     Serial.println("-----END DATA-----");
     printData = false;
@@ -283,7 +289,7 @@ void loop() {
       //maps the correction factor to the turn radius      
       error = map_pos(difference) - center;
 
-      pos = center + pid_controller(error);
+      pos = center + pid_controller(error);  /*, last_error, map_pos(running_error)*/
       steer.write(pos);
       
       //checks if we have lost the line
@@ -291,12 +297,12 @@ void loop() {
       //NOTE: difference will be >> 0 or << 0, never near 0, so this simple check is sufficient
       if (sum > SUM_MAX) {
         //if diff > asymptote, we are too close
-        if (difference > ASYMPTOTE) {
-          state = State::CLOSE;
+//        if (difference > ASYMPTOTE) {
+//          state = State::CLOSE;
         //and if it diff < asymptote negative we are too far
-        } else {
-          state = State::FAR;
-        }
+//        } else {
+//          state = State::FAR;
+//        }
       } else if (analogRead(IR_F) < FRONT_THRES) { 
         if (!bulldozerMode) {
           oldState = state;
@@ -547,6 +553,8 @@ void loop() {
   //1.) D and I components of the PID controller
   //2.) allows us to adjust our turn angle at an
   //    intersection based on the angle of the robot
+  last_error = error; //added by Joshua to track last loop's error
+  running_error = error + difference; //added by Joshua to track running error
   error_history[error_hi] = error;
   error_hi = (error_hi + 1) % eh_size;
   cycle ++;
@@ -560,7 +568,7 @@ void startISR() {
   state = State::FOLLOWING;
 }
 
-long pid_controller(long error) {
+long pid_controller(long error) { /*, long last_error, long running_error*/
   /* The PID Controller that defines line following
    * Proportional: error used for e(t)
    * Integral: NO INTEGRAL COMPONENT (maybe add? I'm not the best with controllers, this project is my only experience)
@@ -568,8 +576,20 @@ long pid_controller(long error) {
    * NOTE: NONE OF THE VALUES ARE LIKELY OPTIMAL
    */
   //             Kp * e(t)  + Kd * de(t)/dt
-  //                                VVV is this supposed to be error or steer.read()?
-  return 5 * (error) / 8 - ((5  * (error - avg(error_history))) / 4);
+  //                                 VVV is this supposed to be error or steer.read()?
+  return 2 * (error) - ((4  * (error - avg(error_history)))); //Joshua changed from (error - last_error)
+  //return 5 * (error) / 8 - ((5  * (error - avg(error_history))) / 4);
+  /*
+   * Prototype from Dr. Fredette
+   * error = <difference from desired line>;
+   * diffError = (error-lastError)/timeStep; //division by timeStep optional for this differential error
+   * intError = intError + error; //error should be positive and negative sometimes, resulting in a something tracking close to zero
+   * lastError = error; 
+   * return Kp * error + Kd * diffError + Ki * intError;
+   * Kd and Ki should be an order of magnitude smaller than Kp
+   * Kd is likely most useful for damping out over-responsiveness
+   * currently, over correction is done by leaving state, unfortunately
+   */
 }
 
 long avg(long arr[]) {
@@ -607,7 +627,7 @@ int map_pos(int diff) {
 }
 
 int in_speed(int servo_pos) {
-  const float wheel_radius = 18; //(mm) Joshua changed from 10
+  const float wheel_radius = 18; //(mm)
   const float wheel_base = 86; //(mm), measured from front wheel axle to rear wheel axle
   const float wheel_dist = 40; //(mm), measure from inside of front right wheel to inside of front left wheel
 
@@ -623,7 +643,7 @@ int in_speed(int servo_pos) {
 }
 
 int out_speed(int servo_pos) { //same as in_speed, but turn_radius is + wheel_dist / 2 instead of -
-  const float wheel_radius = 18; //(mm) Joshua changed from 10
+  const float wheel_radius = 18; //(mm)
   const float wheel_base = 86; //(mm), measured from front wheel axle to rear wheel axle
   const float wheel_dist = 40; //(mm), measure from inside of front right wheel to inside of front left wheel
 
