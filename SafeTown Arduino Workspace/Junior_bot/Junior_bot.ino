@@ -21,7 +21,7 @@
 #define DIFF_MIN    -650
 #define SUM_MIN     750
 #define SUM_MAX     1200
-#define FRONT_THRES 400
+#define FRONT_THRES 250 // originally 400
 #define DOWN_THRES  300
 
 // Pin I/O definitions
@@ -59,7 +59,7 @@ SafeTownDisplay display = SafeTownDisplay(); // initialize display
 // Encoder variables
 bool encoderChange = false; // track encoder changes
 
-bool bulldozerMode = true;
+bool bulldozerMode = false; // TRUE indicates that the robot should ignore obstacles
 int loopCounter = 0;
 
 // Encoder left turn
@@ -112,8 +112,8 @@ long led_time = 0;
 long oldTimeDiff = 0;
 
 // Turning calibration variables
-const int turn_rad = 50; //50 for MARS
-const int center = 70; //70 is center for MARS
+const int turn_rad = 50; // 50 for MARS, TBD for NEPTUNE
+const int center = 70; // 70 is center for MARS, 75 for NEPTUNE
 
 // Line-following variables
 int inside, outside;
@@ -172,6 +172,7 @@ void setup() {
   // Display setup
   display.setup();
 
+  // Colored LEDs
   digitalWrite(YELLOW, LOW);
   digitalWrite(RED, LOW);
   digitalWrite(GREEN, LOW);
@@ -203,6 +204,7 @@ void loop() {
   }
   display.displayMenu(loopCounter == 0);
 
+  // Steering FSM
   stateLEDs(state);
   switch (state) {
     case State::FOLLOWING:
@@ -415,7 +417,13 @@ void loop() {
       break;
   }
 
-
+  // Traffic FSM
+  /*
+  TRAFFIC STATES
+    SENSING: object is sensed -> detect what type of object is being sensed while approaching
+    PASSING: object is in opposite lane -> drive as normal
+    WAITING: object is blocking this lane -> brake until clear
+  */
 
   //THIS IS THE CODE FOR THE DIFFERENTIAL DRIVE - IT DOES NOT WORK, please help
   /*
