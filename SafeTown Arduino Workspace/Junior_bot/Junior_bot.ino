@@ -145,6 +145,22 @@ enum State {
 volatile state = State::STOPPED;
 State oldState = State::STOPPED;
 
+// TRAFFIC STATES
+//   NONE:    no object sensed -> drive as normal
+//   SENSING: object is sensed -> detect what type of object is being sensed while approaching
+//   PASSING: object is in opposite lane -> drive as normal
+//   WAITING: object is blocking this lane -> brake until clear
+enum Traffic {
+  NONE = 0,
+  SENSING = 1,
+  PASSING = 2,
+  WAITING = 3
+}
+volatile trafficState = Traffic::NONE;
+#define TRAF_THRES 500
+#define PASS_THRES 400
+#define WAIT_THRES 250
+
 void setup() {
   pinMode(IR_I, INPUT);
   pinMode(IR_O, INPUT);
@@ -420,9 +436,11 @@ void loop() {
   // Traffic FSM
   /*
   TRAFFIC STATES
+    NONE:    no object sensed -> drive as normal
     SENSING: object is sensed -> detect what type of object is being sensed while approaching
     PASSING: object is in opposite lane -> drive as normal
     WAITING: object is blocking this lane -> brake until clear
+
   */
 
   //THIS IS THE CODE FOR THE DIFFERENTIAL DRIVE - IT DOES NOT WORK, please help
