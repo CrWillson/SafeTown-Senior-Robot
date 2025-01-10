@@ -173,6 +173,10 @@ void SafeTownDisplay::menuSetup() {
   dataCollection->getSubMenuItem(3)->addSubMenuItem("Outer Left IR", true);
   settingOuterLeftIR = dataCollection->getSubMenuItem(3)->getSubMenuItem(6);
   settingOuterLeftIR->setAction(toggleData);
+
+  // MAIN MENU > Debugging
+  mainMenu.addSubMenuItem("Debugging");
+  mainMenu.getSubMenuItem(2)->setAction(displayDebugValues);
 }
 
 // Display the menu and perform any selected actions
@@ -218,6 +222,10 @@ void SafeTownDisplay::displayMenu(bool updateScreen) {
   }
 }
 
+void SafeTownDisplay::setCurrEMA(float EMA) {
+  currEMA = EMA;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // MenuItem action functions
 ////////////////////////////////////////////////////////////////////////////////
@@ -243,6 +251,25 @@ void SafeTownDisplay::displayIRValues(SafeTownDisplay* displayLibInst) {
     adaSSD1306.println(inner);
     adaSSD1306.print("Outer Left IR: ");
     adaSSD1306.println(outer);
+
+    // post the OLED buffer (which now holds the IR ADC values) to the OLED (write to the screen)
+    adaSSD1306.display();
+  }
+}
+
+// Display current debugging values
+void SafeTownDisplay::displayDebugValues(SafeTownDisplay* displayLibInst) {
+  if (displayLibInst->updateScreen) {
+    // clear the OLED buffer
+    displayLibInst->clearDisplay();
+    
+    // read the IR sensors
+    
+    // post the IR ADC values to the OLED buffer
+    adaSSD1306.print("Front IR: ");
+    adaSSD1306.println(analogRead(front_ir_pin));
+    adaSSD1306.print("EMA: ");
+    adaSSD1306.println(displayLibInst->currEMA);
 
     // post the OLED buffer (which now holds the IR ADC values) to the OLED (write to the screen)
     adaSSD1306.display();

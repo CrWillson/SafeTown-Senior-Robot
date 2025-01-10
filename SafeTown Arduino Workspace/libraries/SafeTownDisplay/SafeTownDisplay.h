@@ -33,8 +33,11 @@ class SafeTownDisplay {
     void menuSetup();
     void displayMenu(bool updateScreen);
 
+    void setCurrEMA(float EMA);
+
     // MenuItem action functions
     static void displayIRValues(SafeTownDisplay* displayLibInst);
+    static void displayDebugValues(SafeTownDisplay* displayLibInst);
     static void collectData(SafeTownDisplay* displayLibInst);
     static void outputData(SafeTownDisplay* displayLibInst);
     static void toggleData(SafeTownDisplay* displayLibInst);
@@ -76,5 +79,8 @@ class SafeTownDisplay {
     int sampleRate; // current sample rate (specified by setting)
     int sampleTime; // current sample time (specified by setting)
     double sampleInterval; // current sample interval (calculated based on current settings)
+
+    // Debugging variables
+    float currEMA = 0.0; // Exponential Moving Average, the value based on the front sensor reading used for traffic navigation
 };
 #endif

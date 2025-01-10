@@ -21,7 +21,7 @@
 #define DIFF_MIN    -650
 #define SUM_MIN     750
 #define SUM_MAX     1200
-#define FRONT_THRES 250 // originally 400
+#define FRONT_THRES 400 // originally 400
 #define DOWN_THRES  300
 
 // Pin I/O definitions
@@ -207,6 +207,12 @@ void setup() {
   right_motor.begin();
 }
 
+int prevTime = 0;
+int prevSamp = 0;
+float EMA = 0.0; // Exponential Moving Average
+float mult = 0.1; // EMA multiplier
+const int sampInterval = 50; // 50 ms -> 20 Hz
+
 void loop() {
   inside = analogRead(IR_I);
   outside = analogRead(IR_O);
@@ -220,8 +226,29 @@ void loop() {
   }
   display.displayMenu(loopCounter == 0);
 
+  // Sample front IR sensor
+  int currTime = millis();
+  int targTime = prevTime - (prevTime % sampInterval) + sampInterval; // round down to the nearest sampInterval
+  if (currTime >= targTime) {
+    int currSamp = analogRead(IR_F);
+    EMA = (mult * (currSamp - prevSamp) / (currTime - prevTime)) + ((1 - mult) * EMA);
+    display.setCurrEMA(EMA);
+    // Serial.print("EMA: ");
+    // if(EMA >= 0.0) {
+    //   Serial.print(" ");
+    // }
+    // Serial.print(EMA);
+    // Serial.print(" (currTime = ");
+    // Serial.print(currTime);
+    // Serial.println(")");
+    prevTime = currTime - (currTime % sampInterval);
+    prevSamp = currSamp;
+  }
+
   // Steering FSM
   stateLEDs(state);
+  // bool traffic = (analogRead(IR_F) < FRONT_THRES);
+  bool traffic = (EMA < -0.25 || analogRead(IR_F) < 250);
   switch (state) {
     case State::FOLLOWING:
       right_brake = false;
@@ -245,7 +272,7 @@ void loop() {
         } else {
           state = State::FAR;
         }
-      } else if (analogRead(IR_F) < FRONT_THRES) { 
+      } else if (traffic) { 
         if (!bulldozerMode) {
           oldState = state;
           state = State::TRAFFIC;
@@ -270,7 +297,7 @@ void loop() {
       //checks if we are back in range to continue following the line normally
       if (sum < SUM_MIN) {
         state = State::FOLLOWING;
-      } else if (analogRead(IR_F) < FRONT_THRES) { 
+      } else if (traffic) { 
         if (!bulldozerMode) {
           oldState = state;
           state = State::TRAFFIC;
@@ -294,7 +321,7 @@ void loop() {
       //checks if we are back in range to continue following the line normally
       if (sum < SUM_MIN) {
         state = State::FOLLOWING;
-      } else if (analogRead(IR_F) < FRONT_THRES) { 
+      } else if (traffic) { 
         if (!bulldozerMode) {
           oldState = state;
           state = State::TRAFFIC;
@@ -321,7 +348,7 @@ void loop() {
       left_brake = true;
       left = gps[gps_i] == 1;
       right = gps[gps_i] == 2;
-      if (analogRead(IR_F) < FRONT_THRES) { //if intersection is NOT clear, wait until it is
+      if (traffic) { //if intersection is NOT clear, wait until it is
         if (!bulldozerMode) {
           oldState = state;
           state = State::TRAFFIC;
@@ -349,7 +376,7 @@ void loop() {
       error = 3 * avg(error_history) / 4; // keep same error
       pos = center + error;
       steer.write(pos);
-      if (analogRead(IR_F) < FRONT_THRES) { 
+      if (traffic) { 
         if (!bulldozerMode) {
           oldState = state;
           state = State::TRAFFIC;
@@ -394,7 +421,7 @@ void loop() {
           break;
       }
       //makes us wait 0.25 seconds before being able to switch to avoid reading the white line on 3 way intersections
-      if (analogRead(IR_F) < FRONT_THRES) { 
+      if (traffic) { 
         if (!bulldozerMode) {
           oldState = state;
           state = State::TRAFFIC;
@@ -418,7 +445,7 @@ void loop() {
       if (millis() > obstacleTime + 750) {
         state = oldState;
         oldTime = millis() - oldTimeDiff;
-      } else if (!(analogRead(IR_F) > FRONT_THRES)) {
+      } else if (traffic) {
         obstacleTime = millis();
       }
       break;
