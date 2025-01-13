@@ -76,8 +76,8 @@ bool bulldozerMode = true;
 int loopCounter = 0;
 
 // Data collection parameters
-int sampleRate = 1; // Units: samples/s was 2560
-int sampleInterval = 50/sampleRate; // Units: ms/sample was 128000
+int sampleRate = 1000; // Units: samples/s
+int sampleInterval = 1000/sampleRate; // Units: ms/sample
 
 // Encoder left turn
 void ENC_B_GO() {
@@ -138,15 +138,15 @@ long led_time = 0;
 long oldTimeDiff = 0;
 
 // Turning calibration variables
-const int turn_rad = 50; //50 for MARS, 79 for NEPTUNE
+const int turn_rad = 50; //50 for MARS, 79 is absolute max for NEPTUNE
 const int center = 75; //70 is center for MARS, 75 for NEPTUNE
 
 // Line-following variables
 int inside, outside;
 long error = 0;
 long last_error = 0; // added by Joshua for tracking last loop's error
-long running_error = 0; // added by Joshua for tracking running error
-long sum, difference, dist_derivative, last_difference; // added dist_derivative & last_difference
+//long running_error = 0; // added by Joshua for tracking running error
+long sum, difference; //, dist_derivative, last_difference; // added dist_derivative & last_difference
 long error_history[256] = {0};
 int error_hi = 0;
 const int eh_size = 256;
@@ -259,7 +259,7 @@ void loop() {
   if (printData) {
     Serial.println("-----BEGIN DATA-----");
     Serial.println("DATA TYPE: IR_Sensors");
-    Serial.println("Sample,Millis,Down,Front,InnerLeft,OuterLeft,Error");
+    Serial.println("Sample,Millis,Down,Front,InnerLeft,OuterLeft"); //,Error");
     for (int i = 0; i < NUM_SAMPLES; i++) {
       Serial.print(i+1);
       Serial.print(",");
@@ -271,6 +271,7 @@ void loop() {
       Serial.print(",");
       Serial.print(innerLeftSamples[i]);
       Serial.print(",");
+      //Serial.println(outerLeftSamples[i]);
       Serial.print(outerLeftSamples[i]);
       Serial.print(",");
       Serial.println(errorSamples[i]);
@@ -297,12 +298,12 @@ void loop() {
       //NOTE: difference will be >> 0 or << 0, never near 0, so this simple check is sufficient
       if (sum > SUM_MAX) {
         //if diff > asymptote, we are too close
-//        if (difference > ASYMPTOTE) {
-//          state = State::CLOSE;
+        if (difference > ASYMPTOTE) {
+          state = State::CLOSE;
         //and if it diff < asymptote negative we are too far
-//        } else {
-//          state = State::FAR;
-//        }
+        } else {
+          state = State::FAR;
+        }
       } else if (analogRead(IR_F) < FRONT_THRES) { 
         if (!bulldozerMode) {
           oldState = state;
@@ -554,7 +555,7 @@ void loop() {
   //2.) allows us to adjust our turn angle at an
   //    intersection based on the angle of the robot
   last_error = error; //added by Joshua to track last loop's error
-  running_error = error + difference; //added by Joshua to track running error
+  //running_error = error + difference; //added by Joshua to track running error
   error_history[error_hi] = error;
   error_hi = (error_hi + 1) % eh_size;
   cycle ++;
@@ -577,8 +578,8 @@ long pid_controller(long error) { /*, long last_error, long running_error*/
    */
   //             Kp * e(t)  + Kd * de(t)/dt
   //                                 VVV is this supposed to be error or steer.read()?
-  return 2 * (error) - ((4  * (error - avg(error_history)))); //Joshua changed from (error - last_error)
-  //return 5 * (error) / 8 - ((5  * (error - avg(error_history))) / 4);
+  //return 2 * (error) - ((4  * (error - avg(error_history)))); //Joshua changed from (error - last_error)
+  return 5 * (error) / 8 - ((5  * (error - avg(error_history))) / 4);
   /*
    * Prototype from Dr. Fredette
    * error = <difference from desired line>;
