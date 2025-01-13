@@ -126,7 +126,7 @@ const int eh_size = 256;
 // Motor variables
 Motor left_motor(LEFT_A, LEFT_B);
 Motor right_motor(RIGHT_A, RIGHT_B);
-const int speed = 128;
+int speed = 128; // originally 128
 bool right_brake = true, left_brake = true;
 bool left = false, right = false;
 
@@ -144,22 +144,6 @@ enum State {
 }
 volatile state = State::STOPPED;
 State oldState = State::STOPPED;
-
-// TRAFFIC STATES
-//   NONE:    no object sensed -> drive as normal
-//   SENSING: object is sensed -> detect what type of object is being sensed while approaching
-//   PASSING: object is in opposite lane -> drive as normal
-//   WAITING: object is blocking this lane -> brake until clear
-enum Traffic {
-  NONE = 0,
-  SENSING = 1,
-  PASSING = 2,
-  WAITING = 3
-}
-volatile trafficState = Traffic::NONE;
-#define TRAF_THRES 500
-#define PASS_THRES 400
-#define WAIT_THRES 250
 
 void setup() {
   pinMode(IR_I, INPUT);
@@ -223,6 +207,7 @@ void loop() {
   loopCounter++;
   if (loopCounter >= 10000) {
     loopCounter = 0;
+    speed = display.getSpeed();
   }
   display.displayMenu(loopCounter == 0);
 
@@ -233,14 +218,6 @@ void loop() {
     int currSamp = analogRead(IR_F);
     EMA = (mult * (currSamp - prevSamp) / (currTime - prevTime)) + ((1 - mult) * EMA);
     display.setCurrEMA(EMA);
-    // Serial.print("EMA: ");
-    // if(EMA >= 0.0) {
-    //   Serial.print(" ");
-    // }
-    // Serial.print(EMA);
-    // Serial.print(" (currTime = ");
-    // Serial.print(currTime);
-    // Serial.println(")");
     prevTime = currTime - (currTime % sampInterval);
     prevSamp = currSamp;
   }
@@ -459,16 +436,6 @@ void loop() {
       analogWrite(BUZZER, 30);
       break;
   }
-
-  // Traffic FSM
-  /*
-  TRAFFIC STATES
-    NONE:    no object sensed -> drive as normal
-    SENSING: object is sensed -> detect what type of object is being sensed while approaching
-    PASSING: object is in opposite lane -> drive as normal
-    WAITING: object is blocking this lane -> brake until clear
-
-  */
 
   //THIS IS THE CODE FOR THE DIFFERENTIAL DRIVE - IT DOES NOT WORK, please help
   /*

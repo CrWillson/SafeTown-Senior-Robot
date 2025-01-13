@@ -33,7 +33,12 @@ class SafeTownDisplay {
     void menuSetup();
     void displayMenu(bool updateScreen);
 
+    // Debugging
     void setCurrEMA(float EMA);
+
+    // Speed Control
+    void setSpeed(int speedVal);
+    int getSpeed();
 
     // MenuItem action functions
     static void displayIRValues(SafeTownDisplay* displayLibInst);
@@ -82,5 +87,8 @@ class SafeTownDisplay {
 
     // Debugging variables
     float currEMA = 0.0; // Exponential Moving Average, the value based on the front sensor reading used for traffic navigation
+
+    // Speed variables
+    MenuItem* settingSpeed; // pointer to the speed setting MenuItem
 };
 #endif

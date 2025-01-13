@@ -177,6 +177,14 @@ void SafeTownDisplay::menuSetup() {
   // MAIN MENU > Debugging
   mainMenu.addSubMenuItem("Debugging");
   mainMenu.getSubMenuItem(2)->setAction(displayDebugValues);
+
+  // MAIN MENU > Speed Settings
+  mainMenu.addSubMenuItem("Speed Settings");
+
+  // MAIN MENU > Speed Settings > Speed
+  mainMenu.getSubMenuItem(3)->addSubMenuItem("Speed", 4, 1, 10, 1);
+  settingSpeed = mainMenu.getSubMenuItem(3)->getSubMenuItem(1);
+  settingSpeed->setAction(changeIntData);
 }
 
 // Display the menu and perform any selected actions
@@ -222,8 +230,32 @@ void SafeTownDisplay::displayMenu(bool updateScreen) {
   }
 }
 
+////////////////////////////////////////////////////////////////////////////////
+// Debugging
+////////////////////////////////////////////////////////////////////////////////
+
+// Set the current EMA based on robot calculation
 void SafeTownDisplay::setCurrEMA(float EMA) {
   currEMA = EMA;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Speed Control
+////////////////////////////////////////////////////////////////////////////////
+
+// Set the robot speed
+void SafeTownDisplay::setSpeed(int speedVal) {
+  // scale int between 64-256 to int between 1-10
+  int speedNum = ((speedVal - 64) * (9 / 192)) + 1;
+  settingSpeed->setIntData(speedNum);
+}
+
+// Get the robot speed
+int SafeTownDisplay::getSpeed() {
+  // scale int between 1-10 to int between 64-256
+  int speedNum = settingSpeed->getIntData();
+  int speedVal = ((speedNum - 1) * (192 / 9)) + 64;
+  return speedVal;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -262,8 +294,6 @@ void SafeTownDisplay::displayDebugValues(SafeTownDisplay* displayLibInst) {
   if (displayLibInst->updateScreen) {
     // clear the OLED buffer
     displayLibInst->clearDisplay();
-    
-    // read the IR sensors
     
     // post the IR ADC values to the OLED buffer
     adaSSD1306.print("Front IR: ");
