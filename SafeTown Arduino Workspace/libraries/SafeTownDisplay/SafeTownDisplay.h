@@ -33,8 +33,16 @@ class SafeTownDisplay {
     void menuSetup();
     void displayMenu(bool updateScreen);
 
+    // Debugging
+    void setCurrEMA(int EMA);
+
+    // Speed Control
+    void setSpeed(int speedVal);
+    int getSpeed();
+
     // MenuItem action functions
     static void displayIRValues(SafeTownDisplay* displayLibInst);
+    static void displayDebugValues(SafeTownDisplay* displayLibInst);
     static void collectData(SafeTownDisplay* displayLibInst);
     static void outputData(SafeTownDisplay* displayLibInst);
     static void toggleData(SafeTownDisplay* displayLibInst);
@@ -62,6 +70,7 @@ class SafeTownDisplay {
     MenuItem* settingFrontIR; // pointer to the front IR sensor setting MenuItem
     MenuItem* settingInnerLeftIR; // pointer to the inner left IR sensor setting MenuItem
     MenuItem* settingOuterLeftIR; // pointer to the outer left IR sensor setting MenuItem
+    MenuItem* settingEMA; // pointer to the EMA setting MenuItem
     double timeOffset = 0; // timestamp at the start of data collection
     int samplePointer = 0; // index of the next sample to collect
     const static int NUM_SAMPLES = 1000; // maximum number of samples that can be stored
@@ -70,11 +79,18 @@ class SafeTownDisplay {
     int frontSamples[NUM_SAMPLES] = {}; // front IR sensor samples
     int innerLeftSamples[NUM_SAMPLES] = {}; // inner left IR sensor samples
     int outerLeftSamples[NUM_SAMPLES] = {}; // outer left IR sensor samples
+    int EMASamples[NUM_SAMPLES] = {}; // EMA samples
     int sampleTargetTime = 0; // timestamp to collect next sample
     bool resetData = true; // reset data collection
     int samplesToCollect; // number of samples to collect (calculated based on current settings)
     int sampleRate; // current sample rate (specified by setting)
     int sampleTime; // current sample time (specified by setting)
     double sampleInterval; // current sample interval (calculated based on current settings)
+
+    // Debugging variables
+    int currEMA = 0; // Exponential Moving Average, the value based on the front sensor reading used for traffic navigation
+
+    // Speed variables
+    MenuItem* settingSpeed; // pointer to the speed setting MenuItem
 };
 #endif

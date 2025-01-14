@@ -173,6 +173,23 @@ void SafeTownDisplay::menuSetup() {
   dataCollection->getSubMenuItem(3)->addSubMenuItem("Outer Left IR", true);
   settingOuterLeftIR = dataCollection->getSubMenuItem(3)->getSubMenuItem(6);
   settingOuterLeftIR->setAction(toggleData);
+
+  // MAIN MENU > Data Collection > Data Settings > EMA
+  dataCollection->getSubMenuItem(3)->addSubMenuItem("EMA", true);
+  settingEMA = dataCollection->getSubMenuItem(3)->getSubMenuItem(7);
+  settingEMA->setAction(toggleData);
+
+  // MAIN MENU > Debugging
+  mainMenu.addSubMenuItem("Debugging");
+  mainMenu.getSubMenuItem(2)->setAction(displayDebugValues);
+
+  // MAIN MENU > Speed Settings
+  mainMenu.addSubMenuItem("Speed Settings");
+
+  // MAIN MENU > Speed Settings > Speed
+  mainMenu.getSubMenuItem(3)->addSubMenuItem("Speed", 4, 1, 10, 1);
+  settingSpeed = mainMenu.getSubMenuItem(3)->getSubMenuItem(1);
+  settingSpeed->setAction(changeIntData);
 }
 
 // Display the menu and perform any selected actions
@@ -219,6 +236,34 @@ void SafeTownDisplay::displayMenu(bool updateScreen) {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+// Debugging
+////////////////////////////////////////////////////////////////////////////////
+
+// Set the current EMA based on robot calculation
+void SafeTownDisplay::setCurrEMA(int EMA) {
+  currEMA = EMA;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Speed Control
+////////////////////////////////////////////////////////////////////////////////
+
+// Set the robot speed
+void SafeTownDisplay::setSpeed(int speedVal) {
+  // scale int between 64-256 to int between 1-10
+  int speedNum = ((speedVal - 64) * (9 / 192)) + 1;
+  settingSpeed->setIntData(speedNum);
+}
+
+// Get the robot speed
+int SafeTownDisplay::getSpeed() {
+  // scale int between 1-10 to int between 64-256
+  int speedNum = settingSpeed->getIntData();
+  int speedVal = ((speedNum - 1) * (192 / 9)) + 64;
+  return speedVal;
+}
+
+////////////////////////////////////////////////////////////////////////////////
 // MenuItem action functions
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -243,6 +288,23 @@ void SafeTownDisplay::displayIRValues(SafeTownDisplay* displayLibInst) {
     adaSSD1306.println(inner);
     adaSSD1306.print("Outer Left IR: ");
     adaSSD1306.println(outer);
+
+    // post the OLED buffer (which now holds the IR ADC values) to the OLED (write to the screen)
+    adaSSD1306.display();
+  }
+}
+
+// Display current debugging values
+void SafeTownDisplay::displayDebugValues(SafeTownDisplay* displayLibInst) {
+  if (displayLibInst->updateScreen) {
+    // clear the OLED buffer
+    displayLibInst->clearDisplay();
+    
+    // post the IR ADC values to the OLED buffer
+    adaSSD1306.print("Front IR: ");
+    adaSSD1306.println(analogRead(front_ir_pin));
+    adaSSD1306.print("EMA: ");
+    adaSSD1306.println(displayLibInst->currEMA);
 
     // post the OLED buffer (which now holds the IR ADC values) to the OLED (write to the screen)
     adaSSD1306.display();
@@ -279,6 +341,7 @@ void SafeTownDisplay::collectData(SafeTownDisplay* displayLibInst) {
     displayLibInst->frontSamples[currentSample] = analogRead(front_ir_pin);
     displayLibInst->innerLeftSamples[currentSample] = analogRead(in_ir_pin);
     displayLibInst->outerLeftSamples[currentSample] = analogRead(out_ir_pin);
+    displayLibInst->EMASamples[currentSample] = displayLibInst->currEMA;
     displayLibInst->times[currentSample] = time;
     
     // enable to print on serial monitor
@@ -321,6 +384,9 @@ void SafeTownDisplay::outputData(SafeTownDisplay* displayLibInst) {
   if (displayLibInst->settingOuterLeftIR->getBoolData()) {
     Serial.print(",OuterLeft");
   }
+  if (displayLibInst->settingEMA->getBoolData()) {
+    Serial.print(",EMA");
+  }
   Serial.println();
   for (int i = 0; i < displayLibInst->samplesToCollect; i++) {
     Serial.print(i+1);
@@ -341,6 +407,10 @@ void SafeTownDisplay::outputData(SafeTownDisplay* displayLibInst) {
     if (displayLibInst->settingOuterLeftIR->getBoolData()) {
       Serial.print(",");
       Serial.print(displayLibInst->outerLeftSamples[i]);
+    }
+    if (displayLibInst->settingEMA->getBoolData()) {
+      Serial.print(",");
+      Serial.print(displayLibInst->EMASamples[i]);
     }
     Serial.println();
   }
