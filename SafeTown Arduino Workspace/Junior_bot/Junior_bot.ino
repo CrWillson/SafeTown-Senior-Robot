@@ -1,16 +1,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Filename: Junior_bot.ino
-// Author: SafeTown (2022-2024)
+// Author: SafeTown (2023-2025)
 // Purpose: Latest version of functional software for the junior robot.
 ////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////
 // Setup
 ////////////////////////////////////////////////////////////////////////////////
+
 // Library Declarations
 #include <Servo.h>
 #include <Motor.h>
-#include <DisplayOurValues.h> // used for display
+#include <SafeTownDisplay.h>
 
 // Line-following constants
 #define OUTSIDE_MAX 900
@@ -20,7 +21,7 @@
 #define DIFF_MIN    -650
 #define SUM_MIN     750
 #define SUM_MAX     1200
-#define FRONT_THRES 400
+#define FRONT_THRES 400 // originally 400
 #define DOWN_THRES  300
 
 // Pin I/O definitions
@@ -53,36 +54,18 @@ Servo steer;
 long pos;
 
 // Display variables
-DisplayOurValues display = DisplayOurValues(); // initialize display
+SafeTownDisplay display = SafeTownDisplay(); // initialize display
 
 // Encoder variables
 bool encoderChange = false; // track encoder changes
 
-// Data collection variables
-int timeOffset = 0;
-int samplePointer = 0;
-bool collectData = false;
-String dataOutput = "";
-const int NUM_SAMPLES = 100;
-int times[NUM_SAMPLES] = {};
-int downSamples[NUM_SAMPLES] = {};
-int frontSamples[NUM_SAMPLES] = {};
-int innerLeftSamples[NUM_SAMPLES] = {};
-int outerLeftSamples[NUM_SAMPLES] = {};
-int errorSamples[NUM_SAMPLES] = {};
-bool printData = false;
-int sampleTargetTime = 0;
-bool bulldozerMode = true;
+bool bulldozerMode = false; // TRUE indicates that the robot should ignore obstacles
 int loopCounter = 0;
-
-// Data collection parameters
-int sampleRate = 1000; // Units: samples/s
-int sampleInterval = 1000/sampleRate; // Units: ms/sample
 
 // Encoder left turn
 void ENC_B_GO() {
   if (encoderChange) {
-    display.decrementMenuIndex();
+    display.encoderLeft();
   }
   encoderChange = !encoderChange;
 }
@@ -90,7 +73,7 @@ void ENC_B_GO() {
 // Encoder right turn
 void ENC_A_GO() {
   if (encoderChange) {
-    display.incrementMenuIndex();
+    display.encoderRight();
   }
   encoderChange = !encoderChange;
 }
@@ -98,16 +81,7 @@ void ENC_A_GO() {
 // Encoder press
 void ENC_S_GO() {
   encoderChange = false;
-  if (display.getMenuType() == 10) { // 10 is the temporary hardcoded number for SAVE
-    printData = true;
-  }
-  display.goToMenu();
-  if (display.getMenuType() == 10) { // 10 is the temporary hardcoded number for SAVE
-    timeOffset = int(millis());
-    samplePointer = 0;
-    sampleTargetTime = 0;
-    collectData = true;
-  }
+  display.encoderPress();
 }
 
 //XY where X stands for direction going to (straight, left, or right) and Y stands for direction coming from (straight, left, or right)
@@ -138,15 +112,13 @@ long led_time = 0;
 long oldTimeDiff = 0;
 
 // Turning calibration variables
-const int turn_rad = 50; //50 for MARS, 79 is absolute max for NEPTUNE
-const int center = 75; //70 is center for MARS, 75 for NEPTUNE
+const int turn_rad = 50; //50 for MARS, 55 for NEPTUNE
+const int center = 70; //70 is center for MARS, 75 for NEPTUNE
 
 // Line-following variables
 int inside, outside;
-long error = 0;
-long last_error = 0; // added by Joshua for tracking last loop's error
-//long running_error = 0; // added by Joshua for tracking running error
-long sum, difference; //, dist_derivative, last_difference; // added dist_derivative & last_difference
+long error;
+long sum, difference;
 long error_history[256] = {0};
 int error_hi = 0;
 const int eh_size = 256;
@@ -154,7 +126,7 @@ const int eh_size = 256;
 // Motor variables
 Motor left_motor(LEFT_A, LEFT_B);
 Motor right_motor(RIGHT_A, RIGHT_B);
-const int speed = 128;
+int speed = 128; // originally 128
 bool right_brake = true, left_brake = true;
 bool left = false, right = false;
 
@@ -199,9 +171,12 @@ void setup() {
 
   // Display setup
   display.setup();
-  // digitalWrite(YELLOW, LOW);
-  // digitalWrite(RED, HIGH);
-  // digitalWrite(GREEN, HIGH);
+
+  // Colored LEDs
+  digitalWrite(YELLOW, LOW);
+  digitalWrite(RED, LOW);
+  digitalWrite(GREEN, LOW);
+
   // Encoder setup
   pinMode(ENC_B, INPUT);
   pinMode(ENC_A, INPUT);
@@ -216,71 +191,41 @@ void setup() {
   right_motor.begin();
 }
 
+int prevTime = 0;
+int prevSamp = 0;
+int EMA = 0; // Exponential Moving Average
+float mult = 0.1; // EMA multiplier
+const int sampInterval = 50; // 50 ms -> 20 Hz
+
 void loop() {
-  loopCounter++;
   inside = analogRead(IR_I);
   outside = analogRead(IR_O);
   difference = outside - inside;
   sum = outside + inside;
 
   // Write to OLED display
+  loopCounter++;
   if (loopCounter >= 10000) {
-    display.setUpdateScreen(true);
-    display.displayMenu();
     loopCounter = 0;
+    speed = display.getSpeed();
+  }
+  display.displayMenu(loopCounter == 0);
+
+  // Sample front IR sensor
+  int currTime = millis();
+  int targTime = prevTime - (prevTime % sampInterval) + sampInterval; // round down to the nearest sampInterval
+  if (currTime >= targTime) {
+    int currSamp = analogRead(IR_F);
+    EMA = (100 * mult * (currSamp - prevSamp) / (currTime - prevTime)) + ((1 - mult) * EMA);
+    display.setCurrEMA(EMA);
+    prevTime = currTime - (currTime % sampInterval);
+    prevSamp = currSamp;
   }
 
-  // Collect IR data
-  int time = int(millis()) - timeOffset;
-  if (collectData && time >= sampleTargetTime + sampleInterval) {
-    int down = analogRead(IR_D);
-    int front = analogRead(IR_F);
-    int innerLeft = analogRead(IR_I);
-    int outerLeft = analogRead(IR_O);
-    downSamples[samplePointer] = down;
-    frontSamples[samplePointer] = front;
-    innerLeftSamples[samplePointer] = innerLeft;
-    outerLeftSamples[samplePointer] = outerLeft;
-    errorSamples[samplePointer] = last_error;
-    times[samplePointer] = time;
-    Serial.println("Collecting data: " + String(samplePointer+1) + "/" + String(NUM_SAMPLES));
-    samplePointer++;
-    sampleTargetTime += sampleInterval;
-    if (samplePointer >= NUM_SAMPLES) {
-      collectData = false;
-    }
-  }
-
-  // use brake light to indicate data collection mode
-  if (collectData) {
-    digitalWrite(BRAKE_LIGHT, HIGH);
-  }
-
-  if (printData) {
-    Serial.println("-----BEGIN DATA-----");
-    Serial.println("DATA TYPE: IR_Sensors");
-    Serial.println("Sample,Millis,Down,Front,InnerLeft,OuterLeft"); //,Error");
-    for (int i = 0; i < NUM_SAMPLES; i++) {
-      Serial.print(i+1);
-      Serial.print(",");
-      Serial.print(times[i]);
-      Serial.print(",");
-      Serial.print(downSamples[i]);
-      Serial.print(",");
-      Serial.print(frontSamples[i]);
-      Serial.print(",");
-      Serial.print(innerLeftSamples[i]);
-      Serial.print(",");
-      //Serial.println(outerLeftSamples[i]);
-      Serial.print(outerLeftSamples[i]);
-      Serial.print(",");
-      Serial.println(errorSamples[i]);
-    }
-    Serial.println("-----END DATA-----");
-    printData = false;
-  }
-
+  // Steering FSM
   stateLEDs(state);
+  // bool traffic = (analogRead(IR_F) < FRONT_THRES);
+  bool traffic = (EMA < -25 || analogRead(IR_F) < 250);
   switch (state) {
     case State::FOLLOWING:
       right_brake = false;
@@ -290,7 +235,7 @@ void loop() {
       //maps the correction factor to the turn radius      
       error = map_pos(difference) - center;
 
-      pos = center + pid_controller(error);  /*, last_error, map_pos(running_error)*/
+      pos = center + pid_controller(error);
       steer.write(pos);
       
       //checks if we have lost the line
@@ -304,7 +249,7 @@ void loop() {
         } else {
           state = State::FAR;
         }
-      } else if (analogRead(IR_F) < FRONT_THRES) { 
+      } else if (traffic) { 
         if (!bulldozerMode) {
           oldState = state;
           state = State::TRAFFIC;
@@ -329,7 +274,7 @@ void loop() {
       //checks if we are back in range to continue following the line normally
       if (sum < SUM_MIN) {
         state = State::FOLLOWING;
-      } else if (analogRead(IR_F) < FRONT_THRES) { 
+      } else if (traffic) { 
         if (!bulldozerMode) {
           oldState = state;
           state = State::TRAFFIC;
@@ -353,7 +298,7 @@ void loop() {
       //checks if we are back in range to continue following the line normally
       if (sum < SUM_MIN) {
         state = State::FOLLOWING;
-      } else if (analogRead(IR_F) < FRONT_THRES) { 
+      } else if (traffic) { 
         if (!bulldozerMode) {
           oldState = state;
           state = State::TRAFFIC;
@@ -383,7 +328,7 @@ void loop() {
       left_brake = true;
       left = gps[gps_i] == 1;
       right = gps[gps_i] == 2;
-      if (analogRead(IR_F) < FRONT_THRES) { //if intersection is NOT clear, wait until it is
+      if (traffic) { //if intersection is NOT clear, wait until it is
         if (!bulldozerMode) {
           oldState = state;
           state = State::TRAFFIC;
@@ -411,7 +356,7 @@ void loop() {
       error = 3 * avg(error_history) / 4; // keep same error
       pos = center + error;
       steer.write(pos);
-      if (analogRead(IR_F) < FRONT_THRES) { 
+      if (traffic) { 
         if (!bulldozerMode) {
           oldState = state;
           state = State::TRAFFIC;
@@ -456,7 +401,7 @@ void loop() {
           break;
       }
       //makes us wait 0.25 seconds before being able to switch to avoid reading the white line on 3 way intersections
-      if (analogRead(IR_F) < FRONT_THRES) { 
+      if (traffic) { 
         if (!bulldozerMode) {
           oldState = state;
           state = State::TRAFFIC;
@@ -480,7 +425,7 @@ void loop() {
       if (millis() > obstacleTime + 750) {
         state = oldState;
         oldTime = millis() - oldTimeDiff;
-      } else if (!(analogRead(IR_F) > FRONT_THRES)) {
+      } else if (traffic) {
         obstacleTime = millis();
       }
       break;
@@ -494,8 +439,6 @@ void loop() {
       analogWrite(BUZZER, 30);
       break;
   }
-
-
 
   //THIS IS THE CODE FOR THE DIFFERENTIAL DRIVE - IT DOES NOT WORK, please help
   /*
@@ -528,12 +471,10 @@ void loop() {
   //LED Control
 
   //brake lights are on if we are braking
-  if (!collectData) {
-    if(right_brake && left_brake) {
-      digitalWrite(BRAKE_LIGHT, HIGH);
-    } else {
-      digitalWrite(BRAKE_LIGHT, LOW);
-    }
+  if(right_brake && left_brake) {
+    digitalWrite(BRAKE_LIGHT, HIGH);
+  } else {
+    digitalWrite(BRAKE_LIGHT, LOW);
   }
 
   //left lights blink on and off with a period of 1 second, otherwise are off
@@ -554,8 +495,6 @@ void loop() {
   //1.) D and I components of the PID controller
   //2.) allows us to adjust our turn angle at an
   //    intersection based on the angle of the robot
-  last_error = error; //added by Joshua to track last loop's error
-  //running_error = error + difference; //added by Joshua to track running error
   error_history[error_hi] = error;
   error_hi = (error_hi + 1) % eh_size;
   cycle ++;
@@ -569,7 +508,7 @@ void startISR() {
   state = State::FOLLOWING;
 }
 
-long pid_controller(long error) { /*, long last_error, long running_error*/
+long pid_controller(long error) {
   /* The PID Controller that defines line following
    * Proportional: error used for e(t)
    * Integral: NO INTEGRAL COMPONENT (maybe add? I'm not the best with controllers, this project is my only experience)
@@ -577,20 +516,8 @@ long pid_controller(long error) { /*, long last_error, long running_error*/
    * NOTE: NONE OF THE VALUES ARE LIKELY OPTIMAL
    */
   //             Kp * e(t)  + Kd * de(t)/dt
-  //                                 VVV is this supposed to be error or steer.read()?
-  //return 2 * (error) - ((4  * (error - avg(error_history)))); //Joshua changed from (error - last_error)
+  //                                VVV is this supposed to be error or steer.read()?
   return 5 * (error) / 8 - ((5  * (error - avg(error_history))) / 4);
-  /*
-   * Prototype from Dr. Fredette
-   * error = <difference from desired line>;
-   * diffError = (error-lastError)/timeStep; //division by timeStep optional for this differential error
-   * intError = intError + error; //error should be positive and negative sometimes, resulting in a something tracking close to zero
-   * lastError = error; 
-   * return Kp * error + Kd * diffError + Ki * intError;
-   * Kd and Ki should be an order of magnitude smaller than Kp
-   * Kd is likely most useful for damping out over-responsiveness
-   * currently, over correction is done by leaving state, unfortunately
-   */
 }
 
 long avg(long arr[]) {
@@ -628,7 +555,7 @@ int map_pos(int diff) {
 }
 
 int in_speed(int servo_pos) {
-  const float wheel_radius = 18; //(mm)
+  const float wheel_radius = 10; //(mm)
   const float wheel_base = 86; //(mm), measured from front wheel axle to rear wheel axle
   const float wheel_dist = 40; //(mm), measure from inside of front right wheel to inside of front left wheel
 
@@ -644,7 +571,7 @@ int in_speed(int servo_pos) {
 }
 
 int out_speed(int servo_pos) { //same as in_speed, but turn_radius is + wheel_dist / 2 instead of -
-  const float wheel_radius = 18; //(mm)
+  const float wheel_radius = 10; //(mm)
   const float wheel_base = 86; //(mm), measured from front wheel axle to rear wheel axle
   const float wheel_dist = 40; //(mm), measure from inside of front right wheel to inside of front left wheel
 
