@@ -174,6 +174,11 @@ void SafeTownDisplay::menuSetup() {
   settingOuterLeftIR = dataCollection->getSubMenuItem(3)->getSubMenuItem(6);
   settingOuterLeftIR->setAction(toggleData);
 
+  // MAIN MENU > Data Collection > Data Settings > EMA
+  dataCollection->getSubMenuItem(3)->addSubMenuItem("EMA", true);
+  settingEMA = dataCollection->getSubMenuItem(3)->getSubMenuItem(7);
+  settingEMA->setAction(toggleData);
+
   // MAIN MENU > Debugging
   mainMenu.addSubMenuItem("Debugging");
   mainMenu.getSubMenuItem(2)->setAction(displayDebugValues);
@@ -235,7 +240,7 @@ void SafeTownDisplay::displayMenu(bool updateScreen) {
 ////////////////////////////////////////////////////////////////////////////////
 
 // Set the current EMA based on robot calculation
-void SafeTownDisplay::setCurrEMA(float EMA) {
+void SafeTownDisplay::setCurrEMA(int EMA) {
   currEMA = EMA;
 }
 
@@ -336,6 +341,7 @@ void SafeTownDisplay::collectData(SafeTownDisplay* displayLibInst) {
     displayLibInst->frontSamples[currentSample] = analogRead(front_ir_pin);
     displayLibInst->innerLeftSamples[currentSample] = analogRead(in_ir_pin);
     displayLibInst->outerLeftSamples[currentSample] = analogRead(out_ir_pin);
+    displayLibInst->EMASamples[currentSample] = displayLibInst->currEMA;
     displayLibInst->times[currentSample] = time;
     
     // enable to print on serial monitor
@@ -378,6 +384,9 @@ void SafeTownDisplay::outputData(SafeTownDisplay* displayLibInst) {
   if (displayLibInst->settingOuterLeftIR->getBoolData()) {
     Serial.print(",OuterLeft");
   }
+  if (displayLibInst->settingEMA->getBoolData()) {
+    Serial.print(",EMA");
+  }
   Serial.println();
   for (int i = 0; i < displayLibInst->samplesToCollect; i++) {
     Serial.print(i+1);
@@ -398,6 +407,10 @@ void SafeTownDisplay::outputData(SafeTownDisplay* displayLibInst) {
     if (displayLibInst->settingOuterLeftIR->getBoolData()) {
       Serial.print(",");
       Serial.print(displayLibInst->outerLeftSamples[i]);
+    }
+    if (displayLibInst->settingEMA->getBoolData()) {
+      Serial.print(",");
+      Serial.print(displayLibInst->EMASamples[i]);
     }
     Serial.println();
   }

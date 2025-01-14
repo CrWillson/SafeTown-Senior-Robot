@@ -193,7 +193,7 @@ void setup() {
 
 int prevTime = 0;
 int prevSamp = 0;
-float EMA = 0.0; // Exponential Moving Average
+int EMA = 0; // Exponential Moving Average
 float mult = 0.1; // EMA multiplier
 const int sampInterval = 50; // 50 ms -> 20 Hz
 
@@ -216,7 +216,7 @@ void loop() {
   int targTime = prevTime - (prevTime % sampInterval) + sampInterval; // round down to the nearest sampInterval
   if (currTime >= targTime) {
     int currSamp = analogRead(IR_F);
-    EMA = (mult * (currSamp - prevSamp) / (currTime - prevTime)) + ((1 - mult) * EMA);
+    EMA = (100 * mult * (currSamp - prevSamp) / (currTime - prevTime)) + ((1 - mult) * EMA);
     display.setCurrEMA(EMA);
     prevTime = currTime - (currTime % sampInterval);
     prevSamp = currSamp;
@@ -225,7 +225,7 @@ void loop() {
   // Steering FSM
   stateLEDs(state);
   // bool traffic = (analogRead(IR_F) < FRONT_THRES);
-  bool traffic = (EMA < -0.25 || analogRead(IR_F) < 250);
+  bool traffic = (EMA < -25 || analogRead(IR_F) < 250);
   switch (state) {
     case State::FOLLOWING:
       right_brake = false;
