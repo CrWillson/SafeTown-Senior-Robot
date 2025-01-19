@@ -21,7 +21,7 @@
 #define DIFF_MIN    -650
 #define SUM_MIN     750
 #define SUM_MAX     1200
-#define FRONT_THRES 400 // originally 400
+#define FRONT_THRES 400
 #define DOWN_THRES  300
 
 // Pin I/O definitions
@@ -103,7 +103,7 @@ void ENC_S_GO() {
 int gps_i = 0;
 const int gps_size = 4;
 //0 is straight, 1 is left, 2 is right
-const int gps[] = {0, 1, 2, 0};
+const int gps[] = {0, 2, 1, 0};
 
 // Obstacle detection variables
 long cycle = 0;
@@ -112,21 +112,22 @@ long led_time = 0;
 long oldTimeDiff = 0;
 
 // Turning calibration variables
-const int turn_rad = 50; //50 for MARS, 55 for NEPTUNE
-const int center = 70; //70 is center for MARS, 75 for NEPTUNE
+const int left_turn_rad = 65; //?? for MARS, 65 for NEPTUNE
+const int center = 75; //70 is center for MARS, 75 for NEPTUNE
+const int right_turn_rad = 55; //?? for MARS, 55 for NEPTUNE
 
 // Line-following variables
 int inside, outside;
 long error;
 long sum, difference;
-long error_history[256] = {0};
+long error_history[167] = {0}; //liked 256, 167
 int error_hi = 0;
-const int eh_size = 256;
+const int eh_size = 167;
 
 // Motor variables
 Motor left_motor(LEFT_A, LEFT_B);
 Motor right_motor(RIGHT_A, RIGHT_B);
-int speed = 128; // originally 128
+int speed = 128;
 bool right_brake = true, left_brake = true;
 bool left = false, right = false;
 
@@ -172,7 +173,6 @@ void setup() {
   // Display setup
   display.setup();
 
-  // Colored LEDs
   digitalWrite(YELLOW, LOW);
   digitalWrite(RED, LOW);
   digitalWrite(GREEN, LOW);
@@ -211,18 +211,6 @@ void loop() {
   }
   display.displayMenu(loopCounter == 0);
 
-  // Sample front IR sensor
-  int currTime = millis();
-  int targTime = prevTime - (prevTime % sampInterval) + sampInterval; // round down to the nearest sampInterval
-  if (currTime >= targTime) {
-    int currSamp = analogRead(IR_F);
-    EMA = (100 * mult * (currSamp - prevSamp) / (currTime - prevTime)) + ((1 - mult) * EMA);
-    display.setCurrEMA(EMA);
-    prevTime = currTime - (currTime % sampInterval);
-    prevSamp = currSamp;
-  }
-
-  // Steering FSM
   stateLEDs(state);
   // bool traffic = (analogRead(IR_F) < FRONT_THRES);
   bool traffic = (EMA < -25 || analogRead(IR_F) < 250);
@@ -266,9 +254,10 @@ void loop() {
       left_brake = false;
       left = false;
       right = false;
-      //turns as HARD as possible toward the line
-      error = turn_rad;
-      pos = center + turn_rad;
+      
+      //turns towards line
+      error = right_turn_rad;
+      pos = center + right_turn_rad;
       steer.write(pos);
 
       //checks if we are back in range to continue following the line normally
@@ -291,8 +280,8 @@ void loop() {
       left = false;
       right = false;
       //turns as HARD as possible away from the line
-      error = -turn_rad;
-      pos = center - turn_rad;
+      error = -left_turn_rad;
+      pos = center - left_turn_rad;
       steer.write(pos);
 
       //checks if we are back in range to continue following the line normally
@@ -547,9 +536,9 @@ int map_pos(int diff) {
    */
   int pos;
   if (diff > ASYMPTOTE) {
-    pos = map(diff, ASYMPTOTE, DIFF_MAX, center, center - turn_rad);
+    pos = map(diff, ASYMPTOTE, DIFF_MAX, center, center - left_turn_rad);
   } else {
-    pos = map(diff, DIFF_MIN, ASYMPTOTE, center + turn_rad, center);
+    pos = map(diff, DIFF_MIN, ASYMPTOTE, center + left_turn_rad, center);
   }
   return pos;
 }
