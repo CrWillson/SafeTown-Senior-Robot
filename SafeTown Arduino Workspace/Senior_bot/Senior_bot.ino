@@ -1,9 +1,9 @@
 #include <Servo.h>
 #include <Motor.h>
 
-#define DIST_MAX    45
-#define DIST_MIN   -45
-#define DIST_THRES  42
+#define DIST_MAX    22
+#define DIST_MIN   -22
+#define DIST_THRES  24
 #define DIST_CENTER  0
 
 
@@ -33,26 +33,37 @@ long pos;
 
 int gps_i = 0;
 
-int gps_size = 4;
-int gps[] = {0, 1, 2, 0};
+enum DIR {
+  STRAIGHT,
+  LEFT,
+  RIGHT
+};
+//int gps_size = 4;
+constexpr int gps[] = {DIR::STRAIGHT, DIR::LEFT, DIR::RIGHT, DIR::STRAIGHT};
+constexpr int gps_size = sizeof(gps) / sizeof(gps[0]);
 
 long cycle = 0;
 long oldTime = 0;
 long led_time = 0;
+long obstacleTime = 0;
+long oldTimeDiff = 0;
 
-const int turn_rad = 50;
-const int center = 75;
+const int left_turn_rad = 65; //?? for MARS, 65 for NEPTUNE
+const int center = 85; //70 is center for MARS, 75 for NEPTUNE
+const int right_turn_rad = 65; //?? for MARS, 55 for NEPTUNE
 
-int dist = 0;
+int8_t dist = 0;
 bool stop_detected = false;
+bool car_detected = false;
+bool bulldozerMode = false;
 long error;
 
 Motor left_motor(LEFT_A, LEFT_B);
 Motor right_motor(RIGHT_A, RIGHT_B);
-int speed = 128;
+const int SPEED = 100;
 bool brake = true, left = false, right = false;
 
-long error_history[32] = {0}; //size needs to be hardcoded to the avg() function, if changed here, change there
+long error_history[167] = {0}; //size needs to be hardcoded to the avg() function, if changed here, change there
 int error_hi = 0;
 
 enum State {
@@ -61,10 +72,10 @@ enum State {
   CLOSE = 1,
   FAR = 4,
   INTERSECTION_WAIT = 3,
-  INTERSECTION_NAV = 7,
-  TRAFFIC = 5,
-  PARKED = 6,
-  
+  INTERSECTION_NAV = 5,
+  INTERSECTION_FOR = 6,
+  TRAFFIC = 7,
+  PARKED = 8,
 }
 volatile state = State::STOPPED;
 State oldState = State::STOPPED;
@@ -94,14 +105,32 @@ void setup() {
   left_motor.begin();
   right_motor.begin();
   Serial1.setPollingMode(true);
-  Serial1.begin(19200);//serial for the UART connection to the ESP32 CAM
+  Serial1.begin(500000);  //serial for the UART connection to the ESP32 CAM
+
+  Serial.begin(500000);   // serial for serial monitor
 }
+
+arduino::String str;
 
 void loop() {
   if(Serial1.available()) {
-    dist = Serial1.read(); //EDIT THE LOGIC FOR THIS
-    stop_detected = false; //ADD THE LOGIC FOR THIS
+    //dist = Serial1.read();
+    str = Serial1.readStringUntil('\n');
+    Serial.println(str);
+  
+    stop_detected = str[1] == '1';
+    //car_detected = str[0] == '1';
+    dist = 0;
+    for (int i = 2; i < 10; i++) {
+      dist = (dist << 1) | (str[i] - '0');
+    }
+    dist = -dist;
+    Serial.println(dist);
+    Serial.println(stop_detected);
+    Serial.println(car_detected);
+
   }
+  
   stateLEDs(state);
   switch (state) {
     case State::FOLLOWING:
@@ -111,19 +140,22 @@ void loop() {
       //maps the dist factor to the turn radius and adjust    
       error = map_pos(dist) - center;
 
-      //             Kp * e(t)  + Kd * de(t)/dt
-      //                                          VVV is this supposed to be error or steer.read()?
-      pos = center + 3 * (error) / 4 - ((5  * (error - avg(error_history))) / 4);
+      pos = center + pid_controller(error);
       steer.write(pos);
+      //Serial.println(pos);
       
       //checks if we have lost the line
       if (abs(dist) > DIST_THRES) {
         //and which side we lost it to
-        if (dist < DIST_CENTER) {
+        if (dist > DIST_CENTER) {
           state = State::CLOSE;
         } else {
           state = State::FAR;
         }
+      } else if (car_detected && !bulldozerMode) {
+        oldState = state;
+        state = State::TRAFFIC;
+        obstacleTime = millis();
       } else if (stop_detected) {
         oldTime = millis();
         state = State::INTERSECTION_WAIT;
@@ -135,27 +167,43 @@ void loop() {
       left = false;
       right = false;
       //turns as HARD as possible toward the line
-      error = turn_rad;
-      pos = center + turn_rad + 25;
+      //turns towards line
+      error = right_turn_rad;
+      pos = center + right_turn_rad;
       steer.write(pos);
 
       //checks if we are back in range to continue following the line normally
-      if (dist < DIST_THRES) {
+      if (abs(dist) < DIST_THRES) {
         state = State::FOLLOWING;
+      } else if (car_detected && !bulldozerMode) {
+        oldState = state;
+        state = State::TRAFFIC;
+        obstacleTime = millis();
+      } else if (stop_detected) {
+        oldTime = millis();
+        state = State::INTERSECTION_WAIT;
       }
       break;
     case State::CLOSE:
       brake = false;
       left = false;
       right = false;
+
       //turns as HARD as possible away from the line
-      error = -turn_rad;
-      pos = center - turn_rad - 25;
+      error = -left_turn_rad;
+      pos = center - left_turn_rad;
       steer.write(pos);
 
       //checks if we are back in range to continue following the line normally
-      if (dist < DIST_THRES) {
+      if (abs(dist) < DIST_THRES) {
         state = State::FOLLOWING;
+      } else if (car_detected && !bulldozerMode) {
+        oldState = state;
+        state = State::TRAFFIC;
+        obstacleTime = millis();
+      } else if (stop_detected) {
+        oldTime = millis();
+        state = State::INTERSECTION_WAIT;
       }
       break;
     case State::STOPPED:
@@ -175,11 +223,40 @@ void loop() {
       brake = true;
       left = gps[gps_i] == 1;
       right = gps[gps_i] == 2;
-      if (millis() > oldTime + 1000) { //wait 1 second and then GO GO GO!
+
+      // Wait for intersection to be clear
+      if (car_detected && !bulldozerMode) {
+        oldState = state;
+        state = State::TRAFFIC;
+        obstacleTime = millis();
+      } else if (millis() > oldTime + 1000) { //otherwise, wait 1 second and then GO GO GO!
+        oldTime = millis();
+        if (gps[gps_i] == DIR::RIGHT) {
+          state = State::INTERSECTION_NAV;
+        } else {
+          state = State::INTERSECTION_FOR;
+        }
+      }
+      break;
+
+    case INTERSECTION_FOR:
+      brake = false;
+      //SET oldTime = millis(); when entering this state
+      //go forward to line up the back wheels with the stop line before turning
+      error = 3 * avg(error_history) / 4; // keep same error
+      pos = center + error;
+      steer.write(pos);
+      if (car_detected && !bulldozerMode) { 
+        oldState = state;
+        state = State::TRAFFIC;
+        obstacleTime = millis();
+        oldTimeDiff = millis() - oldTime;
+      } else if (millis() > oldTime + 1000) {
         oldTime = millis();
         state = State::INTERSECTION_NAV;
       }
       break;
+    
     case INTERSECTION_NAV:
       brake = false;
       left = gps[gps_i] == 1;
@@ -188,12 +265,16 @@ void loop() {
        *       This predicts the angle we have come from to adjust for entering intersections after curves
        * NOT CURRENTLY, I found it to be unreliable, at least straight as -avg(eh), no adjustments. So some work needs to be done here
       */
+      {
+      int turn_time = 0;
+
       switch (gps[gps_i]) {
-        case 0: //straight
+        case DIR::STRAIGHT: //straight
           //                 VVVV this adjustment factor is TEMPORARY - it should be replaced with the negative average of the position history
-          steer.write(center - 8);
+          steer.write(center - 5);
+          turn_time = 500;
           break;
-        case 1: //left
+        case DIR::LEFT: //left
           //THIS IS WRONG, USE AVG OF HISTORY INSTEAD
           //int theta;
           //theta = center - prev_pos; //angle of servo is inverse angle of robot b/c it's trying to correct
@@ -201,16 +282,27 @@ void loop() {
           //if under turning (going off on the right of the line), increase the number
           //if over  turning (going off on the left  of the line), decrease the number
           //                   VV this is the number, the comments above ignore the negative 
-          steer.write(center - 31);
+          steer.write(center - left_turn_rad);
+          turn_time = 1500;
           break;
-        case 2: //right
-          steer.write(center + 70);
+        case DIR::RIGHT: //right
+          //anchors right wheel
+          steer.write(center + right_turn_rad);
+          turn_time = 500;
+          break;
+        default:
           break;
       }
       //makes us wait 0.25 seconds before being able to switch to avoid reading the white line on 3 way intersections
-      if (millis() > oldTime + 250 && abs(dist) < DIST_THRES) {
+      if (car_detected && !bulldozerMode) { 
+        oldState = state;
+        state = State::TRAFFIC;
+        obstacleTime = millis();
+        oldTimeDiff = millis() - oldTime;
+      } else if (millis() > oldTime + turn_time) {
         state = State::FOLLOWING;
         gps_i = (gps_i + 1) % gps_size;
+      }
       }
 
       break;
@@ -222,7 +314,7 @@ void loop() {
       //if the road is clear, wait 0.75s before going forward
       if (millis() > oldTime + 750) {
         state = oldState;
-      } else if (false /* replace this with a "car detected in front" variable */) {
+      } else if (false) { // replace this with a "car detected in front" variable
         oldTime = millis();
       }
       break;
@@ -235,30 +327,16 @@ void loop() {
       steer.write(center);
       analogWrite(BUZZER, 30);
       break;
+
   }
-
-
-
-  //THIS IS THE CODE FOR THE DIFFERENTIAL DRIVE - IT DOES NOT WORK, please help
-  /*
-  //determines which is the inside and the outside and gives the corresponding speed
-  if (!brake && steer.read() > center) {
-    left.forward(in_speed(steer.read()));
-    right.forward(out_speed(steer.read()));
-  } else if (!brake) {
-    left.forward(out_speed(steer.read()));
-    right.forward(in_speed(steer.read()));
-  } else {
-    left.brake();
-    right.brake();
-  }*/
+  
 
   if(brake) {
     left_motor.brake();
     right_motor.brake();
   } else {
-    left_motor.forward(speed);
-    right_motor.forward(speed);
+    left_motor.forward(SPEED);
+    right_motor.forward(SPEED);
   }
 
 
@@ -291,8 +369,9 @@ void loop() {
   //2.) allows us to adjust our turn angle at an
   //    intersection based on the angle of the robot
   error_history[error_hi] = error;
-  error_hi = (error_hi + 1) % 32;
+  error_hi = (error_hi + 1) % 167;
   cycle ++;
+  
 }
 
 void haltISR() {
@@ -301,6 +380,18 @@ void haltISR() {
 
 void startISR() {
   state = State::FOLLOWING;
+}
+
+long pid_controller(long error) {
+  /* The PID Controller that defines line following
+   * Proportional: error used for e(t)
+   * Integral: NO INTEGRAL COMPONENT (maybe add? I'm not the best with controllers, this project is my only experience)
+   * Derivative: error - avg(error_history) is used as an estimate of the de(t)/dt.
+   * NOTE: NONE OF THE VALUES ARE LIKELY OPTIMAL
+   */
+  //             Kp * e(t)  + Kd * de(t)/dt
+  //                                VVV is this supposed to be error or steer.read()?
+  return 5 * (error) / 8 - ((5  * (error - avg(error_history))) / 4);
 }
 
 long avg(long arr[]) {
@@ -329,10 +420,10 @@ int map_pos(int dist) {
    * IMPORTANT: Maps the DIST_CENTER to the center
    */
   int pos;
-  if (dist > DIST_CENTER) {
-    pos = map(dist, DIST_CENTER, DIST_MAX, center, center - turn_rad);
+  if (dist < DIST_CENTER) {
+    pos = map(dist, DIST_CENTER, DIST_MAX, center, center - left_turn_rad);
   } else {
-    pos = map(dist, DIST_MIN, DIST_CENTER, center + turn_rad, center);
+    pos = map(dist, DIST_MIN, DIST_CENTER, center + left_turn_rad, center);
   }
   return pos;
 }
@@ -349,8 +440,8 @@ int in_speed(int servo_pos) {
   //so ω_turn = ω_wheel * r_wheel / r_turn
 
   float ω_turn;
-  ω_turn = speed * wheel_radius / turn_radius;
-  return speed + (int)ω_turn;
+  ω_turn = SPEED * wheel_radius / turn_radius;
+  return SPEED + (int)ω_turn;
 }
 
 int out_speed(int servo_pos) { //same as in_speed, but turn_radius is + wheel_dist / 2 instead of -
@@ -365,9 +456,9 @@ int out_speed(int servo_pos) { //same as in_speed, but turn_radius is + wheel_di
   //so ω_turn = ω_wheel * r_wheel / r_turn
 
   float ω_turn;
-  ω_turn = speed * wheel_radius / turn_radius;
+  ω_turn = SPEED * wheel_radius / turn_radius;
   Serial.println(ω_turn);
-  return speed + (int)ω_turn;
+  return SPEED + (int)ω_turn;
 }
 
 
