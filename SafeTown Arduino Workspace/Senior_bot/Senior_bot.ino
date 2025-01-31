@@ -1,11 +1,11 @@
 #include <Servo.h>
 #include <Motor.h>
+#include "display.hpp"
 
 #define DIST_MAX    22
 #define DIST_MIN   -22
 #define DIST_THRES  24
 #define DIST_CENTER  0
-
 
 #define STOP     17
 #define START    16
@@ -30,15 +30,18 @@
 
 Servo steer;
 long pos;
+long pos_history[50] = {0};
+constexpr int pos_history_size = sizeof(pos_history) / sizeof(pos_history[0]);
+int pos_hi = 0;
 
-int gps_i = 0;
 
 enum DIR {
   STRAIGHT,
   LEFT,
   RIGHT
 };
-//int gps_size = 4;
+
+int gps_i = 0;
 constexpr int gps[] = {DIR::STRAIGHT, DIR::LEFT, DIR::RIGHT, DIR::STRAIGHT};
 constexpr int gps_size = sizeof(gps) / sizeof(gps[0]);
 
@@ -48,9 +51,9 @@ long led_time = 0;
 long obstacleTime = 0;
 long oldTimeDiff = 0;
 
-const int left_turn_rad = 65; //?? for MARS, 65 for NEPTUNE
-const int center = 85; //70 is center for MARS, 75 for NEPTUNE
-const int right_turn_rad = 65; //?? for MARS, 55 for NEPTUNE
+constexpr int left_turn_rad = 65;
+constexpr int center = 85;
+constexpr int right_turn_rad = 65;
 
 int8_t dist = 0;
 bool stop_detected = false;
@@ -61,9 +64,12 @@ long error;
 Motor left_motor(LEFT_A, LEFT_B);
 Motor right_motor(RIGHT_A, RIGHT_B);
 const int SPEED = 100;
-bool brake = true, left = false, right = false;
+bool brake = true;
+bool leftTurnSig = false;
+bool rightTurnSig = false;
 
 long error_history[167] = {0}; //size needs to be hardcoded to the avg() function, if changed here, change there
+constexpr int error_history_size = sizeof(error_history) / sizeof(error_history[0]);
 int error_hi = 0;
 
 enum State {
@@ -79,6 +85,9 @@ enum State {
 }
 volatile state = State::STOPPED;
 State oldState = State::STOPPED;
+
+Display display = Display();
+std::vector<std::string> testLines = {"Hello", "Line2", "Line3", "World!"};
 
 void setup() {
   pinMode(START, INPUT);
@@ -99,6 +108,7 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(START), startISR, RISING);
   attachInterrupt(digitalPinToInterrupt(STOP), haltISR, RISING);
 
+  display.clearDisplay();
 
   steer.attach(SERVO);
 
@@ -110,12 +120,15 @@ void setup() {
   Serial.begin(500000);   // serial for serial monitor
 }
 
-arduino::String str;
-
 void loop() {
+  if (cycle > 10000) {
+    cycle = 0;
+    display.printLines(testLines);
+  }
+
   if(Serial1.available()) {
     //dist = Serial1.read();
-    str = Serial1.readStringUntil('\n');
+    String str = Serial1.readStringUntil('\n');
     Serial.println(str);
   
     stop_detected = str[1] == '1';
@@ -135,8 +148,8 @@ void loop() {
   switch (state) {
     case State::FOLLOWING:
       brake = false;
-      left = false;
-      right = false;
+      leftTurnSig = false;
+      rightTurnSig = false;
       //maps the dist factor to the turn radius and adjust    
       error = map_pos(dist) - center;
 
@@ -164,8 +177,8 @@ void loop() {
       break;
     case State::FAR:
       brake = false;
-      left = false;
-      right = false;
+      leftTurnSig = false;
+      rightTurnSig = false;
       //turns as HARD as possible toward the line
       //turns towards line
       error = right_turn_rad;
@@ -186,8 +199,8 @@ void loop() {
       break;
     case State::CLOSE:
       brake = false;
-      left = false;
-      right = false;
+      leftTurnSig = false;
+      rightTurnSig = false;
 
       //turns as HARD as possible away from the line
       error = -left_turn_rad;
@@ -210,8 +223,8 @@ void loop() {
       //stop the robot
       error = 0;
       brake = true;
-      left = false;
-      right = false;
+      leftTurnSig = false;
+      rightTurnSig = false;
       steer.write(center);
       digitalWrite(BUZZER, LOW);
       gps_i = 0; //resets the path, might not be desired functionality.
@@ -221,8 +234,8 @@ void loop() {
     case State::INTERSECTION_WAIT:
       //WAIT at intersection
       brake = true;
-      left = gps[gps_i] == 1;
-      right = gps[gps_i] == 2;
+      leftTurnSig = gps[gps_i] == 1;
+      rightTurnSig = gps[gps_i] == 2;
 
       // Wait for intersection to be clear
       if (car_detected && !bulldozerMode) {
@@ -243,7 +256,7 @@ void loop() {
       brake = false;
       //SET oldTime = millis(); when entering this state
       //go forward to line up the back wheels with the stop line before turning
-      error = 3 * avg(error_history) / 4; // keep same error
+      error = 3 * avg(error_history, error_history_size) / 4; // keep same error
       pos = center + error;
       steer.write(pos);
       if (car_detected && !bulldozerMode) { 
@@ -259,8 +272,8 @@ void loop() {
     
     case INTERSECTION_NAV:
       brake = false;
-      left = gps[gps_i] == 1;
-      right = gps[gps_i] == 2;
+      leftTurnSig = gps[gps_i] == 1;
+      rightTurnSig = gps[gps_i] == 2;
       /* NOTE: All of these cases include an -avg(error_history)
        *       This predicts the angle we have come from to adjust for entering intersections after curves
        * NOT CURRENTLY, I found it to be unreliable, at least straight as -avg(eh), no adjustments. So some work needs to be done here
@@ -309,8 +322,8 @@ void loop() {
     case TRAFFIC:
       //SET oldTime = millis(); IN THE STATE JUST BEFORE ENTERING, like in FOLLOWING
       brake = true;
-      left = left; //keep these the same
-      right = right; //left here for symbolic purposes, the compiler gets rid of these lines.
+      leftTurnSig = leftTurnSig; //keep these the same
+      rightTurnSig = rightTurnSig; //left here for symbolic purposes, the compiler gets rid of these lines.
       //if the road is clear, wait 0.75s before going forward
       if (millis() > oldTime + 750) {
         state = oldState;
@@ -322,8 +335,8 @@ void loop() {
       //IF THE ROBOT IS HERE, SOMETHING IS VERY WRONG
       //in any other state, stop the robot and turn on the buzzer
       brake = true;
-      left = true;
-      right = true;
+      leftTurnSig = true;
+      rightTurnSig = true;
       steer.write(center);
       analogWrite(BUZZER, 30);
       break;
@@ -351,14 +364,14 @@ void loop() {
   }
 
   //left lights blink on and off with a period of 1 second, otherwise are off
-  if (left && millis() % 1000 > 500) {
+  if (leftTurnSig && millis() % 1000 > 500) {
     digitalWrite(TURN_L, HIGH);
   } else {
     digitalWrite(TURN_L, LOW);
   }
 
   //right lights blink on and off with a period of 1 second, otherwise are off
-  if (right && millis() % 1000 > 500) {
+  if (rightTurnSig && millis() % 1000 > 500) {
     digitalWrite(TURN_R, HIGH);
   } else {
     digitalWrite(TURN_R, LOW);
@@ -369,8 +382,12 @@ void loop() {
   //2.) allows us to adjust our turn angle at an
   //    intersection based on the angle of the robot
   error_history[error_hi] = error;
-  error_hi = (error_hi + 1) % 167;
-  cycle ++;
+  error_hi = (error_hi + 1) % error_history_size;
+
+  pos_history[pos_hi] = pos;
+  pos_hi = (pos_hi + 1) % pos_history_size;
+
+  cycle++;
   
 }
 
@@ -391,15 +408,15 @@ long pid_controller(long error) {
    */
   //             Kp * e(t)  + Kd * de(t)/dt
   //                                VVV is this supposed to be error or steer.read()?
-  return 5 * (error) / 8 - ((5  * (error - avg(error_history))) / 4);
+  return 5 * (error) / 8 - ((5  * (error - avg(error_history, error_history_size))) / 4);
 }
 
-long avg(long arr[]) {
+long avg(long arr[], int arr_size) {
   long sum = 0;
-  for (int i = 0; i <= 32; i++) { //size needs to be hardcoded
+  for (int i = 0; i <= arr_size; i++) { //size needs to be hardcoded
     sum += arr[i];
   }
-  return sum / 32;
+  return sum / arr_size;
 }
 
 void stateLEDs(int state) {
