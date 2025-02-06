@@ -1,6 +1,13 @@
+#include "event_manager.hpp"
+#include "display.hpp"
+#include "user_input.hpp"
+
+#include "pico/stdlib.h"
+#include "pico/multicore.h"
+
 #include <Servo.h>
 #include <Motor.h>
-#include "display.hpp"
+
 
 #define DIST_MAX    22
 #define DIST_MIN   -22
@@ -86,10 +93,16 @@ enum State {
 volatile state = State::STOPPED;
 State oldState = State::STOPPED;
 
-Display display = Display();
-std::vector<std::string> testLines = {"Hello", "Line2", "Line3", "World!"};
+EventManager eventManager; 
+Display display(&eventManager);
+UIManager uimanager(&eventManager);
+
+void setup1() {
+  eventManager.processEvents();
+}
 
 void setup() {
+
   pinMode(START, INPUT);
   pinMode(STOP, INPUT);
 
@@ -122,8 +135,7 @@ void setup() {
 
 void loop() {
   if (cycle > 10000) {
-    cycle = 0;
-    display.printLines(testLines);
+    cycle = 0;  
   }
 
   if(Serial1.available()) {
@@ -453,12 +465,12 @@ int in_speed(int servo_pos) {
   float turn_radius;
   turn_radius = wheel_base / tan(steering_angle(servo_pos)) - wheel_dist / 2;
 
-  //ω * r = v <-- vehicle speed (const)
-  //so ω_turn = ω_wheel * r_wheel / r_turn
+  //w * r = v <-- vehicle speed (const)
+  //so w_turn = w_wheel * r_wheel / r_turn
 
-  float ω_turn;
-  ω_turn = SPEED * wheel_radius / turn_radius;
-  return SPEED + (int)ω_turn;
+  float w_turn;
+  w_turn = SPEED * wheel_radius / turn_radius;
+  return SPEED + (int)w_turn;
 }
 
 int out_speed(int servo_pos) { //same as in_speed, but turn_radius is + wheel_dist / 2 instead of -
@@ -469,13 +481,13 @@ int out_speed(int servo_pos) { //same as in_speed, but turn_radius is + wheel_di
   float turn_radius;
   turn_radius = wheel_base / tan(steering_angle(servo_pos)) + wheel_dist / 2;
 
-  //ω * r = v <-- vehicle speed (const)
-  //so ω_turn = ω_wheel * r_wheel / r_turn
+  //w * r = v <-- vehicle speed (const)
+  //so w_turn = w_wheel * r_wheel / r_turn
 
-  float ω_turn;
-  ω_turn = SPEED * wheel_radius / turn_radius;
-  Serial.println(ω_turn);
-  return SPEED + (int)ω_turn;
+  float w_turn;
+  w_turn = SPEED * wheel_radius / turn_radius;
+  Serial.println(w_turn);
+  return SPEED + (int)w_turn;
 }
 
 

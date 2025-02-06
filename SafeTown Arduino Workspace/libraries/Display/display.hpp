@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Arduino.h"
+#include <cctype>
 #include <SPI.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>
@@ -9,14 +9,19 @@
 #include <vector>
 #include <string>
 
+#include "event_manager.hpp"
+
 class Display {
 public:
 
-    Display();
+    Display(EventManager* manager);
     ~Display() = default;
 
     void clearDisplay();
     void printLines(std::vector<std::string> lines);
+
+    void onSelectPress(const Event::Event& event);
+    void onSelectRelease(const Event::Event& event);
 
 private:
 
@@ -27,6 +32,7 @@ private:
     static constexpr int SCREEN_ADDRESS = 0x3C;    ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
 
     std::unique_ptr<Adafruit_SSD1306> screen;
+    EventManager* eventManager;
 
     // Adafruit_SSD1306 adaSSD1306(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET); // The display object
 

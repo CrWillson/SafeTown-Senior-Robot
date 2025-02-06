@@ -1,7 +1,17 @@
 #include "display.hpp"
 
-Display::Display() : screen(std::make_unique<Adafruit_SSD1306>(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET))
+Display::Display(EventManager* manager) : screen(std::make_unique<Adafruit_SSD1306>(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET))
 {
+    eventManager = manager;
+
+    manager->subscribe<Event::EncoderPress>([this](const auto& event) {
+        this->onSelectPress(event);
+    });
+
+    manager->subscribe<Event::EncoderRelease>([this](const auto& event) {
+        this->onSelectRelease(event);
+    });
+    
     Serial.begin(115200);
     if(!screen->begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
         Serial.println(F("SSD1306 allocation failed"));
@@ -23,5 +33,21 @@ void Display::printLines(std::vector<std::string> lines)
     for (const auto line : lines) {
         screen->println(line.c_str());
     }
+    screen->display();
+}
+
+void Display::onSelectPress(const Event::Event &event)
+{
+    std::string str = "Button Pressed!";
+    clearDisplay();
+    screen->println(str.c_str());
+    screen->display();
+}
+
+void Display::onSelectRelease(const Event::Event &event)
+{
+    std::string str = "Button Released!";
+    clearDisplay();
+    screen->println(str.c_str());
     screen->display();
 }
