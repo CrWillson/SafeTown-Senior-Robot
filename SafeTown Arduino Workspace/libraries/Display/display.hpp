@@ -1,4 +1,5 @@
-#pragma once
+#ifndef DISPLAY_HPP
+#define DISPLAY_HPP
 
 #include <cctype>
 #include <SPI.h>
@@ -8,32 +9,41 @@
 #include <memory>
 #include <vector>
 #include <string>
+#include <array>
+#include <string>
+
 
 #include "event_manager.hpp"
 
 class Display {
 public:
 
-    Display(EventManager* manager);
+    // Display(EventManager* manager);
+    Display() = default;
     ~Display() = default;
 
+    void initDisplay(EventManager* manager);
     void clearDisplay();
-    void printLines(std::vector<std::string> lines);
 
+    // draws the contents of the `lines` data member
+    void draw();
+    void setLineText(std::string str, uint8_t lineNum);
+    void setLineText(std::string str, int value, uint8_t lineNum); 
+    void setLineText(std::string str, bool value, uint8_t lineNum); 
+    void setLineText(std::string str, std::string value, uint8_t lineNum);
+
+    void printLines(std::vector<std::string> lines);
+    
     void onSelectPress(const Event::Event& event);
-    void onSelectRelease(const Event::Event& event);
+    void onScrollUp(const Event::Event& event);
+    void onScrollDown(const Event::Event& event);
+    void onUpdateDisplay(const Event::UpdateDisplayText& event);
 
 private:
-
-    // Display variables and instances
-    static constexpr int SCREEN_WIDTH = 128;       ///< OLED display width, in pixels
-    static constexpr int SCREEN_HEIGHT = 32;       ///< OLED display height, in pixels (set to 32 for 4 lines, 64 for 8 lines)
-    static constexpr int OLED_RESET = -1;          ///< Reset pin # (or -1 if sharing Arduino reset pin)
-    static constexpr int SCREEN_ADDRESS = 0x3C;    ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
-
-    std::unique_ptr<Adafruit_SSD1306> screen;
     EventManager* eventManager;
 
-    // Adafruit_SSD1306 adaSSD1306(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET); // The display object
+    std::array<std::string, 8> lines;
 
 };
+
+#endif //DISPLAY_HPP

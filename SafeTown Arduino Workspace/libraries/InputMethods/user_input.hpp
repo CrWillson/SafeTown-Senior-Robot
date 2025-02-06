@@ -11,25 +11,16 @@ class UIManager {
 public:
     UIManager(EventManager* manager);
 
-    static void EncoderLeft() {
-        Event::EncoderLeft event(true);
-        eventManager->publish(event);
-    }
-
-    static void EncoderRight() {
-        Event::EncoderRight event(true);
-        eventManager->publish(event);
-    }
+    static void updateEncoder();
 
     static void EncoderPress() {
+        Serial.println("Encoder Press event published");
         eventManager->publish(Event::EncoderPress{});
     }
 
-    static void EncoderRelease() {
-        eventManager->publish(Event::EncoderRelease{});
-    }
-
-
 private:
     static EventManager* eventManager;
+
+    static volatile uint8_t lastState;
+    static constexpr uint8_t debounceDelay = 2;
 };

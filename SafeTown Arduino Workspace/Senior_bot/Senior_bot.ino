@@ -7,6 +7,11 @@
 
 #include <Servo.h>
 #include <Motor.h>
+#include <unordered_map>
+#include <string>
+#include <array>
+#include <algorithm>
+#include <numeric>
 
 
 #define DIST_MAX    22
@@ -37,10 +42,6 @@
 
 Servo steer;
 long pos;
-long pos_history[50] = {0};
-constexpr int pos_history_size = sizeof(pos_history) / sizeof(pos_history[0]);
-int pos_hi = 0;
-
 
 enum DIR {
   STRAIGHT,
@@ -49,8 +50,14 @@ enum DIR {
 };
 
 int gps_i = 0;
-constexpr int gps[] = {DIR::STRAIGHT, DIR::LEFT, DIR::RIGHT, DIR::STRAIGHT};
+constexpr DIR gps[] = {DIR::RIGHT, DIR::LEFT, DIR::STRAIGHT};
 constexpr int gps_size = sizeof(gps) / sizeof(gps[0]);
+
+const std::unordered_map<DIR, std::string> DirLabel {
+  {DIR::STRAIGHT, "^"},
+  {DIR::LEFT, "<"},
+  {DIR::RIGHT, ">"}
+};
 
 long cycle = 0;
 long oldTime = 0;
@@ -64,6 +71,7 @@ constexpr int right_turn_rad = 65;
 
 int8_t dist = 0;
 bool stop_detected = false;
+bool hold_stop_detect = false;
 bool car_detected = false;
 bool bulldozerMode = false;
 long error;
@@ -75,8 +83,7 @@ bool brake = true;
 bool leftTurnSig = false;
 bool rightTurnSig = false;
 
-long error_history[167] = {0}; //size needs to be hardcoded to the avg() function, if changed here, change there
-constexpr int error_history_size = sizeof(error_history) / sizeof(error_history[0]);
+std::array<long, 167> error_history{0};
 int error_hi = 0;
 
 enum State {
@@ -93,8 +100,9 @@ enum State {
 volatile state = State::STOPPED;
 State oldState = State::STOPPED;
 
+
 EventManager eventManager; 
-Display display(&eventManager);
+Display display;
 UIManager uimanager(&eventManager);
 
 void setup1() {
@@ -121,7 +129,9 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(START), startISR, RISING);
   attachInterrupt(digitalPinToInterrupt(STOP), haltISR, RISING);
 
+  display.initDisplay(&eventManager);
   display.clearDisplay();
+  display.setLineText("Sr Robot Info: ", 0);
 
   steer.attach(SERVO);
 
@@ -129,31 +139,31 @@ void setup() {
   right_motor.begin();
   Serial1.setPollingMode(true);
   Serial1.begin(500000);  //serial for the UART connection to the ESP32 CAM
-
-  Serial.begin(500000);   // serial for serial monitor
 }
 
 void loop() {
-  if (cycle > 10000) {
-    cycle = 0;  
-  }
 
   if(Serial1.available()) {
     //dist = Serial1.read();
     String str = Serial1.readStringUntil('\n');
-    Serial.println(str);
+    // Serial.println(str);
   
-    stop_detected = str[1] == '1';
+    stop_detected = str[1]   == '1';
+    hold_stop_detect = stop_detected || hold_stop_detect;
     //car_detected = str[0] == '1';
     dist = 0;
     for (int i = 2; i < 10; i++) {
       dist = (dist << 1) | (str[i] - '0');
     }
     dist = -dist;
-    Serial.println(dist);
-    Serial.println(stop_detected);
-    Serial.println(car_detected);
 
+    auto distUpdate = Event::UpdateDisplayText("Dist: " + std::to_string(dist), 1);
+    eventManager.publish(distUpdate);
+  
+    std::string stopLbl = "Stop: ";
+    std::string stopTxt = stopLbl + (stop_detected ? "T" : "F");
+    auto stopUpdate = Event::UpdateDisplayText(stopTxt, 2);
+    eventManager.publish(stopUpdate);
   }
   
   stateLEDs(state);
@@ -237,6 +247,7 @@ void loop() {
       brake = true;
       leftTurnSig = false;
       rightTurnSig = false;
+      hold_stop_detect = false;
       steer.write(center);
       digitalWrite(BUZZER, LOW);
       gps_i = 0; //resets the path, might not be desired functionality.
@@ -256,6 +267,9 @@ void loop() {
         obstacleTime = millis();
       } else if (millis() > oldTime + 1000) { //otherwise, wait 1 second and then GO GO GO!
         oldTime = millis();
+
+        hold_stop_detect = false;
+
         if (gps[gps_i] == DIR::RIGHT) {
           state = State::INTERSECTION_NAV;
         } else {
@@ -268,7 +282,7 @@ void loop() {
       brake = false;
       //SET oldTime = millis(); when entering this state
       //go forward to line up the back wheels with the stop line before turning
-      error = 3 * avg(error_history, error_history_size) / 4; // keep same error
+      error = 3 * avg(error_history) / 4; // keep same error
       pos = center + error;
       steer.write(pos);
       if (car_detected && !bulldozerMode) { 
@@ -313,7 +327,7 @@ void loop() {
         case DIR::RIGHT: //right
           //anchors right wheel
           steer.write(center + right_turn_rad);
-          turn_time = 500;
+          turn_time = 1500;
           break;
         default:
           break;
@@ -394,10 +408,7 @@ void loop() {
   //2.) allows us to adjust our turn angle at an
   //    intersection based on the angle of the robot
   error_history[error_hi] = error;
-  error_hi = (error_hi + 1) % error_history_size;
-
-  pos_history[pos_hi] = pos;
-  pos_hi = (pos_hi + 1) % pos_history_size;
+  error_hi = (error_hi + 1) % error_history.size();
 
   cycle++;
   
@@ -420,15 +431,14 @@ long pid_controller(long error) {
    */
   //             Kp * e(t)  + Kd * de(t)/dt
   //                                VVV is this supposed to be error or steer.read()?
-  return 5 * (error) / 8 - ((5  * (error - avg(error_history, error_history_size))) / 4);
+  return 5 * (error) / 8 - ((5  * (error - avg(error_history))) / 4);
 }
 
-long avg(long arr[], int arr_size) {
-  long sum = 0;
-  for (int i = 0; i <= arr_size; i++) { //size needs to be hardcoded
-    sum += arr[i];
-  }
-  return sum / arr_size;
+template <typename T, std::size_t N>
+long avg(const std::array<T, N>& arr) {
+    long sum = std::accumulate(arr.begin(), arr.end(), 0L);
+
+    return (N > 0) ? (sum / static_cast<long>(N)) : 0;
 }
 
 void stateLEDs(int state) {
