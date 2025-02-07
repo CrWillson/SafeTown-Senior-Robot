@@ -7,12 +7,12 @@
 Adafruit_SSD1306 ssd1306(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET); // The display object
 
 
-void Display::initDisplay(EventManager* manager)
-{
+void Display::initDisplay(EventManager* manager, Menu* menu)
+{   
     eventManager = manager;
     screen = &ssd1306;
+    this->menu = menu;
     
-    Serial.begin(115200);
     if(!screen->begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
         Serial.println(F("SSD1306 allocation failed"));
         return;
@@ -22,9 +22,6 @@ void Display::initDisplay(EventManager* manager)
     eventManager->subscribe<Event::PageChangedEvent>([this](const auto& event) {
         this->onPageUpdated(event);
     });
-
-    menu = std::make_unique<Menu>(eventManager);
-    menu->initMenu();
 }
 
 void Display::clearDisplay()
@@ -78,6 +75,7 @@ void Display::printLines(std::vector<std::string> lines)
 
 void Display::onPageUpdated(const Event::PageChangedEvent &e)
 {
+    Serial.println("Page Change Event registered");
     lines = menu->currentPage->getVisibleText();
     draw();
 }

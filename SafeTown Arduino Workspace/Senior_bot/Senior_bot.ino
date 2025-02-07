@@ -104,12 +104,14 @@ State oldState = State::STOPPED;
 EventManager eventManager; 
 Display display;
 UIManager uimanager;
+Menu menu;
 
 void setup1() {
   eventManager.processEvents();
 }
 
 void setup() {
+  Serial.begin(115200);
 
   pinMode(START, INPUT);
   pinMode(STOP, INPUT);
@@ -131,7 +133,9 @@ void setup() {
 
   uimanager.init(&eventManager);
 
-  display.initDisplay(&eventManager);
+  menu.initMenu(&eventManager);
+
+  display.initDisplay(&eventManager, &menu);
   display.clearDisplay();
   display.setLineText("Sr Robot Info: ", 0);
 
@@ -139,6 +143,7 @@ void setup() {
 
   left_motor.begin();
   right_motor.begin();
+
   Serial1.setPollingMode(true);
   Serial1.begin(500000);  //serial for the UART connection to the ESP32 CAM
 }
@@ -167,11 +172,11 @@ void loop() {
     // auto stopUpdate = Event::UpdateDisplayText(stopTxt, 2);
     // eventManager.publish(stopUpdate);
 
-    auto distUpdate = Event::ValueChangedEvent("dist", dist);
-    eventManager.publish(distUpdate);
+    // auto distUpdate = Event::ValueChangedEvent("dist", dist);
+    // eventManager.publish(distUpdate);
 
-    auto stopUpdate = Event::ValueChangedEvent("stop", stop_detected);
-    eventManager.publish(stopUpdate);
+    // auto stopUpdate = Event::ValueChangedEvent("stop", stop_detected);
+    // eventManager.publish(stopUpdate);
   }
   
   stateLEDs(state);

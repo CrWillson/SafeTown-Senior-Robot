@@ -25,9 +25,9 @@ public:
 
     void onValueChange(const Event::ValueChangedEvent& e);
 
-    void scrollUp();
-    void scrollDown();
-    void select();
+    bool scrollUp();
+    bool scrollDown();
+    bool select();
 
 private:
     Menu* menu;

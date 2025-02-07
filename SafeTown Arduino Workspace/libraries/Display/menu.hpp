@@ -14,8 +14,7 @@
 // Forward declarations
 class Menu {
 public:
-    Menu(EventManager* manager);
-    void initMenu(); // Where the whole menu structure is defined
+    void initMenu(EventManager* manager); // Where the whole menu structure is defined
 
     void addPage(const std::string& label);
     void setCurrentPage(const std::string& label);

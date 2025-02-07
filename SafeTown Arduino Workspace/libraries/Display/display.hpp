@@ -22,7 +22,7 @@ public:
     Display() = default;
     ~Display() = default;
 
-    void initDisplay(EventManager* manager);
+    void initDisplay(EventManager* manager, Menu* menu);
     void clearDisplay();
 
     void draw();
@@ -38,7 +38,7 @@ public:
 private:
     EventManager* eventManager;
     Adafruit_SSD1306* screen;
-    std::unique_ptr<Menu> menu;
+    Menu* menu;
 
     std::array<std::string, MenuPage::LINESPERSCREEN> lines;
 

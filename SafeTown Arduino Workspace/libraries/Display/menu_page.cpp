@@ -18,29 +18,73 @@ void MenuPage::addLine(MenuLine *line)
     numLines++;
 }
 
-void MenuPage::scrollUp()
+bool MenuPage::scrollUp()
 {
+    if (lines.at(selectedLine)->getType() == LineType::Slider) {
+        Serial.println("Slider Line detected");
+        auto line = std::static_pointer_cast<SliderMenuLine>(lines.at(selectedLine));
+        Serial.print("Editing: ");
+        Serial.print(line->editing);
+        if (line->editing) {
+            if (line->value > line->minVal) {
+                line->value--;
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    bool result = false;
     if (selectedLine > 0) {
         selectedLine--;
+        result = true;
     }
     if (selectedLine == topLine + 1 && topLine > 0) {
         topLine--;
         botLine--;
     }
+    return result;
 }
 
-void MenuPage::scrollDown()
+bool MenuPage::scrollDown()
 {
+    if (lines.at(selectedLine)->getType() == LineType::Slider) {
+        Serial.println("Slider Line detected");
+        auto line = std::static_pointer_cast<SliderMenuLine>(lines.at(selectedLine));
+        Serial.print("Editing: ");
+        Serial.print(line->editing);
+        if (line->editing) {
+            if (line->value < line->maxVal) {
+                line->value++;
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    bool result = false;
     if (selectedLine < numLines - 1) {
         selectedLine++;
+        result = true;
     }
     if (selectedLine == botLine - 1 && botLine < numLines - 1) {
         botLine++;
         topLine++;
     }
+    return result;
 }
 
-void MenuPage::select()
+bool MenuPage::select()
 {
+    Serial.print("Selecting line: ");
+    Serial.println(selectedLine);
     lines.at(selectedLine)->onSelect();
+
+    if (lines.at(selectedLine)->getType() == LineType::Slider) {
+        return true;
+    }
+
+    return false;
 }

@@ -60,7 +60,7 @@ public:
         : MenuLine(text), action(act) {}
 
     virtual std::string getText(bool selected) const override;
-    virtual void onSelect() override { action; };
+    virtual void onSelect() override;
     virtual LineType getType() { return LineType::Button; }
 private:
     std::function<void()> action;
