@@ -32,9 +32,7 @@ void Menu::initMenu()
 
 void Menu::addPage(const std::string &label)
 {
-    auto newPage = std::make_shared<MenuPage>(this, label);
-    newPage->eventManager = eventManager;
-    
+    auto newPage = std::make_shared<MenuPage>(this, label);    
     allPages[label] = newPage;
 
     // If its the first page to be added then initialize the current page there
@@ -72,5 +70,5 @@ void Menu::onSelect(const Event::Event &e)
 
 void Menu::onValueChange(const Event::ValueChangedEvent &e)
 {
-    
+
 }

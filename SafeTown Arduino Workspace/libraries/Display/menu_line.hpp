@@ -6,7 +6,7 @@
 #include "event_types.hpp"
 #include "event_manager.hpp"
 
-class enum LineType { Text, Value, Button, Toggle, Slider };
+enum LineType { Text, Value, Button, Toggle, Slider };
 
 class MenuLine {
 public:
