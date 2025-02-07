@@ -9,7 +9,9 @@
 
 class UIManager {
 public:
-    UIManager(EventManager* manager);
+    UIManager() = default;
+
+    void init(EventManager* manager);
 
     static void updateEncoder();
 

@@ -3,7 +3,7 @@
 EventManager* UIManager::eventManager = nullptr;
 volatile uint8_t UIManager::lastState = 0;
 
-UIManager::UIManager(EventManager *manager)
+void UIManager::init(EventManager *manager)
 {
     eventManager = manager;
 

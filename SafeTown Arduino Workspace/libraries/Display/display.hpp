@@ -12,7 +12,7 @@
 #include <array>
 #include <string>
 
-
+#include "menu.hpp"
 #include "event_manager.hpp"
 
 class Display {
@@ -25,7 +25,6 @@ public:
     void initDisplay(EventManager* manager);
     void clearDisplay();
 
-    // draws the contents of the `lines` data member
     void draw();
     void setLineText(std::string str, uint8_t lineNum);
     void setLineText(std::string str, int value, uint8_t lineNum); 
@@ -34,15 +33,14 @@ public:
 
     void printLines(std::vector<std::string> lines);
     
-    void onSelectPress(const Event::Event& event);
-    void onScrollUp(const Event::Event& event);
-    void onScrollDown(const Event::Event& event);
-    void onUpdateDisplay(const Event::UpdateDisplayText& event);
+    void onPageUpdated(const Event::PageChangedEvent& e);
 
 private:
     EventManager* eventManager;
+    Adafruit_SSD1306* screen;
+    std::unique_ptr<Menu> menu;
 
-    std::array<std::string, 8> lines;
+    std::array<std::string, MenuPage::LINESPERSCREEN> lines;
 
 };
 

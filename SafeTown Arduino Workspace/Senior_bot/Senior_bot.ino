@@ -103,7 +103,7 @@ State oldState = State::STOPPED;
 
 EventManager eventManager; 
 Display display;
-UIManager uimanager(&eventManager);
+UIManager uimanager;
 
 void setup1() {
   eventManager.processEvents();
@@ -128,6 +128,8 @@ void setup() {
 
   attachInterrupt(digitalPinToInterrupt(START), startISR, RISING);
   attachInterrupt(digitalPinToInterrupt(STOP), haltISR, RISING);
+
+  uimanager.init(&eventManager);
 
   display.initDisplay(&eventManager);
   display.clearDisplay();
@@ -157,12 +159,18 @@ void loop() {
     }
     dist = -dist;
 
-    auto distUpdate = Event::UpdateDisplayText("Dist: " + std::to_string(dist), 1);
-    eventManager.publish(distUpdate);
+    // auto distUpdate = Event::UpdateDisplayText("Dist: " + std::to_string(dist), 1);
+    // eventManager.publish(distUpdate);
   
-    std::string stopLbl = "Stop: ";
-    std::string stopTxt = stopLbl + (stop_detected ? "T" : "F");
-    auto stopUpdate = Event::UpdateDisplayText(stopTxt, 2);
+    // std::string stopLbl = "Stop: ";
+    // std::string stopTxt = stopLbl + (stop_detected ? "T" : "F");
+    // auto stopUpdate = Event::UpdateDisplayText(stopTxt, 2);
+    // eventManager.publish(stopUpdate);
+
+    auto distUpdate = Event::ValueChangedEvent("dist", dist);
+    eventManager.publish(distUpdate);
+
+    auto stopUpdate = Event::ValueChangedEvent("stop", stop_detected);
     eventManager.publish(stopUpdate);
   }
   

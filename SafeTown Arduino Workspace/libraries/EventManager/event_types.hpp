@@ -22,13 +22,14 @@ namespace Event {
 
     struct EncoderRight : public Event {};
     struct EncoderLeft : public Event {};
-
     struct EncoderPress : public Event {};
 
-    struct UpdateDisplayText : public Event {
-        std::string text;
-        uint8_t lineNum;
-        UpdateDisplayText(std::string str, uint8_t line) : text(str), lineNum(line) {};
+    template <typename T>
+    struct ValueChangedEvent : public Event {
+        std::string valueId;
+        T newValue;
+        ValueChangedEvent(const std::string& id, T val)
+          : valueId(id), newValue(val) {}
     };
 }
 
