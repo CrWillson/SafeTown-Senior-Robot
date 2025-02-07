@@ -31,11 +31,3 @@ std::string ValueMenuLine::getText(bool selected) const
     std::string pre = (selected) ? "> " : "  ";
     return pre + label + " " + value;
 }
-
-void ValueMenuLine::onEvent(const Event::ValueChangedEvent &e)
-{
-    if (e.valueId == valueLabel) {
-        value = std::to_string(e.newValue);
-        eventManager->publish(Event::PageChangedEvent{});
-    }
-}

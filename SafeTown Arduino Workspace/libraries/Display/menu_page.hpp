@@ -23,13 +23,14 @@ public:
 
     void addLine(MenuLine* line);
 
-    void onScrollUp(const Event::Event& e);
-    void onScrollDown(const Event::Event& e);
-    void onSelect(const Event::Event& e);
+    void onValueChange(const Event::ValueChangedEvent& e);
+
+    void scrollUp();
+    void scrollDown();
+    void select();
 
 private:
     Menu* menu;
-    EventManager* eventManager;
     std::string label;
 
     uint8_t selectedLine = 0;

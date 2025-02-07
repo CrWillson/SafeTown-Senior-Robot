@@ -12,15 +12,18 @@
 #include "menu_page.hpp"
 
 // Forward declarations
-class MenuPage;
-class MenuLine;
-
 class Menu {
 public:
-    void initMenu(EventManager* manager); // Where the whole menu structure is defined
+    Menu(EventManager* manager);
+    void initMenu(); // Where the whole menu structure is defined
 
     void addPage(const std::string& label);
     void setCurrentPage(const std::string& label);
+
+    void onScrollUp(const Event::Event& e);
+    void onScrollDown(const Event::Event& e);
+    void onSelect(const Event::Event& e);
+    void onValueChange(const Event::ValueChangedEvent& e);
 
     std::shared_ptr<MenuPage> currentPage;
 

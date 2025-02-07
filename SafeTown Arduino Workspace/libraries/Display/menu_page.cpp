@@ -15,37 +15,32 @@ std::array<std::string, MenuPage::LINESPERSCREEN> MenuPage::getVisibleText() con
 void MenuPage::addLine(MenuLine *line)
 {
     lines.push_back(std::shared_ptr<MenuLine>(line));
-    lines.at(numLines)->eventManager = eventManager;
     numLines++;
 }
 
-void MenuPage::onScrollUp(const Event::Event &e)
+void MenuPage::scrollUp()
 {
     if (selectedLine > 0) {
         selectedLine--;
-        eventManager->publish(Event::PageChangedEvent{});
     }
     if (selectedLine == topLine + 1 && topLine > 0) {
         topLine--;
         botLine--;
-        eventManager->publish(Event::PageChangedEvent{});
     }
 }
 
-void MenuPage::onScrollDown(const Event::Event &e)
+void MenuPage::scrollDown()
 {
     if (selectedLine < numLines - 1) {
         selectedLine++;
-        eventManager->publish(Event::PageChangedEvent{});
     }
     if (selectedLine == botLine - 1 && botLine < numLines - 1) {
         botLine++;
         topLine++;
-        eventManager->publish(Event::PageChangedEvent{});
     }
 }
 
-void MenuPage::onSelect(const Event::Event &e)
+void MenuPage::select()
 {
     lines.at(selectedLine)->onSelect();
 }

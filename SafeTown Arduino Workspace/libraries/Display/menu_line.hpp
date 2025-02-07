@@ -6,11 +6,11 @@
 #include "event_types.hpp"
 #include "event_manager.hpp"
 
+class enum LineType { Text, Value, Button, Toggle, Slider };
 
 class MenuLine {
 public:
-    MenuLine(const std::string& text)
-        : label(text) {}
+    MenuLine(const std::string& text) : label(text) {}
     virtual ~MenuLine() = default;
 
     // Render the line. The parameter 'selected' indicates if this line is currently selected.
@@ -19,13 +19,9 @@ public:
     // Called when this line is selected (encoder pressed).
     virtual void onSelect() = 0;
 
-    // Called when an external event is received (e.g. a value changed externally)
-    // so that the line can update its displayed value.
-    virtual void onEvent(const Event::ValueChangedEvent& e) = 0;
+    virtual LineType getType() = 0;
 
-    std::string label; // Unique identifier for this line.
-
-    EventManager* eventManager;
+    std::string label;
 };
 
 
@@ -37,7 +33,7 @@ public:
 
     virtual std::string getText(bool selected) const override;
     virtual void onSelect() override { /* do nothing */ }
-    virtual void onEvent(const Event::ValueChangedEvent& e) override { /* do nothing */ }
+    virtual LineType getType() { return LineType::Text; }
 private:
     friend class MenuPage;
 };
@@ -46,15 +42,11 @@ private:
 class ValueMenuLine : public MenuLine {
 public:
     ValueMenuLine(const std::string& text, const std::string valLbl)
-        : MenuLine(text), valueLabel(valLbl) {
-            eventManager->subscribe<Event::ValueChangedEvent>([this](const auto& event) {
-                this->onEvent(event);
-            });
-        }
+        : MenuLine(text), valueLabel(valLbl) {}
 
     virtual std::string getText(bool selected) const override;
     virtual void onSelect() override { /* do nothing */ }
-    virtual void onEvent(const Event::ValueChangedEvent& e) override;
+    virtual LineType getType() { return LineType::Value; }
 private:
     std::string value;
     std::string valueLabel;
@@ -69,7 +61,7 @@ public:
 
     virtual std::string getText(bool selected) const override;
     virtual void onSelect() override { action; };
-    virtual void onEvent(const Event::ValueChangedEvent& e) override { /* do nothing */ }
+    virtual LineType getType() { return LineType::Button; }
 private:
     std::function<void()> action;
     friend class MenuPage;
@@ -82,7 +74,7 @@ public:
       : MenuLine(text), state(initialState) {}
     virtual std::string getText(bool selected) const override;
     virtual void onSelect() override { state = !state; };
-    virtual void onEvent(const Event::ValueChangedEvent& e) override { /* do nothing */ };
+    virtual LineType getType() { return LineType::Toggle; }
 private:
     bool state;
     friend class MenuPage;
@@ -95,7 +87,7 @@ public:
       : MenuLine(text), value(initialValue), minVal(minValue), maxVal(maxValue), editing(false) {}
     virtual std::string getText(bool selected) const override;
     virtual void onSelect() override { editing = !editing; };
-    virtual void onEvent(const Event::ValueChangedEvent& e) override { /* do nothing */ };
+    virtual LineType getType() { return LineType::Slider; }
 private:
     int value;
     int minVal;

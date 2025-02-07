@@ -23,8 +23,8 @@ void Display::initDisplay(EventManager* manager)
         this->onPageUpdated(event);
     });
 
-    menu = std::make_unique<Menu>();
-    menu->initMenu(eventManager);
+    menu = std::make_unique<Menu>(eventManager);
+    menu->initMenu();
 }
 
 void Display::clearDisplay()
