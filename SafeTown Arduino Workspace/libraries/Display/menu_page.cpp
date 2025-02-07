@@ -18,6 +18,25 @@ void MenuPage::addLine(MenuLine *line)
     numLines++;
 }
 
+bool MenuPage::onValueChange(const Event::ValueChangedEvent &e)
+{
+    for (int i = 0; i < LINESPERSCREEN; i++) {
+        if (topLine + i > numLines - 1) {
+            break;
+        }
+
+        if (lines[topLine + i]->getType() == LineType::Value) {
+            auto line = std::static_pointer_cast<ValueMenuLine>(lines.at(topLine + i));
+
+            if (e.valueId == line->valueLabel) {
+                line->value = e.newValue;
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 bool MenuPage::scrollUp()
 {
     if (lines.at(selectedLine)->getType() == LineType::Slider) {

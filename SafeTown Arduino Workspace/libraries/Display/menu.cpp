@@ -19,26 +19,31 @@ void Menu::initMenu(EventManager* manager)
 
     addPage("Home");
     allPages.at("Home")->addLine(new TextMenuLine("Home Page"));
-    allPages.at("Home")->addLine(new TextMenuLine("Another text line"));
+    allPages.at("Home")->addLine(new TextMenuLine("Sr Robot Menu"));
     allPages.at("Home")->addLine(new SliderMenuLine("Slider: ", 5, 0, 10));
-    allPages.at("Home")->addLine(new ButtonMenuLine("Go to page 2", [this]{ 
-        this->setCurrentPage("Page2"); 
+    allPages.at("Home")->addLine(new ButtonMenuLine("Go to sensor values", [this]{ 
+        this->setCurrentPage("Sensors"); 
     }));
     allPages.at("Home")->addLine(new ButtonMenuLine("Go to page 3", [this]{ 
         this->setCurrentPage("Page3"); 
     }));
     
-    addPage("Page2");
-    allPages.at("Page2")->addLine(new TextMenuLine("Second Page"));
-    allPages.at("Page2")->addLine(new ButtonMenuLine("Go to home page", [this]{ 
+    addPage("Sensors");
+    allPages.at("Sensors")->addLine(new TextMenuLine("Sensor Values"));
+    allPages.at("Sensors")->addLine(new ValueMenuLine("Dist: ", "whiteDist"));
+    allPages.at("Sensors")->addLine(new ValueMenuLine("Stop: ", "stopDetect"));
+    allPages.at("Sensors")->addLine(new ButtonMenuLine("Go to home page", [this]{ 
         this->setCurrentPage("Home"); 
     }));
 
     addPage("Page3");
     allPages.at("Page3")->addLine(new TextMenuLine("Third Page"));
-    allPages.at("Page3")->addLine(new TextMenuLine("Some more text"));
+    allPages.at("Page3")->addLine(new TextMenuLine("It's a menu :)"));
     allPages.at("Page3")->addLine(new ButtonMenuLine("Go to home page", [this]{
         this->setCurrentPage("Home");
+    }));
+    allPages.at("Page3")->addLine(new ButtonMenuLine("Go to sensor values", [this] {
+        this->setCurrentPage("Sensors");
     }));
 
     eventManager->publish(Event::PageChangedEvent{});
@@ -92,6 +97,8 @@ void Menu::onSelect(const Event::Event &e)
 }
 
 void Menu::onValueChange(const Event::ValueChangedEvent &e)
-{
-
+{  
+    if (currentPage->onValueChange(e)) {
+        eventManager->publish(Event::PageChangedEvent{});
+    }
 }

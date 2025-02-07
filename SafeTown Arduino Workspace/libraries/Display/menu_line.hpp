@@ -48,7 +48,7 @@ public:
     virtual void onSelect() override { /* do nothing */ }
     virtual LineType getType() { return LineType::Value; }
 private:
-    std::string value;
+    int value;
     std::string valueLabel;
     friend class MenuPage;
 };

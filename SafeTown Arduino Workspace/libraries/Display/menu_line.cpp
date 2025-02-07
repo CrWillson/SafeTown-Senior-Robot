@@ -34,7 +34,7 @@ void ButtonMenuLine::onSelect()
 std::string ValueMenuLine::getText(bool selected) const
 {
     std::string pre = (selected) ? "> " : "  ";
-    return pre + label + " " + value;
+    return pre + label + " " + std::to_string(value);
 }
 
 

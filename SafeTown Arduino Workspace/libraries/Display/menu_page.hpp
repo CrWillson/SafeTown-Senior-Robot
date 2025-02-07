@@ -23,7 +23,7 @@ public:
 
     void addLine(MenuLine* line);
 
-    void onValueChange(const Event::ValueChangedEvent& e);
+    bool onValueChange(const Event::ValueChangedEvent& e);
 
     bool scrollUp();
     bool scrollDown();

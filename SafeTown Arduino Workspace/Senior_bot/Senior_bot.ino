@@ -172,11 +172,12 @@ void loop() {
     // auto stopUpdate = Event::UpdateDisplayText(stopTxt, 2);
     // eventManager.publish(stopUpdate);
 
-    // auto distUpdate = Event::ValueChangedEvent("dist", dist);
-    // eventManager.publish(distUpdate);
+    auto distUpdate = Event::ValueChangedEvent("whiteDist", dist);
+    eventManager.publish(distUpdate);
 
-    // auto stopUpdate = Event::ValueChangedEvent("stop", stop_detected);
-    // eventManager.publish(stopUpdate);
+    int stop_int = (stop_detected) ? 1 : 0;
+    auto stopUpdate = Event::ValueChangedEvent("stopDetect", stop_int);
+    eventManager.publish(stopUpdate);
   }
   
   stateLEDs(state);
