@@ -24,11 +24,12 @@ namespace Event {
     struct EncoderLeft : public Event {};
     struct EncoderPress : public Event {};
 
-    template <typename T>
+    struct PageChangedEvent : public Event {};
+
     struct ValueChangedEvent : public Event {
         std::string valueId;
-        T newValue;
-        ValueChangedEvent(const std::string& id, T val)
+        int newValue;
+        ValueChangedEvent(const std::string& id, int val)
           : valueId(id), newValue(val) {}
     };
 }

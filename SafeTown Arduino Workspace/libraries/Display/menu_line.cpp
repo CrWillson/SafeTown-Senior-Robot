@@ -6,7 +6,8 @@
 
 std::string TextMenuLine::getText(bool selected) const
 {
-    return label;
+    std::string pre = (selected) ? "> " : "  ";
+    return pre + label;
 }
 
 
@@ -16,7 +17,8 @@ std::string TextMenuLine::getText(bool selected) const
 
 std::string ButtonMenuLine::getText(bool selected) const
 {
-    return label;
+    std::string pre = (selected) ? "> " : "  ";
+    return pre + label;
 }
 
 
@@ -26,13 +28,14 @@ std::string ButtonMenuLine::getText(bool selected) const
 
 std::string ValueMenuLine::getText(bool selected) const
 {
-    return std::string();
+    std::string pre = (selected) ? "> " : "  ";
+    return pre + label + " " + value;
 }
 
 void ValueMenuLine::onEvent(const Event::ValueChangedEvent &e)
 {
     if (e.valueId == valueLabel) {
-        value = std::to_string(e.value);
+        value = std::to_string(e.newValue);
         eventManager->publish(Event::PageChangedEvent{});
     }
 }

@@ -28,6 +28,7 @@ void MenuPage::onScrollUp(const Event::Event &e)
     if (selectedLine == topLine + 1 && topLine > 0) {
         topLine--;
         botLine--;
+        eventManager->publish(Event::PageChangedEvent{});
     }
 }
 
@@ -40,6 +41,7 @@ void MenuPage::onScrollDown(const Event::Event &e)
     if (selectedLine == botLine - 1 && botLine < numLines - 1) {
         botLine++;
         topLine++;
+        eventManager->publish(Event::PageChangedEvent{});
     }
 }
 

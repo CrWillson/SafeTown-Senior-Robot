@@ -16,6 +16,8 @@ void Menu::initMenu(EventManager* manager)
 void Menu::addPage(const std::string &label)
 {
     auto newPage = std::make_shared<MenuPage>(this, label);
+    newPage->eventManager = eventManager;
+    
     allPages[label] = newPage;
 
     // If its the first page to be added then initialize the current page there

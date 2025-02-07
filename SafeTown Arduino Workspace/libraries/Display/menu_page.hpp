@@ -13,7 +13,7 @@ class Menu;
 class MenuPage {
 public:
     MenuPage(Menu* menu, const std::string& lbl) 
-        : menu(menu), label(lbl), eventManager(menu->eventManager) {}
+        : menu(menu), label(lbl) {}
 
     static constexpr uint8_t LINESPERSCREEN = 8;
 
@@ -37,10 +37,5 @@ private:
     uint8_t botLine = 7;
     uint8_t numLines = 0;
 
-
+    friend class Menu;
 };
-
-
-namespace Event {
-    struct PageChangedEvent : public Event {};
-}
