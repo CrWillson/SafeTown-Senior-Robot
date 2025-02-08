@@ -79,12 +79,13 @@ private:
 
 class SliderMenuLine : public MenuLine {
 public:
-    SliderMenuLine(const std::string& text, int initialValue, int minValue, int maxValue)
-      : MenuLine(text), value(initialValue), minVal(minValue), maxVal(maxValue), editing(false) {}
+    SliderMenuLine(const std::string& text, const std::string& label, int initialValue, int minValue, int maxValue)
+      : MenuLine(text), valueLabel(label), value(initialValue), minVal(minValue), maxVal(maxValue), editing(false) {}
     virtual std::string getText(bool selected) const override;
     virtual void onSelect() override { editing = !editing; };
     virtual LineType getType() { return LineType::Slider; }
 private:
+    std::string valueLabel;
     int value;
     int minVal;
     int maxVal;

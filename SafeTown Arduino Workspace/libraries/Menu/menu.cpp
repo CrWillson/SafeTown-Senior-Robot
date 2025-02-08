@@ -4,10 +4,10 @@
 void Menu::initMenu(EventManager* manager)
 {
     eventManager = manager;
-    eventManager->subscribe<Event::EncoderLeft>([this](const auto& event) {
+    eventManager->subscribe<Event::EncoderRight>([this](const auto& event) {
         this->onScrollUp(event);
     });
-    eventManager->subscribe<Event::EncoderRight>([this](const auto& event) {
+    eventManager->subscribe<Event::EncoderLeft>([this](const auto& event) {
         this->onScrollDown(event);
     });
     eventManager->subscribe<Event::EncoderPress>([this](const auto& event) {

@@ -8,7 +8,8 @@ protected:
         addPage("Home");
         allPages.at("Home")->addLine(new TextMenuLine("Home Page"));
         allPages.at("Home")->addLine(new TextMenuLine("Sr Robot Menu"));
-        allPages.at("Home")->addLine(new SliderMenuLine("Slider: ", 5, 0, 10));
+        allPages.at("Home")->addLine(new SliderMenuLine("Slider:", "testSlider", 5, 0, 10));
+        allPages.at("Home")->addLine(new ValueMenuLine("Slider Value:", "testSlider"));
         allPages.at("Home")->addLine(new ButtonMenuLine("Go to sensor values", [this]{ 
             this->setCurrentPage("Sensors"); 
         }));
@@ -18,8 +19,8 @@ protected:
         
         addPage("Sensors");
         allPages.at("Sensors")->addLine(new TextMenuLine("Sensor Values"));
-        allPages.at("Sensors")->addLine(new ValueMenuLine("Dist: ", "whiteDist"));
-        allPages.at("Sensors")->addLine(new ValueMenuLine("Stop: ", "stopDetect"));
+        allPages.at("Sensors")->addLine(new ValueMenuLine("Dist:", "whiteDist"));
+        allPages.at("Sensors")->addLine(new ValueMenuLine("Stop:", "stopDetect"));
         allPages.at("Sensors")->addLine(new ButtonMenuLine("Go to home page", [this]{ 
             this->setCurrentPage("Home"); 
         }));

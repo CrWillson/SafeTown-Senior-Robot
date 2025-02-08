@@ -1,4 +1,5 @@
 #include "menu_page.hpp"
+#include "menu.hpp"
 
 std::array<std::string, MenuPage::LINESPERSCREEN> MenuPage::getVisibleText() const
 {
@@ -40,10 +41,7 @@ bool MenuPage::onValueChange(const Event::ValueChangedEvent &e)
 bool MenuPage::scrollUp()
 {
     if (lines.at(selectedLine)->getType() == LineType::Slider) {
-        Serial.println("Slider Line detected");
         auto line = std::static_pointer_cast<SliderMenuLine>(lines.at(selectedLine));
-        Serial.print("Editing: ");
-        Serial.print(line->editing);
         if (line->editing) {
             if (line->value > line->minVal) {
                 line->value--;
@@ -69,10 +67,7 @@ bool MenuPage::scrollUp()
 bool MenuPage::scrollDown()
 {
     if (lines.at(selectedLine)->getType() == LineType::Slider) {
-        Serial.println("Slider Line detected");
         auto line = std::static_pointer_cast<SliderMenuLine>(lines.at(selectedLine));
-        Serial.print("Editing: ");
-        Serial.print(line->editing);
         if (line->editing) {
             if (line->value < line->maxVal) {
                 line->value++;
@@ -102,6 +97,11 @@ bool MenuPage::select()
     lines.at(selectedLine)->onSelect();
 
     if (lines.at(selectedLine)->getType() == LineType::Slider) {
+        auto line = std::static_pointer_cast<SliderMenuLine>(lines.at(selectedLine));
+        if (!line->editing) {
+            auto valUpdate = Event::ValueChangedEvent(line->valueLabel, std::to_string(line->value));
+            menu->eventManager->publish(valUpdate);
+        }
         return true;
     }
 
