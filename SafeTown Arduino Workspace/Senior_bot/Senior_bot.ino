@@ -1,6 +1,7 @@
 #include "event_manager.hpp"
 #include "display.hpp"
 #include "user_input.hpp"
+#include "sr_bot_menu.hpp"
 
 #include "pico/stdlib.h"
 #include "pico/multicore.h"
@@ -104,7 +105,7 @@ State oldState = State::STOPPED;
 EventManager eventManager; 
 Display display;
 UIManager uimanager;
-Menu menu;
+SrMenu menu;
 
 void setup1() {
   eventManager.processEvents();
@@ -131,13 +132,11 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(START), startISR, RISING);
   attachInterrupt(digitalPinToInterrupt(STOP), haltISR, RISING);
 
-  uimanager.init(&eventManager);
-
+  uimanager.initUI(&eventManager);
   menu.initMenu(&eventManager);
 
-  display.initDisplay(&eventManager, &menu);
+  display.initDisplay(&eventManager);
   display.clearDisplay();
-  display.setLineText("Sr Robot Info: ", 0);
 
   steer.attach(SERVO);
 
@@ -151,9 +150,7 @@ void setup() {
 void loop() {
 
   if(Serial1.available()) {
-    //dist = Serial1.read();
     String str = Serial1.readStringUntil('\n');
-    // Serial.println(str);
   
     stop_detected = str[1]   == '1';
     hold_stop_detect = stop_detected || hold_stop_detect;
@@ -164,19 +161,11 @@ void loop() {
     }
     dist = -dist;
 
-    // auto distUpdate = Event::UpdateDisplayText("Dist: " + std::to_string(dist), 1);
-    // eventManager.publish(distUpdate);
-  
-    // std::string stopLbl = "Stop: ";
-    // std::string stopTxt = stopLbl + (stop_detected ? "T" : "F");
-    // auto stopUpdate = Event::UpdateDisplayText(stopTxt, 2);
-    // eventManager.publish(stopUpdate);
-
-    auto distUpdate = Event::ValueChangedEvent("whiteDist", dist);
+    auto distUpdate = Event::ValueChangedEvent("whiteDist", std::to_string(dist));
     eventManager.publish(distUpdate);
 
-    int stop_int = (stop_detected) ? 1 : 0;
-    auto stopUpdate = Event::ValueChangedEvent("stopDetect", stop_int);
+    std::string stop_str = (stop_detected) ? "T" : "F";
+    auto stopUpdate = Event::ValueChangedEvent("stopDetect", stop_str);
     eventManager.publish(stopUpdate);
   }
   

@@ -3,6 +3,7 @@
 
 #include <string>
 #include <cstdint>
+#include <array>
 
 namespace Event {
     inline int getNextID() {
@@ -32,8 +33,8 @@ namespace Event {
 
     struct ValueChangedEvent : public Event {
         std::string valueId;
-        int newValue;
-        ValueChangedEvent(const std::string& id, int val)
+        std::string newValue;
+        ValueChangedEvent(const std::string& id, const std::string& val)
           : valueId(id), newValue(val) {}
     };
 }
