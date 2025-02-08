@@ -11,7 +11,7 @@ class UIManager {
 public:
     UIManager() = default;
 
-    void init(EventManager* manager);
+    void initUI(EventManager* manager);
 
     static void updateEncoder();
 
