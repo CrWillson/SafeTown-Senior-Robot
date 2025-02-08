@@ -12,7 +12,6 @@
 #include <array>
 #include <string>
 
-#include "menu.hpp"
 #include "event_manager.hpp"
 
 class Display {
@@ -22,7 +21,7 @@ public:
     Display() = default;
     ~Display() = default;
 
-    void initDisplay(EventManager* manager, Menu* menu);
+    void initDisplay(EventManager* manager);
     void clearDisplay();
 
     void draw();
@@ -38,9 +37,8 @@ public:
 private:
     EventManager* eventManager;
     Adafruit_SSD1306* screen;
-    Menu* menu;
 
-    std::array<std::string, MenuPage::LINESPERSCREEN> lines;
+    std::array<std::string, 8> lines;
 
 };
 
