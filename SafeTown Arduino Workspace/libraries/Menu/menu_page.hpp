@@ -12,8 +12,8 @@ class Menu;
 
 class MenuPage {
 public:
-    MenuPage(Menu* menu, const std::string& lbl) 
-        : menu(menu), label(lbl) {}
+    MenuPage(EventManager* manager, const std::string& lbl) 
+        : eventManager(manager), label(lbl) {}
 
     static constexpr uint8_t LINESPERSCREEN = 8;
 
@@ -30,7 +30,7 @@ public:
     bool select();
 
 private:
-    Menu* menu;
+    EventManager* eventManager;
     std::string label;
 
     uint8_t selectedLine = 0;

@@ -1,5 +1,4 @@
 #include "menu_page.hpp"
-#include "menu.hpp"
 
 std::array<std::string, MenuPage::LINESPERSCREEN> MenuPage::getVisibleText() const
 {
@@ -26,9 +25,16 @@ bool MenuPage::onValueChange(const Event::ValueChangedEvent &e)
             break;
         }
 
-        if (lines[topLine + i]->getType() == LineType::Value) {
-            auto line = std::static_pointer_cast<ValueMenuLine>(lines.at(topLine + i));
+        // if (lines[topLine + i]->getType() == LineType::Value) {
+        //     auto line = std::static_pointer_cast<ValueMenuLine>(lines.at(topLine + i));
 
+        //     if (e.valueId == line->valueLabel) {
+        //         line->value = e.newValue;
+        //         return true;
+        //     }
+        // }
+
+        if (auto line = std::dynamic_pointer_cast<ValueMenuLine>(lines.at(topLine + i))) {
             if (e.valueId == line->valueLabel) {
                 line->value = e.newValue;
                 return true;
@@ -40,17 +46,26 @@ bool MenuPage::onValueChange(const Event::ValueChangedEvent &e)
 
 bool MenuPage::scrollUp()
 {
-    if (lines.at(selectedLine)->getType() == LineType::Slider) {
-        auto line = std::static_pointer_cast<SliderMenuLine>(lines.at(selectedLine));
-        if (line->editing) {
-            if (line->value > line->minVal) {
-                line->value--;
-                return true;
-            } else {
-                return false;
-            }
+    if (auto line = std::dynamic_pointer_cast<SliderMenuLine>(lines.at(selectedLine))) {
+        if (line->editing && line->value > line->minVal) {
+            line->value--;
+            return true;
+        } else {
+            return false;
         }
     }
+
+    // if (lines.at(selectedLine)->getType() == LineType::Slider) {
+    //     auto line = std::static_pointer_cast<SliderMenuLine>(lines.at(selectedLine));
+    //     if (line->editing) {
+    //         if (line->value > line->minVal) {
+    //             line->value--;
+    //             return true;
+    //         } else {
+    //             return false;
+    //         }
+    //     }
+    // }
 
     bool result = false;
     if (selectedLine > 0) {
@@ -66,17 +81,26 @@ bool MenuPage::scrollUp()
 
 bool MenuPage::scrollDown()
 {
-    if (lines.at(selectedLine)->getType() == LineType::Slider) {
-        auto line = std::static_pointer_cast<SliderMenuLine>(lines.at(selectedLine));
-        if (line->editing) {
-            if (line->value < line->maxVal) {
-                line->value++;
-                return true;
-            } else {
-                return false;
-            }
+    if (auto line = std::dynamic_pointer_cast<SliderMenuLine>(lines.at(selectedLine))) {
+        if (line->editing && line->value < line->maxVal) {
+            line->value++;
+            return true;
+        } else {
+            return false;
         }
     }
+    
+    // if (lines.at(selectedLine)->getType() == LineType::Slider) {
+    //     auto line = std::static_pointer_cast<SliderMenuLine>(lines.at(selectedLine));
+    //     if (line->editing) {
+    //         if (line->value < line->maxVal) {
+    //             line->value++;
+    //             return true;
+    //         } else {
+    //             return false;
+    //         }
+    //     }
+    // }
 
     bool result = false;
     if (selectedLine < numLines - 1) {
@@ -96,11 +120,19 @@ bool MenuPage::select()
     Serial.println(selectedLine);
     lines.at(selectedLine)->onSelect();
 
-    if (lines.at(selectedLine)->getType() == LineType::Slider) {
-        auto line = std::static_pointer_cast<SliderMenuLine>(lines.at(selectedLine));
+    // if (lines.at(selectedLine)->getType() == LineType::Slider) {
+    //     auto line = std::static_pointer_cast<SliderMenuLine>(lines.at(selectedLine));
+    //     if (!line->editing) {
+    //         auto valUpdate = Event::ValueChangedEvent(line->valueLabel, std::to_string(line->value));
+    //         eventManager->publish(valUpdate);
+    //     }
+    //     return true;
+    // }
+
+    if (auto line = std::dynamic_pointer_cast<SliderMenuLine>(lines.at(selectedLine))) {
         if (!line->editing) {
             auto valUpdate = Event::ValueChangedEvent(line->valueLabel, std::to_string(line->value));
-            menu->eventManager->publish(valUpdate);
+            eventManager->publish(valUpdate);
         }
         return true;
     }

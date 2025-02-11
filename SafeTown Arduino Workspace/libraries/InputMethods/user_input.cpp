@@ -20,9 +20,8 @@ void UIManager::initUI(EventManager *manager)
 void UIManager::updateEncoder() {
     uint8_t a = digitalRead(ENC_A);
     uint8_t b = digitalRead(ENC_B);
-    uint8_t state = (a << 1) | b; // combine bits
+    uint8_t state = (a << 1) | b;
     
-    // For simplicity, here’s a very basic example (which might need refinement):
     if (lastState == 0b00) {
         if (state == 0b01) {
             // Possibly turning right

@@ -6,6 +6,9 @@
 #include <array>
 
 namespace Event {
+    //-----------------------------------------------------------------
+    // Functions to statically assign a unique id to each event type
+    //-----------------------------------------------------------------
     inline int getNextID() {
         static int counter = 0;
         return counter++;
@@ -17,8 +20,11 @@ namespace Event {
         return id;
     }
     
-    struct Event {
-        virtual ~Event() = default;  // Polymorphic base
+    //-----------------------------------------------------------------
+    // Event types
+    //-----------------------------------------------------------------
+    struct Event {  // Polymorphic base
+        virtual ~Event() = default;  
     };
 
     struct EncoderRight : public Event {};
@@ -36,6 +42,11 @@ namespace Event {
         std::string newValue;
         ValueChangedEvent(const std::string& id, const std::string& val)
           : valueId(id), newValue(val) {}
+    };
+
+    struct ValueRequestEvent : public Event {
+        std::string valueId;
+        ValueRequestEvent(const std::string& id) : valueId(id) {}
     };
 }
 
