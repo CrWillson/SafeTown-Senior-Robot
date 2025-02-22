@@ -65,6 +65,8 @@
         "map": "cpp",
         "numeric": "cpp",
         "optional": "cpp",
-        "xtree": "cpp"
+        "xtree": "cpp",
+        "xmemory0": "cpp",
+        "xstddef": "cpp"
     }
 }

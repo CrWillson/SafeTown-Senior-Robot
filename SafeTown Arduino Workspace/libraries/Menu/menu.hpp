@@ -19,13 +19,14 @@ public:
 
     void initMenu(EventManager* manager);
 
-    void addPage(const std::string& label);
+    void addPage(MenuPage* page);
     void setCurrentPage(const std::string& label);
 
     void onScrollUp(const Event::Event& e);
     void onScrollDown(const Event::Event& e);
     void onSelect(const Event::Event& e);
     void onValueChange(const Event::ValueChangedEvent& e);
+    void onValueRequest(const Event::ValueRequestEvent& e);
 
     std::shared_ptr<MenuPage> currentPage;
 

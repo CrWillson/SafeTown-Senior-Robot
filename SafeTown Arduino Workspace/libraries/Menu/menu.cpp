@@ -16,27 +16,31 @@ void Menu::initMenu(EventManager* manager)
     eventManager->subscribe<Event::ValueChangedEvent>([this](const auto& event) {
         this->onValueChange(event);
     });
+    eventManager->subscribe<Event::ValueRequestEvent>([this](const auto& event) {
+        this->onValueRequest(event);
+    });
 
     buildMenu();
 
     eventManager->publish(Event::PageChangedEvent(currentPage->getVisibleText()));
 }
 
-void Menu::addPage(const std::string &label)
+void Menu::addPage(MenuPage* page)
 {
-    auto newPage = std::make_shared<MenuPage>(eventManager, label);    
-    allPages[label] = newPage;
+    allPages[page->label] = std::shared_ptr<MenuPage>(page);
+    allPages[page->label]->parentMenu = this;
+    allPages[page->label]->eventManager = eventManager;
 
-    // If its the first page to be added then initialize the current page there
+    // If it's the first page to be added then initialize the current page there
     if (allPages.size() == 1) {
-        auto label = allPages.begin()->first;
-        setCurrentPage(label);
+        setCurrentPage(page->label);
     }
 }
 
 void Menu::setCurrentPage(const std::string &label)
 {
     currentPage = allPages.at(label);
+    currentPage->onPageLoad();
 
     eventManager->publish(Event::PageChangedEvent(currentPage->getVisibleText()));
 }
@@ -73,5 +77,12 @@ void Menu::onValueChange(const Event::ValueChangedEvent &e)
 {  
     if (currentPage->onValueChange(e)) {
         eventManager->publish(Event::PageChangedEvent(currentPage->getVisibleText()));
+    }
+}
+
+void Menu::onValueRequest(const Event::ValueRequestEvent &e)
+{
+    for (const auto& [key, page] : allPages) {
+        if (page->onValueRequested(e.valueId)) { break; }
     }
 }

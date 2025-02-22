@@ -1,4 +1,7 @@
 #include "menu_page.hpp"
+#include "menu.hpp"
+
+MenuPage::MenuPage(const std::string& lbl) : label(lbl) {}
 
 std::array<std::string, MenuPage::LINESPERSCREEN> MenuPage::getVisibleText() const
 {
@@ -25,15 +28,6 @@ bool MenuPage::onValueChange(const Event::ValueChangedEvent &e)
             break;
         }
 
-        // if (lines[topLine + i]->getType() == LineType::Value) {
-        //     auto line = std::static_pointer_cast<ValueMenuLine>(lines.at(topLine + i));
-
-        //     if (e.valueId == line->valueLabel) {
-        //         line->value = e.newValue;
-        //         return true;
-        //     }
-        // }
-
         if (auto line = std::dynamic_pointer_cast<ValueMenuLine>(lines.at(topLine + i))) {
             if (e.valueId == line->valueLabel) {
                 line->value = e.newValue;
@@ -42,6 +36,40 @@ bool MenuPage::onValueChange(const Event::ValueChangedEvent &e)
         }
     }
     return false;
+}
+
+bool MenuPage::onPageLoad()
+{
+    bool result = false;
+    for (const auto& menuline : lines) {
+        if (auto line = std::dynamic_pointer_cast<ValueMenuLine>(menuline)) {
+            Serial.print("Requesting value for: ");
+            Serial.println(line->valueLabel.c_str());
+
+            auto valReq = Event::ValueRequestEvent(line->valueLabel);
+            eventManager->publish(valReq);
+            result = true;
+        }
+    }
+    return result;
+}
+
+bool MenuPage::onValueRequested(const std::string& reqLabel)
+{
+    bool result = false;
+    for (const auto& menuline : lines) {
+        if (auto line = std::dynamic_pointer_cast<SliderMenuLine>(menuline)) {
+            if (line->valueLabel == reqLabel) {
+                Serial.print("Responding to request for: ");
+                Serial.println(line->valueLabel.c_str());
+    
+                auto valResp = Event::ValueChangedEvent(reqLabel, std::to_string(line->value));
+                eventManager->publish(valResp);
+                result = true;
+            }
+        }
+    }
+    return result;
 }
 
 bool MenuPage::scrollUp()
@@ -54,18 +82,6 @@ bool MenuPage::scrollUp()
             return false;
         }
     }
-
-    // if (lines.at(selectedLine)->getType() == LineType::Slider) {
-    //     auto line = std::static_pointer_cast<SliderMenuLine>(lines.at(selectedLine));
-    //     if (line->editing) {
-    //         if (line->value > line->minVal) {
-    //             line->value--;
-    //             return true;
-    //         } else {
-    //             return false;
-    //         }
-    //     }
-    // }
 
     bool result = false;
     if (selectedLine > 0) {
@@ -90,18 +106,6 @@ bool MenuPage::scrollDown()
         }
     }
     
-    // if (lines.at(selectedLine)->getType() == LineType::Slider) {
-    //     auto line = std::static_pointer_cast<SliderMenuLine>(lines.at(selectedLine));
-    //     if (line->editing) {
-    //         if (line->value < line->maxVal) {
-    //             line->value++;
-    //             return true;
-    //         } else {
-    //             return false;
-    //         }
-    //     }
-    // }
-
     bool result = false;
     if (selectedLine < numLines - 1) {
         selectedLine++;
@@ -119,15 +123,6 @@ bool MenuPage::select()
     Serial.print("Selecting line: ");
     Serial.println(selectedLine);
     lines.at(selectedLine)->onSelect();
-
-    // if (lines.at(selectedLine)->getType() == LineType::Slider) {
-    //     auto line = std::static_pointer_cast<SliderMenuLine>(lines.at(selectedLine));
-    //     if (!line->editing) {
-    //         auto valUpdate = Event::ValueChangedEvent(line->valueLabel, std::to_string(line->value));
-    //         eventManager->publish(valUpdate);
-    //     }
-    //     return true;
-    // }
 
     if (auto line = std::dynamic_pointer_cast<SliderMenuLine>(lines.at(selectedLine))) {
         if (!line->editing) {

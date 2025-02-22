@@ -132,6 +132,11 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(START), startISR, RISING);
   attachInterrupt(digitalPinToInterrupt(STOP), haltISR, RISING);
 
+  if (!LittleFS.begin()) {
+    Serial.println("LittleFS mount failed!");
+    return;
+  }
+
   uimanager.initUI(&eventManager);
   menu.initMenu(&eventManager);
 

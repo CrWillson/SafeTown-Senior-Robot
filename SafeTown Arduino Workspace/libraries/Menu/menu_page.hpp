@@ -12,8 +12,8 @@ class Menu;
 
 class MenuPage {
 public:
-    MenuPage(EventManager* manager, const std::string& lbl) 
-        : eventManager(manager), label(lbl) {}
+    MenuPage(const std::string& lbl);
+    virtual ~MenuPage() = default;
 
     static constexpr uint8_t LINESPERSCREEN = 8;
 
@@ -24,12 +24,15 @@ public:
     void addLine(MenuLine* line);
 
     bool onValueChange(const Event::ValueChangedEvent& e);
+    bool onPageLoad();
+    bool onValueRequested(const std::string& reqLabel);
 
     bool scrollUp();
     bool scrollDown();
     bool select();
 
-private:
+protected:
+    Menu* parentMenu;
     EventManager* eventManager;
     std::string label;
 
