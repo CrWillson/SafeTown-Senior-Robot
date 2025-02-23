@@ -13,6 +13,7 @@ public:
 
     void addFileLines();
     void onFileModified();
+    bool refreshPage();
 
 private:
 

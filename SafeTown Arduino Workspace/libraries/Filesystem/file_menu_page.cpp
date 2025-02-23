@@ -4,7 +4,7 @@
 FileMenuPage::FileMenuPage(const std::string& lbl, const std::string& parentLbl)
     : MenuPage(lbl), parentMenuLbl(parentLbl) 
 {
-    onFileModified();
+    refreshPage();
 
     eventManager = &EventManager::getInstance();
     eventManager->subscribe<Event::FileCreatedEvent>([this](const auto& event) {
@@ -38,10 +38,19 @@ void FileMenuPage::generateFilePage(const std::string& fileName)
 
 void FileMenuPage::onFileModified()
 {
-    Serial.println("File modified, refreshing file list...");
+    Serial.println("File Modified");
+    refreshPage();
+}
+
+void FileMenuPage::refreshPage()
+{
+    Serial.println("Refreshing file list...");
     lines.clear();
     addLine(new ButtonMenuLine("Back", [this]{
         this->parentMenu->setCurrentPage(parentMenuLbl);
+    }));
+    addLine(new ButtonMenuLine("Refresh List", [this]{
+        this->refreshPage();
     }));
     addLine(new TextMenuLine("----------------"));
     addFileLines();
