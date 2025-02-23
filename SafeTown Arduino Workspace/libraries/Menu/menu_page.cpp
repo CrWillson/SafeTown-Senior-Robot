@@ -72,14 +72,15 @@ bool MenuPage::onValueRequested(const std::string& reqLabel)
     return result;
 }
 
-bool MenuPage::scrollUp()
+void MenuPage::scrollUp()
 {
     if (auto line = std::dynamic_pointer_cast<SliderMenuLine>(lines.at(selectedLine))) {
-        if (line->editing && line->value > line->minVal) {
-            line->value--;
-            return true;
-        } else {
-            return false;
+        if (line->editing) {
+            if (line->value > line->minVal) {
+                line->value--;
+                eventManager->publish(Event::PageChangedEvent(getVisibleText()));
+            }
+            return;
         }
     }
 
@@ -92,17 +93,19 @@ bool MenuPage::scrollUp()
         topLine--;
         botLine--;
     }
-    return result;
+
+    if (result) { eventManager->publish(Event::PageChangedEvent(getVisibleText())); }
 }
 
-bool MenuPage::scrollDown()
+void MenuPage::scrollDown()
 {
     if (auto line = std::dynamic_pointer_cast<SliderMenuLine>(lines.at(selectedLine))) {
-        if (line->editing && line->value < line->maxVal) {
-            line->value++;
-            return true;
-        } else {
-            return false;
+        if (line->editing) {
+            if (line->value < line->maxVal) {
+                line->value++;
+                eventManager->publish(Event::PageChangedEvent(getVisibleText()));
+            }
+            return;
         }
     }
     
@@ -115,10 +118,11 @@ bool MenuPage::scrollDown()
         botLine++;
         topLine++;
     }
-    return result;
+
+    if (result) { eventManager->publish(Event::PageChangedEvent(getVisibleText())); }
 }
 
-bool MenuPage::select()
+void MenuPage::select()
 {
     Serial.print("Selecting line: ");
     Serial.println(selectedLine);
@@ -129,8 +133,6 @@ bool MenuPage::select()
             auto valUpdate = Event::ValueChangedEvent(line->valueLabel, std::to_string(line->value));
             eventManager->publish(valUpdate);
         }
-        return true;
+        eventManager->publish(Event::PageChangedEvent(getVisibleText()));
     }
-
-    return false;
 }

@@ -6,11 +6,6 @@
 #include "event_types.hpp"
 #include "event_manager.hpp"
 
-/**
- * @brief Type identifier for specific menu line types
- * @todo REPLACE WITH DYNAMIC TYPE CASTING
- */
-enum LineType { Text, Value, Button, Toggle, Slider };
 
 /**
  * @brief Abstract base type for a menu line
@@ -22,7 +17,6 @@ public:
 
     virtual std::string getText(bool selected) const = 0;
     virtual void onSelect() = 0;
-    virtual LineType getType() = 0;
 
     std::string label;
 };
@@ -38,7 +32,6 @@ public:
 
     virtual std::string getText(bool selected) const override;
     virtual void onSelect() override { /* do nothing */ }
-    virtual LineType getType() { return LineType::Text; }
 private:
     friend class MenuPage;
 };
@@ -53,7 +46,6 @@ public:
 
     virtual std::string getText(bool selected) const override;
     virtual void onSelect() override { /* do nothing */ }
-    virtual LineType getType() { return LineType::Value; }
 private:
     std::string value;
     std::string valueLabel;
@@ -70,7 +62,6 @@ public:
 
     virtual std::string getText(bool selected) const override;
     virtual void onSelect() override;
-    virtual LineType getType() { return LineType::Button; }
 private:
     std::function<void()> action;
     friend class MenuPage;
@@ -85,7 +76,6 @@ public:
       : MenuLine(text), state(initialState) {}
     virtual std::string getText(bool selected) const override;
     virtual void onSelect() override { state = !state; };
-    virtual LineType getType() { return LineType::Toggle; }
 private:
     bool state;
     friend class MenuPage;
@@ -103,7 +93,6 @@ public:
       : MenuLine(text), valueLabel(label), value(initialValue), minVal(minValue), maxVal(maxValue), editing(false) {}
     virtual std::string getText(bool selected) const override;
     virtual void onSelect() override { editing = !editing; };
-    virtual LineType getType() { return LineType::Slider; }
 private:
     std::string valueLabel;
     int value;

@@ -13,8 +13,8 @@ protected:
         allPages.at("Home")->addLine(new ButtonMenuLine("Go to sensor values", [this]{ 
             this->setCurrentPage("Sensors"); 
         }));
-        allPages.at("Home")->addLine(new ButtonMenuLine("Go to page 3", [this]{ 
-            this->setCurrentPage("Page3"); 
+        allPages.at("Home")->addLine(new ButtonMenuLine("Go to file menu", [this]{ 
+            this->setCurrentPage("FileMenu"); 
         }));
         
         addPage(new MenuPage("Sensors"));

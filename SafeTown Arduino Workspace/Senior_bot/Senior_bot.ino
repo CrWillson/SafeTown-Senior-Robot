@@ -13,6 +13,7 @@
 #include <array>
 #include <algorithm>
 #include <numeric>
+#include <LittleFS.h>
 
 
 #define DIST_MAX    22
@@ -51,7 +52,7 @@ enum DIR {
 };
 
 int gps_i = 0;
-constexpr DIR gps[] = {DIR::RIGHT, DIR::LEFT, DIR::STRAIGHT};
+constexpr DIR gps[] = {DIR::RIGHT, DIR::LEFT, DIR::RIGHT, DIR::STRAIGHT};
 constexpr int gps_size = sizeof(gps) / sizeof(gps[0]);
 
 const std::unordered_map<DIR, std::string> DirLabel {
@@ -100,7 +101,6 @@ enum State {
 }
 volatile state = State::STOPPED;
 State oldState = State::STOPPED;
-
 
 EventManager eventManager; 
 Display display;

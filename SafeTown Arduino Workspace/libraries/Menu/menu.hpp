@@ -21,6 +21,7 @@ public:
 
     void addPage(MenuPage* page);
     void setCurrentPage(const std::string& label);
+    void setCurrentPage(MenuPage* page);
 
     void onScrollUp(const Event::Event& e);
     void onScrollDown(const Event::Event& e);
@@ -28,7 +29,7 @@ public:
     void onValueChange(const Event::ValueChangedEvent& e);
     void onValueRequest(const Event::ValueRequestEvent& e);
 
-    std::shared_ptr<MenuPage> currentPage;
+    MenuPage* currentPage;
 
 protected:
     //---------------------------------------------------------------------------

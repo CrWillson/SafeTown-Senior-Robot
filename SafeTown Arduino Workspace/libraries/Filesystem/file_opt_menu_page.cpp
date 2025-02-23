@@ -6,6 +6,7 @@ FileOptMenuPg::FileOptMenuPg(const std::string& lbl, const std::string& parentLb
 {
     std::string labelText = "File: " + selectedFile;
     addLine(new TextMenuLine(labelText));
+    addLine(new TextMenuLine("----------------"));
     addLine(new ButtonMenuLine(" Cancel", [this]{
         this->parentMenu->setCurrentPage(parentMenuLbl);
     }));
@@ -16,3 +17,14 @@ FileOptMenuPg::FileOptMenuPg(const std::string& lbl, const std::string& parentLb
         this->onFileDelete();
     }));
 } 
+
+
+void FileOptMenuPg::onFileDelete()
+{
+    Serial.println("Deleting file...");
+}
+
+void FileOptMenuPg::onFilePrint()
+{
+    Serial.println("Printing file...");
+}

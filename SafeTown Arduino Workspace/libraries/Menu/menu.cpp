@@ -4,10 +4,10 @@
 void Menu::initMenu(EventManager* manager)
 {
     eventManager = manager;
-    eventManager->subscribe<Event::EncoderRight>([this](const auto& event) {
+    eventManager->subscribe<Event::EncoderLeft>([this](const auto& event) {
         this->onScrollUp(event);
     });
-    eventManager->subscribe<Event::EncoderLeft>([this](const auto& event) {
+    eventManager->subscribe<Event::EncoderRight>([this](const auto& event) {
         this->onScrollDown(event);
     });
     eventManager->subscribe<Event::EncoderPress>([this](const auto& event) {
@@ -30,6 +30,7 @@ void Menu::addPage(MenuPage* page)
     allPages[page->label] = std::shared_ptr<MenuPage>(page);
     allPages[page->label]->parentMenu = this;
     allPages[page->label]->eventManager = eventManager;
+    allPages[page->label]->initPage();
 
     // If it's the first page to be added then initialize the current page there
     if (allPages.size() == 1) {
@@ -39,38 +40,37 @@ void Menu::addPage(MenuPage* page)
 
 void Menu::setCurrentPage(const std::string &label)
 {
-    currentPage = allPages.at(label);
-    currentPage->onPageLoad();
+    if (allPages.find(label) != allPages.end()) {
+        currentPage = allPages.at(label).get();
+        currentPage->onPageLoad();
 
-    eventManager->publish(Event::PageChangedEvent(currentPage->getVisibleText()));
+        eventManager->publish(Event::PageChangedEvent(currentPage->getVisibleText()));
+    } else {
+        Serial.print("Error: Page with label '");
+        Serial.print(label.c_str());
+        Serial.println("' not found.");
+    }
 }
 
 void Menu::onScrollUp(const Event::Event &e)
 {
     Serial.println("Scroll Up Event registered");
     
-    if (currentPage->scrollUp()) {
-        eventManager->publish(Event::PageChangedEvent(currentPage->getVisibleText()));
-    }
-
+    currentPage->scrollUp();
 }
 
 void Menu::onScrollDown(const Event::Event &e)
 {    
     Serial.println("Scroll Down Event registered");
 
-    if (currentPage->scrollDown()) {
-        eventManager->publish(Event::PageChangedEvent(currentPage->getVisibleText()));
-    }
+    currentPage->scrollDown();
 }
 
 void Menu::onSelect(const Event::Event &e)
 {
     Serial.println("Select Event registered");
 
-    if (currentPage->select()) {
-        eventManager->publish(Event::PageChangedEvent(currentPage->getVisibleText()));
-    }
+    currentPage->select();
 }
 
 void Menu::onValueChange(const Event::ValueChangedEvent &e)

@@ -7,7 +7,11 @@
 std::string TextMenuLine::getText(bool selected) const
 {
     std::string pre = (selected) ? "> " : "  ";
-    return pre + label;
+    std::string displayLabel = label;
+    if (displayLabel.length() > 19) {
+        displayLabel = displayLabel.substr(0, 16) + "...";
+    }
+    return pre + displayLabel;
 }
 
 

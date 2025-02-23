@@ -4,33 +4,47 @@
 FileMenuPage::FileMenuPage(const std::string& lbl, const std::string& parentLbl)
     : MenuPage(lbl), parentMenuLbl(parentLbl) 
 {
+    onFileModified();
+}
+
+void FileMenuPage::initPage()
+{
     eventManager->subscribe<Event::FileCreatedEvent>([this](const auto& event) {
-        this->onFileCreated();
+        this->onFileModified();
     });
     eventManager->subscribe<Event::FileDeletedEvent>([this](const auto& event) {
-        this->onFileDeleted();
+        this->onFileModified();
     }); 
-
-    addLine(new ButtonMenuLine("Back", [this]{
-        this->parentMenu->setCurrentPage(parentMenuLbl);
-    }));
-    addFileLines(); 
 }
 
 void FileMenuPage::addFileLines()
 {
-    lines.clear();
-
     auto dir = LittleFS.openDir("/");
     while (dir.next()) {
-        addLine(new TextMenuLine(dir.fileName().c_str()));
+        auto fileName = dir.fileName();
+        addLine(new ButtonMenuLine(fileName.c_str(), [this, fileName]{
+            Serial.print("File ");
+            Serial.print(fileName.c_str());
+            Serial.println(" selected");
+            generateFilePage(fileName.c_str());
+        }));
     }
 }
 
-void FileMenuPage::onFileCreated()
+void FileMenuPage::generateFilePage(const std::string& fileName)
 {
+    auto fileOptPage = new FileOptMenuPg("FileOption", label, fileName);
+    parentMenu->addPage(fileOptPage);
+    parentMenu->setCurrentPage(fileOptPage->label);
 }
 
-void FileMenuPage::onFileDeleted()
+void FileMenuPage::onFileModified()
 {
+    Serial.println("File modified, refreshing file list...");
+    lines.clear();
+    addLine(new ButtonMenuLine("Back", [this]{
+        this->parentMenu->setCurrentPage(parentMenuLbl);
+    }));
+    addLine(new TextMenuLine("----------------"));
+    addFileLines();
 }

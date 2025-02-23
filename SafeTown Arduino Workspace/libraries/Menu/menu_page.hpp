@@ -14,6 +14,7 @@ class MenuPage {
 public:
     MenuPage(const std::string& lbl);
     virtual ~MenuPage() = default;
+    virtual void initPage() { /* do nothing */} 
 
     static constexpr uint8_t LINESPERSCREEN = 8;
 
@@ -21,15 +22,15 @@ public:
 
     std::array<std::string, LINESPERSCREEN> getVisibleText() const;
 
-    void addLine(MenuLine* line);
+    virtual void addLine(MenuLine* line);
 
-    bool onValueChange(const Event::ValueChangedEvent& e);
-    bool onPageLoad();
-    bool onValueRequested(const std::string& reqLabel);
+    virtual bool onValueChange(const Event::ValueChangedEvent& e);
+    virtual bool onPageLoad();
+    virtual bool onValueRequested(const std::string& reqLabel);
 
-    bool scrollUp();
-    bool scrollDown();
-    bool select();
+    virtual void scrollUp();
+    virtual void scrollDown();
+    virtual void select();
 
 protected:
     Menu* parentMenu;
