@@ -8,7 +8,6 @@
 class FileMenuPage : public MenuPage {
 public:
     FileMenuPage(const std::string& lbl, const std::string& parentLbl);
-    void initPage() override;
     
     ~FileMenuPage() = default;
 
@@ -20,4 +19,5 @@ private:
     void generateFilePage(const std::string& fileName);
 
     std::string parentMenuLbl;
+
 };

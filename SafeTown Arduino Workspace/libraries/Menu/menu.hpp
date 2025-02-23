@@ -17,7 +17,7 @@ public:
     Menu() = default;
     virtual ~Menu() = default;
 
-    void initMenu(EventManager* manager);
+    void init();
 
     void addPage(MenuPage* page);
     void setCurrentPage(const std::string& label);

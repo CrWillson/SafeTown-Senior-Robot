@@ -1,4 +1,5 @@
 #include "event_manager.hpp"
+#include "fs_manager.hpp"
 #include "display.hpp"
 #include "user_input.hpp"
 #include "sr_bot_menu.hpp"
@@ -102,9 +103,10 @@ enum State {
 volatile state = State::STOPPED;
 State oldState = State::STOPPED;
 
-EventManager eventManager; 
+EventManager& eventManager = EventManager::getInstance(); 
+FSManager& fsmanager = FSManager::getInstance();
+UIManager& uimanager = UIManager::getInstance();
 Display display;
-UIManager uimanager;
 SrMenu menu;
 
 void setup1() {
@@ -132,16 +134,10 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(START), startISR, RISING);
   attachInterrupt(digitalPinToInterrupt(STOP), haltISR, RISING);
 
-  if (!LittleFS.begin()) {
-    Serial.println("LittleFS mount failed!");
-    return;
-  }
-
-  uimanager.initUI(&eventManager);
-  menu.initMenu(&eventManager);
-
-  display.initDisplay(&eventManager);
-  display.clearDisplay();
+  fsmanager.init();
+  uimanager.init();
+  menu.init();
+  display.init();
 
   steer.attach(SERVO);
 

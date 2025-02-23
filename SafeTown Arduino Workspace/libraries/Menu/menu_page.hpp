@@ -14,7 +14,6 @@ class MenuPage {
 public:
     MenuPage(const std::string& lbl);
     virtual ~MenuPage() = default;
-    virtual void initPage() { /* do nothing */} 
 
     static constexpr uint8_t LINESPERSCREEN = 8;
 

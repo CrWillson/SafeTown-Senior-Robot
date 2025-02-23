@@ -21,7 +21,7 @@ public:
     Display() = default;
     ~Display() = default;
 
-    void initDisplay(EventManager* manager);
+    void init();
     void clearDisplay();
 
     void draw();

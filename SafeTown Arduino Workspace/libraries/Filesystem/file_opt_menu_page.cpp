@@ -4,6 +4,9 @@
 FileOptMenuPg::FileOptMenuPg(const std::string& lbl, const std::string& parentLbl, const std::string& file)
     : MenuPage(lbl), parentMenuLbl(parentLbl), selectedFile(file) 
 {
+    eventManager = &EventManager::getInstance();
+    fsManager = &FSManager::getInstance();
+
     std::string labelText = "File: " + selectedFile;
     addLine(new TextMenuLine(labelText));
     addLine(new TextMenuLine("----------------"));

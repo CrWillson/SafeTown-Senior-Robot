@@ -14,13 +14,21 @@
 
 class EventManager {
 public:
-    EventManager();
+    // Delete copy constructor and assignment operator to prevent copying
+    EventManager(const EventManager&) = delete;
+    EventManager& operator=(const EventManager&) = delete;
     ~EventManager();
 
+    // Static method to access the single instance of the class
+    static EventManager& getInstance() {
+        static EventManager instance;
+        return instance;
+    }
+    
     template <typename EventType>
     void subscribe(std::function<void(const EventType&)> handler) {
         std::size_t typeID = Event::getID<EventType>();
-
+        
         if (typeID >= handlers.size()) {
             handlers.resize(typeID + 1);
         }
@@ -28,11 +36,11 @@ public:
             handler(*reinterpret_cast<const EventType*>(event));
         });
     }
-
+    
     template <typename EventType>
     void publish(const EventType& event) {
         std::size_t typeID = Event::getID<EventType>();
-
+        
         if (typeID >= handlers.size() || handlers[typeID].empty()) {
             return;
         }
@@ -53,12 +61,14 @@ public:
         // Signal that a new event is available.
         xSemaphoreGive(eventSemaphore);
     }
-
-    void processEvents();
-
-private:
-    using HandlerFunc = std::function<void(const void*)>;
     
+    void processEvents();
+    
+private:
+    // Private constructor to prevent instantiation
+    EventManager();
+
+    using HandlerFunc = std::function<void(const void*)>;
     std::vector<std::vector<HandlerFunc>> handlers;
     std::vector<std::function<void()>> eventQueue;
 

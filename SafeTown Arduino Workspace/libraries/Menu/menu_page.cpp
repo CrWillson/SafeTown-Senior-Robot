@@ -1,7 +1,10 @@
 #include "menu_page.hpp"
 #include "menu.hpp"
 
-MenuPage::MenuPage(const std::string& lbl) : label(lbl) {}
+MenuPage::MenuPage(const std::string& lbl) : label(lbl) 
+{
+    eventManager = &EventManager::getInstance();
+}
 
 std::array<std::string, MenuPage::LINESPERSCREEN> MenuPage::getVisibleText() const
 {

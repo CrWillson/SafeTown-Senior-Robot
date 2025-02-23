@@ -6,10 +6,9 @@
 #define SCREEN_ADDRESS 0x3C ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
 Adafruit_SSD1306 ssd1306(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET); // The display object
 
-
-void Display::initDisplay(EventManager* manager)
+void Display::init()
 {   
-    eventManager = manager;
+    eventManager = &EventManager::getInstance(); // Get the singleton instance of EventManager
     screen = &ssd1306;
     
     if(!screen->begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {

@@ -1,9 +1,9 @@
 #include "menu.hpp"
 
 
-void Menu::initMenu(EventManager* manager)
+void Menu::init()
 {
-    eventManager = manager;
+    eventManager = &EventManager::getInstance(); // Get the singleton instance of EventManager
     eventManager->subscribe<Event::EncoderLeft>([this](const auto& event) {
         this->onScrollUp(event);
     });
@@ -29,8 +29,6 @@ void Menu::addPage(MenuPage* page)
 {
     allPages[page->label] = std::shared_ptr<MenuPage>(page);
     allPages[page->label]->parentMenu = this;
-    allPages[page->label]->eventManager = eventManager;
-    allPages[page->label]->initPage();
 
     // If it's the first page to be added then initialize the current page there
     if (allPages.size() == 1) {

@@ -3,9 +3,9 @@
 EventManager* UIManager::eventManager = nullptr;
 volatile uint8_t UIManager::lastState = 0;
 
-void UIManager::initUI(EventManager *manager)
+void UIManager::init()
 {
-    eventManager = manager;
+    eventManager = &EventManager::getInstance(); // Get the singleton instance of EventManager
 
     // Encoder setup
     pinMode(ENC_B, INPUT);

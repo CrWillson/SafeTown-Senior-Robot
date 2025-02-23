@@ -9,18 +9,28 @@
 
 class UIManager {
 public:
-    UIManager() = default;
+    // Delete copy constructor and assignment operator to prevent copying
+    UIManager(const UIManager&) = delete;
+    UIManager& operator=(const UIManager&) = delete;
 
-    void initUI(EventManager* manager);
-
+    // Static method to access the single instance of the class
+    static UIManager& getInstance() {
+        static UIManager instance;
+        return instance;
+    }
+    
+    void init();
+    
     static void updateEncoder();
-
+    
     static void EncoderPress() {
         Serial.println("Encoder Press event published");
         eventManager->publish(Event::EncoderPress{});
     }
-
+    
 private:
+    UIManager() = default;
+    
     static EventManager* eventManager;
 
     static volatile uint8_t lastState;

@@ -5,10 +5,8 @@ FileMenuPage::FileMenuPage(const std::string& lbl, const std::string& parentLbl)
     : MenuPage(lbl), parentMenuLbl(parentLbl) 
 {
     onFileModified();
-}
 
-void FileMenuPage::initPage()
-{
+    eventManager = &EventManager::getInstance();
     eventManager->subscribe<Event::FileCreatedEvent>([this](const auto& event) {
         this->onFileModified();
     });
