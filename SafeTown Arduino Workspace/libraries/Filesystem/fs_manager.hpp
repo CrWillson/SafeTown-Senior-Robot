@@ -22,7 +22,6 @@ public:
     void createFile(const std::string& fileName);
     void deleteFile(const std::string& fileName);
     void printFile(const std::string& fileName);
-    void listFiles();
 
 private:
     FSManager() = default;
