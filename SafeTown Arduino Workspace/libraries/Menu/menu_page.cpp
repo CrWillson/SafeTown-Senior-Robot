@@ -23,12 +23,8 @@ void MenuPage::addLine(MenuLine *line)
 
 bool MenuPage::onValueChange(const Event::ValueChangedEvent &e)
 {
-    for (int i = 0; i < LINESPERSCREEN; i++) {
-        if (topLine + i > numLines - 1) {
-            break;
-        }
-
-        if (auto line = std::dynamic_pointer_cast<ValueMenuLine>(lines.at(topLine + i))) {
+    for (int i = 0; i < numLines; i++) {
+        if (auto line = std::dynamic_pointer_cast<ValueMenuLine>(lines.at(i))) {
             if (e.valueId == line->valueLabel) {
                 line->value = e.newValue;
                 return true;

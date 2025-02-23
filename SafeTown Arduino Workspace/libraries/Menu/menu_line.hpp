@@ -22,6 +22,14 @@ public:
 };
 
 
+class SpacerMenuLine : public MenuLine {
+public:
+    SpacerMenuLine() : MenuLine("-------------------") {}
+    virtual std::string getText(bool selected) const override;
+    virtual void onSelect() override { /* do nothing */ }
+};
+
+
 /**
  * @brief Menu line type that displays static, non-interactable text
  */
