@@ -12,7 +12,6 @@ public:
     ~FileMenuPage() = default;
 
     void addFileLines();
-    void onFileModified();
     bool refreshPage();
 
 private:
