@@ -42,7 +42,6 @@ void FileMenuPage::generateFilePage()
     }));
     addLine(new TextMenuLine("----------------"));
     addFileLines();
-
 }
 
 
@@ -58,7 +57,6 @@ void FileMenuPage::addFileLines()
                 Serial.println(" selected");
                 currentPath += std::string(fileName.c_str()) + "/";
                 generateFilePage();
-                eventManager->publish(Event::PageChangedEvent(getVisibleText()));
             }));
         } else {
             addLine(new ButtonMenuLine(fileName.c_str(), [this, fileName]{
