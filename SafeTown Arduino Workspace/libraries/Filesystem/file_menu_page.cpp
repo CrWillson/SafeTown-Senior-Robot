@@ -41,6 +41,7 @@ void FileMenuPage::generateFilePage()
         this->generateFilePage();
     }));
     addLine(new TextMenuLine("----------------"));
+    addDirectoryLines();
     addFileLines();
 }
 
@@ -55,15 +56,15 @@ void FileMenuPage::addFileLines()
                 Serial.print("Directory ");
                 Serial.print(fileName.c_str());
                 Serial.println(" selected");
-                currentPath += std::string(fileName.c_str()) + "/";
-                generateFilePage();
+                currentPath += fileName + "/";
+                refreshPage();
             }));
         } else {
             addLine(new ButtonMenuLine(fileName.c_str(), [this, fileName]{
                 Serial.print("File ");
                 Serial.print(fileName.c_str());
                 Serial.println(" selected");
-                generateFileOptPage(currentPath + std::string(fileName.c_str()));
+                generateFileOptPage(currentPath + fileName);
             }));
         }
     }
