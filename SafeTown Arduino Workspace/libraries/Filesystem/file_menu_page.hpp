@@ -8,15 +8,16 @@
 class FileMenuPage : public MenuPage {
 public:
     FileMenuPage(const std::string& lbl, const std::string& parentLbl);
+    
     ~FileMenuPage() = default;
 
-private:
-    
     void addFileLines();
-    void generateFilePage();
-    void generateFileOptPage(const std::string& fileName);
+    void refreshPage();
+
+private:
+
+    void generateFilePage(const std::string& fileName);
 
     std::string parentMenuLbl;
-    std::string currentPath = "/";
 
 };
