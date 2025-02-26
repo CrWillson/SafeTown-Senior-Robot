@@ -37,9 +37,8 @@ bool MenuPage::onValueChange(const Event::ValueChangedEvent &e)
     return false;
 }
 
-bool MenuPage::onPageLoad()
+void MenuPage::onPageLoad()
 {
-    bool result = false;
     for (const auto& menuline : lines) {
         if (auto line = std::dynamic_pointer_cast<ValueMenuLine>(menuline)) {
             Serial.print("Requesting value for: ");
@@ -47,10 +46,8 @@ bool MenuPage::onPageLoad()
 
             auto valReq = Event::ValueRequestEvent(line->valueLabel);
             eventManager->publish(valReq);
-            result = true;
         }
     }
-    return result;
 }
 
 bool MenuPage::onValueRequested(const std::string& reqLabel)

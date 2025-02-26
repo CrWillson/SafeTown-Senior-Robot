@@ -24,7 +24,8 @@ public:
     virtual void addLine(MenuLine* line);
 
     virtual bool onValueChange(const Event::ValueChangedEvent& e);
-    virtual bool onPageLoad();
+    virtual void onPageLoad();
+    virtual void onPageExit() {} // Default implementation does nothing
     virtual bool onValueRequested(const std::string& reqLabel);
 
     virtual void scrollUp();

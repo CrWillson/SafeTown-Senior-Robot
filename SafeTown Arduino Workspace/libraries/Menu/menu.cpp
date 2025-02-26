@@ -27,7 +27,7 @@ void Menu::init()
 
 void Menu::addPage(MenuPage* page)
 {
-    allPages[page->label] = std::shared_ptr<MenuPage>(page);
+    allPages[page->label] = std::unique_ptr<MenuPage>(page);
     allPages[page->label]->parentMenu = this;
 
     // If it's the first page to be added then initialize the current page there
@@ -39,8 +39,9 @@ void Menu::addPage(MenuPage* page)
 void Menu::setCurrentPage(const std::string &label)
 {
     if (allPages.find(label) != allPages.end()) {
+        currentPage->onPageExit(); // Call onPageExit for the current page
         currentPage = allPages.at(label).get();
-        currentPage->onPageLoad();
+        currentPage->onPageLoad(); // Call onPageLoad for the new page
 
         eventManager->publish(Event::PageChangedEvent(currentPage->getVisibleText()));
     } else {
