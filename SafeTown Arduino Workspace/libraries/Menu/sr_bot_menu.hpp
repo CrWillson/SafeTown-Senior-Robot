@@ -15,6 +15,9 @@ protected:
         allPages.at("Home")->addLine(new ButtonMenuLine("Go to sensor values", [this]{ 
             this->setCurrentPage("Sensors"); 
         }));
+        allPages.at("Home")->addLine(new ButtonMenuLine("Set ESP Params", [this]{ 
+            this->setCurrentPage("ESPParams"); 
+        }));
         allPages.at("Home")->addLine(new ButtonMenuLine("Go to file menu", [this]{ 
             this->setCurrentPage("FileMenu"); 
         }));
@@ -29,6 +32,15 @@ protected:
         allPages.at("Sensors")->addLine(new ButtonMenuLine("Go to home page", [this]{ 
             this->setCurrentPage("Home"); 
         }));
+
+        addPage(new MenuPage("ESPParams"));
+        allPages.at("ESPParams")->addLine(new TextMenuLine("ESP Parameters"));
+        allPages.at("ESPParams")->addLine(new SpacerMenuLine());
+        allPages.at("ESPParams")->addLine(new TextMenuLine("White Thresholds"));
+        allPages.at("ESPParams")->addLine(new SliderMenuLine("R Thresh: ", "WRLIM", 200, 0, 255));
+        allPages.at("ESPParams")->addLine(new SliderMenuLine("G Thresh: ", "WGLIM", 200, 0, 255));
+        allPages.at("ESPParams")->addLine(new SliderMenuLine("B Thresh: ", "WBLIM", 200, 0, 255));
+        allPages.at("ESPParams")->addLine(new SpacerMenuLine());
 
         addPage(new FileMenuPage("FileMenu", "Home"));
     }
