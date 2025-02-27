@@ -42,9 +42,6 @@ bool MenuPage::onPageLoad()
     bool result = false;
     for (const auto& menuline : lines) {
         if (auto line = std::dynamic_pointer_cast<ValueMenuLine>(menuline)) {
-            Serial.print("Requesting value for: ");
-            Serial.println(line->valueLabel.c_str());
-
             auto valReq = Event::ValueRequestEvent(line->valueLabel);
             eventManager->publish(valReq);
             result = true;
@@ -59,9 +56,6 @@ bool MenuPage::onValueRequested(const std::string& reqLabel)
     for (const auto& menuline : lines) {
         if (auto line = std::dynamic_pointer_cast<SliderMenuLine>(menuline)) {
             if (line->valueLabel == reqLabel) {
-                Serial.print("Responding to request for: ");
-                Serial.println(line->valueLabel.c_str());
-    
                 auto valResp = Event::ValueChangedEvent(reqLabel, std::to_string(line->value));
                 eventManager->publish(valResp);
                 result = true;
@@ -123,8 +117,6 @@ void MenuPage::scrollDown()
 
 void MenuPage::select()
 {
-    Serial.print("Selecting line: ");
-    Serial.println(selectedLine);
     lines.at(selectedLine)->onSelect();
 
     if (auto line = std::dynamic_pointer_cast<SliderMenuLine>(lines.at(selectedLine))) {

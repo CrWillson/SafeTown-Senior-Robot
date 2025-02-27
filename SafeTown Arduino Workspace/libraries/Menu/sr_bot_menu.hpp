@@ -2,6 +2,7 @@
 
 #include "menu.hpp"
 #include "file_menu_page.hpp"
+#include "menu_line.hpp"
 
 class SrMenu : public Menu {
 protected:
@@ -10,12 +11,13 @@ protected:
         allPages.at("Home")->addLine(new TextMenuLine("Home Page"));
         allPages.at("Home")->addLine(new TextMenuLine("Sr Robot Menu"));
         allPages.at("Home")->addLine(new SpacerMenuLine());
-        allPages.at("Home")->addLine(new SliderMenuLine("Slider1:", "testSlider1", 5, 0, 10));
-        allPages.at("Home")->addLine(new SliderMenuLine("Slider2:", "testSlider2", 6, -2, 12));
-        allPages.at("Home")->addLine(new ButtonMenuLine("Go to sensor values", [this]{ 
+        allPages.at("Home")->addLine(new ButtonMenuLine("Sensor values", [this]{ 
             this->setCurrentPage("Sensors"); 
         }));
-        allPages.at("Home")->addLine(new ButtonMenuLine("Go to file menu", [this]{ 
+        allPages.at("Home")->addLine(new ButtonMenuLine("ESP32 settings", [this]{ 
+            this->setCurrentPage("ESP32"); 
+        }));
+        allPages.at("Home")->addLine(new ButtonMenuLine("File explorer", [this]{ 
             this->setCurrentPage("FileMenu"); 
         }));
         
@@ -24,13 +26,26 @@ protected:
         allPages.at("Sensors")->addLine(new SpacerMenuLine());
         allPages.at("Sensors")->addLine(new ValueMenuLine("Dist:", "whiteDist"));
         allPages.at("Sensors")->addLine(new ValueMenuLine("Stop:", "stopDetect"));
-        allPages.at("Sensors")->addLine(new ValueMenuLine("Value1:", "testSlider1"));
-        allPages.at("Sensors")->addLine(new ValueMenuLine("Value2:", "testSlider2"));
         allPages.at("Sensors")->addLine(new ButtonMenuLine("Go to home page", [this]{ 
             this->setCurrentPage("Home"); 
         }));
 
         addPage(new FileMenuPage("FileMenu", "Home"));
+
+        addPage(new MenuPage("ESP32"));
+        allPages.at("ESP32")->addLine(new TextMenuLine("ESP32 Settings"));
+        allPages.at("ESP32")->addLine(new SpacerMenuLine());
+        allPages.at("ESP32")->addLine(new TextMenuLine("White Parmeters"));
+        allPages.at("ESP32")->addLine(new SliderMenuLine("Red Limit:", "WRLIM", 200, 0, 255));
+        allPages.at("ESP32")->addLine(new SliderMenuLine("Green Limit:", "WGLIM", 200, 0, 255));
+        allPages.at("ESP32")->addLine(new SliderMenuLine("Blue Limit:", "WBLIM", 180, 0, 255));
+        allPages.at("ESP32")->addLine(new SpacerMenuLine());
+        
+
+        allPages.at("ESP32")->addLine(new ButtonMenuLine("Go to home page", [this]{ 
+            this->setCurrentPage("Home"); 
+        }));
+
     }
 
 };

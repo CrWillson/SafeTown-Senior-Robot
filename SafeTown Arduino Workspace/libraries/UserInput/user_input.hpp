@@ -24,7 +24,6 @@ public:
     static void updateEncoder();
     
     static void EncoderPress() {
-        Serial.println("Encoder Press event published");
         eventManager->publish(Event::EncoderPress{});
     }
     

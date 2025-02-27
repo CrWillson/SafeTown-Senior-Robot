@@ -51,23 +51,17 @@ void Menu::setCurrentPage(const std::string &label)
 }
 
 void Menu::onScrollUp(const Event::Event &e)
-{
-    Serial.println("Scroll Up Event registered");
-    
+{    
     currentPage->scrollUp();
 }
 
 void Menu::onScrollDown(const Event::Event &e)
 {    
-    Serial.println("Scroll Down Event registered");
-
     currentPage->scrollDown();
 }
 
 void Menu::onSelect(const Event::Event &e)
 {
-    Serial.println("Select Event registered");
-
     currentPage->select();
 }
 

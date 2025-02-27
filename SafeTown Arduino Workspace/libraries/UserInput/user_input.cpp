@@ -26,12 +26,10 @@ void UIManager::updateEncoder() {
         if (state == 0b01) {
             // Possibly turning right
             delay(debounceDelay);
-            Serial.println("Encoder Right event published");
             eventManager->publish(Event::EncoderRight{});
         } else if (state == 0b10) {
             // Possibly turning left
             delay(debounceDelay);
-            Serial.println("Encoder Left event published");
             eventManager->publish(Event::EncoderLeft{});
         }
     } else if (lastState == 0b11) {

@@ -37,7 +37,6 @@ std::string ButtonMenuLine::getText(bool selected) const
 
 void ButtonMenuLine::onSelect()
 {
-    Serial.println("Running line action");
     this->action();
 }
 

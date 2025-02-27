@@ -26,7 +26,6 @@ void FileMenuPage::generateFilePage(const std::string& fileName)
 
 void FileMenuPage::refreshPage()
 {
-    Serial.println("Refreshing file list...");
     lines.clear();
     numLines = 0;
 
@@ -48,9 +47,6 @@ void FileMenuPage::addFileLines()
     while (dir.next()) {
         auto fileName = dir.fileName();
         addLine(new ButtonMenuLine(fileName.c_str(), [this, fileName]{
-            Serial.print("File ");
-            Serial.print(fileName.c_str());
-            Serial.println(" selected");
             generateFilePage(fileName.c_str());
         }));
     }

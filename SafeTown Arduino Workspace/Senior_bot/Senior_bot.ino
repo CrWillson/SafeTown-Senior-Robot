@@ -105,7 +105,7 @@ volatile state = State::STOPPED;
 State oldState = State::STOPPED;
 
 EventManager& eventManager = EventManager::getInstance();
-ESP32Input& esp32 = ESP32Input::getInstance(); 
+ESP32& esp32 = ESP32::getInstance(); 
 FSManager& fsmanager = FSManager::getInstance();
 UIManager& uimanager = UIManager::getInstance();
 Display display;

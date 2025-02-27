@@ -73,7 +73,6 @@ void Display::printLines(std::vector<std::string> lines)
 
 void Display::onPageUpdated(const Event::PageChangedEvent &e)
 {
-    Serial.println("Page Change Event registered");
     lines = e.lines;
     draw();
 }
