@@ -2,7 +2,6 @@
 #include "fs_manager.hpp"
 #include "display.hpp"
 #include "user_input.hpp"
-#include "esp32_input.hpp"
 #include "sr_bot_menu.hpp"
 
 #include "pico/stdlib.h"
@@ -107,7 +106,6 @@ State oldState = State::STOPPED;
 EventManager& eventManager = EventManager::getInstance(); 
 FSManager& fsmanager = FSManager::getInstance();
 UIManager& uimanager = UIManager::getInstance();
-ESP32Camera& esp32 = ESP32Camera::getInstance();
 Display display;
 SrMenu menu;
 
@@ -136,7 +134,6 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(START), startISR, RISING);
   attachInterrupt(digitalPinToInterrupt(STOP), haltISR, RISING);
 
-  esp32.init();
   fsmanager.init();
   uimanager.init();
   menu.init();
@@ -145,7 +142,10 @@ void setup() {
   steer.attach(SERVO);
 
   left_motor.begin();
-  right_motor.begin();  
+  right_motor.begin();
+
+  Serial1.setPollingMode(true);
+  Serial1.begin(500000);  //serial for the UART connection to the ESP32 CAM
 }
 
 void loop() {
