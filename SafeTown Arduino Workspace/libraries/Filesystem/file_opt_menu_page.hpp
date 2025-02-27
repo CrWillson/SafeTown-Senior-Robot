@@ -15,9 +15,6 @@ public:
     void onFileDelete();
     void onFilePrint();
 
-    void onPageLoad() override {}
-    void onPageExit() override {}
-
 private:
     std::string selectedFile;
     std::string parentMenuLbl;

@@ -8,11 +8,11 @@
 class FileMenuPage : public MenuPage {
 public:
     FileMenuPage(const std::string& lbl, const std::string& parentLbl);
+    
     ~FileMenuPage() = default;
 
-    void onPageLoad() override;
-    void onPageExit() override;
-    
+    void addFileLines();
+    void refreshPage();
 
 private:
 

@@ -21,6 +21,7 @@ public:
 
     void addPage(MenuPage* page);
     void setCurrentPage(const std::string& label);
+    void setCurrentPage(MenuPage* page);
 
     void onScrollUp(const Event::Event& e);
     void onScrollDown(const Event::Event& e);
@@ -38,7 +39,7 @@ protected:
 
     EventManager* eventManager;
 
-    std::unordered_map<std::string, std::unique_ptr<MenuPage>> allPages;
+    std::unordered_map<std::string, std::shared_ptr<MenuPage>> allPages;
 
     friend class MenuPage;
     friend class MenuLine;

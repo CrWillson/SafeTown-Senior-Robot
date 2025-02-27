@@ -24,17 +24,10 @@ FileOptMenuPg::FileOptMenuPg(const std::string& lbl, const std::string& parentLb
 
 void FileOptMenuPg::onFileDelete()
 {
-    Serial.print("Deleting file: ");
-    Serial.println(selectedFile.c_str());
-
-    fsManager->deleteFile(selectedFile);
-    parentMenu->setCurrentPage(parentMenuLbl);
+    Serial.println("Deleting file...");
 }
 
 void FileOptMenuPg::onFilePrint()
 {
-    Serial.println("Printing file: ");
-    Serial.println(selectedFile.c_str());
-    
-    fsManager->printFile(selectedFile);
+    Serial.println("Printing file...");
 }
