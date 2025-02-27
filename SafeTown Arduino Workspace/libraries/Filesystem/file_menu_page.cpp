@@ -28,6 +28,8 @@ void FileMenuPage::refreshPage()
 {
     Serial.println("Refreshing file list...");
     lines.clear();
+    numLines = 0;
+
     addLine(new ButtonMenuLine("Back", [this]{
         this->parentMenu->setCurrentPage(parentMenuLbl);
     }));
@@ -36,6 +38,7 @@ void FileMenuPage::refreshPage()
     }));
     addLine(new TextMenuLine("----------------"));
     addFileLines();
+
 }
 
 

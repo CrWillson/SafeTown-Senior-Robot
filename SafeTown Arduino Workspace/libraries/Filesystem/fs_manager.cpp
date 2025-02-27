@@ -40,4 +40,5 @@ void FSManager::printFile(const std::string &fileName)
         Serial.write(file.read());
     }
     file.close();
+    Serial.println("");
 }
