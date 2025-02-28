@@ -25,7 +25,7 @@ public:
     virtual void clearLines();
 
     virtual bool onValueChange(const Event::ValueChangedEvent& e);
-    virtual bool onPageLoad();
+    virtual void onPageLoad();
     virtual bool onValueRequested(const std::string& reqLabel);
 
     virtual void scrollUp();

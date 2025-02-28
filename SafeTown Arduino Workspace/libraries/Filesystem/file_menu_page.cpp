@@ -54,8 +54,8 @@ void FileMenuPage::addDirectoryLines()
     while (dir.next()) {
         if (dir.isDirectory()) {
             auto dirName = dir.fileName();
-            addLine(new ButtonMenuLine((dirName + "/").c_str(), [this, dirName]{
-                currentPath += dirName + "/";
+            addLine(new ButtonMenuLine((std::string(dirName.c_str()) + "/").c_str(), [this, dirName]{
+                currentPath += std::string(dirName.c_str()) + "/";
                 refreshPage();
             }));
         }
@@ -69,7 +69,7 @@ void FileMenuPage::addFileLines()
         if (!dir.isDirectory()) {
             auto fileName = dir.fileName();
             addLine(new ButtonMenuLine(fileName.c_str(), [this, fileName]{
-                generateFilePage(currentPath + fileName);
+                generateFilePage(currentPath + std::string(fileName.c_str()));
             }));
         }
     }

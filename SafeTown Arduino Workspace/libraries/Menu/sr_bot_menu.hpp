@@ -35,16 +35,27 @@ protected:
         addPage(new MenuPage("ESP32"));
         allPages.at("ESP32")->addLine(new TextMenuLine("ESP32 Settings"));
         allPages.at("ESP32")->addLine(new SpacerMenuLine());
-        allPages.at("ESP32")->addLine(new TextMenuLine("White Parmeters"));
-        allPages.at("ESP32")->addLine(new SliderMenuLine("Red Limit:", "WRLIM", 200, 0, 255));
-        allPages.at("ESP32")->addLine(new SliderMenuLine("Green Limit:", "WGLIM", 200, 0, 255));
-        allPages.at("ESP32")->addLine(new SliderMenuLine("Blue Limit:", "WBLIM", 180, 0, 255));
-        allPages.at("ESP32")->addLine(new SpacerMenuLine());
-        
-
+        allPages.at("ESP32")->addLine(new ButtonMenuLine("Edit Parameters", [this]{ 
+            this->setCurrentPage("ESP32Params"); 
+        }));
         allPages.at("ESP32")->addLine(new ButtonMenuLine("Go to home page", [this]{ 
             this->setCurrentPage("Home"); 
         }));
+
+        addPage(new MenuPage("ESP32Params"));
+        allPages.at("ESP32Params")->addLine(new TextMenuLine("ESP32 Parameters"));
+        allPages.at("ESP32Params")->addLine(new SpacerMenuLine());
+        allPages.at("ESP32Params")->addLine(new TextMenuLine("White Parmeters"));
+        allPages.at("ESP32Params")->addLine(new SliderMenuLine("Red Limit:", "WRLIM", 200, 0, 255));
+        allPages.at("ESP32Params")->addLine(new SliderMenuLine("Green Limit:", "WGLIM", 200, 0, 255));
+        allPages.at("ESP32Params")->addLine(new SliderMenuLine("Blue Limit:", "WBLIM", 180, 0, 255));
+        allPages.at("ESP32Params")->addLine(new SpacerMenuLine());
+        allPages.at("ESP32Params")->addLine(new ButtonMenuLine("Back", [this]{ 
+            this->setCurrentPage("ESP32"); 
+        }));
+        
+
+        
 
     }
 
