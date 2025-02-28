@@ -24,6 +24,15 @@ void MenuPage::addLine(MenuLine *line)
     numLines++;
 }
 
+void MenuPage::clearLines()
+{
+    lines.clear();
+    numLines = 0;
+    selectedLine = 0;
+    topLine = 0;
+    botLine = LINESPERSCREEN - 1;
+}
+
 bool MenuPage::onValueChange(const Event::ValueChangedEvent &e)
 {
     for (int i = 0; i < numLines; i++) {

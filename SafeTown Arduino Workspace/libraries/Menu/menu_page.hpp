@@ -22,6 +22,7 @@ public:
     std::array<std::string, LINESPERSCREEN> getVisibleText() const;
 
     virtual void addLine(MenuLine* line);
+    virtual void clearLines();
 
     virtual bool onValueChange(const Event::ValueChangedEvent& e);
     virtual bool onPageLoad();

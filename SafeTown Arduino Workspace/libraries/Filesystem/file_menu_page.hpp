@@ -12,12 +12,14 @@ public:
     ~FileMenuPage() = default;
 
     void addFileLines();
+    void addDirectoryLines();
     void refreshPage();
+    void onPageLoad() override { refreshPage(); }
 
 private:
 
     void generateFilePage(const std::string& fileName);
 
     std::string parentMenuLbl;
-
+    std::string currentPath;
 };
