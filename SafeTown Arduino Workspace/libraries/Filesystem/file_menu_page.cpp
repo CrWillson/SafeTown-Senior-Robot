@@ -4,6 +4,8 @@
 FileMenuPage::FileMenuPage(const std::string& lbl, const std::string& parentLbl)
     : MenuPage(lbl), parentMenuLbl(parentLbl) 
 {
+    currentPath = "/";
+
     eventManager = &EventManager::getInstance();
     eventManager->subscribe<Event::FileCreatedEvent>([this](const auto& event) {
         this->refreshPage();
@@ -22,7 +24,7 @@ void FileMenuPage::generateFilePage(const std::string& fileName)
 }
 
 
-void FileMenuPage::refreshPage()
+void FileMenuPage::refreshPage(bool forceRefresh)
 {
     clearLines();
 
@@ -34,7 +36,7 @@ void FileMenuPage::refreshPage()
         if (currentPath != "/") {
             size_t pos = currentPath.find_last_of('/', currentPath.length() - 2);
             currentPath = currentPath.substr(0, pos + 1);
-            refreshPage();
+            refreshPage(true);
         } else {
             this->parentMenu->setCurrentPage(parentMenuLbl);
         }
@@ -45,6 +47,10 @@ void FileMenuPage::refreshPage()
     addLine(new SpacerMenuLine());
     addDirectoryLines();
     addFileLines();
+
+    if (forceRefresh) {
+        EventManager::getInstance().publish(Event::PageChangedEvent(getVisibleText()));
+    }
 }
 
 
@@ -56,7 +62,7 @@ void FileMenuPage::addDirectoryLines()
             auto dirName = dir.fileName();
             addLine(new ButtonMenuLine((std::string(dirName.c_str()) + "/").c_str(), [this, dirName]{
                 currentPath += std::string(dirName.c_str()) + "/";
-                refreshPage();
+                refreshPage(true);
             }));
         }
     }

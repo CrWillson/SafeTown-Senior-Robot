@@ -1,5 +1,6 @@
 #pragma once
 
+#include "event_manager.hpp"
 #include <LittleFS.h>
 #include <string>
 #include "menu_page.hpp"
@@ -13,7 +14,7 @@ public:
 
     void addFileLines();
     void addDirectoryLines();
-    void refreshPage();
+    void refreshPage(bool forceRefresh = false);
     void onPageLoad() override { refreshPage(); }
 
 private:
