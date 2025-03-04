@@ -3,7 +3,6 @@
 #include <LittleFS.h>
 #include "menu_page.hpp"
 #include "menu.hpp"
-#include "fs_manager.hpp"
 
 class FileMenuPage;
 
@@ -18,8 +17,6 @@ public:
 private:
     std::string selectedFile;
     std::string parentMenuLbl;
-
-    FSManager* fsManager;
 
     friend class FileMenuPage;
 };

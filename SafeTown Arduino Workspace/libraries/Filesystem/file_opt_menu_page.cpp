@@ -4,9 +4,6 @@
 FileOptMenuPg::FileOptMenuPg(const std::string& lbl, const std::string& parentLbl, const std::string& file)
     : MenuPage(lbl), parentMenuLbl(parentLbl), selectedFile(file) 
 {
-    eventManager = &EventManager::getInstance();
-    fsManager = &FSManager::getInstance();
-
     std::string labelText = "File: " + selectedFile;
     addLine(new TextMenuLine(labelText));
     addLine(new TextMenuLine("----------------"));
@@ -24,11 +21,23 @@ FileOptMenuPg::FileOptMenuPg(const std::string& lbl, const std::string& parentLb
 
 void FileOptMenuPg::onFileDelete()
 {
-    fsManager->deleteFile(selectedFile);
+    if (!LittleFS.remove(selectedFile.c_str())) {
+        Serial.println("Failed to delete file!");
+    }
     parentMenu->setCurrentPage(parentMenuLbl);
 }
 
 void FileOptMenuPg::onFilePrint()
 {
-    fsManager->printFile(selectedFile);
+    File file = LittleFS.open(selectedFile.c_str(), "r");
+    if (!file) {
+        Serial.println("Failed to open file for reading!");
+        return;
+    }
+
+    while (file.available()) {
+        Serial.write(file.read());
+    }
+    file.close();
+    Serial.println("");
 }

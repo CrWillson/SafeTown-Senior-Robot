@@ -1,5 +1,4 @@
 #include "event_manager.hpp"
-#include "fs_manager.hpp"
 #include "display.hpp"
 #include "user_input.hpp"
 #include "esp32_input.hpp"
@@ -106,7 +105,6 @@ State oldState = State::STOPPED;
 
 EventManager& eventManager = EventManager::getInstance();
 ESP32& esp32 = ESP32::getInstance(); 
-FSManager& fsmanager = FSManager::getInstance();
 UIManager& uimanager = UIManager::getInstance();
 Display display;
 SrMenu menu;
@@ -117,6 +115,11 @@ void setup1() {
 
 void setup() {
   Serial.begin(115200);
+
+  if (!LittleFS.begin()) {
+    Serial.println("LittleFS failed to mount!");
+    return;
+  }
 
   pinMode(START, INPUT);
   pinMode(STOP, INPUT);
@@ -136,8 +139,7 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(START), startISR, RISING);
   attachInterrupt(digitalPinToInterrupt(STOP), haltISR, RISING);
 
-  esp32.init();
-  fsmanager.init();
+  esp32.init("/images/");
   uimanager.init();
   menu.init();
   display.init();
