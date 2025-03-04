@@ -39,7 +39,7 @@ void Menu::addPage(MenuPage* page)
 void Menu::setCurrentPage(const std::string &label)
 {
     if (allPages.find(label) != allPages.end()) {
-        currentPage->onPageExit();
+        if (currentPage) currentPage->onPageExit();
         currentPage = allPages.at(label).get();
         currentPage->onPageLoad();
 

@@ -5,6 +5,21 @@ FileMenuPage::FileMenuPage(const std::string& lbl, const std::string& parentLbl)
     : MenuPage(lbl), parentMenuLbl(parentLbl) 
 {
     currentPath = "/";
+
+    std::string displayPath = (currentPath == "/") ? "root/" : currentPath.substr(currentPath.find_last_of('/', currentPath.length() - 2) + 1);
+    addLine(new TextMenuLine(displayPath.c_str()));
+    addLine(new SpacerMenuLine());
+
+    addLine(new ButtonMenuLine("Back", [this]{
+        if (currentPath != "/") {
+            size_t pos = currentPath.find_last_of('/', currentPath.length() - 2);
+            currentPath = currentPath.substr(0, pos + 1);
+            this->parentMenu->setCurrentPage(label);    // set the current page to itself to refresh the page
+        } else {
+            this->parentMenu->setCurrentPage(parentMenuLbl);
+        }
+    }));
+    addLine(new SpacerMenuLine());
 }
 
 

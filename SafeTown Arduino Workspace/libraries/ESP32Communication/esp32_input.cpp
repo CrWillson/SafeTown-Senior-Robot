@@ -1,4 +1,5 @@
 #include "esp32_input.hpp"
+#include "communication_types.hpp"
 
 void ESP32::init(const std::string& imagedir)
 {
@@ -38,12 +39,38 @@ void ESP32::sendPacket(const EspCommand cmd, const char* lbl, const int16_t d)
 
 EspToPicoPacket ESP32::receivePacket()
 {
-    EspToPicoPacket packet;
-
-    if (Serial1.available()) {
-        Serial1.readBytes((char*)&packet, sizeof(EspToPicoPacket));
+    // Check the available byte to see if it matches a packet type
+    bool startFound = false;
+    while (!startFound) {
+        if (Serial1.available() > 0) {
+            if (Serial1.peek() == EspPacketType::BASIC_PACKET || Serial1.peek() == EspPacketType::IMAGE_PACKET) {
+                startFound = true;
+            } else {
+                Serial1.read(); // Discard the byte
+            }
+        }
     }
+    
+    Serial.println("Found start of packet. Reading contents");
+    
+    EspToPicoPacket packet;
+    unsigned long startTime = millis();
+    while (millis() - startTime < 1000) {
+        if (Serial1.available() >= sizeof(EspToPicoPacket)) {
+            Serial1.readBytes((char*)&packet, sizeof(EspToPicoPacket));
+            break;
+        }
+    }
+
+    Serial.print("Packet Type: ");
+    Serial.print(packet.packetType);
+    Serial.print(" White Dist: ");
+    Serial.print(packet.whiteDist);
+    Serial.print(" Stop Detected: ");
+    Serial.println(packet.stopDetected);
+
     if (packet.packetType == EspPacketType::IMAGE_PACKET) {
+        Serial.println("Received image packet");
         // Read in 96*96*2 more bytes for the image
         uint16_t image[96][96];
         Serial1.readBytes((char*)image, sizeof(image));

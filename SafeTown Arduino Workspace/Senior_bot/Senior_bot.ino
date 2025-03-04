@@ -109,6 +109,8 @@ UIManager& uimanager = UIManager::getInstance();
 Display display;
 SrMenu menu;
 
+long START_TIME;
+
 void setup1() {
   eventManager.processEvents();
 }
@@ -148,29 +150,44 @@ void setup() {
 
   left_motor.begin();
   right_motor.begin();
+
+  START_TIME = millis();
+  Serial.print("Start time: ");
+  Serial.println(START_TIME);
 }
+
+
 
 void loop() {
 
-  if(Serial1.available()) {
-    String str = Serial1.readStringUntil('\n');
-  
-    stop_detected = str[1]   == '1';
-    hold_stop_detect = stop_detected || hold_stop_detect;
-    //car_detected = str[0] == '1';
-    dist = 0;
-    for (int i = 2; i < 10; i++) {
-      dist = (dist << 1) | (str[i] - '0');
-    }
-    dist = -dist;
+  // Wait for the ESP32 to boot up
+  if (millis() > START_TIME + 1500) {
+    auto packet = esp32.receivePacket();
+    
+    dist = packet.whiteDist;
+    stop_detected = packet.stopDetected;
 
-    auto distUpdate = Event::ValueChangedEvent("whiteDist", std::to_string(dist));
-    eventManager.publish(distUpdate);
-
-    std::string stop_str = (stop_detected) ? "T" : "F";
-    auto stopUpdate = Event::ValueChangedEvent("stopDetect", stop_str);
-    eventManager.publish(stopUpdate);
   }
+
+  // if(Serial1.available()) {
+  //   String str = Serial1.readStringUntil('\n');
+  
+  //   stop_detected = str[1]   == '1';
+  //   hold_stop_detect = stop_detected || hold_stop_detect;
+  //   //car_detected = str[0] == '1';
+  //   dist = 0;
+  //   for (int i = 2; i < 10; i++) {
+  //     dist = (dist << 1) | (str[i] - '0');
+  //   }
+  //   dist = -dist;
+
+  auto distUpdate = Event::ValueChangedEvent("whiteDist", std::to_string(dist));
+  eventManager.publish(distUpdate);
+
+  std::string stop_str = (stop_detected) ? "T" : "F";
+  auto stopUpdate = Event::ValueChangedEvent("stopDetect", stop_str);
+  eventManager.publish(stopUpdate);
+  // }
   
   stateLEDs(state);
   switch (state) {
