@@ -76,6 +76,8 @@ bool ESP32::receiveAck(const char label[6], unsigned long timeout)
             AckPacket packet;
             Serial1.readBytes((char*)&packet, sizeof(AckPacket));
             if (packet.ack && strcmp(packet.label, label) == 0) {
+                Serial.print("Received ack for: ");
+                Serial.println(packet.label);
                 return true;
             }
         }

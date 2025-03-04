@@ -26,14 +26,17 @@ enum EspPacketType : char {
 
 struct EspToPicoPacket
 {
-    EspPacketType packetType;
+    static constexpr EspPacketType packetType = BASIC_PACKET;
     int8_t whiteDist;
     bool stopDetected;
 };
 
+
 struct EspToPicoPacketImage
 {
-    EspToPicoPacket packet;
+    static constexpr EspPacketType packetType = IMAGE_PACKET;
+    int8_t whiteDist;
+    bool stopDetected;
     uint16_t image[96][96];
 };
 
