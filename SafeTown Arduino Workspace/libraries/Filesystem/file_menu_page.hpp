@@ -14,8 +14,10 @@ public:
 
     void addFileLines();
     void addDirectoryLines();
-    void refreshPage(bool forceRefresh = false);
-    void onPageLoad() override { refreshPage(); }
+    // void refreshPage(bool forceRefresh = false);
+
+    void onPageLoad() override;
+    void onPageExit() override;
 
 private:
 

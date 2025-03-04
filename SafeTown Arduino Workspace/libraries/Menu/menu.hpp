@@ -21,7 +21,6 @@ public:
 
     void addPage(MenuPage* page);
     void setCurrentPage(const std::string& label);
-    void setCurrentPage(MenuPage* page);
 
     void onScrollUp(const Event::Event& e);
     void onScrollDown(const Event::Event& e);

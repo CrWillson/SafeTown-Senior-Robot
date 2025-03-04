@@ -26,6 +26,7 @@ public:
 
     virtual bool onValueChange(const Event::ValueChangedEvent& e);
     virtual void onPageLoad();
+    virtual void onPageExit() { /* do nothing */}
     virtual bool onValueRequested(const std::string& reqLabel);
 
     virtual void scrollUp();

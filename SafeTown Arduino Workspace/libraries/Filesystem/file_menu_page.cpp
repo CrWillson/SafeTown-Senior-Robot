@@ -5,14 +5,6 @@ FileMenuPage::FileMenuPage(const std::string& lbl, const std::string& parentLbl)
     : MenuPage(lbl), parentMenuLbl(parentLbl) 
 {
     currentPath = "/";
-
-    eventManager = &EventManager::getInstance();
-    eventManager->subscribe<Event::FileCreatedEvent>([this](const auto& event) {
-        this->refreshPage();
-    });
-    eventManager->subscribe<Event::FileDeletedEvent>([this](const auto& event) {
-        this->refreshPage();
-    }); 
 }
 
 
@@ -24,8 +16,14 @@ void FileMenuPage::generateFilePage(const std::string& fileName)
 }
 
 
-void FileMenuPage::refreshPage(bool forceRefresh)
+void FileMenuPage::onPageLoad()
 {
+    addDirectoryLines();
+    addFileLines();
+}
+
+void FileMenuPage::onPageExit()
+{   
     clearLines();
 
     std::string displayPath = (currentPath == "/") ? "root/" : currentPath.substr(currentPath.find_last_of('/', currentPath.length() - 2) + 1);
@@ -36,23 +34,13 @@ void FileMenuPage::refreshPage(bool forceRefresh)
         if (currentPath != "/") {
             size_t pos = currentPath.find_last_of('/', currentPath.length() - 2);
             currentPath = currentPath.substr(0, pos + 1);
-            refreshPage(true);
+            this->parentMenu->setCurrentPage(label);    // set the current page to itself to refresh the page
         } else {
             this->parentMenu->setCurrentPage(parentMenuLbl);
         }
     }));
-    addLine(new ButtonMenuLine("Refresh List", [this]{
-        this->refreshPage();
-    }));
     addLine(new SpacerMenuLine());
-    addDirectoryLines();
-    addFileLines();
-
-    if (forceRefresh) {
-        EventManager::getInstance().publish(Event::PageChangedEvent(getVisibleText()));
-    }
 }
-
 
 void FileMenuPage::addDirectoryLines()
 {
@@ -62,7 +50,7 @@ void FileMenuPage::addDirectoryLines()
             auto dirName = dir.fileName();
             addLine(new ButtonMenuLine((std::string(dirName.c_str()) + "/").c_str(), [this, dirName]{
                 currentPath += std::string(dirName.c_str()) + "/";
-                refreshPage(true);
+                this->parentMenu->setCurrentPage(label);    // set the current page to itself to refresh the page
             }));
         }
     }
