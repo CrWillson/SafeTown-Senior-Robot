@@ -16,13 +16,8 @@ public:
         return instance;
     }
 
-    struct Packet {
-        int8_t whiteDistance;
-        bool stopDetected;
-    };
-
     void sendPacket(const EspCommand cmd, const char* lbl, const int16_t d);
-    Packet receivePacket();
+    EspToPicoPacket receivePacket();
     bool receiveAck(const char label[6], unsigned long timeout = 1000);
 
     void init(const std::string& imagedir);
@@ -39,8 +34,8 @@ private:
     bool _spaceAvailable(uint32_t numBytes, uint32_t bufferSpace = 0);
     uint8_t _getNextImgNumber();
 
-    Packet _processBasicPacket();
-    Packet _processImagePacket();
+    // Packet _processBasicPacket();
+    // Packet _processImagePacket();
 
     EventManager* eventManager;
 

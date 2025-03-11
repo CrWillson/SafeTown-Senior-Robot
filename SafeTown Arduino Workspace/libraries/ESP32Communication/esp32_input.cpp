@@ -40,7 +40,7 @@ void ESP32::sendPacket(const EspCommand cmd, const char* lbl, const int16_t d)
     }
 }
 
-ESP32::Packet ESP32::receivePacket()
+EspToPicoPacket ESP32::receivePacket()
 {
     // check for the SYNC_BYTES
     bool syncFound = false;
@@ -56,23 +56,54 @@ ESP32::Packet ESP32::receivePacket()
     }
     
     Serial.println("Found start of packet. Reading contents");
+    
+    EspToPicoPacket packet;
 
-    // Get the type of packet (first byte of incoming packet)
-    const PacketType packetType = static_cast<PacketType>(Serial1.peek());
-    Serial.print("Found packet of type: ");
+    unsigned long startTime = millis();
+    while (millis() - startTime < 1000) {
+        if (Serial1.available() >= sizeof(EspToPicoPacket)) {
+            Serial1.readBytes((char*)&packet, sizeof(EspToPicoPacket));
+            break;
+        }
+    }
 
-    switch(packetType) {
-    case (BASIC_PACKET):
-        return _processBasicPacket();
+    Serial.print("Packet Type: ");
+    Serial.print(packet.packetType);
+    Serial.print(" White Dist: ");
+    Serial.print(packet.whiteDist);
+    Serial.print(" Stop Detected: ");
+    Serial.println(packet.stopDetected);
 
-    case (IMAGE_PACKET):
-        return _processImagePacket();    
+    // Check if an image is incoming and save it
+    if (packet.imageIncluded) {
+        Serial.println("Image included. Waiting for 96x96x2 bytes to save...");
 
-    default:
-        return {0, false};
-        break;
-    };
+        // Read in packet.numImgBytes more bytes and save it to a file
+        uint16_t image[IMAGE_ROWS][IMAGE_COLS];
+        Serial1.readBytes((char*)image, sizeof(image));
 
+        // Skip saving the photo if no space is available
+        if (!_spaceAvailable(IMAGE_SIZE)) {
+            return packet;
+        }
+
+        std::string fileName = imageDir + imagePrefix + std::to_string(imageNumber) + imageSuffix;
+        File file = LittleFS.open(fileName.c_str(), "w");
+        if (!file) {
+            Serial.println("Failed to open file for writing");
+            return packet;
+        }
+
+        Serial.print("Saving image to file: ");
+        Serial.println(fileName.c_str());
+
+        file.write((uint8_t*)image, sizeof(image));
+        file.close();
+
+        imageNumber++;
+    }
+    
+    return packet;
 }
 
 bool ESP32::receiveAck(const char label[6], unsigned long timeout)
@@ -149,72 +180,4 @@ uint8_t ESP32::_getNextImgNumber()
     }
 
     return maxIndex + 1;
-}
-
-ESP32::Packet ESP32::_processBasicPacket()
-{
-    Serial.println("BASIC");
-
-    EspToPicoPacket basicPacket;
-    unsigned long startTime = millis();
-    while (millis() - startTime < 1000) {
-        if (Serial1.available() >= sizeof(EspToPicoPacket)) {
-            Serial1.readBytes((char*)&basicPacket, sizeof(EspToPicoPacket));
-            break;
-        }
-    }
-
-    Serial.print("Packet Type: ");
-    Serial.print(basicPacket.packetType);
-    Serial.print(" White Dist: ");
-    Serial.print(basicPacket.whiteDist);
-    Serial.print(" Stop Detected: ");
-    Serial.println(basicPacket.stopDetected);
-
-    return {basicPacket.whiteDist, basicPacket.stopDetected};
-}
-
-ESP32::Packet ESP32::_processImagePacket()
-{
-    Serial.println("IMAGE");
-
-    EspToPicoPacketImage imagePacket;
-    unsigned long startTime = millis();
-    while (millis() - startTime < 1000) {
-        if (Serial1.available() >= sizeof(EspToPicoPacketImage)) {
-            Serial1.readBytes((char*)&imagePacket, sizeof(EspToPicoPacketImage));
-            break;
-        }
-    }
-
-    Serial.print("Packet Type: ");
-    Serial.print(imagePacket.packetType);
-    Serial.print(" White Dist: ");
-    Serial.print(imagePacket.whiteDist);
-    Serial.print(" Stop Detected: ");
-    Serial.println(imagePacket.stopDetected);
-
-    // Read in packet.numImgBytes more bytes and save it to a file
-    uint16_t image[IMAGE_ROWS][IMAGE_COLS];
-    Serial1.readBytes((char*)image, sizeof(image));
-
-    // Skip saving the photo if no space is available
-    if (!_spaceAvailable(IMAGE_SIZE)) {
-        return {imagePacket.whiteDist, imagePacket.stopDetected};
-    }
-
-    std::string fileName = imageDir + imagePrefix + std::to_string(imageNumber) + imageSuffix;
-    File file = LittleFS.open(fileName.c_str(), "w");
-    if (!file) {
-        Serial.println("Failed to open file for writing");
-        return {imagePacket.whiteDist, imagePacket.stopDetected};
-    }
-
-    Serial.print("Saving image to file: ");
-    Serial.println(fileName.c_str());
-
-    file.write((uint8_t*)image, sizeof(image));
-    file.close();
-    
-    return {imagePacket.whiteDist, imagePacket.stopDetected};
 }

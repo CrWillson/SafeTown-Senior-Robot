@@ -17,10 +17,9 @@ enum EspCommand : uint8_t {
 };
 
 enum PacketType : uint8_t {
-    BASIC_PACKET = 0x01,
-    IMAGE_PACKET = 0x02,
-    COMMAND_PACKET = 0x03,
-    ACK_PACKET = 0x04
+    ESP_PACKET = 0x01,
+    COMMAND_PACKET = 0x02,
+    ACK_PACKET = 0x03
 };
 
 static constexpr uint32_t SYNC_BYTES = 0xF90D63EE;
@@ -29,21 +28,15 @@ static constexpr uint32_t SYNC_BYTES = 0xF90D63EE;
 
 struct EspToPicoPacket
 {
-    const PacketType packetType = BASIC_PACKET;
+    PacketType packetType = ESP_PACKET;
     int8_t whiteDist;
     bool stopDetected;
-};
-
-struct EspToPicoPacketImage
-{
-    const PacketType packetType = IMAGE_PACKET;
-    int8_t whiteDist;
-    bool stopDetected;
+    bool imageIncluded;
 };
 
 struct PicoToEspPacket
 {
-    const PacketType packetType = COMMAND_PACKET;
+    PacketType packetType = COMMAND_PACKET;
     EspCommand command;
     char label[6];
     int16_t data;
@@ -51,7 +44,7 @@ struct PicoToEspPacket
 
 struct AckPacket
 {
-    const PacketType packetType = ACK_PACKET;
+    PacketType packetType = ACK_PACKET;
     bool ack;
     char label[6];
 };
