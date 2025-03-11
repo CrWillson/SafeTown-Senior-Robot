@@ -12,38 +12,38 @@
 #include <string>
 
 enum EspCommand : uint8_t {
-    CMD_REQUEST_IMAGE = 1,
-    CMD_SET_PARAM = 2
+    CMD_REQUEST_IMAGE = 0x01,
+    CMD_SET_PARAM = 0x02
 };
 
-enum EspPacketType : uint8_t {
-    IMAGE_PACKET = 0x55,
-    BASIC_PACKET = 0xAA
+enum PacketType : uint8_t {
+    BASIC_PACKET = 0x01,
+    IMAGE_PACKET = 0x02,
+    COMMAND_PACKET = 0x03,
+    ACK_PACKET = 0x04
 };
 
-static constexpr uint8_t SYNC_BYTE = 0xDB;
-
+static constexpr uint32_t SYNC_BYTES = 0xF90D63EE;
 
 #pragma pack(push, 1)   // Remove padding from structs for consistent memory layout
 
 struct EspToPicoPacket
 {
-    EspPacketType packetType;
+    const PacketType packetType = BASIC_PACKET;
     int8_t whiteDist;
     bool stopDetected;
 };
 
-
 struct EspToPicoPacketImage
 {
-    EspPacketType packetType;
+    const PacketType packetType = IMAGE_PACKET;
     int8_t whiteDist;
     bool stopDetected;
-    uint16_t image[96][96];
 };
 
 struct PicoToEspPacket
 {
+    const PacketType packetType = COMMAND_PACKET;
     EspCommand command;
     char label[6];
     int16_t data;
@@ -51,7 +51,9 @@ struct PicoToEspPacket
 
 struct AckPacket
 {
+    const PacketType packetType = ACK_PACKET;
     bool ack;
     char label[6];
 };
+
 #pragma pack(pop)

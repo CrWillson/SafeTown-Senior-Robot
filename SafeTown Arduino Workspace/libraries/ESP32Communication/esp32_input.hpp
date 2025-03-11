@@ -16,8 +16,13 @@ public:
         return instance;
     }
 
+    struct Packet {
+        int8_t whiteDistance;
+        bool stopDetected;
+    };
+
     void sendPacket(const EspCommand cmd, const char* lbl, const int16_t d);
-    EspToPicoPacket receivePacket();
+    Packet receivePacket();
     bool receiveAck(const char label[6], unsigned long timeout = 1000);
 
     void init(const std::string& imagedir);
@@ -31,15 +36,22 @@ private:
     ESP32(const ESP32&) = delete;
     ESP32& operator=(const ESP32&) = delete;
 
+    bool _spaceAvailable(uint32_t numBytes, uint32_t bufferSpace = 0);
+    uint8_t _getNextImgNumber();
+
+    Packet _processBasicPacket();
+    Packet _processImagePacket();
+
     EventManager* eventManager;
 
     std::string imageDir;
+    std::string imagePrefix = "image";
+    std::string imageSuffix = ".bin";
+    uint8_t imageNumber;
 
-    uint8_t imageCount = 0;
-
-    // TODO: Update to dynamically not allow more than a certain percentage of the total memory to be used
-    // FSInfo fs_info;
-    // LittleFS.info(fs_info);
-    static constexpr uint8_t MAX_IMAGE_COUNT = 10;     // Set to limit the number of images it can save to the local FS
+    static constexpr uint8_t IMAGE_ROWS = 96;
+    static constexpr uint8_t IMAGE_COLS = 96;
+    static constexpr uint8_t IMAGE_BPP  = 2;
+    static constexpr uint16_t IMAGE_SIZE = IMAGE_ROWS * IMAGE_COLS * IMAGE_BPP;
 
 };

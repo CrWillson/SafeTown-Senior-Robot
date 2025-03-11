@@ -164,7 +164,7 @@ void loop() {
   if (millis() > START_TIME + 1500) {
     auto packet = esp32.receivePacket();
     
-    dist = packet.whiteDist;
+    dist = packet.whiteDistance;
     stop_detected = packet.stopDetected;
 
   }
