@@ -6,7 +6,14 @@ FileOptMenuPg::FileOptMenuPg(const std::string& lbl, const std::string& parentLb
 {
     std::string labelText = "File: " + selectedFile;
     addLine(new TextMenuLine(labelText));
-    addLine(new TextMenuLine("----------------"));
+    addLine(new SpacerMenuLine());
+
+    File fileObj = LittleFS.open(selectedFile.c_str(), "r");
+    uint16_t fileSize = fileObj.size();
+    fileObj.close();
+    addLine(new TextMenuLine("Size: " + std::to_string(fileSize) + " B"));
+    addLine(new SpacerMenuLine());
+
     addLine(new ButtonMenuLine(" Cancel", [this]{
         this->parentMenu->setCurrentPage(parentMenuLbl);
     }));
@@ -39,5 +46,4 @@ void FileOptMenuPg::onFilePrint()
         Serial.write(file.read());
     }
     file.close();
-    Serial.println("");
 }

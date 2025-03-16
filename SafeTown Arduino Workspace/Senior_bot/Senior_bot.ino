@@ -151,9 +151,10 @@ void setup() {
   left_motor.begin();
   right_motor.begin();
 
-  START_TIME = millis();
   Serial.print("Start time: ");
   Serial.println(START_TIME);
+
+  delay(3000);
 }
 
 
@@ -161,13 +162,13 @@ void setup() {
 void loop() {
 
   // Wait for the ESP32 to boot up
-  if (millis() > START_TIME + 1500) {
-    auto packet = esp32.receivePacket();
-    
-    dist = packet.whiteDist;
-    stop_detected = packet.stopDetected;
+  Serial.println("Waiting for packet");
+  auto packet = esp32.receivePacket();
+  
+  dist = packet.whiteDist;
+  dist = -dist;
+  stop_detected = packet.stopDetected;
 
-  }
 
   // if(Serial1.available()) {
   //   String str = Serial1.readStringUntil('\n');
@@ -196,7 +197,7 @@ void loop() {
       leftTurnSig = false;
       rightTurnSig = false;
       //maps the dist factor to the turn radius and adjust    
-      error = map_pos(dist) - center;
+      error = map_pos(-dist) - center;
 
       pos = center + pid_controller(error);
       steer.write(pos);

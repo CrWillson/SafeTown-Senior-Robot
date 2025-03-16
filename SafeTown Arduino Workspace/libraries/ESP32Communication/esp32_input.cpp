@@ -5,7 +5,7 @@
 void ESP32::init(const std::string& imagedir)
 {
     Serial1.setPollingMode(true);
-    Serial1.begin(500000);  //serial for the UART connection to the ESP32 CAM
+    Serial1.begin(115200);  //serial for the UART connection to the ESP32 CAM
 
     eventManager = &EventManager::getInstance();
     eventManager->subscribe<Event::ValueChangedEvent>([this](const auto& event) {
@@ -15,7 +15,7 @@ void ESP32::init(const std::string& imagedir)
     imageDir = imagedir;
     LittleFS.mkdir(imageDir.c_str());
 
-    imageNumber = _getNextImgNumber();
+    imageNumber = 0;
 }
 
 void ESP32::sendPacket(const EspCommand cmd, const char* lbl, const int16_t d)
@@ -45,17 +45,15 @@ EspToPicoPacket ESP32::receivePacket()
     // check for the SYNC_BYTES
     bool syncFound = false;
     uint32_t syncBuffer = 0;
-    while (true) {
+    while (!syncFound) {
         if (Serial1.available() > 0) {
             uint8_t newByte = Serial1.read();
-            syncBuffer = (syncBuffer << 8) | newByte;
+            syncBuffer = (syncBuffer >> 8) | (newByte << 24);
             if (syncBuffer == SYNC_BYTES) {
                 syncFound = true;
             }
         }
     }
-    
-    Serial.println("Found start of packet. Reading contents");
     
     EspToPicoPacket packet;
 
@@ -67,40 +65,71 @@ EspToPicoPacket ESP32::receivePacket()
         }
     }
 
-    Serial.print("Packet Type: ");
-    Serial.print(packet.packetType);
-    Serial.print(" White Dist: ");
-    Serial.print(packet.whiteDist);
-    Serial.print(" Stop Detected: ");
-    Serial.println(packet.stopDetected);
-
     // Check if an image is incoming and save it
     if (packet.imageIncluded) {
-        Serial.println("Image included. Waiting for 96x96x2 bytes to save...");
+        Serial.println("Image incoming. Waiting for 96x96x2 bytes to save...");
 
-        // Read in packet.numImgBytes more bytes and save it to a file
-        uint16_t image[IMAGE_ROWS][IMAGE_COLS];
-        Serial1.readBytes((char*)image, sizeof(image));
-
+        // Serial1.readBytes(imageBuffer, IMAGE_SIZE);
+        // int index = 0;
+        // while (index < IMAGE_SIZE) {
+        //     if (Serial1.available()) {
+        //         imageBuffer[index++] = Serial1.read();
+        //     }
+        // }
+        
         // Skip saving the photo if no space is available
         if (!_spaceAvailable(IMAGE_SIZE)) {
+            Serial.println("No space available. Not saving image");
             return packet;
         }
-
+        
         std::string fileName = imageDir + imagePrefix + std::to_string(imageNumber) + imageSuffix;
         File file = LittleFS.open(fileName.c_str(), "w");
         if (!file) {
             Serial.println("Failed to open file for writing");
             return packet;
         }
-
-        Serial.print("Saving image to file: ");
+        Serial.print("Opening file: ");
         Serial.println(fileName.c_str());
 
-        file.write((uint8_t*)image, sizeof(image));
-        file.close();
+        // Read in an entire line until and including a newline char
+        Serial.println("|------------------------------------------------------------------------------------------------|");
+        Serial.print("|");
+        for (int i = 0; i < IMAGE_ROWS; i++) {
+            String line = Serial1.readStringUntil('\n');
+            file.println(line);
+            // Serial.println(line);
+            Serial.print(".");
+        }
+        Serial.println("");
 
+        file.close();
         imageNumber++;
+        Serial.print("Saved image as: ");
+        Serial.println(fileName.c_str());
+
+        // for (int y = 0; y < IMAGE_ROWS; y++) {
+        //     for (int x = 0; x < IMAGE_COLS; x++) {
+        //         uint8_t byte1 = Serial1.read();
+        //         uint8_t byte2 = Serial1.read();
+        //         uint16_t pixel = (byte1 << 8) | byte2;
+
+        //         Serial.print("Read pixel: ");
+        //         Serial.println(pixel, HEX);
+
+        //         image[y][x] = pixel;
+        //     }
+        // }
+
+
+
+        // Serial.print("Saving image to file: ");
+        // Serial.println(fileName.c_str());
+
+        // file.write((uint8_t*)image, sizeof(image));
+        // file.close();
+
+        // imageNumber++;
     }
     
     return packet;
@@ -145,9 +174,9 @@ bool ESP32::_spaceAvailable(uint32_t numBytes, uint32_t bufferSpace)
     const uint32_t usedBytes = fs_info.usedBytes;
     const uint32_t remainingBytes = totalBytes - usedBytes - bufferSpace;
 
-    Serial.printf("Total size: %u bytes\n", totalBytes);
-    Serial.printf("Used size: %u bytes\n", usedBytes);
-    Serial.printf("Free space: %u bytes\n", remainingBytes);
+    // Serial.printf("Total size: %u bytes\n", totalBytes);
+    // Serial.printf("Used size: %u bytes\n", usedBytes);
+    // Serial.printf("Free space: %u bytes\n", remainingBytes);
 
     return remainingBytes > numBytes;
 }

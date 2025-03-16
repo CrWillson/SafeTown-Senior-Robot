@@ -49,4 +49,5 @@ private:
     static constexpr uint8_t IMAGE_BPP  = 2;
     static constexpr uint16_t IMAGE_SIZE = IMAGE_ROWS * IMAGE_COLS * IMAGE_BPP;
 
+    char imageBuffer[96*96*4];
 };
