@@ -7,6 +7,7 @@
 class SrMenu : public Menu {
 protected:
     inline void buildMenu() override {
+        // HOME PAGE
         addPage(new MenuPage("Home"));
         allPages.at("Home")->addLine(new TextMenuLine("Home Page"));
         allPages.at("Home")->addLine(new TextMenuLine("Sr Robot Menu"));
@@ -21,6 +22,7 @@ protected:
             this->setCurrentPage("FileMenu"); 
         }));
         
+        // SENSOR READINGS PAGE
         addPage(new MenuPage("Sensors"));
         allPages.at("Sensors")->addLine(new TextMenuLine("Sensor Values"));
         allPages.at("Sensors")->addLine(new SpacerMenuLine());
@@ -30,8 +32,11 @@ protected:
             this->setCurrentPage("Home"); 
         }));
 
+        // FILE SYSTEM PAGES
         addPage(new FileMenuPage("FileMenu", "Home"));
+        addPage(new FileStatPage("FileStats", "Home"));
 
+        // ESP32 CONTROL MAIN PAGE
         addPage(new MenuPage("ESP32"));
         allPages.at("ESP32")->addLine(new TextMenuLine("ESP32 Settings"));
         allPages.at("ESP32")->addLine(new SpacerMenuLine());
@@ -42,6 +47,7 @@ protected:
             this->setCurrentPage("Home"); 
         }));
 
+        // ESP32 PARAMETER EDIT PAGE
         addPage(new MenuPage("ESP32Params"));
         allPages.at("ESP32Params")->addLine(new TextMenuLine("ESP32 Parameters"));
         allPages.at("ESP32Params")->addLine(new SpacerMenuLine());
@@ -53,8 +59,6 @@ protected:
         allPages.at("ESP32Params")->addLine(new ButtonMenuLine("Back", [this]{ 
             this->setCurrentPage("ESP32"); 
         }));
-        
-
         
 
     }
