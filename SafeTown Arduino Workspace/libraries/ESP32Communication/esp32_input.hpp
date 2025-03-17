@@ -18,7 +18,6 @@ public:
 
     void sendPacket(const EspCommand cmd, const char* lbl, const int16_t d);
     EspToPicoPacket receivePacket();
-    bool receiveAck(const char label[6], unsigned long timeout = 1000);
 
     void init(const std::string& imagedir);
 
@@ -32,10 +31,6 @@ private:
     ESP32& operator=(const ESP32&) = delete;
 
     bool _spaceAvailable(uint32_t numBytes, uint32_t bufferSpace = 0);
-    uint8_t _getNextImgNumber();
-
-    // Packet _processBasicPacket();
-    // Packet _processImagePacket();
 
     EventManager* eventManager;
 
@@ -48,6 +43,4 @@ private:
     static constexpr uint8_t IMAGE_COLS = 96;
     static constexpr uint8_t IMAGE_BPP  = 2;
     static constexpr uint16_t IMAGE_SIZE = IMAGE_ROWS * IMAGE_COLS * IMAGE_BPP;
-
-    char imageBuffer[96*96*4];
 };

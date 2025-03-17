@@ -2,7 +2,8 @@
 
 #include "menu.hpp"
 #include "file_menu_page.hpp"
-#include "menu_line.hpp"
+#include "file_stats_page.hpp"
+#include "esp32_input.hpp"
 
 class SrMenu : public Menu {
 protected:
@@ -20,6 +21,9 @@ protected:
         }));
         allPages.at("Home")->addLine(new ButtonMenuLine("File explorer", [this]{ 
             this->setCurrentPage("FileMenu"); 
+        }));
+        allPages.at("Home")->addLine(new ButtonMenuLine("File stats", [this]{ 
+            this->setCurrentPage("FileStats"); 
         }));
         
         // SENSOR READINGS PAGE
@@ -40,6 +44,9 @@ protected:
         addPage(new MenuPage("ESP32"));
         allPages.at("ESP32")->addLine(new TextMenuLine("ESP32 Settings"));
         allPages.at("ESP32")->addLine(new SpacerMenuLine());
+        allPages.at("ESP32")->addLine(new ButtonMenuLine("Take Photo", []{ 
+            ESP32::getInstance().sendPacket(EspCommand::CMD_REQUEST_IMAGE, "", 0); 
+        }));
         allPages.at("ESP32")->addLine(new ButtonMenuLine("Edit Parameters", [this]{ 
             this->setCurrentPage("ESP32Params"); 
         }));
