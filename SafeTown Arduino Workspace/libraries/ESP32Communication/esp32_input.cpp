@@ -1,5 +1,6 @@
 #include "esp32_input.hpp"
 #include "communication_types.hpp"
+#include "debug_logger.hpp"
 #include <vector>
 
 void ESP32::init(const std::string& imagedir)
@@ -26,9 +27,7 @@ void ESP32::sendPacket(const EspCommand cmd, const char* lbl, const int16_t d)
     packet.label[sizeof(packet.label) - 1] = '\0'; // Ensure null-termination
     packet.data = d;
 
-    Serial.println("Sending packet:");
-    Serial.write((uint8_t*)&packet, sizeof(PicoToEspPacket));
-    Serial.println("");
+    LOGLN("Sending packet");
 
     Serial1.write((uint8_t*)&SYNC_BYTES, sizeof(SYNC_BYTES));
     Serial1.write((uint8_t*)&packet, sizeof(PicoToEspPacket));
@@ -62,38 +61,38 @@ EspToPicoPacket ESP32::receivePacket()
 
     // Check if an image is incoming and save it
     if (packet.imageIncluded) {
-        Serial.println("Image incoming. Waiting for 96x96x2 bytes to save...");
+        LOGLN("Image incoming. Waiting for 96x96x2 bytes to save...");
         
         // Skip saving the photo if no space is available
         if (!_spaceAvailable(IMAGE_SIZE)) {
-            Serial.println("No space available. Not saving image");
+            LOGLN("No space available. Not saving image");
             return packet;
         }
         
         std::string fileName = imageDir + imagePrefix + std::to_string(imageNumber) + imageSuffix;
         File file = LittleFS.open(fileName.c_str(), "w");
         if (!file) {
-            Serial.println("Failed to open file for writing");
+            LOGLN("Failed to open file for writing");
             return packet;
         }
-        Serial.print("Opening file: ");
-        Serial.println(fileName.c_str());
+        LOG("Opening file: ");
+        LOGLN(fileName.c_str());
 
         // Read in an entire line until and including a newline char
-        Serial.println("|------------------------------------------------------------------------------------------------|");
-        Serial.print("|");
+        LOGLN("|------------------------------------------------------------------------------------------------|");
+        LOG("|");
         for (int i = 0; i < IMAGE_ROWS; i++) {
             String line = Serial1.readStringUntil('\n');
             file.println(line);
             // Serial.println(line);
-            Serial.print(".");
+            LOG(".");
         }
-        Serial.println("");
+        LOGLN("");
 
         file.close();
         imageNumber++;
-        Serial.print("Saved image as: ");
-        Serial.println(fileName.c_str());
+        LOG("Saved image as: ");
+        LOGLN(fileName.c_str());
 
     }
     

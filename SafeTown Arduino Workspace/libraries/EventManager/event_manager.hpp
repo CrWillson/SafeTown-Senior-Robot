@@ -2,6 +2,7 @@
 #define EVENTMANAGER_HPP
 
 #include "event_types.hpp"
+#include "debug_logger.hpp"
 
 #include <functional>
 #include <vector>

@@ -1,3 +1,5 @@
+#define ENABLE_DEBUG_LOGGING
+#include "debug_logger.hpp"
 #include "event_manager.hpp"
 #include "display.hpp"
 #include "user_input.hpp"
@@ -119,7 +121,7 @@ void setup() {
   Serial.begin(115200);
 
   if (!LittleFS.begin()) {
-    Serial.println("LittleFS failed to mount!");
+    LOGLN("LittleFS failed to mount!");
     return;
   }
 
@@ -151,8 +153,8 @@ void setup() {
   left_motor.begin();
   right_motor.begin();
 
-  Serial.print("Start time: ");
-  Serial.println(START_TIME);
+  LOG("Start time: ");
+  LOGLN(START_TIME);
 
   delay(3000);
 }
@@ -162,7 +164,7 @@ void setup() {
 void loop() {
 
   // Wait for the ESP32 to boot up
-  Serial.println("Waiting for packet");
+  LOGLN("Waiting for packet");
   auto packet = esp32.receivePacket();
   
   dist = packet.whiteDist;

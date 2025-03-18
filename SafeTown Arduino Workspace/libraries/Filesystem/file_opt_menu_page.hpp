@@ -3,6 +3,7 @@
 #include <LittleFS.h>
 #include "menu_page.hpp"
 #include "menu.hpp"
+#include "debug_logger.hpp"
 
 class FileMenuPage;
 

@@ -12,7 +12,7 @@ void Display::init()
     screen = &ssd1306;
     
     if(!screen->begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
-        Serial.println(F("SSD1306 allocation failed"));
+        LOGLN(F("SSD1306 allocation failed"));
         return;
     }
     clearDisplay();

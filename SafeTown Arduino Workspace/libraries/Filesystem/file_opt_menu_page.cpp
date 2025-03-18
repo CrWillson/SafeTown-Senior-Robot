@@ -29,7 +29,7 @@ FileOptMenuPg::FileOptMenuPg(const std::string& lbl, const std::string& parentLb
 void FileOptMenuPg::onFileDelete()
 {
     if (!LittleFS.remove(selectedFile.c_str())) {
-        Serial.println("Failed to delete file!");
+        LOG("Failed to delete file!");
     }
     parentMenu->setCurrentPage(parentMenuLbl);
 }
@@ -38,12 +38,16 @@ void FileOptMenuPg::onFilePrint()
 {
     File file = LittleFS.open(selectedFile.c_str(), "r");
     if (!file) {
-        Serial.println("Failed to open file for reading!");
+        LOG("Failed to open file for reading!");
         return;
     }
+
+    SUPRESS_DEBUG_OUTPUT(true);
 
     while (file.available()) {
         Serial.write(file.read());
     }
     file.close();
+
+    SUPRESS_DEBUG_OUTPUT(false);
 }

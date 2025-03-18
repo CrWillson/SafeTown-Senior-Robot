@@ -45,9 +45,9 @@ void Menu::setCurrentPage(const std::string &label)
 
         eventManager->publish(Event::PageChangedEvent(currentPage->getVisibleText()));
     } else {
-        Serial.print("Error: Page with label '");
-        Serial.print(label.c_str());
-        Serial.println("' not found.");
+        LOG("Error: Page with label '");
+        LOG(label.c_str());
+        LOGLN("' not found.");
     }
 }
 
