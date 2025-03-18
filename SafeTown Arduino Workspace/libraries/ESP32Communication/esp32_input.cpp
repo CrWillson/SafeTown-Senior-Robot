@@ -6,7 +6,7 @@
 void ESP32::init(const std::string& imagedir)
 {
     Serial1.setPollingMode(true);
-    Serial1.begin(115200);  //serial for the UART connection to the ESP32 CAM
+    Serial1.begin(500000);  //serial for the UART connection to the ESP32 CAM
 
     eventManager = &EventManager::getInstance();
     eventManager->subscribe<Event::ValueChangedEvent>([this](const auto& event) {
