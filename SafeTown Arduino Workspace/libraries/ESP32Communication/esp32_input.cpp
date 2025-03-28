@@ -1,33 +1,36 @@
 #include "esp32_input.hpp"
 #include "communication_types.hpp"
-#include "debug_logger.hpp"
-#include <vector>
+
 
 void ESP32::init(const std::string& imagedir)
 {
     Serial1.setPollingMode(true);
-    Serial1.begin(500000);  //serial for the UART connection to the ESP32 CAM
+    Serial1.begin(250000);  //serial for the UART connection to the ESP32 CAM
 
     eventManager = &EventManager::getInstance();
     eventManager->subscribe<Event::ValueChangedEvent>([this](const auto& event) {
         this->onValueChange(event);
     });
+    eventManager->subscribe<Event::RequestPhotoEvent>([this](const auto& event) {
+        this->sendPacket(EspCommand::CMD_REQUEST_IMAGE);
+    });
 
     imageDir = imagedir;
     LittleFS.mkdir(imageDir.c_str());
 
-    imageNumber = 0;
+    imageNumber = _getNextImageNumber();
 }
 
-void ESP32::sendPacket(const EspCommand cmd, const char* lbl, const int16_t d)
+void ESP32::sendPacket(const EspCommand cmd, const PacketLabel label, const int16_t d)
 {
     PicoToEspPacket packet;
     packet.command = cmd;
-    strncpy(packet.label, lbl, sizeof(packet.label) - 1);
-    packet.label[sizeof(packet.label) - 1] = '\0'; // Ensure null-termination
+    packet.label = label;
     packet.data = d;
 
-    LOGLN("Sending packet");
+    LOGLN("Sending packet: ");
+    LOGF("Command: %d, Label: %d, Data: %d\n", static_cast<int>(packet.command), static_cast<int>(packet.label), packet.data);
+    LOGF("Packet size: %d bytes\n", sizeof(PicoToEspPacket));
 
     Serial1.write((uint8_t*)&SYNC_BYTES, sizeof(SYNC_BYTES));
     Serial1.write((uint8_t*)&packet, sizeof(PicoToEspPacket));
@@ -36,7 +39,7 @@ void ESP32::sendPacket(const EspCommand cmd, const char* lbl, const int16_t d)
 
 EspToPicoPacket ESP32::receivePacket()
 {
-    // check for the SYNC_BYTES
+    // check for the SYNC_BYTES    
     bool syncFound = false;
     uint32_t syncBuffer = 0;
     while (!syncFound) {
@@ -91,6 +94,7 @@ EspToPicoPacket ESP32::receivePacket()
 
         file.close();
         imageNumber++;
+        _saveNextImageNumber(imageNumber);
         LOG("Saved image as: ");
         LOGLN(fileName.c_str());
 
@@ -102,14 +106,37 @@ EspToPicoPacket ESP32::receivePacket()
 
 void ESP32::onValueChange(const Event::ValueChangedEvent& e)
 {
-    if (e.valueId == "WRLIM") {
-        sendPacket(EspCommand::CMD_SET_PARAM, "WRLIM", static_cast<int16_t>(stoi(e.newValue)));
+    PacketLabel label;
+    bool validLabel = true;
+
+    if (e.valueId == "WhiteRedLimit") {
+        label = PacketLabel::PARAM_WHITE_RED_LIMIT;
+    } else if (e.valueId == "WhiteGreenLimit") {
+        label = PacketLabel::PARAM_WHITE_GREEN_LIMIT;
+    } else if (e.valueId == "WhiteBlueLimit") {
+        label = PacketLabel::PARAM_WHITE_BLUE_LIMIT;
+    } else if (e.valueId == "PercentStop") {
+        label = PacketLabel::PARAM_PERCENT_TO_STOP;
+    } else if (e.valueId == "StopGreenToler") {
+        label = PacketLabel::PARAM_STOP_GREEN_TOLERANCE;
+    } else if (e.valueId == "StopBlueToler") {
+        label = PacketLabel::PARAM_STOP_BLUE_TOLERANCE;
+    } else if (e.valueId == "RedBoxTLX") {
+        label = PacketLabel::PARAM_STOPBOX_TL_X;
+    } else if (e.valueId == "RedBoxTLY") {
+        label = PacketLabel::PARAM_STOPBOX_TL_Y;
+    } else if (e.valueId == "RedBoxBRX") {
+        label = PacketLabel::PARAM_STOPBOX_BR_X;
+    } else if (e.valueId == "RedBoxBRY") {
+        label = PacketLabel::PARAM_STOPBOX_BR_Y;
+    } else if (e.valueId == "StopDelay") {
+        label = PacketLabel::PARAM_STOP_DELAY;
+    } else {
+        validLabel = false;
     }
-    else if (e.valueId == "WGLIM") {
-        sendPacket(EspCommand::CMD_SET_PARAM, "WGLIM", static_cast<int16_t>(stoi(e.newValue)));
-    }
-    else if (e.valueId == "WBLIM") {
-        sendPacket(EspCommand::CMD_SET_PARAM, "WBLIM", static_cast<int16_t>(stoi(e.newValue)));
+
+    if (validLabel) {
+        sendPacket(EspCommand::CMD_SET_PARAM, label, static_cast<int16_t>(stoi(e.newValue)));
     }
 }
 
@@ -119,4 +146,35 @@ bool ESP32::_spaceAvailable(uint32_t numBytes, uint32_t bufferSpace)
     LittleFS.info(fs_info);
 
     return (fs_info.totalBytes - fs_info.usedBytes - bufferSpace) > numBytes;
+}
+
+uint8_t ESP32::_getNextImageNumber()
+{
+    // Check if the file exists
+    if (!LittleFS.exists(CONFIG_FILE)) {
+        // If not, create it and initialize the imageNumber to 0
+        File configFile = LittleFS.open(CONFIG_FILE, "w");
+        if (configFile) {
+            configFile.println("0");
+            configFile.close();
+            return 0;
+        }
+    }
+
+    File configFile = LittleFS.open(CONFIG_FILE, "r");
+    if (configFile) {
+        String line = configFile.readStringUntil('\n');
+        configFile.close();
+        return static_cast<uint8_t>(line.toInt());
+    }
+    return 0;
+}
+
+void ESP32::_saveNextImageNumber(const uint8_t imgNum) {
+    File configFile = LittleFS.open(CONFIG_FILE, "w");
+    if (configFile) {
+        std::string numStr = std::to_string(imgNum);
+        configFile.println(numStr.c_str());
+        configFile.close();
+    }
 }

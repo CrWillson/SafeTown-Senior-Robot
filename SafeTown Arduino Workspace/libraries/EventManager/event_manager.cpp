@@ -8,8 +8,7 @@
 EventManager::EventManager() {
     // Create a mutex to protect the event queue.
     queueMutex = xSemaphoreCreateMutex();
-    // Create a counting semaphore that allows up to 10 queued events; initial count is 0.
-    eventSemaphore = xSemaphoreCreateCounting(10, 0);
+    eventSemaphore = xSemaphoreCreateCounting(50, 0);
 }
 
 EventManager::~EventManager() {

@@ -70,6 +70,12 @@ namespace Event {
         std::string fileName;
         FileDeletedEvent(const std::string& filename) : fileName(filename) {};
     };
+
+    //-----------------------------------------------------------------
+    // ESP32 Camera Events
+    //-----------------------------------------------------------------
+    struct RequestPhotoEvent : public Event {};
+
 }
 
 #endif
