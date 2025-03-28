@@ -4,8 +4,7 @@
 FileOptMenuPg::FileOptMenuPg(const std::string& lbl, const std::string& parentLbl, const std::string& file)
     : MenuPage(lbl), parentMenuLbl(parentLbl), selectedFile(file) 
 {
-    std::string labelText = "File: " + selectedFile;
-    addLine(new TextMenuLine(labelText));
+    addLine(new TextMenuLine(selectedFile));
     addLine(new SpacerMenuLine());
 
     File fileObj = LittleFS.open(selectedFile.c_str(), "r");
@@ -42,12 +41,15 @@ void FileOptMenuPg::onFilePrint()
         return;
     }
 
+    
     SUPRESS_DEBUG_OUTPUT(true);
 
+    Serial.println("FILE CONTENT START");
     while (file.available()) {
         Serial.write(file.read());
     }
     file.close();
+    Serial.println("FILE CONTENT END");
 
     SUPRESS_DEBUG_OUTPUT(false);
 }

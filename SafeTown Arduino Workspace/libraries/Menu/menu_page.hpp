@@ -15,13 +15,12 @@ public:
     MenuPage(const std::string& lbl);
     virtual ~MenuPage() = default;
 
-    static constexpr uint8_t LINESPERSCREEN = 8;
-
     std::vector<std::shared_ptr<MenuLine>> lines;
-
+    
+    static constexpr uint8_t LINESPERSCREEN = 8;
     std::array<std::string, LINESPERSCREEN> getVisibleText() const;
 
-    virtual void addLine(MenuLine* line);
+    virtual MenuPage* addLine(MenuLine* line);
     virtual void clearLines();
 
     virtual bool onValueChange(const Event::ValueChangedEvent& e);

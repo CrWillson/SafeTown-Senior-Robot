@@ -1,4 +1,3 @@
-#define ENABLE_DEBUG_LOGGING
 #include "debug_logger.hpp"
 #include "event_manager.hpp"
 #include "display.hpp"
@@ -164,7 +163,6 @@ void setup() {
 void loop() {
 
   // Wait for the ESP32 to boot up
-  LOGLN("Waiting for packet");
   auto packet = esp32.receivePacket();
   
   dist = packet.whiteDist;

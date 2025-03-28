@@ -25,7 +25,7 @@ void Menu::init()
     eventManager->publish(Event::PageChangedEvent(currentPage->getVisibleText()));
 }
 
-void Menu::addPage(MenuPage* page)
+MenuPage* Menu::addPage(MenuPage* page)
 {
     allPages[page->label] = std::shared_ptr<MenuPage>(page);
     allPages[page->label]->parentMenu = this;
@@ -34,6 +34,8 @@ void Menu::addPage(MenuPage* page)
     if (allPages.size() == 1) {
         setCurrentPage(page->label);
     }
+
+    return allPages[page->label].get();
 }
 
 void Menu::setCurrentPage(const std::string &label)

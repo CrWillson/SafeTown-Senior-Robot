@@ -45,7 +45,10 @@ protected:
         allPages.at("ESP32")->addLine(new TextMenuLine("ESP32 Settings"));
         allPages.at("ESP32")->addLine(new SpacerMenuLine());
         allPages.at("ESP32")->addLine(new ButtonMenuLine("Take Photo", []{ 
-            ESP32::getInstance().sendPacket(EspCommand::CMD_REQUEST_IMAGE, "", 0); 
+            EventManager::getInstance().publish(Event::RequestPhotoEvent());
+        }));
+        allPages.at("ESP32")->addLine(new ButtonMenuLine("Reset Img Num", []{
+            ESP32::getInstance().setImageNumber(0);
         }));
         allPages.at("ESP32")->addLine(new ButtonMenuLine("Edit Parameters", [this]{ 
             this->setCurrentPage("ESP32Params"); 
@@ -55,15 +58,27 @@ protected:
         }));
 
         // ESP32 PARAMETER EDIT PAGE
-        addPage(new MenuPage("ESP32Params"));
-        allPages.at("ESP32Params")->addLine(new TextMenuLine("ESP32 Parameters"));
-        allPages.at("ESP32Params")->addLine(new SpacerMenuLine());
-        allPages.at("ESP32Params")->addLine(new TextMenuLine("White Parmeters"));
-        allPages.at("ESP32Params")->addLine(new SliderMenuLine("Red Limit:", "WRLIM", 200, 0, 255));
-        allPages.at("ESP32Params")->addLine(new SliderMenuLine("Green Limit:", "WGLIM", 200, 0, 255));
-        allPages.at("ESP32Params")->addLine(new SliderMenuLine("Blue Limit:", "WBLIM", 180, 0, 255));
-        allPages.at("ESP32Params")->addLine(new SpacerMenuLine());
-        allPages.at("ESP32Params")->addLine(new ButtonMenuLine("Back", [this]{ 
+        auto esppage = addPage(new MenuPage("ESP32Params"));
+        esppage->addLine(new TextMenuLine("ESP32 Parameters"));
+        esppage->addLine(new SpacerMenuLine());
+        esppage->addLine(new TextMenuLine("White Parmeters"));
+        esppage->addLine(new SliderMenuLine("Red Limit:", "WhiteRedLimit", 200, 0, 255));
+        esppage->addLine(new SliderMenuLine("Green Limit:", "WhiteGreenLimit", 200, 0, 255));
+        esppage->addLine(new SliderMenuLine("Blue Limit:", "WhiteBlueLimit", 180, 0, 255));
+        esppage->addLine(new SpacerMenuLine());
+        esppage->addLine(new TextMenuLine("Red Parmeters"));
+        esppage->addLine(new SliderMenuLine("Percent Stop:", "PercentStop", 10, 1, 100));
+        esppage->addLine(new SliderMenuLine("Green Thresh:", "StopGreenToler", 15, 0, 100));
+        esppage->addLine(new SliderMenuLine("Blue Thresh:", "StopBlueToler", 20, 0, 100));
+        esppage->addLine(new SliderMenuLine("Stop Delay:", "StopDelay", 6, 0, 100));
+        esppage->addLine(new SpacerMenuLine());
+        esppage->addLine(new TextMenuLine("Red Box Params"));
+        esppage->addLine(new SliderMenuLine("Red Box TL_X:", "RedBoxTLX", 25, 1, 95));
+        esppage->addLine(new SliderMenuLine("Red Box TL_Y:", "RedBoxTLY", 80, 1, 95));
+        esppage->addLine(new SliderMenuLine("Red Box BR_X:", "RedBoxBRX", 47, 1, 95));
+        esppage->addLine(new SliderMenuLine("Red Box BR_Y:", "RedBoxBRY", 94, 1, 95));
+        esppage->addLine(new SpacerMenuLine());
+        esppage->addLine(new ButtonMenuLine("Back", [this]{ 
             this->setCurrentPage("ESP32"); 
         }));
         

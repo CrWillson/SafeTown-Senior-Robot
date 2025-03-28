@@ -18,10 +18,12 @@ std::array<std::string, MenuPage::LINESPERSCREEN> MenuPage::getVisibleText() con
     return result;
 }
 
-void MenuPage::addLine(MenuLine *line)
+MenuPage* MenuPage::addLine(MenuLine *line)
 {
     lines.push_back(std::shared_ptr<MenuLine>(line));
     numLines++;
+
+    return this;
 }
 
 void MenuPage::clearLines()

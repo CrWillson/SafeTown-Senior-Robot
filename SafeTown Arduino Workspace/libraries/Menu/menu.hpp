@@ -19,7 +19,7 @@ public:
 
     void init();
 
-    void addPage(MenuPage* page);
+    MenuPage* addPage(MenuPage* page);
     void setCurrentPage(const std::string& label);
 
     void onScrollUp(const Event::Event& e);
