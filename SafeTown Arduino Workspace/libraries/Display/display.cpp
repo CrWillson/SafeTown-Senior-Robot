@@ -1,4 +1,5 @@
 #include "display.hpp"
+#include "event_manager.hpp"
 
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 64 // OLED display height, in pixels (set to 32 for 4 lines, 64 for 8 lines)
@@ -8,7 +9,6 @@ Adafruit_SSD1306 ssd1306(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET); // The
 
 void Display::init()
 {   
-    eventManager = &EventManager::getInstance(); // Get the singleton instance of EventManager
     screen = &ssd1306;
     
     if(!screen->begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
@@ -17,8 +17,8 @@ void Display::init()
     }
     clearDisplay();
 
-    eventManager->subscribe<Event::PageChangedEvent>([this](const auto& event) {
-        this->onPageUpdated(event);
+    EventManager::getInstance().subscribe<Event::PageChangedEvent>([this](const auto& event) {
+        this->_onPageUpdated(event);
     });
 }
 
@@ -33,7 +33,7 @@ void Display::clearDisplay()
 void Display::draw()
 {
     clearDisplay();
-    for (const auto line : lines) {
+    for (const auto line : _lines) {
         screen->println(line.c_str());
     }
     screen->display();
@@ -41,25 +41,25 @@ void Display::draw()
 
 void Display::setLineText(std::string str, uint8_t lineNum)
 {
-    lines[lineNum] = str;
+    _lines[lineNum] = str;
 }
 
 void Display::setLineText(std::string str, int value, uint8_t lineNum)
 {
     std::string newLine = str + std::to_string(value);
-    lines[lineNum] = newLine;
+    _lines[lineNum] = newLine;
 }
 
 void Display::setLineText(std::string str, bool value, uint8_t lineNum)
 {
     std::string newLine = str + (value ? "T" : "F");
-    lines[lineNum] = newLine;
+    _lines[lineNum] = newLine;
 }
 
 void Display::setLineText(std::string str, std::string value, uint8_t lineNum)
 {
     std::string newLine = str + value;
-    lines[lineNum] = newLine;
+    _lines[lineNum] = newLine;
 }
 
 void Display::printLines(std::vector<std::string> lines)
@@ -71,8 +71,8 @@ void Display::printLines(std::vector<std::string> lines)
     screen->display();
 }
 
-void Display::onPageUpdated(const Event::PageChangedEvent &e)
+void Display::_onPageUpdated(const Event::PageChangedEvent &e)
 {
-    lines = e.lines;
+    _lines = e.lines;
     draw();
 }

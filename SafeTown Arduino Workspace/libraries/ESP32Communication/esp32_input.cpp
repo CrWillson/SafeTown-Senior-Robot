@@ -1,17 +1,16 @@
 #include "esp32_input.hpp"
-#include "communication_types.hpp"
+#include <LittleFS.h>
 
 
 void ESP32::init(const std::string& imagedir)
 {
     Serial1.setPollingMode(true);
-    Serial1.begin(250000);  //serial for the UART connection to the ESP32 CAM
+    Serial1.begin(BAUD_RATE);  
 
-    eventManager = &EventManager::getInstance();
-    eventManager->subscribe<Event::ValueChangedEvent>([this](const auto& event) {
-        this->onValueChange(event);
+    EventManager::getInstance().subscribe<Event::ValueChangedEvent>([this](const auto& event) {
+        this->_onValueChange(event);
     });
-    eventManager->subscribe<Event::RequestPhotoEvent>([this](const auto& event) {
+    EventManager::getInstance().subscribe<Event::RequestPhotoEvent>([this](const auto& event) {
         this->sendPacket(EspCommand::CMD_REQUEST_IMAGE);
     });
 
@@ -104,7 +103,7 @@ EspToPicoPacket ESP32::receivePacket()
 }
 
 
-void ESP32::onValueChange(const Event::ValueChangedEvent& e)
+void ESP32::_onValueChange(const Event::ValueChangedEvent& e)
 {
     PacketLabel label;
     bool validLabel = true;
