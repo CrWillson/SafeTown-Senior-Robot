@@ -45,7 +45,12 @@
 #define TX        1
 
 Servo steer;
-long pos;
+constexpr int left_turn_max = 75;
+constexpr int left_turn_rad = 65;
+constexpr int center = 90;
+constexpr int right_turn_rad = 65;
+constexpr int right_turn_max = 75;
+long pos;     // The turn angle of the steering servo. Smaller number means more right.
 
 enum DIR {
   STRAIGHT,
@@ -53,66 +58,68 @@ enum DIR {
   RIGHT
 };
 
-int gps_i = 0;
-constexpr DIR gps[] = {DIR::RIGHT, DIR::LEFT, DIR::RIGHT, DIR::STRAIGHT};
-constexpr int gps_size = sizeof(gps) / sizeof(gps[0]);
+int gps_i = 0;                  // The current step in the route the car is on
+constexpr std::array gps = {    // The route being followed
+  DIR::LEFT, 
+  DIR::LEFT, 
+  DIR::RIGHT, 
+  DIR::STRAIGHT
+};    
+constexpr auto gps_size = gps.size();
 
-const std::unordered_map<DIR, std::string> DirLabel {
+const std::unordered_map<DIR, std::string> DirLabel {   // Map to convert from an enum direction to a char arrow
   {DIR::STRAIGHT, "^"},
   {DIR::LEFT, "<"},
   {DIR::RIGHT, ">"}
 };
 
-long cycle = 0;
-long oldTime = 0;
+long cycle = 0;         // Counts the cycles of the main loop
+long oldTime = 0;       // Used to keep track of the time when the current state was entered
 long led_time = 0;
-long obstacleTime = 0;
+long obstacleTime = 0;  // Used to keep track of the time when an obstacle was detected
 long oldTimeDiff = 0;
 
-constexpr int left_turn_rad = 65;
-constexpr int center = 85;
-constexpr int right_turn_rad = 65;
-
-int8_t dist = 0;
-bool stop_detected = false;
-bool hold_stop_detect = false;
-bool car_detected = false;
-bool bulldozerMode = false;
-long error;
+int8_t dist = 0;              // Distance to the white line
+bool stop_detected = false;   // Was a stop detected
+bool car_detected = false;    // Was an obstacle detected
+bool bulldozerMode = false;   // Should obstacles and stops be ignored
 
 Motor left_motor(LEFT_A, LEFT_B);
 Motor right_motor(RIGHT_A, RIGHT_B);
-const int SPEED = 100;
-bool brake = true;
-bool leftTurnSig = false;
-bool rightTurnSig = false;
+const int SPEED = 100;        // Speed of the motors
+bool brake = true;            // Should the car stop
+bool leftTurnSig = false;     // Should the left turn signal be on
+bool rightTurnSig = false;    // Should the right turn signal be on
 
-std::array<long, 167> error_history{0};
+long error;                               // Error in white distance. Used for PID control
+std::array<long, 167> error_history{0};   // History of error measurements
 int error_hi = 0;
 
-enum State {
+enum State : uint8_t {        // All states the car can be in
   STOPPED = 0,
-  FOLLOWING = 2,
-  CLOSE = 1,
-  FAR = 4,
-  INTERSECTION_WAIT = 3,
-  INTERSECTION_NAV = 5,
-  INTERSECTION_FOR = 6,
-  TRAFFIC = 7,
-  PARKED = 8,
-}
-volatile state = State::STOPPED;
-State oldState = State::STOPPED;
+  FOLLOWING = 1,
+  CLOSE = 2,
+  FAR = 3,
+  INTERSECTION_WAIT = 4,
+  INTERSECTION_STRAIGHT = 5,
+  INTERSECTION_RIGHT = 6,
+  INTERSECTION_LEFT = 7,
+  TRAFFIC = 8,
+  PARKED = 9,
+};
 
-EventManager& eventManager = EventManager::getInstance();
-ESP32& esp32 = ESP32::getInstance(); 
-UIManager& uimanager = UIManager::getInstance();
-Display display;
-SrMenu menu;
+volatile State state = State::STOPPED;    // The current state
+State oldState = State::STOPPED;          // The previous state
 
-long START_TIME;
+EventManager& eventManager = EventManager::getInstance();   // Event manager instantiation. Hanldes message passing between components
+ESP32& esp32 = ESP32::getInstance();                        // ESP32 communication manager
+UIManager& uimanager = UIManager::getInstance();            // User input manager. Specifically handles the rotary encoder
+Display display;                                            // Display manager. Handles drawing to the screen
+SrMenu menu;                                                // Concrete instantiation of a menu specifically for the senior robot
+
 
 void setup1() {
+  // Start the event manager processing loop running on CORE 1
   eventManager.processEvents();
 }
 
@@ -152,46 +159,44 @@ void setup() {
   left_motor.begin();
   right_motor.begin();
 
-  LOG("Start time: ");
-  LOGLN(START_TIME);
-
+  // Delay to give the ESP32 time to start up
   delay(3000);
 }
 
 
-
 void loop() {
 
-  // Wait for the ESP32 to boot up
+  // Block and wait for a packet from the ESP32
   auto packet = esp32.receivePacket();
   
+  // Extract information from the packet
   dist = packet.whiteDist;
   dist = -dist;
   stop_detected = packet.stopDetected;
 
-
-  // if(Serial1.available()) {
-  //   String str = Serial1.readStringUntil('\n');
-  
-  //   stop_detected = str[1]   == '1';
-  //   hold_stop_detect = stop_detected || hold_stop_detect;
-  //   //car_detected = str[0] == '1';
-  //   dist = 0;
-  //   for (int i = 2; i < 10; i++) {
-  //     dist = (dist << 1) | (str[i] - '0');
-  //   }
-  //   dist = -dist;
-
+  // Publish events to notify other components of the new values
   auto distUpdate = Event::ValueChangedEvent("whiteDist", std::to_string(dist));
   eventManager.publish(distUpdate);
 
   std::string stop_str = (stop_detected) ? "T" : "F";
   auto stopUpdate = Event::ValueChangedEvent("stopDetect", stop_str);
   eventManager.publish(stopUpdate);
-  // }
-  
+
+  auto steerUpdate = Event::ValueChangedEvent("steerAngle", std::to_string(pos));
+  eventManager.publish(steerUpdate);
+
+  auto turnUpdate = Event:: ValueChangedEvent("nextTurn", DirLabel.at(gps[gps_i]));
+  eventManager.publish(turnUpdate);
+
+
+  //******************************
+  //  BEGIN MAIN STATE MACHINE
+  //******************************
   stateLEDs(state);
   switch (state) {
+    //-------------------------------------------------------------------------------------
+    //  STANDARD LINE FOLLOWING
+    //-------------------------------------------------------------------------------------
     case State::FOLLOWING:
       brake = false;
       leftTurnSig = false;
@@ -221,6 +226,10 @@ void loop() {
       }
 
       break;
+
+    //-------------------------------------------------------------------------------------
+    //  LINE TOO FAR AWAY
+    //-------------------------------------------------------------------------------------
     case State::FAR:
       brake = false;
       leftTurnSig = false;
@@ -243,6 +252,10 @@ void loop() {
         state = State::INTERSECTION_WAIT;
       }
       break;
+
+    //-------------------------------------------------------------------------------------
+    //  LINE TOO CLOSE
+    //-------------------------------------------------------------------------------------
     case State::CLOSE:
       brake = false;
       leftTurnSig = false;
@@ -265,24 +278,31 @@ void loop() {
         state = State::INTERSECTION_WAIT;
       }
       break;
+
+    //-------------------------------------------------------------------------------------
+    //  HALT THE CAR
+    //-------------------------------------------------------------------------------------
     case State::STOPPED:
       //stop the robot
       error = 0;
       brake = true;
       leftTurnSig = false;
       rightTurnSig = false;
-      hold_stop_detect = false;
       steer.write(center);
       digitalWrite(BUZZER, LOW);
       gps_i = 0; //resets the path, might not be desired functionality.
                  //treats STOPPED as a stop, instead of a pause.
                  //remove these lines if you want a pause.
       break;
+
+    //-------------------------------------------------------------------------------------
+    //  WAIT BEFORE ENTERING INTERSECTION
+    //-------------------------------------------------------------------------------------
     case State::INTERSECTION_WAIT:
       //WAIT at intersection
       brake = true;
-      leftTurnSig = gps[gps_i] == 1;
-      rightTurnSig = gps[gps_i] == 2;
+      leftTurnSig = gps[gps_i] == DIR::LEFT;
+      rightTurnSig = gps[gps_i] == DIR::RIGHT;
 
       // Wait for intersection to be clear
       if (car_detected && !bulldozerMode) {
@@ -290,85 +310,138 @@ void loop() {
         state = State::TRAFFIC;
         obstacleTime = millis();
       } else if (millis() > oldTime + 1000) { //otherwise, wait 1 second and then GO GO GO!
+        oldState = state;
         oldTime = millis();
 
-        hold_stop_detect = false;
-
         if (gps[gps_i] == DIR::RIGHT) {
-          state = State::INTERSECTION_NAV;
-        } else {
-          state = State::INTERSECTION_FOR;
+          state = State::INTERSECTION_RIGHT;
+        }
+        else if (gps[gps_i] == DIR::LEFT) {
+          state = State::INTERSECTION_LEFT;
+        }
+        else if (gps[gps_i] == DIR::STRAIGHT) {
+          state = State::INTERSECTION_STRAIGHT;
         }
       }
       break;
 
-    case INTERSECTION_FOR:
+    //-------------------------------------------------------------------------------------
+    //  DRIVE STRIAGHT THROUGH INTERSECTION
+    //-------------------------------------------------------------------------------------
+    case INTERSECTION_STRAIGHT:
       brake = false;
-      //SET oldTime = millis(); when entering this state
-      //go forward to line up the back wheels with the stop line before turning
-      error = 3 * avg(error_history) / 4; // keep same error
-      pos = center + error;
-      steer.write(pos);
+      leftTurnSig = false;
+      rightTurnSig = false;
+      
       if (car_detected && !bulldozerMode) { 
         oldState = state;
         state = State::TRAFFIC;
         obstacleTime = millis();
         oldTimeDiff = millis() - oldTime;
-      } else if (millis() > oldTime + 1000) {
-        oldTime = millis();
-        state = State::INTERSECTION_NAV;
+      } else {
+        const int endTime = oldTime + 1000; // The time to resume line following
+
+        // The car starts by going roughly forward and a little left
+        error = 3 * avg(error_history) / 4;
+        pos = center + error - 5;
+        steer.write(pos);
+
+        // Car has gone forward enough. Resume line following
+        if (millis() > endTime) {
+          oldTime = millis();
+          oldState = state;
+          state = State::FOLLOWING;
+          gps_i = (gps_i + 1) % gps_size;
+        }
+      }
+
+      break;
+    
+    //-------------------------------------------------------------------------------------
+    //  TURN RIGHT IN INTERSECTION
+    //-------------------------------------------------------------------------------------
+    case INTERSECTION_RIGHT:
+      brake = false;
+      leftTurnSig = false;
+      rightTurnSig = true;
+      
+      if (car_detected && !bulldozerMode) { 
+        oldState = state;
+        state = State::TRAFFIC;
+        obstacleTime = millis();
+        oldTimeDiff = millis() - oldTime;
+      } else {
+        const int turnTime = oldTime + 300;   // The time to begin turning right
+        const int endTime = turnTime + 1500;   // The time to resume line following
+
+        // The car starts by going forward just a little bit
+        error = 3 * avg(error_history) / 4;
+        pos = center + error;
+        steer.write(pos);
+
+        // After a bit the car turns hard right
+        if (millis() > turnTime) {
+          steer.write(center + right_turn_max);
+        }
+
+        // The car has turned right long enough, resume line following
+        if (millis() > endTime) {
+          oldTime = millis();
+          oldState = state;
+          state = State::FOLLOWING;
+          gps_i = (gps_i + 1) % gps_size;
+        }
       }
       break;
     
-    case INTERSECTION_NAV:
+    //-------------------------------------------------------------------------------------
+    //  TURN LEFT IN INTERSECTION
+    //-------------------------------------------------------------------------------------
+    case INTERSECTION_LEFT:
       brake = false;
-      leftTurnSig = gps[gps_i] == 1;
-      rightTurnSig = gps[gps_i] == 2;
-      /* NOTE: All of these cases include an -avg(error_history)
-       *       This predicts the angle we have come from to adjust for entering intersections after curves
-       * NOT CURRENTLY, I found it to be unreliable, at least straight as -avg(eh), no adjustments. So some work needs to be done here
-      */
-      {
-      int turn_time = 0;
-
-      switch (gps[gps_i]) {
-        case DIR::STRAIGHT: //straight
-          //                 VVVV this adjustment factor is TEMPORARY - it should be replaced with the negative average of the position history
-          steer.write(center - 5);
-          turn_time = 500;
-          break;
-        case DIR::LEFT: //left
-          //THIS IS WRONG, USE AVG OF HISTORY INSTEAD
-          //int theta;
-          //theta = center - prev_pos; //angle of servo is inverse angle of robot b/c it's trying to correct
-
-          //if under turning (going off on the right of the line), increase the number
-          //if over  turning (going off on the left  of the line), decrease the number
-          //                   VV this is the number, the comments above ignore the negative 
-          steer.write(center - left_turn_rad);
-          turn_time = 1500;
-          break;
-        case DIR::RIGHT: //right
-          //anchors right wheel
-          steer.write(center + right_turn_rad);
-          turn_time = 1500;
-          break;
-        default:
-          break;
-      }
-      //makes us wait 0.25 seconds before being able to switch to avoid reading the white line on 3 way intersections
+      leftTurnSig = false;
+      rightTurnSig = true;
+      
       if (car_detected && !bulldozerMode) { 
         oldState = state;
         state = State::TRAFFIC;
         obstacleTime = millis();
         oldTimeDiff = millis() - oldTime;
-      } else if (millis() > oldTime + turn_time) {
-        state = State::FOLLOWING;
-        gps_i = (gps_i + 1) % gps_size;
-      }
-      }
+      } else {
+        const int turnTime = oldTime + 1300;          // The time to begin turning left
+        const int stopTurnTime = turnTime + 1700;     // The time to stop turning, go forward a little more
+        const int endTime = stopTurnTime + 500;       // The time to resume line following
 
+        // The car starts by going roughly forward and a little left
+        error = 3 * avg(error_history) / 4;
+        pos = center + error - 10;
+        steer.write(pos);
+
+        // After a bit the car turns hard left
+        if (millis() > turnTime) {
+          steer.write(center - left_turn_max);
+        }
+
+        // Go straight for just a little bit
+        if (millis() > stopTurnTime) {
+          error = 3 * avg(error_history) / 4;
+          pos = center + error;
+          steer.write(pos);
+        }
+
+        // The car has turned left long enough, resume line following
+        if (millis() > endTime) {
+          oldTime = millis();
+          oldState = state;
+          state = State::FOLLOWING;
+          gps_i = (gps_i + 1) % gps_size;
+        }
+      }
       break;
+
+    //-------------------------------------------------------------------------------------
+    //  STOP TEMPORARILY FOR TRAFFIC
+    //-------------------------------------------------------------------------------------
     case TRAFFIC:
       //SET oldTime = millis(); IN THE STATE JUST BEFORE ENTERING, like in FOLLOWING
       brake = true;
@@ -392,8 +465,11 @@ void loop() {
       break;
 
   }
+  //****************************
+  //  END MAIN STATE MACHINE
+  //****************************
   
-
+  // Apply the brakes 
   if(brake) {
     left_motor.brake();
     right_motor.brake();
@@ -438,12 +514,24 @@ void loop() {
   
 }
 
+
+
+//----------------------------------------------------------------------------------------------------------
+// BEGIN OTHER FUNCTIONS
+//----------------------------------------------------------------------------------------------------------
 void haltISR() {
   state = State::STOPPED;
 }
 
 void startISR() {
   state = State::FOLLOWING;
+}
+
+// Function to handle saving the previous state and state entry time
+void change_state(State newState) {
+  oldTime = millis();
+  oldState = state;
+  state = newState;
 }
 
 long pid_controller(long error) {
