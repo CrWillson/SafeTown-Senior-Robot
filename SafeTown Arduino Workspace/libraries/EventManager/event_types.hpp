@@ -5,6 +5,10 @@
 #include <cstdint>
 #include <array>
 
+/**
+ * @brief Namespace containing several common event types shared among all components.
+ * 
+ */
 namespace Event {
     //-----------------------------------------------------------------
     // Functions to statically assign a unique id to each event type
@@ -21,9 +25,9 @@ namespace Event {
     }
     
     //-----------------------------------------------------------------
-    // Event types
+    // Base Event type
     //-----------------------------------------------------------------
-    struct Event {  // Polymorphic base
+    struct Event { 
         virtual ~Event() = default;  
     };
 
@@ -58,18 +62,6 @@ namespace Event {
         ValueRequestEvent(const std::string& id) : valueId(id) {}
     };
 
-    //-----------------------------------------------------------------
-    // Filesystem Events
-    //-----------------------------------------------------------------
-    struct FileCreatedEvent : public Event {
-        std::string fileName;
-        FileCreatedEvent(const std::string& filename) : fileName(filename) {};
-    };
-
-    struct FileDeletedEvent : public Event {
-        std::string fileName;
-        FileDeletedEvent(const std::string& filename) : fileName(filename) {};
-    };
 
     //-----------------------------------------------------------------
     // ESP32 Camera Events

@@ -13,19 +13,29 @@
 #include "FreeRTOS.h"
 #include "semphr.h"
 
+/**
+ * @brief Handles the publishing of and subcribing to events between functionally independent components.
+ * 
+ */
 class EventManager {
 public:
-    // Delete copy constructor and assignment operator to prevent copying
+    ~EventManager();
     EventManager(const EventManager&) = delete;
     EventManager& operator=(const EventManager&) = delete;
-    ~EventManager();
 
-    // Static method to access the single instance of the class
+    // Make the EventManager a Meyers singleton class
     static EventManager& getInstance() {
         static EventManager instance;
         return instance;
     }
     
+    /**
+     * @brief Register a call-back function to be execution upon the publishing of a specific event type.
+     * All call-back functions for a specific event type will be executed in the order that they are registered. 
+     * 
+     * @tparam EventType - The event type to subscribe to
+     * @param handler  - The call-back function to be executed
+     */
     template <typename EventType>
     void subscribe(std::function<void(const EventType&)> handler) {
         std::size_t typeID = Event::getID<EventType>();
@@ -38,6 +48,14 @@ public:
         });
     }
     
+    /**
+     * @brief Publish an event to the event queue. All call-back functions registered to that
+     * event type will be executed in the order that they were registered. 
+     * @details If no call-back functions are registered to the event type passed, the event will
+     * be discarded. 
+     *
+     * @param event - The event to publish
+     */
     template <typename EventType>
     void publish(const EventType& event) {
         std::size_t typeID = Event::getID<EventType>();
@@ -63,6 +81,12 @@ public:
         xSemaphoreGive(eventSemaphore);
     }
     
+    /**
+     * @brief Begins the event processing loop. Should be executed on the second core to prevent
+     * the main loop from blocking.
+     * @details This function starts an infinite loop and will never return.
+     * 
+     */
     void processEvents();
     
 private:

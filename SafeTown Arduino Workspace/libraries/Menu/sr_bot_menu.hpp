@@ -5,6 +5,10 @@
 #include "file_stats_page.hpp"
 #include "esp32_input.hpp"
 
+/**
+ * @brief Concrete child class of the Menu type. Specifies the construction of a menu for the Safe Town Senior Robot. 
+ * 
+ */
 class SrMenu : public Menu {
 protected:
     inline void buildMenu() override {
@@ -32,6 +36,8 @@ protected:
         allPages.at("Sensors")->addLine(new SpacerMenuLine());
         allPages.at("Sensors")->addLine(new ValueMenuLine("Dist:", "whiteDist"));
         allPages.at("Sensors")->addLine(new ValueMenuLine("Stop:", "stopDetect"));
+        allPages.at("Sensors")->addLine(new ValueMenuLine("Steer:", "steerAngle"));
+        allPages.at("Sensors")->addLine(new ValueMenuLine("Next Turn:", "nextTurn"));
         allPages.at("Sensors")->addLine(new ButtonMenuLine("Go to home page", [this]{ 
             this->setCurrentPage("Home"); 
         }));
@@ -67,16 +73,16 @@ protected:
         esppage->addLine(new SliderMenuLine("Blue Limit:", "WhiteBlueLimit", 180, 0, 255));
         esppage->addLine(new SpacerMenuLine());
         esppage->addLine(new TextMenuLine("Red Parmeters"));
-        esppage->addLine(new SliderMenuLine("Percent Stop:", "PercentStop", 10, 1, 100));
+        esppage->addLine(new SliderMenuLine("Percent Stop:", "PercentStop", 20, 1, 100));
         esppage->addLine(new SliderMenuLine("Green Thresh:", "StopGreenToler", 15, 0, 100));
         esppage->addLine(new SliderMenuLine("Blue Thresh:", "StopBlueToler", 20, 0, 100));
         esppage->addLine(new SliderMenuLine("Stop Delay:", "StopDelay", 6, 0, 100));
         esppage->addLine(new SpacerMenuLine());
         esppage->addLine(new TextMenuLine("Red Box Params"));
-        esppage->addLine(new SliderMenuLine("Red Box TL_X:", "RedBoxTLX", 25, 1, 95));
-        esppage->addLine(new SliderMenuLine("Red Box TL_Y:", "RedBoxTLY", 80, 1, 95));
-        esppage->addLine(new SliderMenuLine("Red Box BR_X:", "RedBoxBRX", 47, 1, 95));
-        esppage->addLine(new SliderMenuLine("Red Box BR_Y:", "RedBoxBRY", 94, 1, 95));
+        esppage->addLine(new SliderMenuLine("Red Box TL_X:", "RedBoxTLX", 15, 1, 95));
+        esppage->addLine(new SliderMenuLine("Red Box TL_Y:", "RedBoxTLY", 75, 1, 95));
+        esppage->addLine(new SliderMenuLine("Red Box BR_X:", "RedBoxBRX", 40, 1, 95));
+        esppage->addLine(new SliderMenuLine("Red Box BR_Y:", "RedBoxBRY", 85, 1, 95));
         esppage->addLine(new SpacerMenuLine());
         esppage->addLine(new ButtonMenuLine("Back", [this]{ 
             this->setCurrentPage("ESP32"); 

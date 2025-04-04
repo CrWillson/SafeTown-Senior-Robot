@@ -15,16 +15,36 @@ public:
     MenuLine(const std::string& text) : label(text) {}
     virtual ~MenuLine() = default;
 
+    /**
+     * @brief Get the line as a std::string.
+     * 
+     * @param selected - whether the line is selected or not
+     * @return std::string - The menu line in text format
+     */
     virtual std::string getText(bool selected) const = 0;
+
+    /**
+     * @brief Called upon selecting the menu line
+     * 
+     */
     virtual void onSelect() = 0;
 
+    /**
+     * @brief The text the display as the menu line
+     * 
+     */
     std::string label;
 };
 
-
+/**
+ * @brief Menu line that displays a static, non-interactable separator line
+ * 
+ */
 class SpacerMenuLine : public MenuLine {
 public:
-    SpacerMenuLine() : MenuLine("-------------------") {}
+    SpacerMenuLine() 
+        : MenuLine("-------------------") {}
+        
     virtual std::string getText(bool selected) const override;
     virtual void onSelect() override { /* do nothing */ }
 };
