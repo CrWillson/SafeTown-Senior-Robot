@@ -35,13 +35,49 @@ public:
      */
     void setCurrentPage(const std::string& label);
 
+
     /**
-     * @brief Add a page to the menu. Ownership of the MenuPage* is given to the menu object.
+     * @brief Add a default menu page to the Menu
      * 
-     * @param page - The page to add
-     * @return MenuPage* - A pointer to the page just added
+     * @param label - A label for the page by which it can be referred to later
+     * 
+     * @return MenuPage* - A raw pointer to the page that was just created
      */
-    MenuPage* addPage(MenuPage* page);
+    MenuPage* addPage(const std::string& label) {
+        auto page = std::make_unique<MenuPage>(label);
+        page->parentMenu = this;
+
+        allPages[page->getLabel()] = std::move(page);
+
+        if (allPages.size() == 1) {
+            setCurrentPage(page->getLabel());
+        }
+
+        return page.get();
+    }
+
+
+    /**
+     * @brief Add any type of page to the Menu
+     * 
+     * @tparam Page - The page type to add. Must be a child class of the MenuPage type.
+     * @param args - All of the parameters necessary to construct a page of type Page
+     * 
+     * @return MenuPage* - A raw pointer to the page that was just created.
+     */
+    template<typename Page, typename... Args, std::enable_if_t<std::is_base_of_v<MenuPage, Page>, int> = 0>
+    MenuPage* addPage(Args&&... args) {
+        auto page = std::make_unique<Page>(std::forward<Args>(args)...);
+        page->parentMenu = this;
+
+        allPages[page->getLabel()] = std::move(page);
+
+        if (allPages.size() == 1) {
+            setCurrentPage(page->getLabel());
+        }
+
+        return page.get();
+    }
 
 protected:
     //---------------------------------------------------------------------------
@@ -50,7 +86,7 @@ protected:
     virtual void buildMenu() = 0;
     //---------------------------------------------------------------------------
 
-    std::unordered_map<std::string, std::shared_ptr<MenuPage>> allPages;
+    std::unordered_map<std::string, std::unique_ptr<MenuPage>> allPages;
 
 private:
 

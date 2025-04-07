@@ -25,9 +25,8 @@ FileMenuPage::FileMenuPage(const std::string& lbl, const std::string& parentLbl)
 
 void FileMenuPage::generateFilePage(const std::string& fileName)
 {
-    auto fileOptPage = new FileOptMenuPg("FileOption", label, fileName);
-    parentMenu->addPage(fileOptPage);
-    parentMenu->setCurrentPage(fileOptPage->label);
+    auto page = parentMenu->addPage<FileOptMenuPg>("FileOption", label, fileName);
+    parentMenu->setCurrentPage(page->getLabel());
 }
 
 

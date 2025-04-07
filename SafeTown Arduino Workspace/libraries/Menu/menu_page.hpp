@@ -42,10 +42,26 @@ public:
     virtual MenuPage* addLine(MenuLine* line);
 
     /**
+     * @brief Template function to add a new line to the page
+     * @details Template parameter must be derived from the MenuLine base class. The arguments
+     * to the addLine() function will be used to construct the menu line.
+     */
+    template<typename Line, typename... Args, std::enable_if_t<std::is_base_of_v<MenuLine, Line>, int> = 0>
+    MenuPage* addLine(Args&&... args) {
+        auto newLine = std::make_shared<Line>(std::forward<Args>(args)...);
+        lines.push_back(newLine);
+
+        numLines++;
+        return this;
+    }
+
+    /**
      * @brief Remove all lines from the page
      * 
      */
     virtual void clearLines();
+
+    std::string getLabel() { return label; }
 
 protected:
 
