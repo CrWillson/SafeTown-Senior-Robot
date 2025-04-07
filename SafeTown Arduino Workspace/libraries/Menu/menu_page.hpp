@@ -34,17 +34,14 @@ public:
     std::array<std::string, LINESPERSCREEN> getVisibleText() const;
 
     /**
-     * @brief Add a line to the page
-     * 
-     * @param line - The line to be added
-     * @return MenuPage* - The page the line was just added to
-     */
-    virtual MenuPage* addLine(MenuLine* line);
-
-    /**
      * @brief Template function to add a new line to the page
      * @details Template parameter must be derived from the MenuLine base class. The arguments
      * to the addLine() function will be used to construct the menu line.
+     * 
+     * @tparam Line - The type of line to add. Must be a child class of the MenuLine type.
+     * @param args - All of the argument necessary to construct a MenuLine of type Line.
+     * 
+     * @return MenuPage* - The page the line was just added to
      */
     template<typename Line, typename... Args, std::enable_if_t<std::is_base_of_v<MenuLine, Line>, int> = 0>
     MenuPage* addLine(Args&&... args) {
