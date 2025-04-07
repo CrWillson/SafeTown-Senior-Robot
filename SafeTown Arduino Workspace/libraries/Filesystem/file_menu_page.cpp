@@ -7,10 +7,10 @@ FileMenuPage::FileMenuPage(const std::string& lbl, const std::string& parentLbl)
     currentPath = "/";
 
     std::string displayPath = (currentPath == "/") ? "root/" : currentPath.substr(currentPath.find_last_of('/', currentPath.length() - 2) + 1);
-    addLine(new TextMenuLine(displayPath.c_str()));
-    addLine(new SpacerMenuLine());
+    addLine<TextMenuLine>(displayPath.c_str());
+    addLine<SpacerMenuLine>();
 
-    addLine(new ButtonMenuLine("Back", [this]{
+    addLine<ButtonMenuLine>("Back", [this]{
         if (currentPath != "/") {
             size_t pos = currentPath.find_last_of('/', currentPath.length() - 2);
             currentPath = currentPath.substr(0, pos + 1);
@@ -18,8 +18,8 @@ FileMenuPage::FileMenuPage(const std::string& lbl, const std::string& parentLbl)
         } else {
             this->parentMenu->setCurrentPage(parentMenuLbl);
         }
-    }));
-    addLine(new SpacerMenuLine());
+    });
+    addLine<SpacerMenuLine>();
 }
 
 
@@ -41,10 +41,10 @@ void FileMenuPage::onPageExit()
     clearLines();
 
     std::string displayPath = (currentPath == "/") ? "root/" : currentPath.substr(currentPath.find_last_of('/', currentPath.length() - 2) + 1);
-    addLine(new TextMenuLine(displayPath.c_str()));
-    addLine(new SpacerMenuLine());
+    addLine<TextMenuLine>(displayPath.c_str());
+    addLine<SpacerMenuLine>();
 
-    addLine(new ButtonMenuLine("Back", [this]{
+    addLine<ButtonMenuLine>("Back", [this]{
         if (currentPath != "/") {
             size_t pos = currentPath.find_last_of('/', currentPath.length() - 2);
             currentPath = currentPath.substr(0, pos + 1);
@@ -52,8 +52,8 @@ void FileMenuPage::onPageExit()
         } else {
             this->parentMenu->setCurrentPage(parentMenuLbl);
         }
-    }));
-    addLine(new SpacerMenuLine());
+    });
+    addLine<SpacerMenuLine>();
 }
 
 void FileMenuPage::addDirectoryLines()
@@ -62,10 +62,10 @@ void FileMenuPage::addDirectoryLines()
     while (dir.next()) {
         if (dir.isDirectory()) {
             auto dirName = dir.fileName();
-            addLine(new ButtonMenuLine((std::string(dirName.c_str()) + "/").c_str(), [this, dirName]{
+            addLine<ButtonMenuLine>((std::string(dirName.c_str()) + "/").c_str(), [this, dirName]{
                 currentPath += std::string(dirName.c_str()) + "/";
                 this->parentMenu->setCurrentPage(label);    // set the current page to itself to refresh the page
-            }));
+            });
         }
     }
 }
@@ -76,9 +76,9 @@ void FileMenuPage::addFileLines()
     while (dir.next()) {
         if (!dir.isDirectory()) {
             auto fileName = dir.fileName();
-            addLine(new ButtonMenuLine(fileName.c_str(), [this, fileName]{
+            addLine<ButtonMenuLine>(fileName.c_str(), [this, fileName]{
                 generateFilePage(currentPath + std::string(fileName.c_str()));
-            }));
+            });
         }
     }
 }

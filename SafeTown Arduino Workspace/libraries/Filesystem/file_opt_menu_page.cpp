@@ -4,24 +4,24 @@
 FileOptMenuPg::FileOptMenuPg(const std::string& lbl, const std::string& parentLbl, const std::string& file)
     : MenuPage(lbl), parentMenuLbl(parentLbl), selectedFile(file) 
 {
-    addLine(new TextMenuLine(selectedFile));
-    addLine(new SpacerMenuLine());
+    addLine<TextMenuLine>(selectedFile);
+    addLine<SpacerMenuLine>();
 
     File fileObj = LittleFS.open(selectedFile.c_str(), "r");
     uint16_t fileSize = fileObj.size();
     fileObj.close();
-    addLine(new TextMenuLine("Size: " + std::to_string(fileSize) + " B"));
-    addLine(new SpacerMenuLine());
+    addLine<TextMenuLine>("Size: " + std::to_string(fileSize) + " B");
+    addLine<SpacerMenuLine>();
 
-    addLine(new ButtonMenuLine(" Cancel", [this]{
+    addLine<ButtonMenuLine>(" Cancel", [this]{
         this->parentMenu->setCurrentPage(parentMenuLbl);
-    }));
-    addLine(new ButtonMenuLine(" Print", [this]{
+    });
+    addLine<ButtonMenuLine>(" Print", [this]{
         this->onFilePrint();
-    }));
-    addLine(new ButtonMenuLine(" Delete", [this]{
+    });
+    addLine<ButtonMenuLine>(" Delete", [this]{
         this->onFileDelete();
-    }));
+    });
 } 
 
 

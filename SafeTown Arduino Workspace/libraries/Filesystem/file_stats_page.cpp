@@ -9,20 +9,20 @@ void FileStatPage::onPageLoad()
 
     clearLines();
 
-    addLine(new TextMenuLine("File System Stats"));
-    addLine(new SpacerMenuLine());
+    addLine<TextMenuLine>("File System Stats");
+    addLine<SpacerMenuLine>();
 
-    addLine(new TextMenuLine("Total Bytes: " + std::to_string(fs_info.totalBytes)));
-    addLine(new TextMenuLine("Used Bytes: " + std::to_string(fs_info.usedBytes)));
-    addLine(new TextMenuLine("Open Bytes: " + std::to_string(fs_info.totalBytes - fs_info.usedBytes)));
+    addLine<TextMenuLine>("Total Bytes: " + std::to_string(fs_info.totalBytes));
+    addLine<TextMenuLine>("Used Bytes: " + std::to_string(fs_info.usedBytes));
+    addLine<TextMenuLine>("Open Bytes: " + std::to_string(fs_info.totalBytes - fs_info.usedBytes));
 
-    addLine(new SpacerMenuLine());
-    addLine(new ButtonMenuLine("Refresh", [this]{
+    addLine<SpacerMenuLine>();
+    addLine<ButtonMenuLine>("Refresh", [this]{
         this->parentMenu->setCurrentPage(label);
-    }));
-    addLine(new ButtonMenuLine("Back", [this]{
+    });
+    addLine<ButtonMenuLine>("Back", [this]{
         this->parentMenu->setCurrentPage(parentMenuLbl);
-    }));
+    });
 }
 
 void FileStatPage::onPageExit()
