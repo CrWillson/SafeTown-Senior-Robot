@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['xadvance_0',['xAdvance',['../d5/d63/struct_g_f_xglyph.html#a9b191040252aa9b5362087d65366bbf2',1,'GFXglyph']]],
+  ['xeventlistitem_1',['xEventListItem',['../df/d6c/struct_task_control_block__t.html#a0fcb643a7516fcb0090006c433cf7fb4',1,'TaskControlBlock_t']]],
+  ['xitemvalue_2',['xItemValue',['../dc/d15/structx_l_i_s_t___i_t_e_m.html#a9b1f26de79f9da1403ca3ebc7a2e653a',1,'xLIST_ITEM']]],
+  ['xlistend_3',['xListEnd',['../d4/d39/structx_l_i_s_t.html#a49ad62fa153126e27e273811167b336a',1,'xLIST']]],
+  ['xmessageid_4',['xMessageID',['../df/d1f/structtmr_timer_queue_message.html#a9b10513e29451b9ebfb24b153bc51f46',1,'tmrTimerQueueMessage']]],
+  ['xmessagevalue_5',['xMessageValue',['../d9/d4b/structtmr_timer_parameters.html#a3d2b83a746a56a8a2b5b011373333340',1,'tmrTimerParameters']]],
+  ['xmutexholder_6',['xMutexHolder',['../d3/d52/struct_semaphore_data.html#ab1ed54c7b39dc45b3c310fae7ad08693',1,'SemaphoreData']]],
+  ['xoffset_7',['xOffset',['../d5/d63/struct_g_f_xglyph.html#ab030bd9aeb37509ccc94ae3dcec4de98',1,'GFXglyph']]],
+  ['xqueue_8',['xQueue',['../d1/d07/struct_queue_def__t.html#a83fc1a77cf06f6e5c9345e79fc74dc59',1,'QueueDef_t']]],
+  ['xsemaphore_9',['xSemaphore',['../d1/d07/struct_queue_def__t.html#abae1de36bba5b6d7dfe955d5caecaba6',1,'QueueDef_t']]],
+  ['xstatelistitem_10',['xStateListItem',['../df/d6c/struct_task_control_block__t.html#a9aadbfb11f2d787f309080c8af0a3e92',1,'TaskControlBlock_t']]],
+  ['xtaskswaitingforbits_11',['xTasksWaitingForBits',['../d7/d70/struct_event_group_def__t.html#a3dd347560456bfe452415efb52760dc3',1,'EventGroupDef_t']]],
+  ['xtaskswaitingtoreceive_12',['xTasksWaitingToReceive',['../d1/d07/struct_queue_def__t.html#a38bc69d9c4aba912bfb5f4c09584910a',1,'QueueDef_t']]],
+  ['xtaskswaitingtosend_13',['xTasksWaitingToSend',['../d1/d07/struct_queue_def__t.html#a95f7cad97aecfa9e8552809e8eb24e66',1,'QueueDef_t']]],
+  ['xtimerlistitem_14',['xTimerListItem',['../d1/dc9/struct_timer_def__t.html#a6ace833f32e4cef222f0b04da6e889c2',1,'TimerDef_t']]],
+  ['xtimerperiodinticks_15',['xTimerPeriodInTicks',['../d1/dc9/struct_timer_def__t.html#a3ae1d2ebb62ad3ba0f7499c107c03728',1,'TimerDef_t']]]
+];

@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['vqueuedelete_0',['vQueueDelete',['../db/df6/group__v_queue_delete.html',1,'']]],
+  ['vsemaphorecreatebinary_1',['vSemaphoreCreateBinary',['../d8/dbc/group__v_semaphore_create_binary.html',1,'']]],
+  ['vsemaphoredelete_2',['vSemaphoreDelete',['../df/dc8/group__v_semaphore_delete.html',1,'']]],
+  ['vstreambufferdelete_3',['vStreamBufferDelete',['../d0/d63/group__v_stream_buffer_delete.html',1,'']]],
+  ['vstreambuffersetstreambuffernotificationindex_4',['vStreamBufferSetStreamBufferNotificationIndex',['../d2/dea/group__v_stream_buffer_set_stream_buffer_notification_index.html',1,'']]],
+  ['vtaskallocatempuregions_5',['vTaskAllocateMPURegions',['../d8/d05/group__v_task_allocate_m_p_u_regions.html',1,'']]],
+  ['vtaskdelay_6',['vTaskDelay',['../db/d50/group__v_task_delay.html',1,'']]],
+  ['vtaskdelete_7',['vTaskDelete',['../d9/d9c/group__v_task_delete.html',1,'']]],
+  ['vtaskendscheduler_8',['vTaskEndScheduler',['../d9/d0a/group__v_task_end_scheduler.html',1,'']]],
+  ['vtaskgetinfo_9',['vTaskGetInfo',['../de/dcc/group__v_task_get_info.html',1,'']]],
+  ['vtaskgetruntimestatistics_10',['vTaskGetRunTimeStatistics',['../d9/d39/group__v_task_get_run_time_statistics.html',1,'']]],
+  ['vtaskgetruntimestats_11',['vTaskGetRunTimeStats',['../d1/db6/group__v_task_get_run_time_stats.html',1,'']]],
+  ['vtasklist_12',['vTaskList',['../d1/d89/group__v_task_list.html',1,'']]],
+  ['vtasklisttasks_13',['vTaskListTasks',['../d0/d43/group__v_task_list_tasks.html',1,'']]],
+  ['vtasknotifygiveindexedfromisr_14',['vTaskNotifyGiveIndexedFromISR',['../d9/deb/group__v_task_notify_give_indexed_from_i_s_r.html',1,'']]],
+  ['vtaskpriorityset_15',['vTaskPrioritySet',['../d6/d75/group__v_task_priority_set.html',1,'']]],
+  ['vtaskresetstate_16',['vTaskResetState',['../d8/d4e/group__v_task_reset_state.html',1,'']]],
+  ['vtaskresume_17',['vTaskResume',['../da/dd1/group__v_task_resume.html',1,'']]],
+  ['vtaskresumefromisr_18',['vTaskResumeFromISR',['../d2/dcc/group__v_task_resume_from_i_s_r.html',1,'']]],
+  ['vtasksettimeoutstate_19',['vTaskSetTimeOutState',['../d8/df0/group__v_task_set_time_out_state.html',1,'']]],
+  ['vtaskstartscheduler_20',['vTaskStartScheduler',['../d5/d1a/group__v_task_start_scheduler.html',1,'']]],
+  ['vtasksuspend_21',['vTaskSuspend',['../d1/d46/group__v_task_suspend.html',1,'']]],
+  ['vtasksuspendall_22',['vTaskSuspendAll',['../d5/d4c/group__v_task_suspend_all.html',1,'']]]
+];
