@@ -18,8 +18,8 @@
 #include <LittleFS.h>
 
 
-#define DIST_MAX    22
-#define DIST_MIN   -22
+#define DIST_MAX    28
+#define DIST_MIN   -28
 #define DIST_THRES  24
 #define DIST_CENTER  0
 
@@ -45,11 +45,11 @@
 #define TX        1
 
 Servo steer;
-constexpr int left_turn_max = 75;
+constexpr int left_turn_max = 77;
 constexpr int left_turn_rad = 65;
 constexpr int center = 90;
 constexpr int right_turn_rad = 65;
-constexpr int right_turn_max = 75;
+constexpr int right_turn_max = 77;
 long pos;     // The turn angle of the steering servo. Smaller number means more right.
 
 enum DIR {
@@ -61,9 +61,9 @@ enum DIR {
 int gps_i = 0;                  // The current step in the route the car is on
 constexpr std::array gps = {    // The route being followed
   DIR::LEFT, 
-  DIR::LEFT, 
   DIR::RIGHT, 
-  DIR::STRAIGHT
+  DIR::LEFT,
+  DIR::STRAIGHT,
 };    
 constexpr auto gps_size = gps.size();
 
@@ -91,9 +91,9 @@ bool brake = true;            // Should the car stop
 bool leftTurnSig = false;     // Should the left turn signal be on
 bool rightTurnSig = false;    // Should the right turn signal be on
 
-long error;                               // Error in white distance. Used for PID control
-std::array<long, 167> error_history{0};   // History of error measurements
-int error_hi = 0;
+// long error;                               // Error in white distance. Used for PID control
+// std::array<long, 167> error_history{0};   // History of error measurements
+// int error_hi = 0;
 
 enum State : uint8_t {        // All states the car can be in
   STOPPED = 0,
@@ -171,7 +171,6 @@ void loop() {
   
   // Extract information from the packet
   dist = packet.whiteDist;
-  dist = -dist;
   stop_detected = packet.stopDetected;
 
   // Publish events to notify other components of the new values
@@ -202,16 +201,17 @@ void loop() {
       leftTurnSig = false;
       rightTurnSig = false;
       //maps the dist factor to the turn radius and adjust    
-      error = map_pos(-dist) - center;
-
-      pos = center + pid_controller(error);
+      // error = map_pos(dist) - center;
+      // pos = center + pid_controller(error);
+      
+      pos = map_pos(dist);
       steer.write(pos);
       //Serial.println(pos);
       
       //checks if we have lost the line
       if (abs(dist) > DIST_THRES) {
         //and which side we lost it to
-        if (dist > DIST_CENTER) {
+        if (dist < DIST_CENTER) {
           state = State::CLOSE;
         } else {
           state = State::FAR;
@@ -236,7 +236,6 @@ void loop() {
       rightTurnSig = false;
       //turns as HARD as possible toward the line
       //turns towards line
-      error = right_turn_rad;
       pos = center + right_turn_rad;
       steer.write(pos);
 
@@ -262,7 +261,6 @@ void loop() {
       rightTurnSig = false;
 
       //turns as HARD as possible away from the line
-      error = -left_turn_rad;
       pos = center - left_turn_rad;
       steer.write(pos);
 
@@ -284,7 +282,7 @@ void loop() {
     //-------------------------------------------------------------------------------------
     case State::STOPPED:
       //stop the robot
-      error = 0;
+      // error = 0;
       brake = true;
       leftTurnSig = false;
       rightTurnSig = false;
@@ -342,8 +340,7 @@ void loop() {
         const int endTime = oldTime + 1000; // The time to resume line following
 
         // The car starts by going roughly forward and a little left
-        error = 3 * avg(error_history) / 4;
-        pos = center + error - 5;
+        pos = center - 2;
         steer.write(pos);
 
         // Car has gone forward enough. Resume line following
@@ -372,11 +369,10 @@ void loop() {
         oldTimeDiff = millis() - oldTime;
       } else {
         const int turnTime = oldTime + 300;   // The time to begin turning right
-        const int endTime = turnTime + 1500;   // The time to resume line following
+        const int endTime = turnTime + 1700;   // The time to resume line following
 
         // The car starts by going forward just a little bit
-        error = 3 * avg(error_history) / 4;
-        pos = center + error;
+        pos = center;
         steer.write(pos);
 
         // After a bit the car turns hard right
@@ -413,8 +409,7 @@ void loop() {
         const int endTime = stopTurnTime + 500;       // The time to resume line following
 
         // The car starts by going roughly forward and a little left
-        error = 3 * avg(error_history) / 4;
-        pos = center + error - 10;
+        pos = center - 10;
         steer.write(pos);
 
         // After a bit the car turns hard left
@@ -424,8 +419,7 @@ void loop() {
 
         // Go straight for just a little bit
         if (millis() > stopTurnTime) {
-          error = 3 * avg(error_history) / 4;
-          pos = center + error;
+          pos = center;
           steer.write(pos);
         }
 
@@ -507,8 +501,8 @@ void loop() {
   //1.) D and I components of the PID controller
   //2.) allows us to adjust our turn angle at an
   //    intersection based on the angle of the robot
-  error_history[error_hi] = error;
-  error_hi = (error_hi + 1) % error_history.size();
+  // error_history[error_hi] = error;
+  // error_hi = (error_hi + 1) % error_history.size();
 
   cycle++;
   
@@ -534,17 +528,17 @@ void change_state(State newState) {
   state = newState;
 }
 
-long pid_controller(long error) {
-  /* The PID Controller that defines line following
-   * Proportional: error used for e(t)
-   * Integral: NO INTEGRAL COMPONENT (maybe add? I'm not the best with controllers, this project is my only experience)
-   * Derivative: error - avg(error_history) is used as an estimate of the de(t)/dt.
-   * NOTE: NONE OF THE VALUES ARE LIKELY OPTIMAL
-   */
-  //             Kp * e(t)  + Kd * de(t)/dt
-  //                                VVV is this supposed to be error or steer.read()?
-  return 5 * (error) / 8 - ((5  * (error - avg(error_history))) / 4);
-}
+// long pid_controller(long error) {
+//   /* The PID Controller that defines line following
+//    * Proportional: error used for e(t)
+//    * Integral: NO INTEGRAL COMPONENT (maybe add? I'm not the best with controllers, this project is my only experience)
+//    * Derivative: error - avg(error_history) is used as an estimate of the de(t)/dt.
+//    * NOTE: NONE OF THE VALUES ARE LIKELY OPTIMAL
+//    */
+//   //             Kp * e(t)  + Kd * de(t)/dt
+//   //                                VVV is this supposed to be error or steer.read()?
+//   return 5 * (error) / 8 - ((5  * (error - avg(error_history))) / 4);
+// }
 
 template <typename T, std::size_t N>
 long avg(const std::array<T, N>& arr) {
@@ -560,23 +554,7 @@ void stateLEDs(int state) {
 }
 
 int map_pos(int dist) {
-  /* uses the map() function to translate the dist between the IR sensors
-   * to a position on the servo, allowing us to compare apples to apples
-   * for the controller.
-   * 
-   * DIST_MAX matches -turn_rad and DIST_MIN matches turn_rad
-   * the map is a little backwards (i.e. DIFF_MIN is mapped to center + turn_rad)
-   * because of the position of the servo. It just needs to flip it
-   * 
-   * IMPORTANT: Maps the DIST_CENTER to the center
-   */
-  int pos;
-  if (dist < DIST_CENTER) {
-    pos = map(dist, DIST_CENTER, DIST_MAX, center, center - left_turn_rad);
-  } else {
-    pos = map(dist, DIST_MIN, DIST_CENTER, center + left_turn_rad, center);
-  }
-  return pos;
+  return map(dist, DIST_MAX, DIST_MIN, center + left_turn_rad, center - right_turn_rad);
 }
 
 int in_speed(int servo_pos) {

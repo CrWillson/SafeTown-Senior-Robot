@@ -35,8 +35,9 @@ enum PacketLabel : uint8_t {
     PARAM_STOPBOX_TL_Y = 0x08,
     PARAM_STOPBOX_BR_X = 0x09,
     PARAM_STOPBOX_BR_Y = 0x0A,
-    PARAM_STOP_DELAY = 0x0B
+    PARAM_WHITE_CENTER_POS = 0x0B
 };
+
 
 static constexpr uint32_t SYNC_BYTES = 0xAA55AA55;
 

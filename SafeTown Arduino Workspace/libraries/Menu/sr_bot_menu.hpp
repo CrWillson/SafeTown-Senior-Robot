@@ -71,6 +71,7 @@ protected:
         paramPage->addLine<SliderMenuLine>("Red Limit:", "WhiteRedLimit", 200, 0, 255);
         paramPage->addLine<SliderMenuLine>("Green Limit:", "WhiteGreenLimit", 200, 0, 255);
         paramPage->addLine<SliderMenuLine>("Blue Limit:", "WhiteBlueLimit", 180, 0, 255);
+        paramPage->addLine<SliderMenuLine>("Center Pos: ", "WhiteCenter", 28, 0, 95);
         paramPage->addLine<SpacerMenuLine>();
         paramPage->addLine<TextMenuLine>("Red Parmeters");
         paramPage->addLine<SliderMenuLine>("Percent Stop:", "PercentStop", 20, 1, 100);

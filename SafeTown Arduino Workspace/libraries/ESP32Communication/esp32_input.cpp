@@ -128,8 +128,8 @@ void ESP32::_onValueChange(const Event::ValueChangedEvent& e)
         label = PacketLabel::PARAM_STOPBOX_BR_X;
     } else if (e.valueId == "RedBoxBRY") {
         label = PacketLabel::PARAM_STOPBOX_BR_Y;
-    } else if (e.valueId == "StopDelay") {
-        label = PacketLabel::PARAM_STOP_DELAY;
+    } else if (e.valueId == "WhiteCenter") {
+        label = PacketLabel::PARAM_WHITE_CENTER_POS;
     } else {
         validLabel = false;
     }
