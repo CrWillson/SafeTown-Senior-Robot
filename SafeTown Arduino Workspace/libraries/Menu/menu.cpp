@@ -22,7 +22,9 @@ void Menu::init()
 
     buildMenu();
 
-    eventManager->publish(Event::PageChangedEvent(currentPage->getVisibleText()));
+    if (currentPage) {
+        eventManager->publish(Event::PageChangedEvent(currentPage->getVisibleText()));
+    }
 }
 
 void Menu::setCurrentPage(const std::string &label)

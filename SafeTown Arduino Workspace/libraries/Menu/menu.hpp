@@ -47,13 +47,13 @@ public:
         auto page = std::make_unique<MenuPage>(label);
         page->parentMenu = this;
 
-        allPages[page->getLabel()] = std::move(page);
+        allPages[label] = std::move(page);
 
         if (allPages.size() == 1) {
-            setCurrentPage(page->getLabel());
+            setCurrentPage(label);
         }
 
-        return page.get();
+        return allPages[label].get();
     }
 
 
@@ -70,13 +70,14 @@ public:
         auto page = std::make_unique<Page>(std::forward<Args>(args)...);
         page->parentMenu = this;
 
-        allPages[page->getLabel()] = std::move(page);
+        auto label = page->getLabel();
+        allPages[label] = std::move(page);
 
         if (allPages.size() == 1) {
-            setCurrentPage(page->getLabel());
+            setCurrentPage(label);
         }
 
-        return page.get();
+        return allPages[label].get();
     }
 
 protected:
