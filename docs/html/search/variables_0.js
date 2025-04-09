@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['label_0',['label',['../d7/d44/class_menu_line.html#a1d1b0618a545379821701edfd39f7f07',1,'MenuLine']]],
-  ['lines_1',['lines',['../d1/d6b/class_menu_page.html#ae50de058c4d4fdc091e8f780a9f8091b',1,'MenuPage']]]
+  ['_5fdebugenabled_0',['_debugEnabled',['../da/d0d/class_debug_logger.html#a2ba5a082f76a01d6ee465df707f786de',1,'DebugLogger']]],
+  ['_5flines_1',['_lines',['../df/d4d/class_display.html#a1523f31f78f2e62cba741a843ed60c69',1,'Display']]]
 ];

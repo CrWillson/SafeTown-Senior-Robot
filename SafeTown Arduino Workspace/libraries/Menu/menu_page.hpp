@@ -12,7 +12,7 @@ class Menu;
 
 /**
  * @brief A page in the menu object
- * 
+ * @ingroup Menu
  */
 class MenuPage {
 public:

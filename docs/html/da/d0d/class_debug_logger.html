@@ -24,6 +24,7 @@
 /* @license-end */
 </script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+<link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -106,54 +107,440 @@ $(function(){initNavTree('da/d0d/class_debug_logger.html','../../'); initResizab
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="../../d4/df7/class_debug_logger-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">DebugLogger Class Reference</div></div>
+  <div class="headertitle"><div class="title">DebugLogger Class Reference<div class="ingroups"><a class="el" href="../../d3/d50/group___debug_utilities.html">DebugUtilities</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>A class for handling printing debug messages to the serial line. Allows for the debug messages to be disabled or suppressed.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../dd/d61/debug__logger_8hpp_source.html">debug_logger.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac2287aa500154836186fda3becbcdc5a" id="r_ac2287aa500154836186fda3becbcdc5a"><td class="memItemLeft" align="right" valign="top"><a id="ac2287aa500154836186fda3becbcdc5a" name="ac2287aa500154836186fda3becbcdc5a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>DebugLogger</b> (const <a class="el" href="../../da/d0d/class_debug_logger.html">DebugLogger</a> &amp;)=delete</td></tr>
+<tr class="memitem:a9b065294169f5b969f69b33ec85a9919" id="r_a9b065294169f5b969f69b33ec85a9919"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b065294169f5b969f69b33ec85a9919">~DebugLogger</a> ()=default</td></tr>
+<tr class="separator:a9b065294169f5b969f69b33ec85a9919"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2287aa500154836186fda3becbcdc5a" id="r_ac2287aa500154836186fda3becbcdc5a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac2287aa500154836186fda3becbcdc5a">DebugLogger</a> (const <a class="el" href="../../da/d0d/class_debug_logger.html">DebugLogger</a> &amp;)=delete</td></tr>
 <tr class="separator:ac2287aa500154836186fda3becbcdc5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a271aa1d2420af579cd98d1d50076d073" id="r_a271aa1d2420af579cd98d1d50076d073"><td class="memItemLeft" align="right" valign="top"><a id="a271aa1d2420af579cd98d1d50076d073" name="a271aa1d2420af579cd98d1d50076d073"></a>
-<a class="el" href="../../da/d0d/class_debug_logger.html">DebugLogger</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="../../da/d0d/class_debug_logger.html">DebugLogger</a> &amp;)=delete</td></tr>
+<tr class="memitem:a271aa1d2420af579cd98d1d50076d073" id="r_a271aa1d2420af579cd98d1d50076d073"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d0d/class_debug_logger.html">DebugLogger</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a271aa1d2420af579cd98d1d50076d073">operator=</a> (const <a class="el" href="../../da/d0d/class_debug_logger.html">DebugLogger</a> &amp;)=delete</td></tr>
 <tr class="separator:a271aa1d2420af579cd98d1d50076d073"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6657c9827c438f324bdbe12900dcce56" id="r_a6657c9827c438f324bdbe12900dcce56"><td class="memItemLeft" align="right" valign="top"><a id="a6657c9827c438f324bdbe12900dcce56" name="a6657c9827c438f324bdbe12900dcce56"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>supressDebugOutput</b> (bool enable)</td></tr>
+<tr class="memitem:a6657c9827c438f324bdbe12900dcce56" id="r_a6657c9827c438f324bdbe12900dcce56"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6657c9827c438f324bdbe12900dcce56">supressDebugOutput</a> (bool enable)</td></tr>
+<tr class="memdesc:a6657c9827c438f324bdbe12900dcce56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Supress the debug log output to the serial line.  <br /></td></tr>
 <tr class="separator:a6657c9827c438f324bdbe12900dcce56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f9410a8bc9217e248226e19233aa7e9" id="r_a7f9410a8bc9217e248226e19233aa7e9"><td class="memTemplParams" colspan="2"><a id="a7f9410a8bc9217e248226e19233aa7e9" name="a7f9410a8bc9217e248226e19233aa7e9"></a>
-template&lt;typename T&gt; </td></tr>
-<tr class="memitem:a7f9410a8bc9217e248226e19233aa7e9"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>logln</b> (T message)</td></tr>
+<tr class="memitem:a7f9410a8bc9217e248226e19233aa7e9" id="r_a7f9410a8bc9217e248226e19233aa7e9"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a7f9410a8bc9217e248226e19233aa7e9"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a7f9410a8bc9217e248226e19233aa7e9">logln</a> (T message)</td></tr>
+<tr class="memdesc:a7f9410a8bc9217e248226e19233aa7e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log a message to the serial line with a newline character added.  <br /></td></tr>
 <tr class="separator:a7f9410a8bc9217e248226e19233aa7e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63dc619495988fef884bbc6de4e5188c" id="r_a63dc619495988fef884bbc6de4e5188c"><td class="memItemLeft" align="right" valign="top"><a id="a63dc619495988fef884bbc6de4e5188c" name="a63dc619495988fef884bbc6de4e5188c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>logln</b> (std::string message)</td></tr>
+<tr class="memitem:a63dc619495988fef884bbc6de4e5188c" id="r_a63dc619495988fef884bbc6de4e5188c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a63dc619495988fef884bbc6de4e5188c">logln</a> (std::string message)</td></tr>
+<tr class="memdesc:a63dc619495988fef884bbc6de4e5188c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload of void <a class="el" href="#a7f9410a8bc9217e248226e19233aa7e9" title="Log a message to the serial line with a newline character added.">logln(T message)</a> to handle std::string.  <br /></td></tr>
 <tr class="separator:a63dc619495988fef884bbc6de4e5188c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5943eaf860844839b40c58c1f124e16a" id="r_a5943eaf860844839b40c58c1f124e16a"><td class="memTemplParams" colspan="2"><a id="a5943eaf860844839b40c58c1f124e16a" name="a5943eaf860844839b40c58c1f124e16a"></a>
-template&lt;typename T&gt; </td></tr>
-<tr class="memitem:a5943eaf860844839b40c58c1f124e16a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>log</b> (T message)</td></tr>
+<tr class="memitem:a5943eaf860844839b40c58c1f124e16a" id="r_a5943eaf860844839b40c58c1f124e16a"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a5943eaf860844839b40c58c1f124e16a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a5943eaf860844839b40c58c1f124e16a">log</a> (T message)</td></tr>
+<tr class="memdesc:a5943eaf860844839b40c58c1f124e16a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log a message to the serial line.  <br /></td></tr>
 <tr class="separator:a5943eaf860844839b40c58c1f124e16a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01ca295071a063a28fc2a68c7d3dba0b" id="r_a01ca295071a063a28fc2a68c7d3dba0b"><td class="memItemLeft" align="right" valign="top"><a id="a01ca295071a063a28fc2a68c7d3dba0b" name="a01ca295071a063a28fc2a68c7d3dba0b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>log</b> (std::string message)</td></tr>
+<tr class="memitem:a01ca295071a063a28fc2a68c7d3dba0b" id="r_a01ca295071a063a28fc2a68c7d3dba0b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a01ca295071a063a28fc2a68c7d3dba0b">log</a> (std::string message)</td></tr>
+<tr class="memdesc:a01ca295071a063a28fc2a68c7d3dba0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload of void <a class="el" href="#a5943eaf860844839b40c58c1f124e16a" title="Log a message to the serial line.">log(T message)</a> to handle std::string.  <br /></td></tr>
 <tr class="separator:a01ca295071a063a28fc2a68c7d3dba0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe3570f509d302ea0c88ed9b9b809a52" id="r_abe3570f509d302ea0c88ed9b9b809a52"><td class="memTemplParams" colspan="2"><a id="abe3570f509d302ea0c88ed9b9b809a52" name="abe3570f509d302ea0c88ed9b9b809a52"></a>
-template&lt;typename... Args&gt; </td></tr>
-<tr class="memitem:abe3570f509d302ea0c88ed9b9b809a52"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>logf</b> (const char *format, Args... args)</td></tr>
+<tr class="memitem:abe3570f509d302ea0c88ed9b9b809a52" id="r_abe3570f509d302ea0c88ed9b9b809a52"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:abe3570f509d302ea0c88ed9b9b809a52"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#abe3570f509d302ea0c88ed9b9b809a52">logf</a> (const char *format, Args... args)</td></tr>
+<tr class="memdesc:abe3570f509d302ea0c88ed9b9b809a52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log a format string to the serial line.  <br /></td></tr>
 <tr class="separator:abe3570f509d302ea0c88ed9b9b809a52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a1bd881ca54f5b2a142686243ec1cd647" id="r_a1bd881ca54f5b2a142686243ec1cd647"><td class="memItemLeft" align="right" valign="top"><a id="a1bd881ca54f5b2a142686243ec1cd647" name="a1bd881ca54f5b2a142686243ec1cd647"></a>
-static <a class="el" href="../../da/d0d/class_debug_logger.html">DebugLogger</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getInstance</b> ()</td></tr>
+<tr class="memitem:a1bd881ca54f5b2a142686243ec1cd647" id="r_a1bd881ca54f5b2a142686243ec1cd647"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../da/d0d/class_debug_logger.html">DebugLogger</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1bd881ca54f5b2a142686243ec1cd647">getInstance</a> ()</td></tr>
+<tr class="memdesc:a1bd881ca54f5b2a142686243ec1cd647"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Meyers singleton instance of the debug logger.  <br /></td></tr>
 <tr class="separator:a1bd881ca54f5b2a142686243ec1cd647"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a8d6cd2c43a93f46d0b19c737a88765a5" id="r_a8d6cd2c43a93f46d0b19c737a88765a5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d6cd2c43a93f46d0b19c737a88765a5">DebugLogger</a> ()</td></tr>
+<tr class="separator:a8d6cd2c43a93f46d0b19c737a88765a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a2ba5a082f76a01d6ee465df707f786de" id="r_a2ba5a082f76a01d6ee465df707f786de"><td class="memItemLeft" align="right" valign="top"><a id="a2ba5a082f76a01d6ee465df707f786de" name="a2ba5a082f76a01d6ee465df707f786de"></a>
-std::atomic&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_debugEnabled</b></td></tr>
+<tr class="memitem:a2ba5a082f76a01d6ee465df707f786de" id="r_a2ba5a082f76a01d6ee465df707f786de"><td class="memItemLeft" align="right" valign="top">std::atomic&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ba5a082f76a01d6ee465df707f786de">_debugEnabled</a></td></tr>
 <tr class="separator:a2ba5a082f76a01d6ee465df707f786de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A class for handling printing debug messages to the serial line. Allows for the debug messages to be disabled or suppressed. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a9b065294169f5b969f69b33ec85a9919" name="a9b065294169f5b969f69b33ec85a9919"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b065294169f5b969f69b33ec85a9919">&#9670;&#160;</a></span>~DebugLogger()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DebugLogger::~DebugLogger </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac2287aa500154836186fda3becbcdc5a" name="ac2287aa500154836186fda3becbcdc5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2287aa500154836186fda3becbcdc5a">&#9670;&#160;</a></span>DebugLogger() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DebugLogger::DebugLogger </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../da/d0d/class_debug_logger.html">DebugLogger</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8d6cd2c43a93f46d0b19c737a88765a5" name="a8d6cd2c43a93f46d0b19c737a88765a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d6cd2c43a93f46d0b19c737a88765a5">&#9670;&#160;</a></span>DebugLogger() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DebugLogger::DebugLogger </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a1bd881ca54f5b2a142686243ec1cd647" name="a1bd881ca54f5b2a142686243ec1cd647"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bd881ca54f5b2a142686243ec1cd647">&#9670;&#160;</a></span>getInstance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="../../da/d0d/class_debug_logger.html">DebugLogger</a> &amp; DebugLogger::getInstance </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the Meyers singleton instance of the debug logger. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../da/d0d/class_debug_logger.html" title="A class for handling printing debug messages to the serial line. Allows for the debug messages to be ...">DebugLogger</a>&amp; </dd></dl>
+
+</div>
+</div>
+<a id="a01ca295071a063a28fc2a68c7d3dba0b" name="a01ca295071a063a28fc2a68c7d3dba0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01ca295071a063a28fc2a68c7d3dba0b">&#9670;&#160;</a></span>log() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DebugLogger::log </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Overload of void <a class="el" href="#a5943eaf860844839b40c58c1f124e16a" title="Log a message to the serial line.">log(T message)</a> to handle std::string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>- The message to print to the serial line </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5943eaf860844839b40c58c1f124e16a" name="a5943eaf860844839b40c58c1f124e16a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5943eaf860844839b40c58c1f124e16a">&#9670;&#160;</a></span>log() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DebugLogger::log </td>
+          <td>(</td>
+          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Log a message to the serial line. </p>
+<p>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </p><dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>- The data type of the message. Must be printable. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>- The message to print to the serial line </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abe3570f509d302ea0c88ed9b9b809a52" name="abe3570f509d302ea0c88ed9b9b809a52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe3570f509d302ea0c88ed9b9b809a52">&#9670;&#160;</a></span>logf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DebugLogger::logf </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Log a format string to the serial line. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">format</td><td>- The format string </td></tr>
+    <tr><td class="paramname">args</td><td>- The arguments for the format string </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a63dc619495988fef884bbc6de4e5188c" name="a63dc619495988fef884bbc6de4e5188c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63dc619495988fef884bbc6de4e5188c">&#9670;&#160;</a></span>logln() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DebugLogger::logln </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Overload of void <a class="el" href="#a7f9410a8bc9217e248226e19233aa7e9" title="Log a message to the serial line with a newline character added.">logln(T message)</a> to handle std::string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>- The message to print to the serial line </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7f9410a8bc9217e248226e19233aa7e9" name="a7f9410a8bc9217e248226e19233aa7e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f9410a8bc9217e248226e19233aa7e9">&#9670;&#160;</a></span>logln() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DebugLogger::logln </td>
+          <td>(</td>
+          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Log a message to the serial line with a newline character added. </p>
+<p>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </p><dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>- The data type of the message. Must be printable. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>- The message to print to the serial line </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a271aa1d2420af579cd98d1d50076d073" name="a271aa1d2420af579cd98d1d50076d073"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a271aa1d2420af579cd98d1d50076d073">&#9670;&#160;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d0d/class_debug_logger.html">DebugLogger</a> &amp; DebugLogger::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../da/d0d/class_debug_logger.html">DebugLogger</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6657c9827c438f324bdbe12900dcce56" name="a6657c9827c438f324bdbe12900dcce56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6657c9827c438f324bdbe12900dcce56">&#9670;&#160;</a></span>supressDebugOutput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DebugLogger::supressDebugOutput </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>enable</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Supress the debug log output to the serial line. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enable</td><td>- If true, disable the debug logger </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a2ba5a082f76a01d6ee465df707f786de" name="a2ba5a082f76a01d6ee465df707f786de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ba5a082f76a01d6ee465df707f786de">&#9670;&#160;</a></span>_debugEnabled</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::atomic&lt;bool&gt; DebugLogger::_debugEnabled</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>SafeTown Arduino Workspace/libraries/Logger/<a class="el" href="../../dd/d61/debug__logger_8hpp_source.html">debug_logger.hpp</a></li>
 </ul>
@@ -163,7 +550,7 @@ std::atomic&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../da/d0d/class_debug_logger.html">DebugLogger</a></li>
-    <li class="footer">Generated on Tue Apr 8 2025 17:30:02 for SafeTown Senior Robot by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Generated on Tue Apr 8 2025 23:13:54 for SafeTown Senior Robot by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>

@@ -12,6 +12,11 @@
 #include <cstring>
 #include <string>
 
+/**
+ * @addtogroup CommunicationUtilities
+ * @{
+ */
+
 enum EspCommand : uint8_t {
     CMD_REQUEST_IMAGE = 0x01,
     CMD_SET_PARAM = 0x02
@@ -60,3 +65,5 @@ struct PicoToEspPacket
 };
 
 #pragma pack(pop)
+
+/** @} */

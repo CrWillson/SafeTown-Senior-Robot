@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['adagfx_5fport_5ft_0',['ADAGFX_PORT_t',['../d8/db6/_adafruit___s_p_i_t_f_t_8h.html#a155b656c374ad13b812e6647122abf6e',1,'Adafruit_SPITFT.h']]]
+  ['handlerfunc_0',['HandlerFunc',['../d6/d94/class_event_manager.html#aabaffc5e1ed07c3f682cebc1a14f82a5',1,'EventManager']]]
 ];

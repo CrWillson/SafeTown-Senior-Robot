@@ -24,6 +24,7 @@
 /* @license-end */
 </script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+<link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -106,46 +107,49 @@ $(function(){initNavTree('df/d63/file__menu__page_8hpp_source.html','../../'); i
   <div class="headertitle"><div class="title">file_menu_page.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<a href="../../df/d63/file__menu__page_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;event_manager.hpp&quot;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;LittleFS.h&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;menu_page.hpp&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;file_opt_menu_page.hpp&quot;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="foldopen" id="foldopen00009" data-start="{" data-end="};">
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="../../d7/d04/class_file_menu_page.html">    9</a></span><span class="keyword">class </span>FileMenuPage : <span class="keyword">public</span> <a class="code hl_function" href="../../d1/d6b/class_menu_page.html#ab0f0cc0e5ba697feb39b273052250818">MenuPage</a> {</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    FileMenuPage(<span class="keyword">const</span> std::string&amp; lbl, <span class="keyword">const</span> std::string&amp; parentLbl);</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    ~FileMenuPage() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keywordtype">void</span> addFileLines();</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keywordtype">void</span> addDirectoryLines();</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="comment">// void refreshPage(bool forceRefresh = false);</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/d04/class_file_menu_page.html#a966343db5ec8a81ec75852f8c5975f46">onPageLoad</a>() <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/d04/class_file_menu_page.html#af7289b7ad8a0476f96e3194446e42bb3">onPageExit</a>() <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d9b/menu__page_8hpp.html">menu_page.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span></div>
+<div class="foldopen" id="foldopen00012" data-start="{" data-end="};">
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="../../d7/d04/class_file_menu_page.html">   12</a></span><span class="keyword">class </span><a class="code hl_function" href="../../d7/d04/class_file_menu_page.html#ac9497e4ba6d9dea9906b58119072dc93">FileMenuPage</a> : <span class="keyword">public</span> <a class="code hl_function" href="../../d1/d6b/class_menu_page.html#ab0f0cc0e5ba697feb39b273052250818">MenuPage</a> {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <a class="code hl_function" href="../../d7/d04/class_file_menu_page.html#ac9497e4ba6d9dea9906b58119072dc93">FileMenuPage</a>(<span class="keyword">const</span> std::string&amp; lbl, <span class="keyword">const</span> std::string&amp; parentLbl);</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="../../d7/d04/class_file_menu_page.html#a201ead76172b96b9159c3983cb0a3293">   22</a></span>    <a class="code hl_function" href="../../d7/d04/class_file_menu_page.html#a201ead76172b96b9159c3983cb0a3293">~FileMenuPage</a>() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">void</span> generateFilePage(<span class="keyword">const</span> std::string&amp; fileName);</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    std::string parentMenuLbl;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    std::string currentPath;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>};</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/d04/class_file_menu_page.html#a1fcfca70746efaf451b59a88af1f2373">addFileLines</a>();</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/d04/class_file_menu_page.html#acecad4b14ca05f5b48714bfb1836f69c">addDirectoryLines</a>();</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/d04/class_file_menu_page.html#a966343db5ec8a81ec75852f8c5975f46">onPageLoad</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/d04/class_file_menu_page.html#af7289b7ad8a0476f96e3194446e42bb3">onPageExit</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/d04/class_file_menu_page.html#a329a28c715e92f9a37f8453be09ccb43">generateFilePage</a>(<span class="keyword">const</span> std::string&amp; fileName);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="../../d7/d04/class_file_menu_page.html#a3b56eaf7133249da41d4ddb372ae479a">   38</a></span>    std::string <a class="code hl_variable" href="../../d7/d04/class_file_menu_page.html#a3b56eaf7133249da41d4ddb372ae479a">parentMenuLbl</a>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="../../d7/d04/class_file_menu_page.html#a9d3bce4cd2dea46a25d61efd5ac5004e">   39</a></span>    std::string <a class="code hl_variable" href="../../d7/d04/class_file_menu_page.html#a9d3bce4cd2dea46a25d61efd5ac5004e">currentPath</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>};</div>
 </div>
-<div class="ttc" id="aclass_file_menu_page_html_a966343db5ec8a81ec75852f8c5975f46"><div class="ttname"><a href="../../d7/d04/class_file_menu_page.html#a966343db5ec8a81ec75852f8c5975f46">FileMenuPage::onPageLoad</a></div><div class="ttdeci">void onPageLoad() override</div><div class="ttdoc">Called each time the page is loaded by the menu.</div><div class="ttdef"><b>Definition</b> file_menu_page.cpp:33</div></div>
-<div class="ttc" id="aclass_file_menu_page_html_af7289b7ad8a0476f96e3194446e42bb3"><div class="ttname"><a href="../../d7/d04/class_file_menu_page.html#af7289b7ad8a0476f96e3194446e42bb3">FileMenuPage::onPageExit</a></div><div class="ttdeci">void onPageExit() override</div><div class="ttdoc">Called each time the page is exited.</div><div class="ttdef"><b>Definition</b> file_menu_page.cpp:39</div></div>
+<div class="ttc" id="aclass_file_menu_page_html_a1fcfca70746efaf451b59a88af1f2373"><div class="ttname"><a href="../../d7/d04/class_file_menu_page.html#a1fcfca70746efaf451b59a88af1f2373">FileMenuPage::addFileLines</a></div><div class="ttdeci">void addFileLines()</div><div class="ttdef"><b>Definition</b> file_menu_page.cpp:77</div></div>
+<div class="ttc" id="aclass_file_menu_page_html_a201ead76172b96b9159c3983cb0a3293"><div class="ttname"><a href="../../d7/d04/class_file_menu_page.html#a201ead76172b96b9159c3983cb0a3293">FileMenuPage::~FileMenuPage</a></div><div class="ttdeci">~FileMenuPage()=default</div></div>
+<div class="ttc" id="aclass_file_menu_page_html_a329a28c715e92f9a37f8453be09ccb43"><div class="ttname"><a href="../../d7/d04/class_file_menu_page.html#a329a28c715e92f9a37f8453be09ccb43">FileMenuPage::generateFilePage</a></div><div class="ttdeci">void generateFilePage(const std::string &amp;fileName)</div><div class="ttdoc">Generate a FileOptMenuPg for the file that was just selected.</div><div class="ttdef"><b>Definition</b> file_menu_page.cpp:30</div></div>
+<div class="ttc" id="aclass_file_menu_page_html_a3b56eaf7133249da41d4ddb372ae479a"><div class="ttname"><a href="../../d7/d04/class_file_menu_page.html#a3b56eaf7133249da41d4ddb372ae479a">FileMenuPage::parentMenuLbl</a></div><div class="ttdeci">std::string parentMenuLbl</div><div class="ttdef"><b>Definition</b> file_menu_page.hpp:38</div></div>
+<div class="ttc" id="aclass_file_menu_page_html_a966343db5ec8a81ec75852f8c5975f46"><div class="ttname"><a href="../../d7/d04/class_file_menu_page.html#a966343db5ec8a81ec75852f8c5975f46">FileMenuPage::onPageLoad</a></div><div class="ttdeci">void onPageLoad() override</div><div class="ttdoc">Called each time the page is loaded by the menu.</div><div class="ttdef"><b>Definition</b> file_menu_page.cpp:37</div></div>
+<div class="ttc" id="aclass_file_menu_page_html_a9d3bce4cd2dea46a25d61efd5ac5004e"><div class="ttname"><a href="../../d7/d04/class_file_menu_page.html#a9d3bce4cd2dea46a25d61efd5ac5004e">FileMenuPage::currentPath</a></div><div class="ttdeci">std::string currentPath</div><div class="ttdef"><b>Definition</b> file_menu_page.hpp:39</div></div>
+<div class="ttc" id="aclass_file_menu_page_html_ac9497e4ba6d9dea9906b58119072dc93"><div class="ttname"><a href="../../d7/d04/class_file_menu_page.html#ac9497e4ba6d9dea9906b58119072dc93">FileMenuPage::FileMenuPage</a></div><div class="ttdeci">FileMenuPage(const std::string &amp;lbl, const std::string &amp;parentLbl)</div><div class="ttdoc">Construct a new FileMenuPage.</div><div class="ttdef"><b>Definition</b> file_menu_page.cpp:8</div></div>
+<div class="ttc" id="aclass_file_menu_page_html_acecad4b14ca05f5b48714bfb1836f69c"><div class="ttname"><a href="../../d7/d04/class_file_menu_page.html#acecad4b14ca05f5b48714bfb1836f69c">FileMenuPage::addDirectoryLines</a></div><div class="ttdeci">void addDirectoryLines()</div><div class="ttdef"><b>Definition</b> file_menu_page.cpp:63</div></div>
+<div class="ttc" id="aclass_file_menu_page_html_af7289b7ad8a0476f96e3194446e42bb3"><div class="ttname"><a href="../../d7/d04/class_file_menu_page.html#af7289b7ad8a0476f96e3194446e42bb3">FileMenuPage::onPageExit</a></div><div class="ttdeci">void onPageExit() override</div><div class="ttdoc">Called each time the page is exited.</div><div class="ttdef"><b>Definition</b> file_menu_page.cpp:43</div></div>
 <div class="ttc" id="aclass_menu_page_html_ab0f0cc0e5ba697feb39b273052250818"><div class="ttname"><a href="../../d1/d6b/class_menu_page.html#ab0f0cc0e5ba697feb39b273052250818">MenuPage::MenuPage</a></div><div class="ttdeci">MenuPage(const std::string &amp;lbl)</div><div class="ttdoc">Construct a new MenuPage with the given label.</div><div class="ttdef"><b>Definition</b> menu_page.cpp:4</div></div>
+<div class="ttc" id="amenu__page_8hpp_html"><div class="ttname"><a href="../../d8/d9b/menu__page_8hpp.html">menu_page.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="../../dir_584452064a033d8aa0d8f24e272c0625.html">SafeTown Arduino Workspace</a></li><li class="navelem"><a class="el" href="../../dir_d9fdbc748a20c8f708ebe70045d671a0.html">libraries</a></li><li class="navelem"><a class="el" href="../../dir_0f49e31d3c9acf5752e49042545c3ddc.html">Filesystem</a></li><li class="navelem"><b>file_menu_page.hpp</b></li>
-    <li class="footer">Generated on Tue Apr 8 2025 17:30:02 for SafeTown Senior Robot by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="navelem"><a class="el" href="../../dir_584452064a033d8aa0d8f24e272c0625.html">SafeTown Arduino Workspace</a></li><li class="navelem"><a class="el" href="../../dir_d9fdbc748a20c8f708ebe70045d671a0.html">libraries</a></li><li class="navelem"><a class="el" href="../../dir_0f49e31d3c9acf5752e49042545c3ddc.html">Filesystem</a></li><li class="navelem"><a class="el" href="../../df/d63/file__menu__page_8hpp.html">file_menu_page.hpp</a></li>
+    <li class="footer">Generated on Tue Apr 8 2025 23:13:54 for SafeTown Senior Robot by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>

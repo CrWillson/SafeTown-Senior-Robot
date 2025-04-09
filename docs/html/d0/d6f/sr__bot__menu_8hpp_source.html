@@ -24,6 +24,7 @@
 /* @license-end */
 </script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+<link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -106,17 +107,18 @@ $(function(){initNavTree('d0/d6f/sr__bot__menu_8hpp_source.html','../../'); init
   <div class="headertitle"><div class="title">sr_bot_menu.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<a href="../../d0/d6f/sr__bot__menu_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;menu.hpp&quot;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;file_menu_page.hpp&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;file_stats_page.hpp&quot;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;esp32_input.hpp&quot;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;<a class="code" href="../../d9/d8f/menu_8hpp.html">menu.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="../../df/d63/file__menu__page_8hpp.html">file_menu_page.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="../../d9/dcf/file__stats__page_8hpp.html">file_stats_page.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="../../d3/d96/esp32__input_8hpp.html">esp32_input.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span></div>
 <div class="foldopen" id="foldopen00012" data-start="{" data-end="};">
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="../../d6/dfb/class_sr_menu.html">   12</a></span><span class="keyword">class </span><a class="code hl_class" href="../../d6/dfb/class_sr_menu.html">SrMenu</a> : <span class="keyword">public</span> Menu {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="../../d6/dfb/class_sr_menu.html">   12</a></span><span class="keyword">class </span><a class="code hl_class" href="../../d6/dfb/class_sr_menu.html">SrMenu</a> : <span class="keyword">public</span> <a class="code hl_function" href="../../d2/db8/class_menu.html#af54c660c10cdd3a620f5d9a89b4347e4">Menu</a> {</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> buildMenu()<span class="keyword"> override </span>{</div>
+<div class="foldopen" id="foldopen00014" data-start="{" data-end="}">
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="../../d6/dfb/class_sr_menu.html#a0b6ff1f096a44029bcb65a7ccd35fb74">   14</a></span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="../../d6/dfb/class_sr_menu.html#a0b6ff1f096a44029bcb65a7ccd35fb74">buildMenu</a>()<span class="keyword"> override </span>{</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        <span class="comment">// HOME PAGE</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        <span class="keyword">auto</span> homePage = <a class="code hl_function" href="../../d2/db8/class_menu.html#aa455c78485d8f2ee8d6c0cf4207ec317">addPage</a>(<span class="stringliteral">&quot;Home&quot;</span>);</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        homePage-&gt;addLine&lt;<a class="code hl_class" href="../../dc/df8/class_text_menu_line.html">TextMenuLine</a>&gt;(<span class="stringliteral">&quot;Home Page&quot;</span>);</div>
@@ -156,10 +158,10 @@ $(function(){initNavTree('d0/d6f/sr__bot__menu_8hpp_source.html','../../'); init
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        espPage-&gt;addLine&lt;<a class="code hl_class" href="../../dc/df8/class_text_menu_line.html">TextMenuLine</a>&gt;(<span class="stringliteral">&quot;ESP32 Settings&quot;</span>);</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        espPage-&gt;addLine&lt;<a class="code hl_class" href="../../d8/deb/class_spacer_menu_line.html">SpacerMenuLine</a>&gt;();</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        espPage-&gt;addLine&lt;<a class="code hl_class" href="../../de/de2/class_button_menu_line.html">ButtonMenuLine</a>&gt;(<span class="stringliteral">&quot;Take Photo&quot;</span>, []{ </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            EventManager::getInstance().publish(<a class="code hl_struct" href="../../d6/da4/struct_event_1_1_request_photo_event.html">Event::RequestPhotoEvent</a>());</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            <a class="code hl_function" href="../../d6/d94/class_event_manager.html#ad18a9d920d310bdd0b1a5e1562a8cba6">EventManager::getInstance</a>().<a class="code hl_function" href="../../d6/d94/class_event_manager.html#aade9a08c532f9ae7b098dd16c87b8428">publish</a>(<a class="code hl_struct" href="../../d6/da4/struct_event_1_1_request_photo_event.html">Event::RequestPhotoEvent</a>());</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        });</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        espPage-&gt;addLine&lt;<a class="code hl_class" href="../../de/de2/class_button_menu_line.html">ButtonMenuLine</a>&gt;(<span class="stringliteral">&quot;Reset Img Num&quot;</span>, []{</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            ESP32::getInstance().setImageNumber(0);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            <a class="code hl_function" href="../../d9/d0a/class_e_s_p32.html#ad5a9d8f4ad6683fd26bc8529abe41cf6">ESP32::getInstance</a>().<a class="code hl_function" href="../../d9/d0a/class_e_s_p32.html#a39c5adf7489d3d3a37189dd834eb66e1">setImageNumber</a>(0);</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        });</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        espPage-&gt;addLine&lt;<a class="code hl_class" href="../../de/de2/class_button_menu_line.html">ButtonMenuLine</a>&gt;(<span class="stringliteral">&quot;Edit Parameters&quot;</span>, [<span class="keyword">this</span>]{ </div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            this-&gt;<a class="code hl_function" href="../../d2/db8/class_menu.html#a90c765f3dacfc2941d27620b176406f4">setCurrentPage</a>(<span class="stringliteral">&quot;ESP32Params&quot;</span>); </div>
@@ -196,25 +198,36 @@ $(function(){initNavTree('d0/d6f/sr__bot__menu_8hpp_source.html','../../'); init
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        </div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    }</div>
+</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>};</div>
 </div>
-<div class="ttc" id="aclass_button_menu_line_html"><div class="ttname"><a href="../../de/de2/class_button_menu_line.html">ButtonMenuLine</a></div><div class="ttdoc">Menu line that displays static text. Executes a std::function&lt;void()&gt; upon interaction.</div><div class="ttdef"><b>Definition</b> menu_line.hpp:86</div></div>
+<div class="ttc" id="aclass_button_menu_line_html"><div class="ttname"><a href="../../de/de2/class_button_menu_line.html">ButtonMenuLine</a></div><div class="ttdoc">MenuLine that displays static text. Executes a std::function&lt;void()&gt; upon interaction.</div><div class="ttdef"><b>Definition</b> menu_line.hpp:90</div></div>
+<div class="ttc" id="aclass_e_s_p32_html_a39c5adf7489d3d3a37189dd834eb66e1"><div class="ttname"><a href="../../d9/d0a/class_e_s_p32.html#a39c5adf7489d3d3a37189dd834eb66e1">ESP32::setImageNumber</a></div><div class="ttdeci">void setImageNumber(const uint8_t imgNum)</div><div class="ttdoc">Set the number to append to the next received image file.</div><div class="ttdef"><b>Definition</b> esp32_input.hpp:60</div></div>
+<div class="ttc" id="aclass_e_s_p32_html_ad5a9d8f4ad6683fd26bc8529abe41cf6"><div class="ttname"><a href="../../d9/d0a/class_e_s_p32.html#ad5a9d8f4ad6683fd26bc8529abe41cf6">ESP32::getInstance</a></div><div class="ttdeci">static ESP32 &amp; getInstance()</div><div class="ttdef"><b>Definition</b> esp32_input.hpp:26</div></div>
+<div class="ttc" id="aclass_event_manager_html_aade9a08c532f9ae7b098dd16c87b8428"><div class="ttname"><a href="../../d6/d94/class_event_manager.html#aade9a08c532f9ae7b098dd16c87b8428">EventManager::publish</a></div><div class="ttdeci">void publish(const EventType &amp;event)</div><div class="ttdoc">Publish an event to the event queue. All call-back functions registered to that event type will be ex...</div><div class="ttdef"><b>Definition</b> event_manager.hpp:70</div></div>
+<div class="ttc" id="aclass_event_manager_html_ad18a9d920d310bdd0b1a5e1562a8cba6"><div class="ttname"><a href="../../d6/d94/class_event_manager.html#ad18a9d920d310bdd0b1a5e1562a8cba6">EventManager::getInstance</a></div><div class="ttdeci">static EventManager &amp; getInstance()</div><div class="ttdoc">Get the Meyer&#39;s singleton instance of the EventManager.</div><div class="ttdef"><b>Definition</b> event_manager.hpp:37</div></div>
 <div class="ttc" id="aclass_menu_html_a90c765f3dacfc2941d27620b176406f4"><div class="ttname"><a href="../../d2/db8/class_menu.html#a90c765f3dacfc2941d27620b176406f4">Menu::setCurrentPage</a></div><div class="ttdeci">void setCurrentPage(const std::string &amp;label)</div><div class="ttdoc">Set the current page to the one matching the label given.</div><div class="ttdef"><b>Definition</b> menu.cpp:30</div></div>
-<div class="ttc" id="aclass_menu_html_aa455c78485d8f2ee8d6c0cf4207ec317"><div class="ttname"><a href="../../d2/db8/class_menu.html#aa455c78485d8f2ee8d6c0cf4207ec317">Menu::addPage</a></div><div class="ttdeci">MenuPage * addPage(const std::string &amp;label)</div><div class="ttdoc">Add a default menu page to the Menu.</div><div class="ttdef"><b>Definition</b> menu.hpp:46</div></div>
-<div class="ttc" id="aclass_slider_menu_line_html"><div class="ttname"><a href="../../d0/de7/class_slider_menu_line.html">SliderMenuLine</a></div><div class="ttdoc">Menu line that displays a label followed by some user modifiable value.</div><div class="ttdef"><b>Definition</b> menu_line.hpp:118</div></div>
-<div class="ttc" id="aclass_spacer_menu_line_html"><div class="ttname"><a href="../../d8/deb/class_spacer_menu_line.html">SpacerMenuLine</a></div><div class="ttdoc">Menu line that displays a static, non-interactable separator line.</div><div class="ttdef"><b>Definition</b> menu_line.hpp:43</div></div>
+<div class="ttc" id="aclass_menu_html_aa455c78485d8f2ee8d6c0cf4207ec317"><div class="ttname"><a href="../../d2/db8/class_menu.html#aa455c78485d8f2ee8d6c0cf4207ec317">Menu::addPage</a></div><div class="ttdeci">MenuPage * addPage(const std::string &amp;label)</div><div class="ttdoc">Add a default menu page to the Menu.</div><div class="ttdef"><b>Definition</b> menu.hpp:54</div></div>
+<div class="ttc" id="aclass_menu_html_af54c660c10cdd3a620f5d9a89b4347e4"><div class="ttname"><a href="../../d2/db8/class_menu.html#af54c660c10cdd3a620f5d9a89b4347e4">Menu::Menu</a></div><div class="ttdeci">Menu()=default</div></div>
+<div class="ttc" id="aclass_slider_menu_line_html"><div class="ttname"><a href="../../d0/de7/class_slider_menu_line.html">SliderMenuLine</a></div><div class="ttdoc">MenuLine that displays a label followed by some user modifiable value.</div><div class="ttdef"><b>Definition</b> menu_line.hpp:124</div></div>
+<div class="ttc" id="aclass_spacer_menu_line_html"><div class="ttname"><a href="../../d8/deb/class_spacer_menu_line.html">SpacerMenuLine</a></div><div class="ttdoc">MenuLine that displays a static, non-interactable separator line.</div><div class="ttdef"><b>Definition</b> menu_line.hpp:44</div></div>
 <div class="ttc" id="aclass_sr_menu_html"><div class="ttname"><a href="../../d6/dfb/class_sr_menu.html">SrMenu</a></div><div class="ttdoc">Concrete child class of the Menu type. Specifies the construction of a menu for the Safe Town Senior ...</div><div class="ttdef"><b>Definition</b> sr_bot_menu.hpp:12</div></div>
-<div class="ttc" id="aclass_text_menu_line_html"><div class="ttname"><a href="../../dc/df8/class_text_menu_line.html">TextMenuLine</a></div><div class="ttdoc">Menu line type that displays static, non-interactable text.</div><div class="ttdef"><b>Definition</b> menu_line.hpp:56</div></div>
-<div class="ttc" id="aclass_value_menu_line_html"><div class="ttname"><a href="../../d8/d07/class_value_menu_line.html">ValueMenuLine</a></div><div class="ttdoc">Menu line that displays a label followed by some value given by the value label.</div><div class="ttdef"><b>Definition</b> menu_line.hpp:70</div></div>
-<div class="ttc" id="astruct_event_1_1_request_photo_event_html"><div class="ttname"><a href="../../d6/da4/struct_event_1_1_request_photo_event.html">Event::RequestPhotoEvent</a></div><div class="ttdef"><b>Definition</b> event_types.hpp:69</div></div>
+<div class="ttc" id="aclass_sr_menu_html_a0b6ff1f096a44029bcb65a7ccd35fb74"><div class="ttname"><a href="../../d6/dfb/class_sr_menu.html#a0b6ff1f096a44029bcb65a7ccd35fb74">SrMenu::buildMenu</a></div><div class="ttdeci">void buildMenu() override</div><div class="ttdef"><b>Definition</b> sr_bot_menu.hpp:14</div></div>
+<div class="ttc" id="aclass_text_menu_line_html"><div class="ttname"><a href="../../dc/df8/class_text_menu_line.html">TextMenuLine</a></div><div class="ttdoc">MenuLine type that displays static, non-interactable text.</div><div class="ttdef"><b>Definition</b> menu_line.hpp:58</div></div>
+<div class="ttc" id="aclass_value_menu_line_html"><div class="ttname"><a href="../../d8/d07/class_value_menu_line.html">ValueMenuLine</a></div><div class="ttdoc">MenuLine that displays a label followed by some value given by the value label.</div><div class="ttdef"><b>Definition</b> menu_line.hpp:73</div></div>
+<div class="ttc" id="aesp32__input_8hpp_html"><div class="ttname"><a href="../../d3/d96/esp32__input_8hpp.html">esp32_input.hpp</a></div></div>
+<div class="ttc" id="afile__menu__page_8hpp_html"><div class="ttname"><a href="../../df/d63/file__menu__page_8hpp.html">file_menu_page.hpp</a></div></div>
+<div class="ttc" id="afile__stats__page_8hpp_html"><div class="ttname"><a href="../../d9/dcf/file__stats__page_8hpp.html">file_stats_page.hpp</a></div></div>
+<div class="ttc" id="amenu_8hpp_html"><div class="ttname"><a href="../../d9/d8f/menu_8hpp.html">menu.hpp</a></div></div>
+<div class="ttc" id="astruct_event_1_1_request_photo_event_html"><div class="ttname"><a href="../../d6/da4/struct_event_1_1_request_photo_event.html">Event::RequestPhotoEvent</a></div><div class="ttdoc">Event to signal that a photo has been requested from the ESP32.</div><div class="ttdef"><b>Definition</b> event_types.hpp:86</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="../../dir_584452064a033d8aa0d8f24e272c0625.html">SafeTown Arduino Workspace</a></li><li class="navelem"><a class="el" href="../../dir_d9fdbc748a20c8f708ebe70045d671a0.html">libraries</a></li><li class="navelem"><a class="el" href="../../dir_e69c1dee880966f83a12f696c1f13e0d.html">Menu</a></li><li class="navelem"><b>sr_bot_menu.hpp</b></li>
-    <li class="footer">Generated on Tue Apr 8 2025 17:30:02 for SafeTown Senior Robot by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="navelem"><a class="el" href="../../dir_584452064a033d8aa0d8f24e272c0625.html">SafeTown Arduino Workspace</a></li><li class="navelem"><a class="el" href="../../dir_d9fdbc748a20c8f708ebe70045d671a0.html">libraries</a></li><li class="navelem"><a class="el" href="../../dir_e69c1dee880966f83a12f696c1f13e0d.html">Menu</a></li><li class="navelem"><a class="el" href="../../d0/d6f/sr__bot__menu_8hpp.html">sr_bot_menu.hpp</a></li>
+    <li class="footer">Generated on Tue Apr 8 2025 23:13:54 for SafeTown Senior Robot by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>

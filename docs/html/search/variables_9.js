@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['mosipin_0',['mosiPin',['../de/d33/class_adafruit___s_s_d1306.html#a6cb1a45ae527d3b5aaf4777d572e103c',1,'Adafruit_SSD1306']]]
+  ['maxval_0',['maxVal',['../d0/de7/class_slider_menu_line.html#a8c5a50f0a4611ba9168c8d7d4ef7628a',1,'SliderMenuLine']]],
+  ['minval_1',['minVal',['../d0/de7/class_slider_menu_line.html#a81bbf8a6dce273fd27691f9cb2a1759a',1,'SliderMenuLine']]]
 ];

@@ -1,9 +1,14 @@
 var searchData=
 [
-  ['_7eadafruit_5fgrayoled_0',['~Adafruit_GrayOLED',['../d6/df1/class_adafruit___gray_o_l_e_d.html#a672ae5128356ffffac26c8c6e5b4a17c',1,'Adafruit_GrayOLED']]],
-  ['_7eadafruit_5fspidevice_1',['~Adafruit_SPIDevice',['../da/dc4/class_adafruit___s_p_i_device.html#ab2dc91c7ef9488df1c52bb682a39a7fb',1,'Adafruit_SPIDevice']]],
-  ['_7eadafruit_5fssd1306_2',['~Adafruit_SSD1306',['../de/d33/class_adafruit___s_s_d1306.html#a550877cb23b0dba2b1e172363328ce87',1,'Adafruit_SSD1306']]],
-  ['_7egfxcanvas1_3',['~GFXcanvas1',['../dc/db3/class_g_f_xcanvas1.html#a5c6dad65db4c9a99544f3b5bad4c86e8',1,'GFXcanvas1']]],
-  ['_7egfxcanvas16_4',['~GFXcanvas16',['../d2/de2/class_g_f_xcanvas16.html#a15a79ebb2f3d86cb6a6bdc4ab1f3e9b7',1,'GFXcanvas16']]],
-  ['_7egfxcanvas8_5',['~GFXcanvas8',['../db/db0/class_g_f_xcanvas8.html#a340fa7ddf55936e16748bd37255d2f19',1,'GFXcanvas8']]]
+  ['_7edebuglogger_0',['~DebugLogger',['../da/d0d/class_debug_logger.html#a9b065294169f5b969f69b33ec85a9919',1,'DebugLogger']]],
+  ['_7edisplay_1',['~Display',['../df/d4d/class_display.html#ab219324147d8ee860d32d9917bff50af',1,'Display']]],
+  ['_7eesp32_2',['~ESP32',['../d9/d0a/class_e_s_p32.html#a176dcd1c846ab587107cf4b747f6e05a',1,'ESP32']]],
+  ['_7eevent_3',['~Event',['../df/d59/struct_event_1_1_event.html#a2ca2637c71dfa3033149b861bbcd7378',1,'Event::Event']]],
+  ['_7eeventmanager_4',['~EventManager',['../d6/d94/class_event_manager.html#a2e43e8b165b54f75e9c005cf5b04ade7',1,'EventManager']]],
+  ['_7efilemenupage_5',['~FileMenuPage',['../d7/d04/class_file_menu_page.html#a201ead76172b96b9159c3983cb0a3293',1,'FileMenuPage']]],
+  ['_7efileoptmenupg_6',['~FileOptMenuPg',['../df/d9a/class_file_opt_menu_pg.html#a9f338c8ea8d37c945f9a242692f9d3e0',1,'FileOptMenuPg']]],
+  ['_7efilestatpage_7',['~FileStatPage',['../d6/d51/class_file_stat_page.html#acdf1afb3bb6047d2f61f32b388f4f8c9',1,'FileStatPage']]],
+  ['_7emenu_8',['~Menu',['../d2/db8/class_menu.html#a8fc4104b08c9a24d1dab18b82a82b7da',1,'Menu']]],
+  ['_7emenuline_9',['~MenuLine',['../d7/d44/class_menu_line.html#aa341c47767ab5e1dc9a515ee2c593db7',1,'MenuLine']]],
+  ['_7emenupage_10',['~MenuPage',['../d1/d6b/class_menu_page.html#adc82350a32b0964def8b98e7e7fe9f8c',1,'MenuPage']]]
 ];

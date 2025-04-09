@@ -11,9 +11,16 @@
 #include "menu_page.hpp"
 
 /**
+ * @defgroup Menu
+ * @brief A collection of utilities for building and navigating menus on the Pico's display
+ * 
+ */
+
+
+/**
  * @brief Abstract base menu type. Constructing a menu requires the user to inherit from this class
  * and override the buildMenu() method with the procedure for constructing their specific menu.
- * 
+ * @ingroup Menu
  */
 class Menu {
 public:
@@ -39,6 +46,7 @@ public:
     /**
      * @brief Add a default menu page to the Menu
      * 
+     * @overload
      * @param label - A label for the page by which it can be referred to later
      * 
      * @return MenuPage* - A raw pointer to the page that was just created

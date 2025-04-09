@@ -14,8 +14,14 @@
 #include "semphr.h"
 
 /**
- * @brief Handles the publishing of and subcribing to events between functionally independent components.
+ * @defgroup CoreUtilities
+ * @brief A group of classes to manage core functionality of the Pi Pico
  * 
+ */
+
+/**
+ * @brief Handles the publishing of and subcribing to events between functionally independent components.
+ * @ingroup CoreUtilities
  */
 class EventManager {
 public:
@@ -23,7 +29,11 @@ public:
     EventManager(const EventManager&) = delete;
     EventManager& operator=(const EventManager&) = delete;
 
-    // Make the EventManager a Meyers singleton class
+    /**
+     * @brief Get the Meyer's singleton instance of the EventManager
+     * 
+     * @return EventManager& 
+     */
     static EventManager& getInstance() {
         static EventManager instance;
         return instance;

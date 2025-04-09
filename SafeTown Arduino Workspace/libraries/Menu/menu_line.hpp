@@ -8,7 +8,8 @@
 
 
 /**
- * @brief Abstract base type for a menu line
+ * @brief Abstract base type for a MenuLine
+ * @ingroup Menu
  */
 class MenuLine {
 public:
@@ -37,8 +38,8 @@ public:
 };
 
 /**
- * @brief Menu line that displays a static, non-interactable separator line
- * 
+ * @brief MenuLine that displays a static, non-interactable separator line
+ * @ingroup Menu
  */
 class SpacerMenuLine : public MenuLine {
 public:
@@ -51,7 +52,8 @@ public:
 
 
 /**
- * @brief Menu line type that displays static, non-interactable text
+ * @brief MenuLine type that displays static, non-interactable text
+ * @ingroup Menu
  */
 class TextMenuLine : public MenuLine {
 public:
@@ -65,7 +67,8 @@ private:
 };
 
 /**
- * @brief Menu line that displays a label followed by some value given by the value label
+ * @brief MenuLine that displays a label followed by some value given by the value label
+ * @ingroup Menu
  */
 class ValueMenuLine : public MenuLine {
 public:
@@ -81,7 +84,8 @@ private:
 };
 
 /**
- * @brief Menu line that displays static text. Executes a std::function<void()> upon interaction
+ * @brief MenuLine that displays static text. Executes a std::function<void()> upon interaction
+ * @ingroup Menu
  */
 class ButtonMenuLine : public MenuLine {
 public:
@@ -96,7 +100,8 @@ private:
 };
 
 /**
- * @brief Menu line that displays static text. Toggles a boolean value upon interaction
+ * @brief MenuLine that displays static text. Toggles a boolean value upon interaction
+ * @ingroup Menu
  */
 class ToggleMenuLine : public MenuLine {
 public:
@@ -110,10 +115,11 @@ private:
 };
 
 /**
- * @brief Menu line that displays a label followed by some user modifiable value.
+ * @brief MenuLine that displays a label followed by some user modifiable value.
  * @details Interacting will begin editing. Once editing, scrolling up and down will instead increment or decrement
  * the value between its upper and lower bounds. Interacting again will confirm the selection and broadcast a notification
  * of the value's change.
+ * @ingroup Menu
  */
 class SliderMenuLine : public MenuLine {
 public:

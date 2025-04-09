@@ -1,6 +1,14 @@
 var searchData=
 [
-  ['onpageexit_0',['onPageExit',['../d7/d04/class_file_menu_page.html#af7289b7ad8a0476f96e3194446e42bb3',1,'FileMenuPage::onPageExit()'],['../d6/d51/class_file_stat_page.html#a419b20e724b1cfd4247fd1353de5dfc1',1,'FileStatPage::onPageExit()'],['../d1/d6b/class_menu_page.html#aa8cb5e712b3af839ad28af41cb57a186',1,'MenuPage::onPageExit()']]],
-  ['onpageload_1',['onPageLoad',['../d7/d04/class_file_menu_page.html#a966343db5ec8a81ec75852f8c5975f46',1,'FileMenuPage::onPageLoad()'],['../d6/d51/class_file_stat_page.html#a55a7dc218f2bff4a23f61203962c5523',1,'FileStatPage::onPageLoad()'],['../d1/d6b/class_menu_page.html#a803a03777f21f8fd926730ff7d67737f',1,'MenuPage::onPageLoad()']]],
-  ['onselect_2',['onSelect',['../d7/d44/class_menu_line.html#a313d69d65e70b94d4d00b0399252f3af',1,'MenuLine::onSelect()'],['../d8/deb/class_spacer_menu_line.html#ac14946b604d00159d8f646e7aef38724',1,'SpacerMenuLine::onSelect()'],['../dc/df8/class_text_menu_line.html#a2f47f0cc0ef6cae52b76a19c8d30f893',1,'TextMenuLine::onSelect()'],['../d8/d07/class_value_menu_line.html#ae3b7752ddb212cdcd0fe486267c4e1a2',1,'ValueMenuLine::onSelect()'],['../de/de2/class_button_menu_line.html#a1468481234f7fca89a6299f8f0236d09',1,'ButtonMenuLine::onSelect()'],['../d6/d67/class_toggle_menu_line.html#a5ee44e9ef5197c326d3715523ba56516',1,'ToggleMenuLine::onSelect()'],['../d0/de7/class_slider_menu_line.html#a7591c0c6aaee5d51102047c2828463fd',1,'SliderMenuLine::onSelect()']]]
+  ['image_5fbpp_0',['IMAGE_BPP',['../d9/d0a/class_e_s_p32.html#a90a06d191df59222d497b7bb7f43fc6d',1,'ESP32']]],
+  ['image_5fcols_1',['IMAGE_COLS',['../d9/d0a/class_e_s_p32.html#aec0fb09478d4a9a046868d212f066f8b',1,'ESP32']]],
+  ['image_5fpadding_2',['IMAGE_PADDING',['../d9/d0a/class_e_s_p32.html#a100acdeebc5b56c5375668fab84c55c9',1,'ESP32']]],
+  ['image_5frows_3',['IMAGE_ROWS',['../d9/d0a/class_e_s_p32.html#a5fbd1491b110460890f6824f2c2d67ec',1,'ESP32']]],
+  ['image_5fsize_4',['IMAGE_SIZE',['../d9/d0a/class_e_s_p32.html#a755c5bfd8588a7cc36766c009e4b31e3',1,'ESP32']]],
+  ['imagedir_5',['imageDir',['../d9/d0a/class_e_s_p32.html#ac16a67358aafefd3bd3900adec605f2b',1,'ESP32']]],
+  ['imageincluded_6',['imageIncluded',['../d8/dfc/struct_esp_to_pico_packet.html#afe8d5e2cbeeb440efdb6f817e5f06d88',1,'EspToPicoPacket']]],
+  ['imagenumber_7',['imageNumber',['../d9/d0a/class_e_s_p32.html#ad91e0bba121cf85d29f6fe7f58cfc662',1,'ESP32']]],
+  ['imageprefix_8',['imagePrefix',['../d9/d0a/class_e_s_p32.html#a1ee2b5a0153b742dfbbc42d8a463b0cf',1,'ESP32']]],
+  ['imagesuffix_9',['imageSuffix',['../d9/d0a/class_e_s_p32.html#a865e31a35dd0c78150ff09057813dead',1,'ESP32']]],
+  ['init_10',['init',['../df/d4d/class_display.html#aacbf91b9f8c57fc2cb892c45fd44e655',1,'Display::init()'],['../d9/d0a/class_e_s_p32.html#a5697c96f00d466d6a3c47f3db9c03d2a',1,'ESP32::init()'],['../d2/db8/class_menu.html#a342d2a526a850dbf2d1aecd830b91287',1,'Menu::init()'],['../d7/d75/class_u_i_manager.html#aedd9d0577af515a852425dfe414b2968',1,'UIManager::init()']]]
 ];

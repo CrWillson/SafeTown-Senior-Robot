@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['default_5fspi_5ffreq_0',['DEFAULT_SPI_FREQ',['../d8/db6/_adafruit___s_p_i_t_f_t_8h.html#a7434818958eb0d2993bbd2021eea141d',1,'Adafruit_SPITFT.h']]]
+  ['oled_5freset_0',['OLED_RESET',['../db/d86/display_8cpp.html#a619e07239fb3b9b14d40646ab41d5b4f',1,'display.cpp']]]
 ];

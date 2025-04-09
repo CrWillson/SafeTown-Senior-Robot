@@ -7,22 +7,41 @@
 #include "event_manager.hpp"
 #include "Arduino.h"
 
+/**
+ * @brief Class to handle gathering user input from the rotary encoder
+ * @ingroup CommunicationUtilities
+ */
 class UIManager {
 public:
-    // Delete copy constructor and assignment operator to prevent copying
     UIManager(const UIManager&) = delete;
     UIManager& operator=(const UIManager&) = delete;
 
-    // Static method to access the single instance of the class
+    /**
+     * @brief Get the Meyers singleton instance of the UIManager
+     * 
+     * @return UIManager&
+     */
     static UIManager& getInstance() {
         static UIManager instance;
         return instance;
     }
     
+    /**
+     * @brief Initialize the encoder and attach interrupts
+     * 
+     */
     void init();
     
+    /**
+     * @brief Called upon the encoder being spun
+     * 
+     */
     static void updateEncoder();
-    
+
+    /**
+     * @brief Called upon the encoder being pressed
+     * 
+     */
     static void EncoderPress() {
         eventManager->publish(Event::EncoderPress{});
     }

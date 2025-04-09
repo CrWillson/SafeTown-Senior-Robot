@@ -24,6 +24,7 @@
 /* @license-end */
 </script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+<link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -108,11 +109,11 @@ $(function(){initNavTree('d6/d67/class_toggle_menu_line.html','../../'); initRes
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="#friends">Friends</a> &#124;
 <a href="../../d9/d2a/class_toggle_menu_line-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">ToggleMenuLine Class Reference</div></div>
+  <div class="headertitle"><div class="title">ToggleMenuLine Class Reference<div class="ingroups"><a class="el" href="../../d1/d95/group___menu.html">Menu</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="../../d2/db8/class_menu.html" title="Abstract base menu type. Constructing a menu requires the user to inherit from this class and overrid...">Menu</a> line that displays static text. Toggles a boolean value upon interaction.  
+<p><a class="el" href="../../d7/d44/class_menu_line.html" title="Abstract base type for a MenuLine.">MenuLine</a> that displays static text. Toggles a boolean value upon interaction.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="../../dd/d91/menu__line_8hpp_source.html">menu_line.hpp</a>&gt;</code></p>
@@ -122,14 +123,13 @@ Inheritance diagram for ToggleMenuLine:</div>
  <div class="center">
   <img src="../../d6/d67/class_toggle_menu_line.png" usemap="#ToggleMenuLine_map" alt=""/>
   <map id="ToggleMenuLine_map" name="ToggleMenuLine_map">
-<area href="../../d7/d44/class_menu_line.html" title="Abstract base type for a menu line." alt="MenuLine" shape="rect" coords="0,0,106,24"/>
+<area href="../../d7/d44/class_menu_line.html" title="Abstract base type for a MenuLine." alt="MenuLine" shape="rect" coords="0,0,106,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:addc3838dcdb84e008f98f0733865f640" id="r_addc3838dcdb84e008f98f0733865f640"><td class="memItemLeft" align="right" valign="top"><a id="addc3838dcdb84e008f98f0733865f640" name="addc3838dcdb84e008f98f0733865f640"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ToggleMenuLine</b> (const std::string &amp;text, bool initialState)</td></tr>
+<tr class="memitem:addc3838dcdb84e008f98f0733865f640" id="r_addc3838dcdb84e008f98f0733865f640"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#addc3838dcdb84e008f98f0733865f640">ToggleMenuLine</a> (const std::string &amp;text, bool initialState)</td></tr>
 <tr class="separator:addc3838dcdb84e008f98f0733865f640"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa8a56adbf72c9329fe16c6b093b23e09" id="r_aa8a56adbf72c9329fe16c6b093b23e09"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8a56adbf72c9329fe16c6b093b23e09">getText</a> (bool selected) const override</td></tr>
 <tr class="memdesc:aa8a56adbf72c9329fe16c6b093b23e09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the line as a std::string.  <br /></td></tr>
@@ -138,33 +138,61 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a5ee44e9ef5197c326d3715523ba56516"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called upon selecting the menu line.  <br /></td></tr>
 <tr class="separator:a5ee44e9ef5197c326d3715523ba56516"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_menu_line"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_menu_line')"><img src="../../closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="../../d7/d44/class_menu_line.html">MenuLine</a></td></tr>
-<tr class="memitem:a59292fe05b7a9e4f64b3f49c28410197 inherit pub_methods_class_menu_line" id="r_a59292fe05b7a9e4f64b3f49c28410197"><td class="memItemLeft" align="right" valign="top">
-&#160;</td><td class="memItemRight" valign="bottom"><b>MenuLine</b> (const std::string &amp;text)</td></tr>
+<tr class="memitem:a59292fe05b7a9e4f64b3f49c28410197 inherit pub_methods_class_menu_line" id="r_a59292fe05b7a9e4f64b3f49c28410197"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d44/class_menu_line.html#a59292fe05b7a9e4f64b3f49c28410197">MenuLine</a> (const std::string &amp;text)</td></tr>
 <tr class="separator:a59292fe05b7a9e4f64b3f49c28410197 inherit pub_methods_class_menu_line"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa341c47767ab5e1dc9a515ee2c593db7 inherit pub_methods_class_menu_line" id="r_aa341c47767ab5e1dc9a515ee2c593db7"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d44/class_menu_line.html#aa341c47767ab5e1dc9a515ee2c593db7">~MenuLine</a> ()=default</td></tr>
+<tr class="separator:aa341c47767ab5e1dc9a515ee2c593db7 inherit pub_methods_class_menu_line"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a113069db29a0bd95c8ba0af7b08f135c" id="r_a113069db29a0bd95c8ba0af7b08f135c"><td class="memItemLeft" align="right" valign="top"><a id="a113069db29a0bd95c8ba0af7b08f135c" name="a113069db29a0bd95c8ba0af7b08f135c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>state</b></td></tr>
+<tr class="memitem:a113069db29a0bd95c8ba0af7b08f135c" id="r_a113069db29a0bd95c8ba0af7b08f135c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a113069db29a0bd95c8ba0af7b08f135c">state</a></td></tr>
 <tr class="separator:a113069db29a0bd95c8ba0af7b08f135c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
-<tr class="memitem:a9270650ae8183b52e285736bc8ca6a9e" id="r_a9270650ae8183b52e285736bc8ca6a9e"><td class="memItemLeft" align="right" valign="top"><a id="a9270650ae8183b52e285736bc8ca6a9e" name="a9270650ae8183b52e285736bc8ca6a9e"></a>
-class&#160;</td><td class="memItemRight" valign="bottom"><b>MenuPage</b></td></tr>
+<tr class="memitem:a9270650ae8183b52e285736bc8ca6a9e" id="r_a9270650ae8183b52e285736bc8ca6a9e"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9270650ae8183b52e285736bc8ca6a9e">MenuPage</a></td></tr>
 <tr class="separator:a9270650ae8183b52e285736bc8ca6a9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_attribs_class_menu_line"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_class_menu_line')"><img src="../../closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="../../d7/d44/class_menu_line.html">MenuLine</a></td></tr>
-<tr class="memitem:a1d1b0618a545379821701edfd39f7f07 inherit pub_attribs_class_menu_line" id="r_a1d1b0618a545379821701edfd39f7f07"><td class="memItemLeft" align="right" valign="top">
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>label</b></td></tr>
-<tr class="memdesc:a1d1b0618a545379821701edfd39f7f07 inherit pub_attribs_class_menu_line"><td class="mdescLeft">&#160;</td><td class="mdescRight">The text the display as the menu line. <br /></td></tr>
+<tr class="memitem:a1d1b0618a545379821701edfd39f7f07 inherit pub_attribs_class_menu_line" id="r_a1d1b0618a545379821701edfd39f7f07"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d44/class_menu_line.html#a1d1b0618a545379821701edfd39f7f07">label</a></td></tr>
+<tr class="memdesc:a1d1b0618a545379821701edfd39f7f07 inherit pub_attribs_class_menu_line"><td class="mdescLeft">&#160;</td><td class="mdescRight">The text the display as the menu line.  <br /></td></tr>
 <tr class="separator:a1d1b0618a545379821701edfd39f7f07 inherit pub_attribs_class_menu_line"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="../../d2/db8/class_menu.html" title="Abstract base menu type. Constructing a menu requires the user to inherit from this class and overrid...">Menu</a> line that displays static text. Toggles a boolean value upon interaction. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+<div class="textblock"><p><a class="el" href="../../d7/d44/class_menu_line.html" title="Abstract base type for a MenuLine.">MenuLine</a> that displays static text. Toggles a boolean value upon interaction. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="addc3838dcdb84e008f98f0733865f640" name="addc3838dcdb84e008f98f0733865f640"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addc3838dcdb84e008f98f0733865f640">&#9670;&#160;</a></span>ToggleMenuLine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ToggleMenuLine::ToggleMenuLine </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>text</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>initialState</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="aa8a56adbf72c9329fe16c6b093b23e09" name="aa8a56adbf72c9329fe16c6b093b23e09"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa8a56adbf72c9329fe16c6b093b23e09">&#9670;&#160;</a></span>getText()</h2>
 
@@ -230,6 +258,52 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>label</b></td>
 
 </div>
 </div>
+<h2 class="groupheader">Friends And Related Symbol Documentation</h2>
+<a id="a9270650ae8183b52e285736bc8ca6a9e" name="a9270650ae8183b52e285736bc8ca6a9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9270650ae8183b52e285736bc8ca6a9e">&#9670;&#160;</a></span>MenuPage</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class <a class="el" href="../../d1/d6b/class_menu_page.html">MenuPage</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel friend">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a113069db29a0bd95c8ba0af7b08f135c" name="a113069db29a0bd95c8ba0af7b08f135c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a113069db29a0bd95c8ba0af7b08f135c">&#9670;&#160;</a></span>state</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ToggleMenuLine::state</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>SafeTown Arduino Workspace/libraries/Menu/<a class="el" href="../../dd/d91/menu__line_8hpp_source.html">menu_line.hpp</a></li>
 </ul>
@@ -239,7 +313,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>label</b></td>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../d6/d67/class_toggle_menu_line.html">ToggleMenuLine</a></li>
-    <li class="footer">Generated on Tue Apr 8 2025 17:30:02 for SafeTown Senior Robot by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Generated on Tue Apr 8 2025 23:13:54 for SafeTown Senior Robot by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>

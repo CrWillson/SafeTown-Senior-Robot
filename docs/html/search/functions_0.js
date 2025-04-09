@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['addline_0',['addLine',['../d1/d6b/class_menu_page.html#a9269b429517ec3f159e87e35cb702ce2',1,'MenuPage']]],
-  ['addpage_1',['addPage',['../d2/db8/class_menu.html#aa455c78485d8f2ee8d6c0cf4207ec317',1,'Menu::addPage(const std::string &amp;label)'],['../d2/db8/class_menu.html#a3d1db2dbcee753bf051a3eddbe90bdb3',1,'Menu::addPage(Args &amp;&amp;... args)']]]
+  ['_5fgetnextimagenumber_0',['_getNextImageNumber',['../d9/d0a/class_e_s_p32.html#a71582a08b8477f4597dc8692baab9b86',1,'ESP32']]],
+  ['_5fonpageupdated_1',['_onPageUpdated',['../df/d4d/class_display.html#a116adb8c65ee46525f360c702f8838b2',1,'Display']]],
+  ['_5fonvaluechange_2',['_onValueChange',['../d9/d0a/class_e_s_p32.html#a4e0e1352549e86ab11a24a0a14990aab',1,'ESP32']]],
+  ['_5fsavenextimagenumber_3',['_saveNextImageNumber',['../d9/d0a/class_e_s_p32.html#a2c3e3c14023f2936e2e7465c5e384dee',1,'ESP32']]],
+  ['_5fspaceavailable_4',['_spaceAvailable',['../d9/d0a/class_e_s_p32.html#a3db2741998c98048e824af7dba282fdb',1,'ESP32']]]
 ];

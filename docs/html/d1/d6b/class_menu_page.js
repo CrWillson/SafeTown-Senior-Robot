@@ -1,10 +1,26 @@
 var class_menu_page =
 [
     [ "MenuPage", "d1/d6b/class_menu_page.html#ab0f0cc0e5ba697feb39b273052250818", null ],
+    [ "~MenuPage", "d1/d6b/class_menu_page.html#adc82350a32b0964def8b98e7e7fe9f8c", null ],
     [ "addLine", "d1/d6b/class_menu_page.html#a9269b429517ec3f159e87e35cb702ce2", null ],
     [ "clearLines", "d1/d6b/class_menu_page.html#ad77700c14791b880cf9e9e991263ec79", null ],
+    [ "getLabel", "d1/d6b/class_menu_page.html#aee7d3e366d8044c786bc1bcfdbf806e6", null ],
     [ "getVisibleText", "d1/d6b/class_menu_page.html#a68dd8d95c07608dff3512dc2f145d59b", null ],
     [ "onPageExit", "d1/d6b/class_menu_page.html#aa8cb5e712b3af839ad28af41cb57a186", null ],
     [ "onPageLoad", "d1/d6b/class_menu_page.html#a803a03777f21f8fd926730ff7d67737f", null ],
-    [ "lines", "d1/d6b/class_menu_page.html#ae50de058c4d4fdc091e8f780a9f8091b", null ]
+    [ "onValueChange", "d1/d6b/class_menu_page.html#a14197cc4e04486074191175bffb5a456", null ],
+    [ "onValueRequested", "d1/d6b/class_menu_page.html#a01d694a6cacf7964793f1d17b2857329", null ],
+    [ "scrollDown", "d1/d6b/class_menu_page.html#aea0a9e42aa18fce8b3d1a637a849c53a", null ],
+    [ "scrollUp", "d1/d6b/class_menu_page.html#a550e558ff67136d77c736b74ae063a33", null ],
+    [ "select", "d1/d6b/class_menu_page.html#a5d6d0e53beba8c878b77ee74c4f0c632", null ],
+    [ "Menu", "d1/d6b/class_menu_page.html#a834cec0fab7efabab3cd53540e4d466d", null ],
+    [ "botLine", "d1/d6b/class_menu_page.html#a415b729bd2a199fb19361d813dc5282e", null ],
+    [ "eventManager", "d1/d6b/class_menu_page.html#a2540bfa037dd03f12e05368490760b55", null ],
+    [ "label", "d1/d6b/class_menu_page.html#a9a7f0b4fe564ccd53602caeaf0c2d06b", null ],
+    [ "lines", "d1/d6b/class_menu_page.html#ae50de058c4d4fdc091e8f780a9f8091b", null ],
+    [ "LINESPERSCREEN", "d1/d6b/class_menu_page.html#aa44eb5abb89ffa09b3f0ac0d35e57fdf", null ],
+    [ "numLines", "d1/d6b/class_menu_page.html#a2d7faa7c5a68c02edd2683ec832dd24f", null ],
+    [ "parentMenu", "d1/d6b/class_menu_page.html#a3d4ef16e6bc51cb8db6be5268b2bc6fb", null ],
+    [ "selectedLine", "d1/d6b/class_menu_page.html#ac0f75b48f9d4db13332f1c7ab3b95b14", null ],
+    [ "topLine", "d1/d6b/class_menu_page.html#a0de180a9af03cff9d92669c55f059301", null ]
 ];

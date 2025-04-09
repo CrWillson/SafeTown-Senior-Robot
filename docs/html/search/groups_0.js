@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['eventgrouphandle_5ft_0',['EventGroupHandle_t',['../d4/d84/group___event_group_handle__t.html',1,'']]]
+  ['communicationutilities_0',['CommunicationUtilities',['../d3/dd3/group___communication_utilities.html',1,'']]],
+  ['coreutilities_1',['CoreUtilities',['../db/d25/group___core_utilities.html',1,'']]]
 ];

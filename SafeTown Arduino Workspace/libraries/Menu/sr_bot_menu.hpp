@@ -7,7 +7,7 @@
 
 /**
  * @brief Concrete child class of the Menu type. Specifies the construction of a menu for the Safe Town Senior Robot. 
- * 
+ * @ingroup Menu
  */
 class SrMenu : public Menu {
 protected:

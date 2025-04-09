@@ -24,6 +24,7 @@
 /* @license-end */
 </script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+<link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -107,9 +108,10 @@ $(function(){initNavTree('d6/d94/class_event_manager.html','../../'); initResiza
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pri-types">Private Types</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="../../d6/d77/class_event_manager-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">EventManager Class Reference</div></div>
+  <div class="headertitle"><div class="title">EventManager Class Reference<div class="ingroups"><a class="el" href="../../db/d25/group___core_utilities.html">CoreUtilities</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -120,11 +122,11 @@ $(function(){initNavTree('d6/d94/class_event_manager.html','../../'); initResiza
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4e802f57b1f9176a95309b17750c5c6c" id="r_a4e802f57b1f9176a95309b17750c5c6c"><td class="memItemLeft" align="right" valign="top"><a id="a4e802f57b1f9176a95309b17750c5c6c" name="a4e802f57b1f9176a95309b17750c5c6c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>EventManager</b> (const <a class="el" href="../../d6/d94/class_event_manager.html">EventManager</a> &amp;)=delete</td></tr>
+<tr class="memitem:a2e43e8b165b54f75e9c005cf5b04ade7" id="r_a2e43e8b165b54f75e9c005cf5b04ade7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2e43e8b165b54f75e9c005cf5b04ade7">~EventManager</a> ()</td></tr>
+<tr class="separator:a2e43e8b165b54f75e9c005cf5b04ade7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e802f57b1f9176a95309b17750c5c6c" id="r_a4e802f57b1f9176a95309b17750c5c6c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4e802f57b1f9176a95309b17750c5c6c">EventManager</a> (const <a class="el" href="../../d6/d94/class_event_manager.html">EventManager</a> &amp;)=delete</td></tr>
 <tr class="separator:a4e802f57b1f9176a95309b17750c5c6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27b7ccd6ac588cd2cf519d6d9186735f" id="r_a27b7ccd6ac588cd2cf519d6d9186735f"><td class="memItemLeft" align="right" valign="top"><a id="a27b7ccd6ac588cd2cf519d6d9186735f" name="a27b7ccd6ac588cd2cf519d6d9186735f"></a>
-<a class="el" href="../../d6/d94/class_event_manager.html">EventManager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="../../d6/d94/class_event_manager.html">EventManager</a> &amp;)=delete</td></tr>
+<tr class="memitem:a27b7ccd6ac588cd2cf519d6d9186735f" id="r_a27b7ccd6ac588cd2cf519d6d9186735f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/d94/class_event_manager.html">EventManager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a27b7ccd6ac588cd2cf519d6d9186735f">operator=</a> (const <a class="el" href="../../d6/d94/class_event_manager.html">EventManager</a> &amp;)=delete</td></tr>
 <tr class="separator:a27b7ccd6ac588cd2cf519d6d9186735f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd1e27f277dda1a45aa2ee02e5d7c256" id="r_abd1e27f277dda1a45aa2ee02e5d7c256"><td class="memTemplParams" colspan="2">template&lt;typename EventType&gt; </td></tr>
 <tr class="memitem:abd1e27f277dda1a45aa2ee02e5d7c256"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#abd1e27f277dda1a45aa2ee02e5d7c256">subscribe</a> (std::function&lt; void(const EventType &amp;)&gt; handler)</td></tr>
@@ -140,34 +142,178 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ad18a9d920d310bdd0b1a5e1562a8cba6" id="r_ad18a9d920d310bdd0b1a5e1562a8cba6"><td class="memItemLeft" align="right" valign="top"><a id="ad18a9d920d310bdd0b1a5e1562a8cba6" name="ad18a9d920d310bdd0b1a5e1562a8cba6"></a>
-static <a class="el" href="../../d6/d94/class_event_manager.html">EventManager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getInstance</b> ()</td></tr>
+<tr class="memitem:ad18a9d920d310bdd0b1a5e1562a8cba6" id="r_ad18a9d920d310bdd0b1a5e1562a8cba6"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d6/d94/class_event_manager.html">EventManager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad18a9d920d310bdd0b1a5e1562a8cba6">getInstance</a> ()</td></tr>
+<tr class="memdesc:ad18a9d920d310bdd0b1a5e1562a8cba6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Meyer's singleton instance of the <a class="el" href="../../d6/d94/class_event_manager.html" title="Handles the publishing of and subcribing to events between functionally independent components.">EventManager</a>.  <br /></td></tr>
 <tr class="separator:ad18a9d920d310bdd0b1a5e1562a8cba6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-types" name="pri-types"></a>
 Private Types</h2></td></tr>
-<tr class="memitem:aabaffc5e1ed07c3f682cebc1a14f82a5" id="r_aabaffc5e1ed07c3f682cebc1a14f82a5"><td class="memItemLeft" align="right" valign="top"><a id="aabaffc5e1ed07c3f682cebc1a14f82a5" name="aabaffc5e1ed07c3f682cebc1a14f82a5"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>HandlerFunc</b> = std::function&lt;void(const void*)&gt;</td></tr>
+<tr class="memitem:aabaffc5e1ed07c3f682cebc1a14f82a5" id="r_aabaffc5e1ed07c3f682cebc1a14f82a5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aabaffc5e1ed07c3f682cebc1a14f82a5">HandlerFunc</a> = std::function&lt;void(const void*)&gt;</td></tr>
 <tr class="separator:aabaffc5e1ed07c3f682cebc1a14f82a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a89099b22114f158b5c530edfea52371d" id="r_a89099b22114f158b5c530edfea52371d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a89099b22114f158b5c530edfea52371d">EventManager</a> ()</td></tr>
+<tr class="separator:a89099b22114f158b5c530edfea52371d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a6c7a11cc60b80dbebb534ee8d32fa4e6" id="r_a6c7a11cc60b80dbebb534ee8d32fa4e6"><td class="memItemLeft" align="right" valign="top"><a id="a6c7a11cc60b80dbebb534ee8d32fa4e6" name="a6c7a11cc60b80dbebb534ee8d32fa4e6"></a>
-std::vector&lt; std::vector&lt; HandlerFunc &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>handlers</b></td></tr>
+<tr class="memitem:a6c7a11cc60b80dbebb534ee8d32fa4e6" id="r_a6c7a11cc60b80dbebb534ee8d32fa4e6"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; <a class="el" href="#aabaffc5e1ed07c3f682cebc1a14f82a5">HandlerFunc</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c7a11cc60b80dbebb534ee8d32fa4e6">handlers</a></td></tr>
 <tr class="separator:a6c7a11cc60b80dbebb534ee8d32fa4e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac99e4c1645c92715b2bbf0dd7d2beadd" id="r_ac99e4c1645c92715b2bbf0dd7d2beadd"><td class="memItemLeft" align="right" valign="top"><a id="ac99e4c1645c92715b2bbf0dd7d2beadd" name="ac99e4c1645c92715b2bbf0dd7d2beadd"></a>
-std::vector&lt; std::function&lt; void()&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>eventQueue</b></td></tr>
+<tr class="memitem:ac99e4c1645c92715b2bbf0dd7d2beadd" id="r_ac99e4c1645c92715b2bbf0dd7d2beadd"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::function&lt; void()&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac99e4c1645c92715b2bbf0dd7d2beadd">eventQueue</a></td></tr>
 <tr class="separator:ac99e4c1645c92715b2bbf0dd7d2beadd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04e085af5178b774d6e1859adb3f890f" id="r_a04e085af5178b774d6e1859adb3f890f"><td class="memItemLeft" align="right" valign="top"><a id="a04e085af5178b774d6e1859adb3f890f" name="a04e085af5178b774d6e1859adb3f890f"></a>
-SemaphoreHandle_t&#160;</td><td class="memItemRight" valign="bottom"><b>queueMutex</b></td></tr>
+<tr class="memitem:a04e085af5178b774d6e1859adb3f890f" id="r_a04e085af5178b774d6e1859adb3f890f"><td class="memItemLeft" align="right" valign="top">SemaphoreHandle_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a04e085af5178b774d6e1859adb3f890f">queueMutex</a></td></tr>
 <tr class="separator:a04e085af5178b774d6e1859adb3f890f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93f2cb5d9b9dd7c7d27c5d6fdc1e4d93" id="r_a93f2cb5d9b9dd7c7d27c5d6fdc1e4d93"><td class="memItemLeft" align="right" valign="top"><a id="a93f2cb5d9b9dd7c7d27c5d6fdc1e4d93" name="a93f2cb5d9b9dd7c7d27c5d6fdc1e4d93"></a>
-SemaphoreHandle_t&#160;</td><td class="memItemRight" valign="bottom"><b>eventSemaphore</b></td></tr>
+<tr class="memitem:a93f2cb5d9b9dd7c7d27c5d6fdc1e4d93" id="r_a93f2cb5d9b9dd7c7d27c5d6fdc1e4d93"><td class="memItemLeft" align="right" valign="top">SemaphoreHandle_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a93f2cb5d9b9dd7c7d27c5d6fdc1e4d93">eventSemaphore</a></td></tr>
 <tr class="separator:a93f2cb5d9b9dd7c7d27c5d6fdc1e4d93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Handles the publishing of and subcribing to events between functionally independent components. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="aabaffc5e1ed07c3f682cebc1a14f82a5" name="aabaffc5e1ed07c3f682cebc1a14f82a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabaffc5e1ed07c3f682cebc1a14f82a5">&#9670;&#160;</a></span>HandlerFunc</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#aabaffc5e1ed07c3f682cebc1a14f82a5">EventManager::HandlerFunc</a> = std::function&lt;void(const void*)&gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a2e43e8b165b54f75e9c005cf5b04ade7" name="a2e43e8b165b54f75e9c005cf5b04ade7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e43e8b165b54f75e9c005cf5b04ade7">&#9670;&#160;</a></span>~EventManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">EventManager::~EventManager </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4e802f57b1f9176a95309b17750c5c6c" name="a4e802f57b1f9176a95309b17750c5c6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e802f57b1f9176a95309b17750c5c6c">&#9670;&#160;</a></span>EventManager() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">EventManager::EventManager </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d6/d94/class_event_manager.html">EventManager</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a89099b22114f158b5c530edfea52371d" name="a89099b22114f158b5c530edfea52371d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89099b22114f158b5c530edfea52371d">&#9670;&#160;</a></span>EventManager() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">EventManager::EventManager </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad18a9d920d310bdd0b1a5e1562a8cba6" name="ad18a9d920d310bdd0b1a5e1562a8cba6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad18a9d920d310bdd0b1a5e1562a8cba6">&#9670;&#160;</a></span>getInstance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="../../d6/d94/class_event_manager.html">EventManager</a> &amp; EventManager::getInstance </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the Meyer's singleton instance of the <a class="el" href="../../d6/d94/class_event_manager.html" title="Handles the publishing of and subcribing to events between functionally independent components.">EventManager</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../d6/d94/class_event_manager.html" title="Handles the publishing of and subcribing to events between functionally independent components.">EventManager</a>&amp; </dd></dl>
+
+</div>
+</div>
+<a id="a27b7ccd6ac588cd2cf519d6d9186735f" name="a27b7ccd6ac588cd2cf519d6d9186735f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27b7ccd6ac588cd2cf519d6d9186735f">&#9670;&#160;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d6/d94/class_event_manager.html">EventManager</a> &amp; EventManager::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d6/d94/class_event_manager.html">EventManager</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ad40f65674444d1944159dd85888740d3" name="ad40f65674444d1944159dd85888740d3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad40f65674444d1944159dd85888740d3">&#9670;&#160;</a></span>processEvents()</h2>
 
@@ -265,9 +411,98 @@ template&lt;typename EventType&gt; </div>
 
 </div>
 </div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ac99e4c1645c92715b2bbf0dd7d2beadd" name="ac99e4c1645c92715b2bbf0dd7d2beadd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac99e4c1645c92715b2bbf0dd7d2beadd">&#9670;&#160;</a></span>eventQueue</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::function&lt;void()&gt; &gt; EventManager::eventQueue</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a93f2cb5d9b9dd7c7d27c5d6fdc1e4d93" name="a93f2cb5d9b9dd7c7d27c5d6fdc1e4d93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93f2cb5d9b9dd7c7d27c5d6fdc1e4d93">&#9670;&#160;</a></span>eventSemaphore</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SemaphoreHandle_t EventManager::eventSemaphore</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6c7a11cc60b80dbebb534ee8d32fa4e6" name="a6c7a11cc60b80dbebb534ee8d32fa4e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c7a11cc60b80dbebb534ee8d32fa4e6">&#9670;&#160;</a></span>handlers</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::vector&lt;<a class="el" href="#aabaffc5e1ed07c3f682cebc1a14f82a5">HandlerFunc</a>&gt; &gt; EventManager::handlers</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a04e085af5178b774d6e1859adb3f890f" name="a04e085af5178b774d6e1859adb3f890f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04e085af5178b774d6e1859adb3f890f">&#9670;&#160;</a></span>queueMutex</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SemaphoreHandle_t EventManager::queueMutex</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>SafeTown Arduino Workspace/libraries/EventManager/<a class="el" href="../../df/d3c/event__manager_8hpp_source.html">event_manager.hpp</a></li>
-<li>SafeTown Arduino Workspace/libraries/EventManager/<b>event_manager.cpp</b></li>
+<li>SafeTown Arduino Workspace/libraries/EventManager/<a class="el" href="../../d0/d5d/event__manager_8cpp.html">event_manager.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -275,7 +510,7 @@ template&lt;typename EventType&gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../d6/d94/class_event_manager.html">EventManager</a></li>
-    <li class="footer">Generated on Tue Apr 8 2025 17:30:02 for SafeTown Senior Robot by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Generated on Tue Apr 8 2025 23:13:54 for SafeTown Senior Robot by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>

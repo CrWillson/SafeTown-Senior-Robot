@@ -24,6 +24,7 @@
 /* @license-end */
 </script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+<link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -105,12 +106,18 @@ $(function(){initNavTree('df/d9a/class_file_opt_menu_pg.html','../../'); initRes
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="#friends">Friends</a> &#124;
 <a href="../../d7/d83/class_file_opt_menu_pg-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">FileOptMenuPg Class Reference</div></div>
+  <div class="headertitle"><div class="title">FileOptMenuPg Class Reference<div class="ingroups"><a class="el" href="../../d1/d95/group___menu.html">Menu</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>A special menu page for displaying options for a specific file.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../dd/ded/file__opt__menu__page_8hpp_source.html">file_opt_menu_page.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for FileOptMenuPg:</div>
 <div class="dyncontent">
@@ -123,54 +130,55 @@ Inheritance diagram for FileOptMenuPg:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6bb6b19f054b29f6640a32fad83dde39" id="r_a6bb6b19f054b29f6640a32fad83dde39"><td class="memItemLeft" align="right" valign="top"><a id="a6bb6b19f054b29f6640a32fad83dde39" name="a6bb6b19f054b29f6640a32fad83dde39"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>FileOptMenuPg</b> (const std::string &amp;lbl, const std::string &amp;parentLbl, const std::string &amp;file)</td></tr>
-<tr class="separator:a6bb6b19f054b29f6640a32fad83dde39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acfafa0610a55f3ad05c8f7167483856b" id="r_acfafa0610a55f3ad05c8f7167483856b"><td class="memItemLeft" align="right" valign="top"><a id="acfafa0610a55f3ad05c8f7167483856b" name="acfafa0610a55f3ad05c8f7167483856b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>onFileDelete</b> ()</td></tr>
-<tr class="separator:acfafa0610a55f3ad05c8f7167483856b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d043ffc9f927115133d3a8ad6b36207" id="r_a2d043ffc9f927115133d3a8ad6b36207"><td class="memItemLeft" align="right" valign="top"><a id="a2d043ffc9f927115133d3a8ad6b36207" name="a2d043ffc9f927115133d3a8ad6b36207"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>onFilePrint</b> ()</td></tr>
-<tr class="separator:a2d043ffc9f927115133d3a8ad6b36207"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f338c8ea8d37c945f9a242692f9d3e0" id="r_a9f338c8ea8d37c945f9a242692f9d3e0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f338c8ea8d37c945f9a242692f9d3e0">~FileOptMenuPg</a> ()=default</td></tr>
+<tr class="separator:a9f338c8ea8d37c945f9a242692f9d3e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_menu_page"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_menu_page')"><img src="../../closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="../../d1/d6b/class_menu_page.html">MenuPage</a></td></tr>
 <tr class="memitem:ab0f0cc0e5ba697feb39b273052250818 inherit pub_methods_class_menu_page" id="r_ab0f0cc0e5ba697feb39b273052250818"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d6b/class_menu_page.html#ab0f0cc0e5ba697feb39b273052250818">MenuPage</a> (const std::string &amp;lbl)</td></tr>
 <tr class="memdesc:ab0f0cc0e5ba697feb39b273052250818 inherit pub_methods_class_menu_page"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="../../d1/d6b/class_menu_page.html" title="A page in the menu object.">MenuPage</a> with the given label.  <br /></td></tr>
 <tr class="separator:ab0f0cc0e5ba697feb39b273052250818 inherit pub_methods_class_menu_page"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68dd8d95c07608dff3512dc2f145d59b inherit pub_methods_class_menu_page" id="r_a68dd8d95c07608dff3512dc2f145d59b"><td class="memItemLeft" align="right" valign="top">std::array&lt; std::string, LINESPERSCREEN &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d6b/class_menu_page.html#a68dd8d95c07608dff3512dc2f145d59b">getVisibleText</a> () const</td></tr>
+<tr class="memitem:adc82350a32b0964def8b98e7e7fe9f8c inherit pub_methods_class_menu_page" id="r_adc82350a32b0964def8b98e7e7fe9f8c"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d6b/class_menu_page.html#adc82350a32b0964def8b98e7e7fe9f8c">~MenuPage</a> ()=default</td></tr>
+<tr class="separator:adc82350a32b0964def8b98e7e7fe9f8c inherit pub_methods_class_menu_page"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68dd8d95c07608dff3512dc2f145d59b inherit pub_methods_class_menu_page" id="r_a68dd8d95c07608dff3512dc2f145d59b"><td class="memItemLeft" align="right" valign="top">std::array&lt; std::string, <a class="el" href="../../d1/d6b/class_menu_page.html#aa44eb5abb89ffa09b3f0ac0d35e57fdf">LINESPERSCREEN</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d6b/class_menu_page.html#a68dd8d95c07608dff3512dc2f145d59b">getVisibleText</a> () const</td></tr>
 <tr class="memdesc:a68dd8d95c07608dff3512dc2f145d59b inherit pub_methods_class_menu_page"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the all of the text visible on the page given the current line.  <br /></td></tr>
 <tr class="separator:a68dd8d95c07608dff3512dc2f145d59b inherit pub_methods_class_menu_page"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9269b429517ec3f159e87e35cb702ce2 inherit pub_methods_class_menu_page" id="r_a9269b429517ec3f159e87e35cb702ce2"><td class="memTemplParams" colspan="2">template&lt;typename Line, typename... Args, std::enable_if_t&lt; std::is_base_of_v&lt; <a class="el" href="../../d7/d44/class_menu_line.html">MenuLine</a>, Line &gt;, int &gt; = 0&gt; </td></tr>
 <tr class="memitem:a9269b429517ec3f159e87e35cb702ce2 inherit pub_methods_class_menu_page"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../d1/d6b/class_menu_page.html">MenuPage</a> *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d1/d6b/class_menu_page.html#a9269b429517ec3f159e87e35cb702ce2">addLine</a> (Args &amp;&amp;... args)</td></tr>
 <tr class="memdesc:a9269b429517ec3f159e87e35cb702ce2 inherit pub_methods_class_menu_page"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template function to add a new line to the page.  <br /></td></tr>
 <tr class="separator:a9269b429517ec3f159e87e35cb702ce2 inherit pub_methods_class_menu_page"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad77700c14791b880cf9e9e991263ec79 inherit pub_methods_class_menu_page" id="r_ad77700c14791b880cf9e9e991263ec79"><td class="memItemLeft" align="right" valign="top">
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>clearLines</b> ()</td></tr>
-<tr class="memdesc:ad77700c14791b880cf9e9e991263ec79 inherit pub_methods_class_menu_page"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all lines from the page. <br /></td></tr>
+<tr class="memitem:ad77700c14791b880cf9e9e991263ec79 inherit pub_methods_class_menu_page" id="r_ad77700c14791b880cf9e9e991263ec79"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d6b/class_menu_page.html#ad77700c14791b880cf9e9e991263ec79">clearLines</a> ()</td></tr>
+<tr class="memdesc:ad77700c14791b880cf9e9e991263ec79 inherit pub_methods_class_menu_page"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all lines from the page.  <br /></td></tr>
 <tr class="separator:ad77700c14791b880cf9e9e991263ec79 inherit pub_methods_class_menu_page"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee7d3e366d8044c786bc1bcfdbf806e6 inherit pub_methods_class_menu_page" id="r_aee7d3e366d8044c786bc1bcfdbf806e6"><td class="memItemLeft" align="right" valign="top">
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getLabel</b> ()</td></tr>
+<tr class="memitem:aee7d3e366d8044c786bc1bcfdbf806e6 inherit pub_methods_class_menu_page" id="r_aee7d3e366d8044c786bc1bcfdbf806e6"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d6b/class_menu_page.html#aee7d3e366d8044c786bc1bcfdbf806e6">getLabel</a> ()</td></tr>
 <tr class="separator:aee7d3e366d8044c786bc1bcfdbf806e6 inherit pub_methods_class_menu_page"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a6bb6b19f054b29f6640a32fad83dde39" id="r_a6bb6b19f054b29f6640a32fad83dde39"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6bb6b19f054b29f6640a32fad83dde39">FileOptMenuPg</a> (const std::string &amp;lbl, const std::string &amp;parentLbl, const std::string &amp;file)</td></tr>
+<tr class="memdesc:a6bb6b19f054b29f6640a32fad83dde39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="../../df/d9a/class_file_opt_menu_pg.html" title="A special menu page for displaying options for a specific file.">FileOptMenuPg</a> object.  <br /></td></tr>
+<tr class="separator:a6bb6b19f054b29f6640a32fad83dde39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfafa0610a55f3ad05c8f7167483856b" id="r_acfafa0610a55f3ad05c8f7167483856b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acfafa0610a55f3ad05c8f7167483856b">onFileDelete</a> ()</td></tr>
+<tr class="memdesc:acfafa0610a55f3ad05c8f7167483856b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called upon requesting the deletion of the selected file. Deletes the file.  <br /></td></tr>
+<tr class="separator:acfafa0610a55f3ad05c8f7167483856b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d043ffc9f927115133d3a8ad6b36207" id="r_a2d043ffc9f927115133d3a8ad6b36207"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2d043ffc9f927115133d3a8ad6b36207">onFilePrint</a> ()</td></tr>
+<tr class="memdesc:a2d043ffc9f927115133d3a8ad6b36207"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called upon requesting a file be printed. Prints the contents of the file onto the serial connection.  <br /></td></tr>
+<tr class="separator:a2d043ffc9f927115133d3a8ad6b36207"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a601545e172d3bd88fc4dedc7e2bf803c" id="r_a601545e172d3bd88fc4dedc7e2bf803c"><td class="memItemLeft" align="right" valign="top"><a id="a601545e172d3bd88fc4dedc7e2bf803c" name="a601545e172d3bd88fc4dedc7e2bf803c"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>selectedFile</b></td></tr>
+<tr class="memitem:a601545e172d3bd88fc4dedc7e2bf803c" id="r_a601545e172d3bd88fc4dedc7e2bf803c"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a601545e172d3bd88fc4dedc7e2bf803c">selectedFile</a></td></tr>
 <tr class="separator:a601545e172d3bd88fc4dedc7e2bf803c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2709d6480cb7b2c679a59736386a64d" id="r_aa2709d6480cb7b2c679a59736386a64d"><td class="memItemLeft" align="right" valign="top"><a id="aa2709d6480cb7b2c679a59736386a64d" name="aa2709d6480cb7b2c679a59736386a64d"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>parentMenuLbl</b></td></tr>
+<tr class="memitem:aa2709d6480cb7b2c679a59736386a64d" id="r_aa2709d6480cb7b2c679a59736386a64d"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa2709d6480cb7b2c679a59736386a64d">parentMenuLbl</a></td></tr>
 <tr class="separator:aa2709d6480cb7b2c679a59736386a64d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
-<tr class="memitem:aabb2454c2c267fbc8db1a001877d2a06" id="r_aabb2454c2c267fbc8db1a001877d2a06"><td class="memItemLeft" align="right" valign="top"><a id="aabb2454c2c267fbc8db1a001877d2a06" name="aabb2454c2c267fbc8db1a001877d2a06"></a>
-class&#160;</td><td class="memItemRight" valign="bottom"><b>FileMenuPage</b></td></tr>
+<tr class="memitem:aabb2454c2c267fbc8db1a001877d2a06" id="r_aabb2454c2c267fbc8db1a001877d2a06"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aabb2454c2c267fbc8db1a001877d2a06">FileMenuPage</a></td></tr>
 <tr class="separator:aabb2454c2c267fbc8db1a001877d2a06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_static_attribs_class_menu_page"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_attribs_class_menu_page')"><img src="../../closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="../../d1/d6b/class_menu_page.html">MenuPage</a></td></tr>
-<tr class="memitem:aa44eb5abb89ffa09b3f0ac0d35e57fdf inherit pub_static_attribs_class_menu_page" id="r_aa44eb5abb89ffa09b3f0ac0d35e57fdf"><td class="memItemLeft" align="right" valign="top">
-static constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>LINESPERSCREEN</b> = 8</td></tr>
+<tr class="memitem:aa44eb5abb89ffa09b3f0ac0d35e57fdf inherit pub_static_attribs_class_menu_page" id="r_aa44eb5abb89ffa09b3f0ac0d35e57fdf"><td class="memItemLeft" align="right" valign="top">static constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d6b/class_menu_page.html#aa44eb5abb89ffa09b3f0ac0d35e57fdf">LINESPERSCREEN</a> = 8</td></tr>
 <tr class="separator:aa44eb5abb89ffa09b3f0ac0d35e57fdf inherit pub_static_attribs_class_menu_page"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_class_menu_page"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_class_menu_page')"><img src="../../closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="../../d1/d6b/class_menu_page.html">MenuPage</a></td></tr>
 <tr class="memitem:a803a03777f21f8fd926730ff7d67737f inherit pro_methods_class_menu_page" id="r_a803a03777f21f8fd926730ff7d67737f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d6b/class_menu_page.html#a803a03777f21f8fd926730ff7d67737f">onPageLoad</a> ()</td></tr>
@@ -179,51 +187,235 @@ static constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>L
 <tr class="memitem:aa8cb5e712b3af839ad28af41cb57a186 inherit pro_methods_class_menu_page" id="r_aa8cb5e712b3af839ad28af41cb57a186"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d6b/class_menu_page.html#aa8cb5e712b3af839ad28af41cb57a186">onPageExit</a> ()</td></tr>
 <tr class="memdesc:aa8cb5e712b3af839ad28af41cb57a186 inherit pro_methods_class_menu_page"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called each time the page is exited.  <br /></td></tr>
 <tr class="separator:aa8cb5e712b3af839ad28af41cb57a186 inherit pro_methods_class_menu_page"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14197cc4e04486074191175bffb5a456 inherit pro_methods_class_menu_page" id="r_a14197cc4e04486074191175bffb5a456"><td class="memItemLeft" align="right" valign="top">
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>onValueChange</b> (const <a class="el" href="../../da/dd2/struct_event_1_1_value_changed_event.html">Event::ValueChangedEvent</a> &amp;e)</td></tr>
+<tr class="memitem:a14197cc4e04486074191175bffb5a456 inherit pro_methods_class_menu_page" id="r_a14197cc4e04486074191175bffb5a456"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d6b/class_menu_page.html#a14197cc4e04486074191175bffb5a456">onValueChange</a> (const <a class="el" href="../../da/dd2/struct_event_1_1_value_changed_event.html">Event::ValueChangedEvent</a> &amp;e)</td></tr>
 <tr class="separator:a14197cc4e04486074191175bffb5a456 inherit pro_methods_class_menu_page"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01d694a6cacf7964793f1d17b2857329 inherit pro_methods_class_menu_page" id="r_a01d694a6cacf7964793f1d17b2857329"><td class="memItemLeft" align="right" valign="top">
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>onValueRequested</b> (const std::string &amp;reqLabel)</td></tr>
+<tr class="memitem:a01d694a6cacf7964793f1d17b2857329 inherit pro_methods_class_menu_page" id="r_a01d694a6cacf7964793f1d17b2857329"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d6b/class_menu_page.html#a01d694a6cacf7964793f1d17b2857329">onValueRequested</a> (const std::string &amp;reqLabel)</td></tr>
 <tr class="separator:a01d694a6cacf7964793f1d17b2857329 inherit pro_methods_class_menu_page"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a550e558ff67136d77c736b74ae063a33 inherit pro_methods_class_menu_page" id="r_a550e558ff67136d77c736b74ae063a33"><td class="memItemLeft" align="right" valign="top">
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>scrollUp</b> ()</td></tr>
+<tr class="memitem:a550e558ff67136d77c736b74ae063a33 inherit pro_methods_class_menu_page" id="r_a550e558ff67136d77c736b74ae063a33"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d6b/class_menu_page.html#a550e558ff67136d77c736b74ae063a33">scrollUp</a> ()</td></tr>
 <tr class="separator:a550e558ff67136d77c736b74ae063a33 inherit pro_methods_class_menu_page"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea0a9e42aa18fce8b3d1a637a849c53a inherit pro_methods_class_menu_page" id="r_aea0a9e42aa18fce8b3d1a637a849c53a"><td class="memItemLeft" align="right" valign="top">
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>scrollDown</b> ()</td></tr>
+<tr class="memitem:aea0a9e42aa18fce8b3d1a637a849c53a inherit pro_methods_class_menu_page" id="r_aea0a9e42aa18fce8b3d1a637a849c53a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d6b/class_menu_page.html#aea0a9e42aa18fce8b3d1a637a849c53a">scrollDown</a> ()</td></tr>
 <tr class="separator:aea0a9e42aa18fce8b3d1a637a849c53a inherit pro_methods_class_menu_page"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d6d0e53beba8c878b77ee74c4f0c632 inherit pro_methods_class_menu_page" id="r_a5d6d0e53beba8c878b77ee74c4f0c632"><td class="memItemLeft" align="right" valign="top">
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>select</b> ()</td></tr>
+<tr class="memitem:a5d6d0e53beba8c878b77ee74c4f0c632 inherit pro_methods_class_menu_page" id="r_a5d6d0e53beba8c878b77ee74c4f0c632"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d6b/class_menu_page.html#a5d6d0e53beba8c878b77ee74c4f0c632">select</a> ()</td></tr>
 <tr class="separator:a5d6d0e53beba8c878b77ee74c4f0c632 inherit pro_methods_class_menu_page"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_menu_page"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_class_menu_page')"><img src="../../closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="../../d1/d6b/class_menu_page.html">MenuPage</a></td></tr>
-<tr class="memitem:ae50de058c4d4fdc091e8f780a9f8091b inherit pro_attribs_class_menu_page" id="r_ae50de058c4d4fdc091e8f780a9f8091b"><td class="memItemLeft" align="right" valign="top">
-std::vector&lt; std::shared_ptr&lt; <a class="el" href="../../d7/d44/class_menu_line.html">MenuLine</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lines</b></td></tr>
-<tr class="memdesc:ae50de058c4d4fdc091e8f780a9f8091b inherit pro_attribs_class_menu_page"><td class="mdescLeft">&#160;</td><td class="mdescRight">All of the lines stored in the page. <br /></td></tr>
+<tr class="memitem:ae50de058c4d4fdc091e8f780a9f8091b inherit pro_attribs_class_menu_page" id="r_ae50de058c4d4fdc091e8f780a9f8091b"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::shared_ptr&lt; <a class="el" href="../../d7/d44/class_menu_line.html">MenuLine</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d6b/class_menu_page.html#ae50de058c4d4fdc091e8f780a9f8091b">lines</a></td></tr>
+<tr class="memdesc:ae50de058c4d4fdc091e8f780a9f8091b inherit pro_attribs_class_menu_page"><td class="mdescLeft">&#160;</td><td class="mdescRight">All of the lines stored in the page.  <br /></td></tr>
 <tr class="separator:ae50de058c4d4fdc091e8f780a9f8091b inherit pro_attribs_class_menu_page"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d4ef16e6bc51cb8db6be5268b2bc6fb inherit pro_attribs_class_menu_page" id="r_a3d4ef16e6bc51cb8db6be5268b2bc6fb"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="../../d2/db8/class_menu.html">Menu</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>parentMenu</b></td></tr>
+<tr class="memitem:a3d4ef16e6bc51cb8db6be5268b2bc6fb inherit pro_attribs_class_menu_page" id="r_a3d4ef16e6bc51cb8db6be5268b2bc6fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/db8/class_menu.html">Menu</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d6b/class_menu_page.html#a3d4ef16e6bc51cb8db6be5268b2bc6fb">parentMenu</a></td></tr>
 <tr class="separator:a3d4ef16e6bc51cb8db6be5268b2bc6fb inherit pro_attribs_class_menu_page"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2540bfa037dd03f12e05368490760b55 inherit pro_attribs_class_menu_page" id="r_a2540bfa037dd03f12e05368490760b55"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="../../d6/d94/class_event_manager.html">EventManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>eventManager</b></td></tr>
+<tr class="memitem:a2540bfa037dd03f12e05368490760b55 inherit pro_attribs_class_menu_page" id="r_a2540bfa037dd03f12e05368490760b55"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/d94/class_event_manager.html">EventManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d6b/class_menu_page.html#a2540bfa037dd03f12e05368490760b55">eventManager</a></td></tr>
 <tr class="separator:a2540bfa037dd03f12e05368490760b55 inherit pro_attribs_class_menu_page"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a7f0b4fe564ccd53602caeaf0c2d06b inherit pro_attribs_class_menu_page" id="r_a9a7f0b4fe564ccd53602caeaf0c2d06b"><td class="memItemLeft" align="right" valign="top">
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>label</b></td></tr>
+<tr class="memitem:a9a7f0b4fe564ccd53602caeaf0c2d06b inherit pro_attribs_class_menu_page" id="r_a9a7f0b4fe564ccd53602caeaf0c2d06b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d6b/class_menu_page.html#a9a7f0b4fe564ccd53602caeaf0c2d06b">label</a></td></tr>
 <tr class="separator:a9a7f0b4fe564ccd53602caeaf0c2d06b inherit pro_attribs_class_menu_page"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0f75b48f9d4db13332f1c7ab3b95b14 inherit pro_attribs_class_menu_page" id="r_ac0f75b48f9d4db13332f1c7ab3b95b14"><td class="memItemLeft" align="right" valign="top">
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>selectedLine</b> = 0</td></tr>
+<tr class="memitem:ac0f75b48f9d4db13332f1c7ab3b95b14 inherit pro_attribs_class_menu_page" id="r_ac0f75b48f9d4db13332f1c7ab3b95b14"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d6b/class_menu_page.html#ac0f75b48f9d4db13332f1c7ab3b95b14">selectedLine</a> = 0</td></tr>
 <tr class="separator:ac0f75b48f9d4db13332f1c7ab3b95b14 inherit pro_attribs_class_menu_page"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0de180a9af03cff9d92669c55f059301 inherit pro_attribs_class_menu_page" id="r_a0de180a9af03cff9d92669c55f059301"><td class="memItemLeft" align="right" valign="top">
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>topLine</b> = 0</td></tr>
+<tr class="memitem:a0de180a9af03cff9d92669c55f059301 inherit pro_attribs_class_menu_page" id="r_a0de180a9af03cff9d92669c55f059301"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d6b/class_menu_page.html#a0de180a9af03cff9d92669c55f059301">topLine</a> = 0</td></tr>
 <tr class="separator:a0de180a9af03cff9d92669c55f059301 inherit pro_attribs_class_menu_page"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a415b729bd2a199fb19361d813dc5282e inherit pro_attribs_class_menu_page" id="r_a415b729bd2a199fb19361d813dc5282e"><td class="memItemLeft" align="right" valign="top">
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>botLine</b> = 7</td></tr>
+<tr class="memitem:a415b729bd2a199fb19361d813dc5282e inherit pro_attribs_class_menu_page" id="r_a415b729bd2a199fb19361d813dc5282e"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d6b/class_menu_page.html#a415b729bd2a199fb19361d813dc5282e">botLine</a> = 7</td></tr>
 <tr class="separator:a415b729bd2a199fb19361d813dc5282e inherit pro_attribs_class_menu_page"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d7faa7c5a68c02edd2683ec832dd24f inherit pro_attribs_class_menu_page" id="r_a2d7faa7c5a68c02edd2683ec832dd24f"><td class="memItemLeft" align="right" valign="top">
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>numLines</b> = 0</td></tr>
+<tr class="memitem:a2d7faa7c5a68c02edd2683ec832dd24f inherit pro_attribs_class_menu_page" id="r_a2d7faa7c5a68c02edd2683ec832dd24f"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d6b/class_menu_page.html#a2d7faa7c5a68c02edd2683ec832dd24f">numLines</a> = 0</td></tr>
 <tr class="separator:a2d7faa7c5a68c02edd2683ec832dd24f inherit pro_attribs_class_menu_page"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A special menu page for displaying options for a specific file. </p>
+<p>An automatically generated page which gives the options avaialble for manipulatiing a selected file. The user should never need to manually create a page of this type as it will be automatically generated by the <a class="el" href="../../d7/d04/class_file_menu_page.html" title="A special menu page for navigating the virtual file system.">FileMenuPage</a> class. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a9f338c8ea8d37c945f9a242692f9d3e0" name="a9f338c8ea8d37c945f9a242692f9d3e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f338c8ea8d37c945f9a242692f9d3e0">&#9670;&#160;</a></span>~FileOptMenuPg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FileOptMenuPg::~FileOptMenuPg </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6bb6b19f054b29f6640a32fad83dde39" name="a6bb6b19f054b29f6640a32fad83dde39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bb6b19f054b29f6640a32fad83dde39">&#9670;&#160;</a></span>FileOptMenuPg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FileOptMenuPg::FileOptMenuPg </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>lbl</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>parentLbl</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>file</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Construct a new <a class="el" href="../../df/d9a/class_file_opt_menu_pg.html" title="A special menu page for displaying options for a specific file.">FileOptMenuPg</a> object. </p>
+<p>The constructor is made private so it is only constructable by the <a class="el" href="../../d7/d04/class_file_menu_page.html" title="A special menu page for navigating the virtual file system.">FileMenuPage</a> friend class</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lbl</td><td>- The label to refer to this page by </td></tr>
+    <tr><td class="paramname">parentLbl</td><td>- The page label to return to upon selecting the "back" option </td></tr>
+    <tr><td class="paramname">file</td><td>- The file being manipulated </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="acfafa0610a55f3ad05c8f7167483856b" name="acfafa0610a55f3ad05c8f7167483856b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfafa0610a55f3ad05c8f7167483856b">&#9670;&#160;</a></span>onFileDelete()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FileOptMenuPg::onFileDelete </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Called upon requesting the deletion of the selected file. Deletes the file. </p>
+
+</div>
+</div>
+<a id="a2d043ffc9f927115133d3a8ad6b36207" name="a2d043ffc9f927115133d3a8ad6b36207"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d043ffc9f927115133d3a8ad6b36207">&#9670;&#160;</a></span>onFilePrint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FileOptMenuPg::onFilePrint </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Called upon requesting a file be printed. Prints the contents of the file onto the serial connection. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Friends And Related Symbol Documentation</h2>
+<a id="aabb2454c2c267fbc8db1a001877d2a06" name="aabb2454c2c267fbc8db1a001877d2a06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabb2454c2c267fbc8db1a001877d2a06">&#9670;&#160;</a></span>FileMenuPage</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class <a class="el" href="../../d7/d04/class_file_menu_page.html">FileMenuPage</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel friend">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="aa2709d6480cb7b2c679a59736386a64d" name="aa2709d6480cb7b2c679a59736386a64d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2709d6480cb7b2c679a59736386a64d">&#9670;&#160;</a></span>parentMenuLbl</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string FileOptMenuPg::parentMenuLbl</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a601545e172d3bd88fc4dedc7e2bf803c" name="a601545e172d3bd88fc4dedc7e2bf803c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a601545e172d3bd88fc4dedc7e2bf803c">&#9670;&#160;</a></span>selectedFile</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string FileOptMenuPg::selectedFile</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>SafeTown Arduino Workspace/libraries/Filesystem/<a class="el" href="../../dd/ded/file__opt__menu__page_8hpp_source.html">file_opt_menu_page.hpp</a></li>
-<li>SafeTown Arduino Workspace/libraries/Filesystem/<b>file_opt_menu_page.cpp</b></li>
+<li>SafeTown Arduino Workspace/libraries/Filesystem/<a class="el" href="../../d6/d0b/file__opt__menu__page_8cpp.html">file_opt_menu_page.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -231,7 +423,7 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>numLines</b> = 0</
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../df/d9a/class_file_opt_menu_pg.html">FileOptMenuPg</a></li>
-    <li class="footer">Generated on Tue Apr 8 2025 17:30:02 for SafeTown Senior Robot by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Generated on Tue Apr 8 2025 23:13:54 for SafeTown Senior Robot by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>

@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['oled_5fcommand_0',['oled_command',['../d6/df1/class_adafruit___gray_o_l_e_d.html#a24b83d7f148e7f2c09ab6b202e918294',1,'Adafruit_GrayOLED']]],
-  ['oled_5fcommandlist_1',['oled_commandList',['../d6/df1/class_adafruit___gray_o_l_e_d.html#a206d32087e5100246b4346bf627ea40f',1,'Adafruit_GrayOLED']]],
-  ['onpageexit_2',['onPageExit',['../d7/d04/class_file_menu_page.html#af7289b7ad8a0476f96e3194446e42bb3',1,'FileMenuPage::onPageExit()'],['../d6/d51/class_file_stat_page.html#a419b20e724b1cfd4247fd1353de5dfc1',1,'FileStatPage::onPageExit()'],['../d1/d6b/class_menu_page.html#aa8cb5e712b3af839ad28af41cb57a186',1,'MenuPage::onPageExit()']]],
-  ['onpageload_3',['onPageLoad',['../d7/d04/class_file_menu_page.html#a966343db5ec8a81ec75852f8c5975f46',1,'FileMenuPage::onPageLoad()'],['../d6/d51/class_file_stat_page.html#a55a7dc218f2bff4a23f61203962c5523',1,'FileStatPage::onPageLoad()'],['../d1/d6b/class_menu_page.html#a803a03777f21f8fd926730ff7d67737f',1,'MenuPage::onPageLoad()']]],
-  ['onselect_4',['onSelect',['../d7/d44/class_menu_line.html#a313d69d65e70b94d4d00b0399252f3af',1,'MenuLine::onSelect()'],['../d8/deb/class_spacer_menu_line.html#ac14946b604d00159d8f646e7aef38724',1,'SpacerMenuLine::onSelect()'],['../dc/df8/class_text_menu_line.html#a2f47f0cc0ef6cae52b76a19c8d30f893',1,'TextMenuLine::onSelect()'],['../d8/d07/class_value_menu_line.html#ae3b7752ddb212cdcd0fe486267c4e1a2',1,'ValueMenuLine::onSelect()'],['../de/de2/class_button_menu_line.html#a1468481234f7fca89a6299f8f0236d09',1,'ButtonMenuLine::onSelect()'],['../d6/d67/class_toggle_menu_line.html#a5ee44e9ef5197c326d3715523ba56516',1,'ToggleMenuLine::onSelect()'],['../d0/de7/class_slider_menu_line.html#a7591c0c6aaee5d51102047c2828463fd',1,'SliderMenuLine::onSelect()']]]
+  ['pagechangedevent_0',['PageChangedEvent',['../d4/dc5/struct_event_1_1_page_changed_event.html#ae180583d44d1e8895e899bef2079f88d',1,'Event::PageChangedEvent']]],
+  ['printlines_1',['printLines',['../df/d4d/class_display.html#abad8238b7ac91c480e0aff555aa35113',1,'Display']]],
+  ['processevents_2',['processEvents',['../d6/d94/class_event_manager.html#ad40f65674444d1944159dd85888740d3',1,'EventManager']]],
+  ['publish_3',['publish',['../d6/d94/class_event_manager.html#aade9a08c532f9ae7b098dd16c87b8428',1,'EventManager']]]
 ];

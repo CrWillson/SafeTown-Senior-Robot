@@ -24,6 +24,7 @@
 /* @license-end */
 </script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+<link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -106,7 +107,7 @@ $(function(){initNavTree('d4/d9c/event__types_8hpp_source.html','../../'); initR
   <div class="headertitle"><div class="title">event_types.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef EVENTTYPES_HPP</span></div>
+<a href="../../d4/d9c/event__types_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef EVENTTYPES_HPP</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define EVENTTYPES_HPP</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;string&gt;</span></div>
@@ -118,85 +119,104 @@ $(function(){initNavTree('d4/d9c/event__types_8hpp_source.html','../../'); initR
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="comment">//-----------------------------------------------------------------</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="comment">// Functions to statically assign a unique id to each event type</span></div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="comment">//-----------------------------------------------------------------</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keyword">inline</span> <span class="keywordtype">int</span> getNextID() {</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        <span class="keyword">static</span> <span class="keywordtype">int</span> counter = 0;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <span class="keywordflow">return</span> counter++;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    }</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">inline</span> <span class="keywordtype">int</span> getID() {</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="keyword">static</span> <span class="keywordtype">int</span> <span class="keywordtype">id</span> = getNextID();</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <span class="keywordflow">return</span> id;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    }</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="comment">//-----------------------------------------------------------------</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="comment">// Base Event type</span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="comment">//-----------------------------------------------------------------</span></div>
-<div class="foldopen" id="foldopen00030" data-start="{" data-end="};">
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="../../df/d59/struct_event_1_1_event.html">   30</a></span>    <span class="keyword">struct </span><a class="code hl_namespace" href="../../d4/d99/namespace_event.html">Event</a> { </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keyword">virtual</span> <a class="code hl_namespace" href="../../d4/d99/namespace_event.html">~Event</a>() = <span class="keywordflow">default</span>;  </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    };</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">inline</span> <span class="keywordtype">int</span> getNextID() {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keyword">static</span> <span class="keywordtype">int</span> counter = 0;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        <span class="keywordflow">return</span> counter++;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    }</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keyword">inline</span> <span class="keywordtype">int</span> getID() {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <span class="keyword">static</span> <span class="keywordtype">int</span> <span class="keywordtype">id</span> = getNextID();</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <span class="keywordflow">return</span> id;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    }</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="comment">//-----------------------------------------------------------------</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="comment">// Base Event type</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="comment">//-----------------------------------------------------------------</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    </div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="};">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="../../df/d59/struct_event_1_1_event.html">   36</a></span>    <span class="keyword">struct </span><a class="code hl_namespace" href="../../d4/d99/namespace_event.html">Event</a> {   </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="../../df/d59/struct_event_1_1_event.html#a2ca2637c71dfa3033149b861bbcd7378">   37</a></span>        <span class="keyword">virtual</span> <a class="code hl_function" href="../../df/d59/struct_event_1_1_event.html#a2ca2637c71dfa3033149b861bbcd7378">~Event</a>() = <span class="keywordflow">default</span>;  </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    };</div>
 </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="comment">//-----------------------------------------------------------------</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="comment">// User Input Events</span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="comment">//-----------------------------------------------------------------</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="../../d4/d5e/struct_event_1_1_encoder_right.html">   37</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="../../d4/d5e/struct_event_1_1_encoder_right.html">EncoderRight</a> : <span class="keyword">public</span> <a class="code hl_namespace" href="../../d4/d99/namespace_event.html">Event</a> {};</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="../../d2/d48/struct_event_1_1_encoder_left.html">   38</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="../../d2/d48/struct_event_1_1_encoder_left.html">EncoderLeft</a> : <span class="keyword">public</span> <a class="code hl_namespace" href="../../d4/d99/namespace_event.html">Event</a> {};</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="../../d8/d7d/struct_event_1_1_encoder_press.html">   39</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="../../d8/d7d/struct_event_1_1_encoder_press.html">EncoderPress</a> : <span class="keyword">public</span> <a class="code hl_namespace" href="../../d4/d99/namespace_event.html">Event</a> {};</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="comment">//-----------------------------------------------------------------</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="comment">// Menu Events</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="comment">//-----------------------------------------------------------------</span></div>
-<div class="foldopen" id="foldopen00044" data-start="{" data-end="};">
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="../../d4/dc5/struct_event_1_1_page_changed_event.html">   44</a></span>    <span class="keyword">struct </span>PageChangedEvent : <span class="keyword">public</span> <a class="code hl_namespace" href="../../d4/d99/namespace_event.html">Event</a> {</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        std::array&lt;std::string, 8&gt; lines;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        PageChangedEvent(<span class="keyword">const</span> std::array&lt;std::string, 8&gt;&amp; pageLines) </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>            : lines(pageLines) {}</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    };</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="comment">//-----------------------------------------------------------------</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="comment">// User Input Events</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="comment">//-----------------------------------------------------------------</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="../../d4/d5e/struct_event_1_1_encoder_right.html">   45</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="../../d4/d5e/struct_event_1_1_encoder_right.html">EncoderRight</a> : <span class="keyword">public</span> <a class="code hl_namespace" href="../../d4/d99/namespace_event.html">Event</a> {};</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="../../d2/d48/struct_event_1_1_encoder_left.html">   47</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="../../d2/d48/struct_event_1_1_encoder_left.html">EncoderLeft</a> : <span class="keyword">public</span> <a class="code hl_namespace" href="../../d4/d99/namespace_event.html">Event</a> {};</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="../../d8/d7d/struct_event_1_1_encoder_press.html">   49</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="../../d8/d7d/struct_event_1_1_encoder_press.html">EncoderPress</a> : <span class="keyword">public</span> <a class="code hl_namespace" href="../../d4/d99/namespace_event.html">Event</a> {};</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="comment">//-----------------------------------------------------------------</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="comment">// Menu Events</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="comment">//-----------------------------------------------------------------</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span></div>
+<div class="foldopen" id="foldopen00056" data-start="{" data-end="};">
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="../../d4/dc5/struct_event_1_1_page_changed_event.html">   56</a></span>    <span class="keyword">struct </span><a class="code hl_function" href="../../d4/dc5/struct_event_1_1_page_changed_event.html#ae180583d44d1e8895e899bef2079f88d">PageChangedEvent</a> : <span class="keyword">public</span> <a class="code hl_namespace" href="../../d4/d99/namespace_event.html">Event</a> {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="../../d4/dc5/struct_event_1_1_page_changed_event.html#adb0587ae86ccaa35d275fd1c0447298a">   57</a></span>        std::array&lt;std::string, 8&gt; <a class="code hl_variable" href="../../d4/dc5/struct_event_1_1_page_changed_event.html#adb0587ae86ccaa35d275fd1c0447298a">lines</a>;</div>
+<div class="foldopen" id="foldopen00058" data-start="{" data-end="}">
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="../../d4/dc5/struct_event_1_1_page_changed_event.html#ae180583d44d1e8895e899bef2079f88d">   58</a></span>        <a class="code hl_function" href="../../d4/dc5/struct_event_1_1_page_changed_event.html#ae180583d44d1e8895e899bef2079f88d">PageChangedEvent</a>(<span class="keyword">const</span> std::array&lt;std::string, 8&gt;&amp; pageLines) </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            : <a class="code hl_variable" href="../../d4/dc5/struct_event_1_1_page_changed_event.html#adb0587ae86ccaa35d275fd1c0447298a">lines</a>(pageLines) {}</div>
 </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="comment">//-----------------------------------------------------------------</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="comment">// Information Transfer events</span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="comment">//-----------------------------------------------------------------</span></div>
-<div class="foldopen" id="foldopen00053" data-start="{" data-end="};">
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="../../da/dd2/struct_event_1_1_value_changed_event.html">   53</a></span>    <span class="keyword">struct </span>ValueChangedEvent : <span class="keyword">public</span> <a class="code hl_namespace" href="../../d4/d99/namespace_event.html">Event</a> {</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        std::string valueId;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        std::string newValue;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        ValueChangedEvent(<span class="keyword">const</span> std::string&amp; <span class="keywordtype">id</span>, <span class="keyword">const</span> std::string&amp; val)</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>          : valueId(<span class="keywordtype">id</span>), newValue(val) {}</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    };</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    };</div>
 </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="foldopen" id="foldopen00060" data-start="{" data-end="};">
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="../../d1/d76/struct_event_1_1_value_request_event.html">   60</a></span>    <span class="keyword">struct </span>ValueRequestEvent : <span class="keyword">public</span> <a class="code hl_namespace" href="../../d4/d99/namespace_event.html">Event</a> {</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        std::string valueId;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        ValueRequestEvent(<span class="keyword">const</span> std::string&amp; <span class="keywordtype">id</span>) : valueId(<span class="keywordtype">id</span>) {}</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    };</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="comment">//-----------------------------------------------------------------</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="comment">// Information Transfer events</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="comment">//-----------------------------------------------------------------</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span></div>
+<div class="foldopen" id="foldopen00067" data-start="{" data-end="};">
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="../../da/dd2/struct_event_1_1_value_changed_event.html">   67</a></span>    <span class="keyword">struct </span><a class="code hl_function" href="../../da/dd2/struct_event_1_1_value_changed_event.html#a532cf6bfe9cc1783aac42a53554da565">ValueChangedEvent</a> : <span class="keyword">public</span> <a class="code hl_namespace" href="../../d4/d99/namespace_event.html">Event</a> {</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="../../da/dd2/struct_event_1_1_value_changed_event.html#ae640437423a43d45a16bf4ca5700e678">   68</a></span>        std::string <a class="code hl_variable" href="../../da/dd2/struct_event_1_1_value_changed_event.html#ae640437423a43d45a16bf4ca5700e678">valueId</a>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="../../da/dd2/struct_event_1_1_value_changed_event.html#a3bf346674cd3fcaae9770bc35b37b6e5">   69</a></span>        std::string <a class="code hl_variable" href="../../da/dd2/struct_event_1_1_value_changed_event.html#a3bf346674cd3fcaae9770bc35b37b6e5">newValue</a>;</div>
+<div class="foldopen" id="foldopen00070" data-start="{" data-end="}">
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="../../da/dd2/struct_event_1_1_value_changed_event.html#a532cf6bfe9cc1783aac42a53554da565">   70</a></span>        <a class="code hl_function" href="../../da/dd2/struct_event_1_1_value_changed_event.html#a532cf6bfe9cc1783aac42a53554da565">ValueChangedEvent</a>(<span class="keyword">const</span> std::string&amp; <span class="keywordtype">id</span>, <span class="keyword">const</span> std::string&amp; val)</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>          : <a class="code hl_variable" href="../../da/dd2/struct_event_1_1_value_changed_event.html#ae640437423a43d45a16bf4ca5700e678">valueId</a>(id), <a class="code hl_variable" href="../../da/dd2/struct_event_1_1_value_changed_event.html#a3bf346674cd3fcaae9770bc35b37b6e5">newValue</a>(val) {}</div>
 </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="comment">//-----------------------------------------------------------------</span></div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="comment">// ESP32 Camera Events</span></div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="comment">//-----------------------------------------------------------------</span></div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="../../d6/da4/struct_event_1_1_request_photo_event.html">   69</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="../../d6/da4/struct_event_1_1_request_photo_event.html">RequestPhotoEvent</a> : <span class="keyword">public</span> <a class="code hl_namespace" href="../../d4/d99/namespace_event.html">Event</a> {};</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>}</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    };</div>
 </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span></div>
+<div class="foldopen" id="foldopen00075" data-start="{" data-end="};">
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="../../d1/d76/struct_event_1_1_value_request_event.html">   75</a></span>    <span class="keyword">struct </span><a class="code hl_function" href="../../d1/d76/struct_event_1_1_value_request_event.html#a1dea2be242193954664d87057a51f6ed">ValueRequestEvent</a> : <span class="keyword">public</span> <a class="code hl_namespace" href="../../d4/d99/namespace_event.html">Event</a> {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="../../d1/d76/struct_event_1_1_value_request_event.html#abeb2f3b472536dfa5481a76fe67d8a79">   76</a></span>        std::string <a class="code hl_variable" href="../../d1/d76/struct_event_1_1_value_request_event.html#abeb2f3b472536dfa5481a76fe67d8a79">valueId</a>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="../../d1/d76/struct_event_1_1_value_request_event.html#a1dea2be242193954664d87057a51f6ed">   77</a></span>        <a class="code hl_function" href="../../d1/d76/struct_event_1_1_value_request_event.html#a1dea2be242193954664d87057a51f6ed">ValueRequestEvent</a>(<span class="keyword">const</span> std::string&amp; <span class="keywordtype">id</span>) : <a class="code hl_variable" href="../../d1/d76/struct_event_1_1_value_request_event.html#abeb2f3b472536dfa5481a76fe67d8a79">valueId</a>(id) {}</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    };</div>
+</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="comment">//-----------------------------------------------------------------</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="comment">// ESP32 Camera Events</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="comment">//-----------------------------------------------------------------</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="../../d6/da4/struct_event_1_1_request_photo_event.html">   86</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="../../d6/da4/struct_event_1_1_request_photo_event.html">RequestPhotoEvent</a> : <span class="keyword">public</span> <a class="code hl_namespace" href="../../d4/d99/namespace_event.html">Event</a> {};</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>}</div>
+</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="anamespace_event_html"><div class="ttname"><a href="../../d4/d99/namespace_event.html">Event</a></div><div class="ttdoc">Namespace containing several common event types shared among all components.</div><div class="ttdef"><b>Definition</b> event_types.hpp:12</div></div>
-<div class="ttc" id="astruct_event_1_1_encoder_left_html"><div class="ttname"><a href="../../d2/d48/struct_event_1_1_encoder_left.html">Event::EncoderLeft</a></div><div class="ttdef"><b>Definition</b> event_types.hpp:38</div></div>
-<div class="ttc" id="astruct_event_1_1_encoder_press_html"><div class="ttname"><a href="../../d8/d7d/struct_event_1_1_encoder_press.html">Event::EncoderPress</a></div><div class="ttdef"><b>Definition</b> event_types.hpp:39</div></div>
-<div class="ttc" id="astruct_event_1_1_encoder_right_html"><div class="ttname"><a href="../../d4/d5e/struct_event_1_1_encoder_right.html">Event::EncoderRight</a></div><div class="ttdef"><b>Definition</b> event_types.hpp:37</div></div>
-<div class="ttc" id="astruct_event_1_1_request_photo_event_html"><div class="ttname"><a href="../../d6/da4/struct_event_1_1_request_photo_event.html">Event::RequestPhotoEvent</a></div><div class="ttdef"><b>Definition</b> event_types.hpp:69</div></div>
+<div class="ttc" id="astruct_event_1_1_encoder_left_html"><div class="ttname"><a href="../../d2/d48/struct_event_1_1_encoder_left.html">Event::EncoderLeft</a></div><div class="ttdoc">Event for the encoder spinning to the left.</div><div class="ttdef"><b>Definition</b> event_types.hpp:47</div></div>
+<div class="ttc" id="astruct_event_1_1_encoder_press_html"><div class="ttname"><a href="../../d8/d7d/struct_event_1_1_encoder_press.html">Event::EncoderPress</a></div><div class="ttdoc">Event for the encoder being pressed.</div><div class="ttdef"><b>Definition</b> event_types.hpp:49</div></div>
+<div class="ttc" id="astruct_event_1_1_encoder_right_html"><div class="ttname"><a href="../../d4/d5e/struct_event_1_1_encoder_right.html">Event::EncoderRight</a></div><div class="ttdoc">Event for the encoder spinning to the right.</div><div class="ttdef"><b>Definition</b> event_types.hpp:45</div></div>
+<div class="ttc" id="astruct_event_1_1_event_html_a2ca2637c71dfa3033149b861bbcd7378"><div class="ttname"><a href="../../df/d59/struct_event_1_1_event.html#a2ca2637c71dfa3033149b861bbcd7378">Event::Event::~Event</a></div><div class="ttdeci">virtual ~Event()=default</div></div>
+<div class="ttc" id="astruct_event_1_1_page_changed_event_html_adb0587ae86ccaa35d275fd1c0447298a"><div class="ttname"><a href="../../d4/dc5/struct_event_1_1_page_changed_event.html#adb0587ae86ccaa35d275fd1c0447298a">Event::PageChangedEvent::lines</a></div><div class="ttdeci">std::array&lt; std::string, 8 &gt; lines</div><div class="ttdef"><b>Definition</b> event_types.hpp:57</div></div>
+<div class="ttc" id="astruct_event_1_1_page_changed_event_html_ae180583d44d1e8895e899bef2079f88d"><div class="ttname"><a href="../../d4/dc5/struct_event_1_1_page_changed_event.html#ae180583d44d1e8895e899bef2079f88d">Event::PageChangedEvent::PageChangedEvent</a></div><div class="ttdeci">PageChangedEvent(const std::array&lt; std::string, 8 &gt; &amp;pageLines)</div><div class="ttdef"><b>Definition</b> event_types.hpp:58</div></div>
+<div class="ttc" id="astruct_event_1_1_request_photo_event_html"><div class="ttname"><a href="../../d6/da4/struct_event_1_1_request_photo_event.html">Event::RequestPhotoEvent</a></div><div class="ttdoc">Event to signal that a photo has been requested from the ESP32.</div><div class="ttdef"><b>Definition</b> event_types.hpp:86</div></div>
+<div class="ttc" id="astruct_event_1_1_value_changed_event_html_a3bf346674cd3fcaae9770bc35b37b6e5"><div class="ttname"><a href="../../da/dd2/struct_event_1_1_value_changed_event.html#a3bf346674cd3fcaae9770bc35b37b6e5">Event::ValueChangedEvent::newValue</a></div><div class="ttdeci">std::string newValue</div><div class="ttdef"><b>Definition</b> event_types.hpp:69</div></div>
+<div class="ttc" id="astruct_event_1_1_value_changed_event_html_a532cf6bfe9cc1783aac42a53554da565"><div class="ttname"><a href="../../da/dd2/struct_event_1_1_value_changed_event.html#a532cf6bfe9cc1783aac42a53554da565">Event::ValueChangedEvent::ValueChangedEvent</a></div><div class="ttdeci">ValueChangedEvent(const std::string &amp;id, const std::string &amp;val)</div><div class="ttdef"><b>Definition</b> event_types.hpp:70</div></div>
+<div class="ttc" id="astruct_event_1_1_value_changed_event_html_ae640437423a43d45a16bf4ca5700e678"><div class="ttname"><a href="../../da/dd2/struct_event_1_1_value_changed_event.html#ae640437423a43d45a16bf4ca5700e678">Event::ValueChangedEvent::valueId</a></div><div class="ttdeci">std::string valueId</div><div class="ttdef"><b>Definition</b> event_types.hpp:68</div></div>
+<div class="ttc" id="astruct_event_1_1_value_request_event_html_a1dea2be242193954664d87057a51f6ed"><div class="ttname"><a href="../../d1/d76/struct_event_1_1_value_request_event.html#a1dea2be242193954664d87057a51f6ed">Event::ValueRequestEvent::ValueRequestEvent</a></div><div class="ttdeci">ValueRequestEvent(const std::string &amp;id)</div><div class="ttdef"><b>Definition</b> event_types.hpp:77</div></div>
+<div class="ttc" id="astruct_event_1_1_value_request_event_html_abeb2f3b472536dfa5481a76fe67d8a79"><div class="ttname"><a href="../../d1/d76/struct_event_1_1_value_request_event.html#abeb2f3b472536dfa5481a76fe67d8a79">Event::ValueRequestEvent::valueId</a></div><div class="ttdeci">std::string valueId</div><div class="ttdef"><b>Definition</b> event_types.hpp:76</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="../../dir_584452064a033d8aa0d8f24e272c0625.html">SafeTown Arduino Workspace</a></li><li class="navelem"><a class="el" href="../../dir_d9fdbc748a20c8f708ebe70045d671a0.html">libraries</a></li><li class="navelem"><a class="el" href="../../dir_84e0486cdcd0603c5e1a5cb44d3512d1.html">EventManager</a></li><li class="navelem"><b>event_types.hpp</b></li>
-    <li class="footer">Generated on Tue Apr 8 2025 17:30:02 for SafeTown Senior Robot by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="navelem"><a class="el" href="../../dir_584452064a033d8aa0d8f24e272c0625.html">SafeTown Arduino Workspace</a></li><li class="navelem"><a class="el" href="../../dir_d9fdbc748a20c8f708ebe70045d671a0.html">libraries</a></li><li class="navelem"><a class="el" href="../../dir_84e0486cdcd0603c5e1a5cb44d3512d1.html">EventManager</a></li><li class="navelem"><a class="el" href="../../d4/d9c/event__types_8hpp.html">event_types.hpp</a></li>
+    <li class="footer">Generated on Tue Apr 8 2025 23:13:54 for SafeTown Senior Robot by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>

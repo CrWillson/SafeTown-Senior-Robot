@@ -24,6 +24,7 @@
 /* @license-end */
 </script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+<link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -106,51 +107,304 @@ $(function(){initNavTree('d7/d75/class_u_i_manager.html','../../'); initResizabl
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="../../dd/d33/class_u_i_manager-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">UIManager Class Reference</div></div>
+  <div class="headertitle"><div class="title">UIManager Class Reference<div class="ingroups"><a class="el" href="../../d3/dd3/group___communication_utilities.html">CommunicationUtilities</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Class to handle gathering user input from the rotary encoder.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../da/d29/user__input_8hpp_source.html">user_input.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a084fc287d25c2d96c8319d0654a001f4" id="r_a084fc287d25c2d96c8319d0654a001f4"><td class="memItemLeft" align="right" valign="top"><a id="a084fc287d25c2d96c8319d0654a001f4" name="a084fc287d25c2d96c8319d0654a001f4"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>UIManager</b> (const <a class="el" href="../../d7/d75/class_u_i_manager.html">UIManager</a> &amp;)=delete</td></tr>
+<tr class="memitem:a084fc287d25c2d96c8319d0654a001f4" id="r_a084fc287d25c2d96c8319d0654a001f4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a084fc287d25c2d96c8319d0654a001f4">UIManager</a> (const <a class="el" href="../../d7/d75/class_u_i_manager.html">UIManager</a> &amp;)=delete</td></tr>
 <tr class="separator:a084fc287d25c2d96c8319d0654a001f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b6c2ca269fab2f8785d92cf3c0c32e9" id="r_a5b6c2ca269fab2f8785d92cf3c0c32e9"><td class="memItemLeft" align="right" valign="top"><a id="a5b6c2ca269fab2f8785d92cf3c0c32e9" name="a5b6c2ca269fab2f8785d92cf3c0c32e9"></a>
-<a class="el" href="../../d7/d75/class_u_i_manager.html">UIManager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="../../d7/d75/class_u_i_manager.html">UIManager</a> &amp;)=delete</td></tr>
+<tr class="memitem:a5b6c2ca269fab2f8785d92cf3c0c32e9" id="r_a5b6c2ca269fab2f8785d92cf3c0c32e9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/d75/class_u_i_manager.html">UIManager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b6c2ca269fab2f8785d92cf3c0c32e9">operator=</a> (const <a class="el" href="../../d7/d75/class_u_i_manager.html">UIManager</a> &amp;)=delete</td></tr>
 <tr class="separator:a5b6c2ca269fab2f8785d92cf3c0c32e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aedd9d0577af515a852425dfe414b2968" id="r_aedd9d0577af515a852425dfe414b2968"><td class="memItemLeft" align="right" valign="top"><a id="aedd9d0577af515a852425dfe414b2968" name="aedd9d0577af515a852425dfe414b2968"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>init</b> ()</td></tr>
+<tr class="memitem:aedd9d0577af515a852425dfe414b2968" id="r_aedd9d0577af515a852425dfe414b2968"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aedd9d0577af515a852425dfe414b2968">init</a> ()</td></tr>
+<tr class="memdesc:aedd9d0577af515a852425dfe414b2968"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the encoder and attach interrupts.  <br /></td></tr>
 <tr class="separator:aedd9d0577af515a852425dfe414b2968"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a9b38b78ec72d2d56df3cf77198eaf7ff" id="r_a9b38b78ec72d2d56df3cf77198eaf7ff"><td class="memItemLeft" align="right" valign="top"><a id="a9b38b78ec72d2d56df3cf77198eaf7ff" name="a9b38b78ec72d2d56df3cf77198eaf7ff"></a>
-static <a class="el" href="../../d7/d75/class_u_i_manager.html">UIManager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getInstance</b> ()</td></tr>
+<tr class="memitem:a9b38b78ec72d2d56df3cf77198eaf7ff" id="r_a9b38b78ec72d2d56df3cf77198eaf7ff"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d7/d75/class_u_i_manager.html">UIManager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b38b78ec72d2d56df3cf77198eaf7ff">getInstance</a> ()</td></tr>
+<tr class="memdesc:a9b38b78ec72d2d56df3cf77198eaf7ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Meyers singleton instance of the <a class="el" href="../../d7/d75/class_u_i_manager.html" title="Class to handle gathering user input from the rotary encoder.">UIManager</a>.  <br /></td></tr>
 <tr class="separator:a9b38b78ec72d2d56df3cf77198eaf7ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acaf1da52372782200f12dbe99b68e268" id="r_acaf1da52372782200f12dbe99b68e268"><td class="memItemLeft" align="right" valign="top"><a id="acaf1da52372782200f12dbe99b68e268" name="acaf1da52372782200f12dbe99b68e268"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>updateEncoder</b> ()</td></tr>
+<tr class="memitem:acaf1da52372782200f12dbe99b68e268" id="r_acaf1da52372782200f12dbe99b68e268"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acaf1da52372782200f12dbe99b68e268">updateEncoder</a> ()</td></tr>
+<tr class="memdesc:acaf1da52372782200f12dbe99b68e268"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called upon the encoder being spun.  <br /></td></tr>
 <tr class="separator:acaf1da52372782200f12dbe99b68e268"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acaa84aab7d12538f5813e51328d7323f" id="r_acaa84aab7d12538f5813e51328d7323f"><td class="memItemLeft" align="right" valign="top"><a id="acaa84aab7d12538f5813e51328d7323f" name="acaa84aab7d12538f5813e51328d7323f"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>EncoderPress</b> ()</td></tr>
+<tr class="memitem:acaa84aab7d12538f5813e51328d7323f" id="r_acaa84aab7d12538f5813e51328d7323f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acaa84aab7d12538f5813e51328d7323f">EncoderPress</a> ()</td></tr>
+<tr class="memdesc:acaa84aab7d12538f5813e51328d7323f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called upon the encoder being pressed.  <br /></td></tr>
 <tr class="separator:acaa84aab7d12538f5813e51328d7323f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a3e82ea2833f09dcd51d6c3820445d6d9" id="r_a3e82ea2833f09dcd51d6c3820445d6d9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e82ea2833f09dcd51d6c3820445d6d9">UIManager</a> ()=default</td></tr>
+<tr class="separator:a3e82ea2833f09dcd51d6c3820445d6d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
-<tr class="memitem:a33c8a0522413badc732770cd6e7089ed" id="r_a33c8a0522413badc732770cd6e7089ed"><td class="memItemLeft" align="right" valign="top"><a id="a33c8a0522413badc732770cd6e7089ed" name="a33c8a0522413badc732770cd6e7089ed"></a>
-static <a class="el" href="../../d6/d94/class_event_manager.html">EventManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>eventManager</b> = nullptr</td></tr>
+<tr class="memitem:a33c8a0522413badc732770cd6e7089ed" id="r_a33c8a0522413badc732770cd6e7089ed"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d6/d94/class_event_manager.html">EventManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33c8a0522413badc732770cd6e7089ed">eventManager</a> = nullptr</td></tr>
 <tr class="separator:a33c8a0522413badc732770cd6e7089ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a075d1e7cde22702e0003af369c95f0a6" id="r_a075d1e7cde22702e0003af369c95f0a6"><td class="memItemLeft" align="right" valign="top"><a id="a075d1e7cde22702e0003af369c95f0a6" name="a075d1e7cde22702e0003af369c95f0a6"></a>
-static volatile uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>lastState</b> = 0</td></tr>
+<tr class="memitem:a075d1e7cde22702e0003af369c95f0a6" id="r_a075d1e7cde22702e0003af369c95f0a6"><td class="memItemLeft" align="right" valign="top">static volatile uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a075d1e7cde22702e0003af369c95f0a6">lastState</a> = 0</td></tr>
 <tr class="separator:a075d1e7cde22702e0003af369c95f0a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e0ed62a6687d3e8cce8e91d2c387f7c" id="r_a4e0ed62a6687d3e8cce8e91d2c387f7c"><td class="memItemLeft" align="right" valign="top"><a id="a4e0ed62a6687d3e8cce8e91d2c387f7c" name="a4e0ed62a6687d3e8cce8e91d2c387f7c"></a>
-static constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>debounceDelay</b> = 2</td></tr>
+<tr class="memitem:a4e0ed62a6687d3e8cce8e91d2c387f7c" id="r_a4e0ed62a6687d3e8cce8e91d2c387f7c"><td class="memItemLeft" align="right" valign="top">static constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4e0ed62a6687d3e8cce8e91d2c387f7c">debounceDelay</a> = 2</td></tr>
 <tr class="separator:a4e0ed62a6687d3e8cce8e91d2c387f7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class to handle gathering user input from the rotary encoder. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a084fc287d25c2d96c8319d0654a001f4" name="a084fc287d25c2d96c8319d0654a001f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a084fc287d25c2d96c8319d0654a001f4">&#9670;&#160;</a></span>UIManager() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UIManager::UIManager </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d7/d75/class_u_i_manager.html">UIManager</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3e82ea2833f09dcd51d6c3820445d6d9" name="a3e82ea2833f09dcd51d6c3820445d6d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e82ea2833f09dcd51d6c3820445d6d9">&#9670;&#160;</a></span>UIManager() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UIManager::UIManager </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="acaa84aab7d12538f5813e51328d7323f" name="acaa84aab7d12538f5813e51328d7323f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaa84aab7d12538f5813e51328d7323f">&#9670;&#160;</a></span>EncoderPress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void UIManager::EncoderPress </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Called upon the encoder being pressed. </p>
+
+</div>
+</div>
+<a id="a9b38b78ec72d2d56df3cf77198eaf7ff" name="a9b38b78ec72d2d56df3cf77198eaf7ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b38b78ec72d2d56df3cf77198eaf7ff">&#9670;&#160;</a></span>getInstance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="../../d7/d75/class_u_i_manager.html">UIManager</a> &amp; UIManager::getInstance </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the Meyers singleton instance of the <a class="el" href="../../d7/d75/class_u_i_manager.html" title="Class to handle gathering user input from the rotary encoder.">UIManager</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../d7/d75/class_u_i_manager.html" title="Class to handle gathering user input from the rotary encoder.">UIManager</a>&amp; </dd></dl>
+
+</div>
+</div>
+<a id="aedd9d0577af515a852425dfe414b2968" name="aedd9d0577af515a852425dfe414b2968"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedd9d0577af515a852425dfe414b2968">&#9670;&#160;</a></span>init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UIManager::init </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize the encoder and attach interrupts. </p>
+
+</div>
+</div>
+<a id="a5b6c2ca269fab2f8785d92cf3c0c32e9" name="a5b6c2ca269fab2f8785d92cf3c0c32e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b6c2ca269fab2f8785d92cf3c0c32e9">&#9670;&#160;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d7/d75/class_u_i_manager.html">UIManager</a> &amp; UIManager::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d7/d75/class_u_i_manager.html">UIManager</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acaf1da52372782200f12dbe99b68e268" name="acaf1da52372782200f12dbe99b68e268"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaf1da52372782200f12dbe99b68e268">&#9670;&#160;</a></span>updateEncoder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UIManager::updateEncoder </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Called upon the encoder being spun. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a4e0ed62a6687d3e8cce8e91d2c387f7c" name="a4e0ed62a6687d3e8cce8e91d2c387f7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e0ed62a6687d3e8cce8e91d2c387f7c">&#9670;&#160;</a></span>debounceDelay</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t UIManager::debounceDelay = 2</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a33c8a0522413badc732770cd6e7089ed" name="a33c8a0522413badc732770cd6e7089ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33c8a0522413badc732770cd6e7089ed">&#9670;&#160;</a></span>eventManager</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d6/d94/class_event_manager.html">EventManager</a> * UIManager::eventManager = nullptr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a075d1e7cde22702e0003af369c95f0a6" name="a075d1e7cde22702e0003af369c95f0a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a075d1e7cde22702e0003af369c95f0a6">&#9670;&#160;</a></span>lastState</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint8_t UIManager::lastState = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>SafeTown Arduino Workspace/libraries/UserInput/<a class="el" href="../../da/d29/user__input_8hpp_source.html">user_input.hpp</a></li>
-<li>SafeTown Arduino Workspace/libraries/UserInput/<b>user_input.cpp</b></li>
+<li>SafeTown Arduino Workspace/libraries/UserInput/<a class="el" href="../../dc/d2b/user__input_8cpp.html">user_input.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -158,7 +412,7 @@ static constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>d
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../d7/d75/class_u_i_manager.html">UIManager</a></li>
-    <li class="footer">Generated on Tue Apr 8 2025 17:30:02 for SafeTown Senior Robot by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Generated on Tue Apr 8 2025 23:13:54 for SafeTown Senior Robot by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>

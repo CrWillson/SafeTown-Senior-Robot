@@ -1,9 +1,13 @@
 var searchData=
 [
-  ['i2c_5fdev_0',['i2c_dev',['../d6/df1/class_adafruit___gray_o_l_e_d.html#aaa7488ce454be556f3cee63bbb132c56',1,'Adafruit_GrayOLED']]],
-  ['i2c_5fpostclk_1',['i2c_postclk',['../d6/df1/class_adafruit___gray_o_l_e_d.html#ac40167916deb4a26a1c1f595a60b968e',1,'Adafruit_GrayOLED']]],
-  ['i2c_5fpreclk_2',['i2c_preclk',['../d6/df1/class_adafruit___gray_o_l_e_d.html#a2ccedd0e6c08c84df1ef4cbf174d57f7',1,'Adafruit_GrayOLED']]],
-  ['i2caddr_3',['i2caddr',['../de/d33/class_adafruit___s_s_d1306.html#a00b9a5307eaf79559003dd66abcbfa17',1,'Adafruit_SSD1306']]],
-  ['invertoffcommand_4',['invertOffCommand',['../d0/db4/class_adafruit___s_p_i_t_f_t.html#a7248ddde9f18b64675139cea13998141',1,'Adafruit_SPITFT']]],
-  ['invertoncommand_5',['invertOnCommand',['../d0/db4/class_adafruit___s_p_i_t_f_t.html#ad6d068ec372f9ffa2a6a451542634bc1',1,'Adafruit_SPITFT']]]
+  ['image_5fbpp_0',['IMAGE_BPP',['../d9/d0a/class_e_s_p32.html#a90a06d191df59222d497b7bb7f43fc6d',1,'ESP32']]],
+  ['image_5fcols_1',['IMAGE_COLS',['../d9/d0a/class_e_s_p32.html#aec0fb09478d4a9a046868d212f066f8b',1,'ESP32']]],
+  ['image_5fpadding_2',['IMAGE_PADDING',['../d9/d0a/class_e_s_p32.html#a100acdeebc5b56c5375668fab84c55c9',1,'ESP32']]],
+  ['image_5frows_3',['IMAGE_ROWS',['../d9/d0a/class_e_s_p32.html#a5fbd1491b110460890f6824f2c2d67ec',1,'ESP32']]],
+  ['image_5fsize_4',['IMAGE_SIZE',['../d9/d0a/class_e_s_p32.html#a755c5bfd8588a7cc36766c009e4b31e3',1,'ESP32']]],
+  ['imagedir_5',['imageDir',['../d9/d0a/class_e_s_p32.html#ac16a67358aafefd3bd3900adec605f2b',1,'ESP32']]],
+  ['imageincluded_6',['imageIncluded',['../d8/dfc/struct_esp_to_pico_packet.html#afe8d5e2cbeeb440efdb6f817e5f06d88',1,'EspToPicoPacket']]],
+  ['imagenumber_7',['imageNumber',['../d9/d0a/class_e_s_p32.html#ad91e0bba121cf85d29f6fe7f58cfc662',1,'ESP32']]],
+  ['imageprefix_8',['imagePrefix',['../d9/d0a/class_e_s_p32.html#a1ee2b5a0153b742dfbbc42d8a463b0cf',1,'ESP32']]],
+  ['imagesuffix_9',['imageSuffix',['../d9/d0a/class_e_s_p32.html#a865e31a35dd0c78150ff09057813dead',1,'ESP32']]]
 ];

@@ -1,5 +1,9 @@
 #include "file_menu_page.hpp"
 #include "menu.hpp"
+#include <LittleFS.h>
+#include "file_opt_menu_page.hpp"
+#include "event_manager.hpp"
+
 
 FileMenuPage::FileMenuPage(const std::string& lbl, const std::string& parentLbl)
     : MenuPage(lbl), parentMenuLbl(parentLbl) 

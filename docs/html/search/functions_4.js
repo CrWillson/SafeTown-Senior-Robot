@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['init_0',['init',['../df/d4d/class_display.html#aacbf91b9f8c57fc2cb892c45fd44e655',1,'Display::init()'],['../d9/d0a/class_e_s_p32.html#a5697c96f00d466d6a3c47f3db9c03d2a',1,'ESP32::init()'],['../d2/db8/class_menu.html#a342d2a526a850dbf2d1aecd830b91287',1,'Menu::init()']]]
+  ['debuglogger_0',['DebugLogger',['../da/d0d/class_debug_logger.html#ac2287aa500154836186fda3becbcdc5a',1,'DebugLogger::DebugLogger(const DebugLogger &amp;)=delete'],['../da/d0d/class_debug_logger.html#a8d6cd2c43a93f46d0b19c737a88765a5',1,'DebugLogger::DebugLogger()']]],
+  ['display_1',['Display',['../df/d4d/class_display.html#a46094310ba411f6fea561f799c4d0754',1,'Display']]],
+  ['draw_2',['draw',['../df/d4d/class_display.html#acff48341fb98664dee78b74f86d88145',1,'Display']]],
+  ['dump_5fserial_5fto_5ffile_3',['dump_serial_to_file',['../d9/d40/namespaceserial__monitor.html#a04d0244511f5772027e4e6b8f771791d',1,'serial_monitor']]]
 ];

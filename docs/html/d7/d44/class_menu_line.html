@@ -24,6 +24,7 @@
 /* @license-end */
 </script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+<link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -107,11 +108,11 @@ $(function(){initNavTree('d7/d44/class_menu_line.html','../../'); initResizable(
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="../../d4/d1d/class_menu_line-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">MenuLine Class Reference<span class="mlabels"><span class="mlabel abstract">abstract</span></span></div></div>
+  <div class="headertitle"><div class="title">MenuLine Class Reference<span class="mlabels"><span class="mlabel abstract">abstract</span></span><div class="ingroups"><a class="el" href="../../d1/d95/group___menu.html">Menu</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Abstract base type for a menu line.  
+<p>Abstract base type for a <a class="el" href="../../d7/d44/class_menu_line.html" title="Abstract base type for a MenuLine.">MenuLine</a>.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="../../dd/d91/menu__line_8hpp_source.html">menu_line.hpp</a>&gt;</code></p>
@@ -121,20 +122,21 @@ Inheritance diagram for MenuLine:</div>
  <div class="center">
   <img src="../../d7/d44/class_menu_line.png" usemap="#MenuLine_map" alt=""/>
   <map id="MenuLine_map" name="MenuLine_map">
-<area href="../../de/de2/class_button_menu_line.html" title="Menu line that displays static text. Executes a std::function&lt;void()&gt; upon interaction." alt="ButtonMenuLine" shape="rect" coords="0,56,109,80"/>
-<area href="../../d0/de7/class_slider_menu_line.html" title="Menu line that displays a label followed by some user modifiable value." alt="SliderMenuLine" shape="rect" coords="119,56,228,80"/>
-<area href="../../d8/deb/class_spacer_menu_line.html" title="Menu line that displays a static, non-interactable separator line." alt="SpacerMenuLine" shape="rect" coords="238,56,347,80"/>
-<area href="../../dc/df8/class_text_menu_line.html" title="Menu line type that displays static, non-interactable text." alt="TextMenuLine" shape="rect" coords="357,56,466,80"/>
-<area href="../../d6/d67/class_toggle_menu_line.html" title="Menu line that displays static text. Toggles a boolean value upon interaction." alt="ToggleMenuLine" shape="rect" coords="476,56,585,80"/>
-<area href="../../d8/d07/class_value_menu_line.html" title="Menu line that displays a label followed by some value given by the value label." alt="ValueMenuLine" shape="rect" coords="595,56,704,80"/>
+<area href="../../de/de2/class_button_menu_line.html" title="MenuLine that displays static text. Executes a std::function&lt;void()&gt; upon interaction." alt="ButtonMenuLine" shape="rect" coords="0,56,109,80"/>
+<area href="../../d0/de7/class_slider_menu_line.html" title="MenuLine that displays a label followed by some user modifiable value." alt="SliderMenuLine" shape="rect" coords="119,56,228,80"/>
+<area href="../../d8/deb/class_spacer_menu_line.html" title="MenuLine that displays a static, non-interactable separator line." alt="SpacerMenuLine" shape="rect" coords="238,56,347,80"/>
+<area href="../../dc/df8/class_text_menu_line.html" title="MenuLine type that displays static, non-interactable text." alt="TextMenuLine" shape="rect" coords="357,56,466,80"/>
+<area href="../../d6/d67/class_toggle_menu_line.html" title="MenuLine that displays static text. Toggles a boolean value upon interaction." alt="ToggleMenuLine" shape="rect" coords="476,56,585,80"/>
+<area href="../../d8/d07/class_value_menu_line.html" title="MenuLine that displays a label followed by some value given by the value label." alt="ValueMenuLine" shape="rect" coords="595,56,704,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a59292fe05b7a9e4f64b3f49c28410197" id="r_a59292fe05b7a9e4f64b3f49c28410197"><td class="memItemLeft" align="right" valign="top"><a id="a59292fe05b7a9e4f64b3f49c28410197" name="a59292fe05b7a9e4f64b3f49c28410197"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>MenuLine</b> (const std::string &amp;text)</td></tr>
+<tr class="memitem:a59292fe05b7a9e4f64b3f49c28410197" id="r_a59292fe05b7a9e4f64b3f49c28410197"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a59292fe05b7a9e4f64b3f49c28410197">MenuLine</a> (const std::string &amp;text)</td></tr>
 <tr class="separator:a59292fe05b7a9e4f64b3f49c28410197"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa341c47767ab5e1dc9a515ee2c593db7" id="r_aa341c47767ab5e1dc9a515ee2c593db7"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa341c47767ab5e1dc9a515ee2c593db7">~MenuLine</a> ()=default</td></tr>
+<tr class="separator:aa341c47767ab5e1dc9a515ee2c593db7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af22bd470ad257c9bc5b33a09e8656b18" id="r_af22bd470ad257c9bc5b33a09e8656b18"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af22bd470ad257c9bc5b33a09e8656b18">getText</a> (bool selected) const =0</td></tr>
 <tr class="memdesc:af22bd470ad257c9bc5b33a09e8656b18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the line as a std::string.  <br /></td></tr>
 <tr class="separator:af22bd470ad257c9bc5b33a09e8656b18"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -144,14 +146,64 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a1d1b0618a545379821701edfd39f7f07" id="r_a1d1b0618a545379821701edfd39f7f07"><td class="memItemLeft" align="right" valign="top"><a id="a1d1b0618a545379821701edfd39f7f07" name="a1d1b0618a545379821701edfd39f7f07"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>label</b></td></tr>
-<tr class="memdesc:a1d1b0618a545379821701edfd39f7f07"><td class="mdescLeft">&#160;</td><td class="mdescRight">The text the display as the menu line. <br /></td></tr>
+<tr class="memitem:a1d1b0618a545379821701edfd39f7f07" id="r_a1d1b0618a545379821701edfd39f7f07"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d1b0618a545379821701edfd39f7f07">label</a></td></tr>
+<tr class="memdesc:a1d1b0618a545379821701edfd39f7f07"><td class="mdescLeft">&#160;</td><td class="mdescRight">The text the display as the menu line.  <br /></td></tr>
 <tr class="separator:a1d1b0618a545379821701edfd39f7f07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Abstract base type for a menu line. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+<div class="textblock"><p>Abstract base type for a <a class="el" href="../../d7/d44/class_menu_line.html" title="Abstract base type for a MenuLine.">MenuLine</a>. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a59292fe05b7a9e4f64b3f49c28410197" name="a59292fe05b7a9e4f64b3f49c28410197"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59292fe05b7a9e4f64b3f49c28410197">&#9670;&#160;</a></span>MenuLine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MenuLine::MenuLine </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>text</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa341c47767ab5e1dc9a515ee2c593db7" name="aa341c47767ab5e1dc9a515ee2c593db7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa341c47767ab5e1dc9a515ee2c593db7">&#9670;&#160;</a></span>~MenuLine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual MenuLine::~MenuLine </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="af22bd470ad257c9bc5b33a09e8656b18" name="af22bd470ad257c9bc5b33a09e8656b18"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af22bd470ad257c9bc5b33a09e8656b18">&#9670;&#160;</a></span>getText()</h2>
 
@@ -217,6 +269,23 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>label</b></td>
 
 </div>
 </div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a1d1b0618a545379821701edfd39f7f07" name="a1d1b0618a545379821701edfd39f7f07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d1b0618a545379821701edfd39f7f07">&#9670;&#160;</a></span>label</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string MenuLine::label</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The text the display as the menu line. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>SafeTown Arduino Workspace/libraries/Menu/<a class="el" href="../../dd/d91/menu__line_8hpp_source.html">menu_line.hpp</a></li>
 </ul>
@@ -226,7 +295,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>label</b></td>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../d7/d44/class_menu_line.html">MenuLine</a></li>
-    <li class="footer">Generated on Tue Apr 8 2025 17:30:02 for SafeTown Senior Robot by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Generated on Tue Apr 8 2025 23:13:54 for SafeTown Senior Robot by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>

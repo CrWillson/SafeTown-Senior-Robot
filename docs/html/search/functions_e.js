@@ -1,11 +1,15 @@
 var searchData=
 [
-  ['read_0',['read',['../de/df3/class_adafruit___bus_i_o___register.html#a2b48e23dacbb7cffc0eb07dcebcfba6f',1,'Adafruit_BusIO_Register::read(uint8_t *buffer, uint8_t len)'],['../de/df3/class_adafruit___bus_i_o___register.html#adca04654563a7c68a580533197366f61',1,'Adafruit_BusIO_Register::read(uint8_t *value)'],['../de/df3/class_adafruit___bus_i_o___register.html#a5c49c498815a5414d6fb5915760bbeba',1,'Adafruit_BusIO_Register::read(uint16_t *value)'],['../de/df3/class_adafruit___bus_i_o___register.html#a699434b2567ae8fce541b8048d891252',1,'Adafruit_BusIO_Register::read(void)'],['../dd/d1e/class_adafruit___bus_i_o___register_bits.html#a868614bb793ae3c4c00b7954896213d0',1,'Adafruit_BusIO_RegisterBits::read()'],['../d4/d2a/class_adafruit___generic_device.html#a90de855895eb2b2a431569107501cd95',1,'Adafruit_GenericDevice::read()'],['../dc/dd3/class_adafruit___i2_c_device.html#afeeccb3147b2f0340c65d2c0c1ce3ea6',1,'Adafruit_I2CDevice::read()'],['../da/dc4/class_adafruit___s_p_i_device.html#a5c4fce15c92a0210c0872a827f239ab1',1,'Adafruit_SPIDevice::read()'],['../d2/d3c/class_servo.html#a95217e315c3189adb6528a3b9b347336',1,'Servo::read()']]],
-  ['read16_1',['read16',['../d0/db4/class_adafruit___s_p_i_t_f_t.html#ae5ded96bb6051c6f882dfc6bac4557bc',1,'Adafruit_SPITFT']]],
-  ['readcached_2',['readCached',['../de/df3/class_adafruit___bus_i_o___register.html#a9738fbb8c088d5cf6d381f87dc9288bb',1,'Adafruit_BusIO_Register']]],
-  ['readcommand16_3',['readcommand16',['../d0/db4/class_adafruit___s_p_i_t_f_t.html#ac80f648cc0abc7b1d1ec27a750e5f79a',1,'Adafruit_SPITFT']]],
-  ['readcommand8_4',['readcommand8',['../d0/db4/class_adafruit___s_p_i_t_f_t.html#a641ccc4f159129259ee08738cb99627b',1,'Adafruit_SPITFT']]],
-  ['readmicroseconds_5',['readMicroseconds',['../d2/d3c/class_servo.html#a95404e96cc304eca9596d4c7d13fe339',1,'Servo']]],
-  ['readregister_6',['readRegister',['../d4/d2a/class_adafruit___generic_device.html#aa0fbb534b70756451e67bd35c92e0afc',1,'Adafruit_GenericDevice']]],
-  ['receivepacket_7',['receivePacket',['../d9/d0a/class_e_s_p32.html#a79bb8dc2cd7061128b13e08f3d3a3f0c',1,'ESP32']]]
+  ['scrolldown_0',['scrollDown',['../d1/d6b/class_menu_page.html#aea0a9e42aa18fce8b3d1a637a849c53a',1,'MenuPage']]],
+  ['scrollup_1',['scrollUp',['../d1/d6b/class_menu_page.html#a550e558ff67136d77c736b74ae063a33',1,'MenuPage']]],
+  ['select_2',['select',['../d1/d6b/class_menu_page.html#a5d6d0e53beba8c878b77ee74c4f0c632',1,'MenuPage']]],
+  ['sendpacket_3',['sendPacket',['../d9/d0a/class_e_s_p32.html#a0c68289ab78bbb3544631f0644c2af3c',1,'ESP32']]],
+  ['setcurrentpage_4',['setCurrentPage',['../d2/db8/class_menu.html#a90c765f3dacfc2941d27620b176406f4',1,'Menu']]],
+  ['setimagenumber_5',['setImageNumber',['../d9/d0a/class_e_s_p32.html#a39c5adf7489d3d3a37189dd834eb66e1',1,'ESP32']]],
+  ['setlinetext_6',['setLineText',['../df/d4d/class_display.html#a252313f15bdfc50ba3c68127b9d3ecbb',1,'Display::setLineText(std::string str, uint8_t lineNum)'],['../df/d4d/class_display.html#aebf1d802d351ffc09f0bc7c95fb07f21',1,'Display::setLineText(std::string str, int value, uint8_t lineNum)'],['../df/d4d/class_display.html#aef62431835fd218ffe8fe179744f40f0',1,'Display::setLineText(std::string str, bool value, uint8_t lineNum)'],['../df/d4d/class_display.html#acc369cc39fe44a616001be2b04d9e2b1',1,'Display::setLineText(std::string str, std::string value, uint8_t lineNum)']]],
+  ['slidermenuline_7',['SliderMenuLine',['../d0/de7/class_slider_menu_line.html#a4a954fed6750447abbb94a367bb526d0',1,'SliderMenuLine']]],
+  ['spacermenuline_8',['SpacerMenuLine',['../d8/deb/class_spacer_menu_line.html#a2bdd02afa6883193c101061dd1b16710',1,'SpacerMenuLine']]],
+  ['ssd1306_9',['ssd1306',['../db/d86/display_8cpp.html#a47ba942f3bb259acb2a7f9fdf3777881',1,'display.cpp']]],
+  ['subscribe_10',['subscribe',['../d6/d94/class_event_manager.html#abd1e27f277dda1a45aa2ee02e5d7c256',1,'EventManager']]],
+  ['supressdebugoutput_11',['supressDebugOutput',['../da/d0d/class_debug_logger.html#a6657c9827c438f324bdbe12900dcce56',1,'DebugLogger']]]
 ];

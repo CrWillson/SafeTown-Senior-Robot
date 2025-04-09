@@ -1,20 +1,6 @@
 var searchData=
 [
-  ['width_0',['width',['../de/df3/class_adafruit___bus_i_o___register.html#abf1eaeb0ae836be082a73dae14e7e352',1,'Adafruit_BusIO_Register::width()'],['../d9/d97/class_adafruit___g_f_x.html#a324b5361e7198ef0e79eaf4c80bddfc7',1,'Adafruit_GFX::width()']]],
-  ['write_1',['write',['../de/df3/class_adafruit___bus_i_o___register.html#aa418dced5301a1d8c1776a1941c8bc64',1,'Adafruit_BusIO_Register::write(uint8_t *buffer, uint8_t len)'],['../de/df3/class_adafruit___bus_i_o___register.html#adad13ec14c8548eaeff62609077aa076',1,'Adafruit_BusIO_Register::write(uint32_t value, uint8_t numbytes=0)'],['../dd/d1e/class_adafruit___bus_i_o___register_bits.html#a9311f94f1a1d93bc575b06c34ddecd80',1,'Adafruit_BusIO_RegisterBits::write()'],['../d4/d2a/class_adafruit___generic_device.html#ac4323c319132fead94381d136dd68b0e',1,'Adafruit_GenericDevice::write()'],['../dc/dd3/class_adafruit___i2_c_device.html#aa64a3c83aa776a3f383bc1df24ca1998',1,'Adafruit_I2CDevice::write()'],['../da/dc4/class_adafruit___s_p_i_device.html#a1c984896fcc5d009511ce37a659fdb2e',1,'Adafruit_SPIDevice::write()'],['../d9/d97/class_adafruit___g_f_x.html#a8773d92cafa93d3f749fb55c535d8f2e',1,'Adafruit_GFX::write()'],['../d2/d3c/class_servo.html#af69aba052f5907ef7fc3b6159e3b7726',1,'Servo::write()']]],
-  ['write16_2',['write16',['../d0/db4/class_adafruit___s_p_i_t_f_t.html#adef142a386721ffc13b5efbd194d0e69',1,'Adafruit_SPITFT']]],
-  ['write_5fand_5fread_3',['write_and_read',['../da/dc4/class_adafruit___s_p_i_device.html#a808c81bc4b9e42d064b9f590a1f6b1bd',1,'Adafruit_SPIDevice']]],
-  ['write_5fthen_5fread_4',['write_then_read',['../dc/dd3/class_adafruit___i2_c_device.html#af04af7e2918c873215ce949ce05ebe33',1,'Adafruit_I2CDevice::write_then_read()'],['../da/dc4/class_adafruit___s_p_i_device.html#a9cc3386cab3750aa18bbf3918261fc54',1,'Adafruit_SPIDevice::write_then_read()']]],
-  ['writecolor_5',['writeColor',['../d0/db4/class_adafruit___s_p_i_t_f_t.html#a42824e0f1475f2b3df335d31651dc75a',1,'Adafruit_SPITFT']]],
-  ['writecommand_6',['writeCommand',['../d0/db4/class_adafruit___s_p_i_t_f_t.html#a0169fcf8898413bba568a93c1617e8bb',1,'Adafruit_SPITFT']]],
-  ['writecommand16_7',['writeCommand16',['../d0/db4/class_adafruit___s_p_i_t_f_t.html#aa327bf9bd8580fdc87018df917259c97',1,'Adafruit_SPITFT']]],
-  ['writefasthline_8',['writeFastHLine',['../d9/d97/class_adafruit___g_f_x.html#ad85469e8be73f90932058fba1d4e5cbd',1,'Adafruit_GFX::writeFastHLine()'],['../d0/db4/class_adafruit___s_p_i_t_f_t.html#a06312f906256fd7e72efb21df85d2b96',1,'Adafruit_SPITFT::writeFastHLine()']]],
-  ['writefastvline_9',['writeFastVLine',['../d9/d97/class_adafruit___g_f_x.html#ae12d09670433af17e666a203b51715f7',1,'Adafruit_GFX::writeFastVLine()'],['../d0/db4/class_adafruit___s_p_i_t_f_t.html#a9b5f5765414c6b0c94c9a060427803ec',1,'Adafruit_SPITFT::writeFastVLine()']]],
-  ['writefillrect_10',['writeFillRect',['../d9/d97/class_adafruit___g_f_x.html#a60133faeabc10f9d909674bc4c5aabc6',1,'Adafruit_GFX::writeFillRect()'],['../d0/db4/class_adafruit___s_p_i_t_f_t.html#a8df7d60b7c8500b31d0a8f59999c3df1',1,'Adafruit_SPITFT::writeFillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color)']]],
-  ['writefillrectpreclipped_11',['writeFillRectPreclipped',['../d0/db4/class_adafruit___s_p_i_t_f_t.html#a6ef20b186a133d416f9ba71fb884d275',1,'Adafruit_SPITFT']]],
-  ['writeline_12',['writeLine',['../d9/d97/class_adafruit___g_f_x.html#ae1e5204b9251a04a57c821f69a8e638b',1,'Adafruit_GFX']]],
-  ['writemicroseconds_13',['writeMicroseconds',['../d2/d3c/class_servo.html#a7d35c33a26697722dc0c7e6cdb66d299',1,'Servo']]],
-  ['writepixel_14',['writePixel',['../d9/d97/class_adafruit___g_f_x.html#ab66a1577ec595a254e4492d641b36fd8',1,'Adafruit_GFX::writePixel()'],['../d0/db4/class_adafruit___s_p_i_t_f_t.html#a795dcd9f5f850c057b0a896204fc7d55',1,'Adafruit_SPITFT::writePixel(int16_t x, int16_t y, uint16_t color)']]],
-  ['writepixels_15',['writePixels',['../d0/db4/class_adafruit___s_p_i_t_f_t.html#af28a0d81eee528cabe3f2fbca6815f05',1,'Adafruit_SPITFT']]],
-  ['writeregister_16',['writeRegister',['../d4/d2a/class_adafruit___generic_device.html#ab124baf3baea9203db0ddbc65fd733b7',1,'Adafruit_GenericDevice']]]
+  ['valuechangedevent_0',['ValueChangedEvent',['../da/dd2/struct_event_1_1_value_changed_event.html#a532cf6bfe9cc1783aac42a53554da565',1,'Event::ValueChangedEvent']]],
+  ['valuemenuline_1',['ValueMenuLine',['../d8/d07/class_value_menu_line.html#a793f0cc3f727ea4c407de4ea95d9499e',1,'ValueMenuLine']]],
+  ['valuerequestevent_2',['ValueRequestEvent',['../d1/d76/struct_event_1_1_value_request_event.html#a1dea2be242193954664d87057a51f6ed',1,'Event::ValueRequestEvent']]]
 ];

@@ -6,8 +6,15 @@
 #include <string>
 
 /**
- * @brief Class to manage the communication with the attached ESP32. 
+ * @defgroup CommunicationUtilities
+ * @brief A group of classes to manage communicating with external sources
  * 
+ */
+
+
+/**
+ * @brief Class to manage the communication with the attached ESP32. 
+ * @ingroup CommunicationUtilities
  */
 class ESP32 {
 public:

@@ -10,7 +10,7 @@
 
 /**
  * @brief Class to handle drawing to the display.
- * 
+ * @ingroup Menu
  */
 class Display {
 public:

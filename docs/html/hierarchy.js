@@ -1,7 +1,6 @@
 var hierarchy =
 [
     [ "DebugLogger", "da/d0d/class_debug_logger.html", null ],
-    [ "DebugSupressor", "d9/d82/class_debug_supressor.html", null ],
     [ "Display", "df/d4d/class_display.html", null ],
     [ "ESP32", "d9/d0a/class_e_s_p32.html", null ],
     [ "EspToPicoPacket", "d8/dfc/struct_esp_to_pico_packet.html", null ],

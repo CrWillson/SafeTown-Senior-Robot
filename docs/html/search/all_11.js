@@ -1,11 +1,7 @@
 var searchData=
 [
-  ['sendpacket_0',['sendPacket',['../d9/d0a/class_e_s_p32.html#a0c68289ab78bbb3544631f0644c2af3c',1,'ESP32']]],
-  ['setcurrentpage_1',['setCurrentPage',['../d2/db8/class_menu.html#a90c765f3dacfc2941d27620b176406f4',1,'Menu']]],
-  ['setimagenumber_2',['setImageNumber',['../d9/d0a/class_e_s_p32.html#a39c5adf7489d3d3a37189dd834eb66e1',1,'ESP32']]],
-  ['setlinetext_3',['setLineText',['../df/d4d/class_display.html#a252313f15bdfc50ba3c68127b9d3ecbb',1,'Display::setLineText(std::string str, uint8_t lineNum)'],['../df/d4d/class_display.html#aebf1d802d351ffc09f0bc7c95fb07f21',1,'Display::setLineText(std::string str, int value, uint8_t lineNum)'],['../df/d4d/class_display.html#aef62431835fd218ffe8fe179744f40f0',1,'Display::setLineText(std::string str, bool value, uint8_t lineNum)'],['../df/d4d/class_display.html#acc369cc39fe44a616001be2b04d9e2b1',1,'Display::setLineText(std::string str, std::string value, uint8_t lineNum)']]],
-  ['slidermenuline_4',['SliderMenuLine',['../d0/de7/class_slider_menu_line.html',1,'']]],
-  ['spacermenuline_5',['SpacerMenuLine',['../d8/deb/class_spacer_menu_line.html',1,'']]],
-  ['srmenu_6',['SrMenu',['../d6/dfb/class_sr_menu.html',1,'']]],
-  ['subscribe_7',['subscribe',['../d6/d94/class_event_manager.html#abd1e27f277dda1a45aa2ee02e5d7c256',1,'EventManager']]]
+  ['readme_2emd_0',['README.md',['../d9/dd6/_r_e_a_d_m_e_8md.html',1,'']]],
+  ['receivepacket_1',['receivePacket',['../d9/d0a/class_e_s_p32.html#a79bb8dc2cd7061128b13e08f3d3a3f0c',1,'ESP32']]],
+  ['requestphotoevent_2',['RequestPhotoEvent',['../d6/da4/struct_event_1_1_request_photo_event.html',1,'Event']]],
+  ['robot_20arduino_20workspace_3',['Safetown Senior Robot Arduino Workspace',['../index.html',1,'']]]
 ];

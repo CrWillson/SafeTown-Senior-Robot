@@ -1,7 +1,27 @@
 var class_e_s_p32 =
 [
+    [ "~ESP32", "d9/d0a/class_e_s_p32.html#a176dcd1c846ab587107cf4b747f6e05a", null ],
+    [ "ESP32", "d9/d0a/class_e_s_p32.html#a9da0297c35e2c067befcd111f779a218", null ],
+    [ "ESP32", "d9/d0a/class_e_s_p32.html#abb3102690750359b281bf3e8424248e2", null ],
+    [ "_getNextImageNumber", "d9/d0a/class_e_s_p32.html#a71582a08b8477f4597dc8692baab9b86", null ],
+    [ "_onValueChange", "d9/d0a/class_e_s_p32.html#a4e0e1352549e86ab11a24a0a14990aab", null ],
+    [ "_saveNextImageNumber", "d9/d0a/class_e_s_p32.html#a2c3e3c14023f2936e2e7465c5e384dee", null ],
+    [ "_spaceAvailable", "d9/d0a/class_e_s_p32.html#a3db2741998c98048e824af7dba282fdb", null ],
+    [ "getInstance", "d9/d0a/class_e_s_p32.html#ad5a9d8f4ad6683fd26bc8529abe41cf6", null ],
     [ "init", "d9/d0a/class_e_s_p32.html#a5697c96f00d466d6a3c47f3db9c03d2a", null ],
+    [ "operator=", "d9/d0a/class_e_s_p32.html#ad0ddb5b170f7ccb9147ed71eadb5d8a1", null ],
     [ "receivePacket", "d9/d0a/class_e_s_p32.html#a79bb8dc2cd7061128b13e08f3d3a3f0c", null ],
     [ "sendPacket", "d9/d0a/class_e_s_p32.html#a0c68289ab78bbb3544631f0644c2af3c", null ],
-    [ "setImageNumber", "d9/d0a/class_e_s_p32.html#a39c5adf7489d3d3a37189dd834eb66e1", null ]
+    [ "setImageNumber", "d9/d0a/class_e_s_p32.html#a39c5adf7489d3d3a37189dd834eb66e1", null ],
+    [ "BAUD_RATE", "d9/d0a/class_e_s_p32.html#a3b181182dada240c225cbcd40451db34", null ],
+    [ "CONFIG_FILE", "d9/d0a/class_e_s_p32.html#a4b74dcff5096158df84a59f06389545e", null ],
+    [ "IMAGE_BPP", "d9/d0a/class_e_s_p32.html#a90a06d191df59222d497b7bb7f43fc6d", null ],
+    [ "IMAGE_COLS", "d9/d0a/class_e_s_p32.html#aec0fb09478d4a9a046868d212f066f8b", null ],
+    [ "IMAGE_PADDING", "d9/d0a/class_e_s_p32.html#a100acdeebc5b56c5375668fab84c55c9", null ],
+    [ "IMAGE_ROWS", "d9/d0a/class_e_s_p32.html#a5fbd1491b110460890f6824f2c2d67ec", null ],
+    [ "IMAGE_SIZE", "d9/d0a/class_e_s_p32.html#a755c5bfd8588a7cc36766c009e4b31e3", null ],
+    [ "imageDir", "d9/d0a/class_e_s_p32.html#ac16a67358aafefd3bd3900adec605f2b", null ],
+    [ "imageNumber", "d9/d0a/class_e_s_p32.html#ad91e0bba121cf85d29f6fe7f58cfc662", null ],
+    [ "imagePrefix", "d9/d0a/class_e_s_p32.html#a1ee2b5a0153b742dfbbc42d8a463b0cf", null ],
+    [ "imageSuffix", "d9/d0a/class_e_s_p32.html#a865e31a35dd0c78150ff09057813dead", null ]
 ];
