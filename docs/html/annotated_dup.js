@@ -14,7 +14,7 @@ var annotated_dup =
     [ "DebugLogger", "da/d0d/class_debug_logger.html", "da/d0d/class_debug_logger" ],
     [ "Display", "df/d4d/class_display.html", "df/d4d/class_display" ],
     [ "ESP32", "d9/d0a/class_e_s_p32.html", "d9/d0a/class_e_s_p32" ],
-    [ "EspToPicoPacket", "d8/dfc/struct_esp_to_pico_packet.html", "d8/dfc/struct_esp_to_pico_packet" ],
+    [ "EspToPicoPacket", "d3/dd3/group___communication_utilities.html#d8/dfc/struct_esp_to_pico_packet", "d3/dd3/group___communication_utilities_d8/dfc/struct_esp_to_pico_packet" ],
     [ "EventManager", "d6/d94/class_event_manager.html", "d6/d94/class_event_manager" ],
     [ "FileMenuPage", "d7/d04/class_file_menu_page.html", "d7/d04/class_file_menu_page" ],
     [ "FileOptMenuPg", "df/d9a/class_file_opt_menu_pg.html", "df/d9a/class_file_opt_menu_pg" ],
@@ -22,12 +22,12 @@ var annotated_dup =
     [ "Menu", "d2/db8/class_menu.html", "d2/db8/class_menu" ],
     [ "MenuLine", "d7/d44/class_menu_line.html", "d7/d44/class_menu_line" ],
     [ "MenuPage", "d1/d6b/class_menu_page.html", "d1/d6b/class_menu_page" ],
-    [ "PicoToEspPacket", "dc/d61/struct_pico_to_esp_packet.html", "dc/d61/struct_pico_to_esp_packet" ],
+    [ "PicoToEspPacket", "d3/dd3/group___communication_utilities.html#dc/d61/struct_pico_to_esp_packet", "d3/dd3/group___communication_utilities_dc/d61/struct_pico_to_esp_packet" ],
+    [ "RouteManager", "d2/deb/class_route_manager.html", "d2/deb/class_route_manager" ],
     [ "SliderMenuLine", "d0/de7/class_slider_menu_line.html", "d0/de7/class_slider_menu_line" ],
     [ "SpacerMenuLine", "d8/deb/class_spacer_menu_line.html", "d8/deb/class_spacer_menu_line" ],
     [ "SrMenu", "d6/dfb/class_sr_menu.html", "d6/dfb/class_sr_menu" ],
     [ "TextMenuLine", "dc/df8/class_text_menu_line.html", "dc/df8/class_text_menu_line" ],
-    [ "ToggleMenuLine", "d6/d67/class_toggle_menu_line.html", "d6/d67/class_toggle_menu_line" ],
     [ "UIManager", "d7/d75/class_u_i_manager.html", "d7/d75/class_u_i_manager" ],
     [ "ValueMenuLine", "d8/d07/class_value_menu_line.html", "d8/d07/class_value_menu_line" ]
 ];

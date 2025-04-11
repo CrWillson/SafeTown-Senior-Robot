@@ -22,10 +22,9 @@ var searchData=
   ['sr_5fbot_5fmenu_2ehpp_19',['sr_bot_menu.hpp',['../d0/d6f/sr__bot__menu_8hpp.html',1,'']]],
   ['srmenu_20',['SrMenu',['../d6/dfb/class_sr_menu.html',1,'']]],
   ['ssd1306_21',['ssd1306',['../db/d86/display_8cpp.html#a47ba942f3bb259acb2a7f9fdf3777881',1,'display.cpp']]],
-  ['state_22',['state',['../d6/d67/class_toggle_menu_line.html#a113069db29a0bd95c8ba0af7b08f135c',1,'ToggleMenuLine']]],
-  ['stopdetected_23',['stopDetected',['../d8/dfc/struct_esp_to_pico_packet.html#aa44a593c8038dd48417c3fc1e58b4cf4',1,'EspToPicoPacket']]],
-  ['subscribe_24',['subscribe',['../d6/d94/class_event_manager.html#abd1e27f277dda1a45aa2ee02e5d7c256',1,'EventManager']]],
-  ['supress_5fdebug_5foutput_25',['SUPRESS_DEBUG_OUTPUT',['../d3/d50/group___debug_utilities.html#gaa6162abd935bd17cb8ce1a110a730274',1,'debug_logger.hpp']]],
-  ['supressdebugoutput_26',['supressDebugOutput',['../da/d0d/class_debug_logger.html#a6657c9827c438f324bdbe12900dcce56',1,'DebugLogger']]],
-  ['sync_5fbytes_27',['SYNC_BYTES',['../d3/dd3/group___communication_utilities.html#ga90dd7a1e4b8c21d93cf2ed040458a264',1,'communication_types.hpp']]]
+  ['stopdetected_22',['stopDetected',['../d3/dd3/group___communication_utilities.html#aa44a593c8038dd48417c3fc1e58b4cf4',1,'EspToPicoPacket']]],
+  ['subscribe_23',['subscribe',['../d6/d94/class_event_manager.html#abd1e27f277dda1a45aa2ee02e5d7c256',1,'EventManager']]],
+  ['supress_5fdebug_5foutput_24',['SUPRESS_DEBUG_OUTPUT',['../d3/d50/group___debug_utilities.html#gaa6162abd935bd17cb8ce1a110a730274',1,'debug_logger.hpp']]],
+  ['supressdebugoutput_25',['supressDebugOutput',['../da/d0d/class_debug_logger.html#a6657c9827c438f324bdbe12900dcce56',1,'DebugLogger']]],
+  ['sync_5fbytes_26',['SYNC_BYTES',['../d3/dd3/group___communication_utilities.html#ga90dd7a1e4b8c21d93cf2ed040458a264',1,'communication_types.hpp']]]
 ];

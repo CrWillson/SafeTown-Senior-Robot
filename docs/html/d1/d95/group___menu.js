@@ -27,8 +27,8 @@ var group___menu =
       [ "parentMenuLbl", "d7/d04/class_file_menu_page.html#a3b56eaf7133249da41d4ddb372ae479a", null ]
     ] ],
     [ "FileOptMenuPg", "df/d9a/class_file_opt_menu_pg.html", [
-      [ "~FileOptMenuPg", "df/d9a/class_file_opt_menu_pg.html#a9f338c8ea8d37c945f9a242692f9d3e0", null ],
       [ "FileOptMenuPg", "df/d9a/class_file_opt_menu_pg.html#a6bb6b19f054b29f6640a32fad83dde39", null ],
+      [ "~FileOptMenuPg", "df/d9a/class_file_opt_menu_pg.html#a9f338c8ea8d37c945f9a242692f9d3e0", null ],
       [ "onFileDelete", "df/d9a/class_file_opt_menu_pg.html#acfafa0610a55f3ad05c8f7167483856b", null ],
       [ "onFilePrint", "df/d9a/class_file_opt_menu_pg.html#a2d043ffc9f927115133d3a8ad6b36207", null ],
       [ "FileMenuPage", "df/d9a/class_file_opt_menu_pg.html#aabb2454c2c267fbc8db1a001877d2a06", null ],
@@ -71,18 +71,18 @@ var group___menu =
     [ "SpacerMenuLine", "d8/deb/class_spacer_menu_line.html", [
       [ "SpacerMenuLine", "d8/deb/class_spacer_menu_line.html#a2bdd02afa6883193c101061dd1b16710", null ],
       [ "getText", "d8/deb/class_spacer_menu_line.html#a8df7002d90358417476b1fa9eab4a198", null ],
-      [ "onSelect", "d8/deb/class_spacer_menu_line.html#ac14946b604d00159d8f646e7aef38724", null ]
+      [ "onSelect", "d8/deb/class_spacer_menu_line.html#aa0a57117748acc997f794c6d32d762de", null ]
     ] ],
     [ "TextMenuLine", "dc/df8/class_text_menu_line.html", [
       [ "TextMenuLine", "dc/df8/class_text_menu_line.html#ad2cbe70f469d59a01742a1ccaa335f7f", null ],
       [ "getText", "dc/df8/class_text_menu_line.html#a7d89927e88f498e2387303a149251de8", null ],
-      [ "onSelect", "dc/df8/class_text_menu_line.html#a2f47f0cc0ef6cae52b76a19c8d30f893", null ],
+      [ "onSelect", "dc/df8/class_text_menu_line.html#a732c0f0f002ba2a62535c5ba31c14045", null ],
       [ "MenuPage", "dc/df8/class_text_menu_line.html#a9270650ae8183b52e285736bc8ca6a9e", null ]
     ] ],
     [ "ValueMenuLine", "d8/d07/class_value_menu_line.html", [
       [ "ValueMenuLine", "d8/d07/class_value_menu_line.html#a793f0cc3f727ea4c407de4ea95d9499e", null ],
       [ "getText", "d8/d07/class_value_menu_line.html#a4df5ef584d77dd66861ae36224503279", null ],
-      [ "onSelect", "d8/d07/class_value_menu_line.html#ae3b7752ddb212cdcd0fe486267c4e1a2", null ],
+      [ "onSelect", "d8/d07/class_value_menu_line.html#afde78d9cf30746f6d945faad084afa6f", null ],
       [ "MenuPage", "d8/d07/class_value_menu_line.html#a9270650ae8183b52e285736bc8ca6a9e", null ],
       [ "value", "d8/d07/class_value_menu_line.html#a9a92b5f6b306b80e3643465099d40a16", null ],
       [ "valueLabel", "d8/d07/class_value_menu_line.html#a29c2941abb52f9d5b66d6c08cf9eaab2", null ]
@@ -94,17 +94,10 @@ var group___menu =
       [ "MenuPage", "de/de2/class_button_menu_line.html#a9270650ae8183b52e285736bc8ca6a9e", null ],
       [ "action", "de/de2/class_button_menu_line.html#a0cac6e225d81e62492af7450a46ea924", null ]
     ] ],
-    [ "ToggleMenuLine", "d6/d67/class_toggle_menu_line.html", [
-      [ "ToggleMenuLine", "d6/d67/class_toggle_menu_line.html#addc3838dcdb84e008f98f0733865f640", null ],
-      [ "getText", "d6/d67/class_toggle_menu_line.html#aa8a56adbf72c9329fe16c6b093b23e09", null ],
-      [ "onSelect", "d6/d67/class_toggle_menu_line.html#a5ee44e9ef5197c326d3715523ba56516", null ],
-      [ "MenuPage", "d6/d67/class_toggle_menu_line.html#a9270650ae8183b52e285736bc8ca6a9e", null ],
-      [ "state", "d6/d67/class_toggle_menu_line.html#a113069db29a0bd95c8ba0af7b08f135c", null ]
-    ] ],
     [ "SliderMenuLine", "d0/de7/class_slider_menu_line.html", [
       [ "SliderMenuLine", "d0/de7/class_slider_menu_line.html#a4a954fed6750447abbb94a367bb526d0", null ],
       [ "getText", "d0/de7/class_slider_menu_line.html#a2fc372dc0db7d6fa061c2faef46acb10", null ],
-      [ "onSelect", "d0/de7/class_slider_menu_line.html#a7591c0c6aaee5d51102047c2828463fd", null ],
+      [ "onSelect", "d0/de7/class_slider_menu_line.html#ac838618ef844ca929a575b14ddad3a5e", null ],
       [ "MenuPage", "d0/de7/class_slider_menu_line.html#a9270650ae8183b52e285736bc8ca6a9e", null ],
       [ "editing", "d0/de7/class_slider_menu_line.html#a910759c799c15590d98a171ff839cd87", null ],
       [ "maxVal", "d0/de7/class_slider_menu_line.html#a8c5a50f0a4611ba9168c8d7d4ef7628a", null ],
@@ -128,7 +121,6 @@ var group___menu =
       [ "select", "d1/d6b/class_menu_page.html#a5d6d0e53beba8c878b77ee74c4f0c632", null ],
       [ "Menu", "d1/d6b/class_menu_page.html#a834cec0fab7efabab3cd53540e4d466d", null ],
       [ "botLine", "d1/d6b/class_menu_page.html#a415b729bd2a199fb19361d813dc5282e", null ],
-      [ "eventManager", "d1/d6b/class_menu_page.html#a2540bfa037dd03f12e05368490760b55", null ],
       [ "label", "d1/d6b/class_menu_page.html#a9a7f0b4fe564ccd53602caeaf0c2d06b", null ],
       [ "lines", "d1/d6b/class_menu_page.html#ae50de058c4d4fdc091e8f780a9f8091b", null ],
       [ "LINESPERSCREEN", "d1/d6b/class_menu_page.html#aa44eb5abb89ffa09b3f0ac0d35e57fdf", null ],

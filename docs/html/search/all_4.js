@@ -5,7 +5,7 @@ var searchData=
   ['clearlines_2',['clearLines',['../d1/d6b/class_menu_page.html#ad77700c14791b880cf9e9e991263ec79',1,'MenuPage']]],
   ['cmd_5frequest_5fimage_3',['CMD_REQUEST_IMAGE',['../d3/dd3/group___communication_utilities.html#gga7674802fdb5c95df8aafddba8cb6ee2aaf895e9786f6464b8b773bf84d78eab55',1,'communication_types.hpp']]],
   ['cmd_5fset_5fparam_4',['CMD_SET_PARAM',['../d3/dd3/group___communication_utilities.html#gga7674802fdb5c95df8aafddba8cb6ee2aa612544f01a28d64124a102a188fdb2d7',1,'communication_types.hpp']]],
-  ['command_5',['command',['../dc/d61/struct_pico_to_esp_packet.html#a708441f122853b7cdfe93c4e83e195e2',1,'PicoToEspPacket']]],
+  ['command_5',['command',['../d3/dd3/group___communication_utilities.html#a708441f122853b7cdfe93c4e83e195e2',1,'PicoToEspPacket']]],
   ['command_5fpacket_6',['COMMAND_PACKET',['../d3/dd3/group___communication_utilities.html#gga0628f13bcd4685c7a4b4a9f1aad83b56af68058dde21e2fcf28889f418acbed54',1,'communication_types.hpp']]],
   ['communication_5ftypes_2ehpp_7',['communication_types.hpp',['../de/d69/communication__types_8hpp.html',1,'']]],
   ['communicationutilities_8',['CommunicationUtilities',['../d3/dd3/group___communication_utilities.html',1,'']]],

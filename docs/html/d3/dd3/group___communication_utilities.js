@@ -1,16 +1,16 @@
 var group___communication_utilities =
 [
-    [ "EspToPicoPacket", "d8/dfc/struct_esp_to_pico_packet.html", [
-      [ "imageIncluded", "d8/dfc/struct_esp_to_pico_packet.html#afe8d5e2cbeeb440efdb6f817e5f06d88", null ],
-      [ "packetType", "d8/dfc/struct_esp_to_pico_packet.html#aafa6af24dc6040cc99f3b2cc29de6ee8", null ],
-      [ "stopDetected", "d8/dfc/struct_esp_to_pico_packet.html#aa44a593c8038dd48417c3fc1e58b4cf4", null ],
-      [ "whiteDist", "d8/dfc/struct_esp_to_pico_packet.html#a2fb549469bdd5abd91eb1503fb1f3f1b", null ]
+    [ "EspToPicoPacket", "d3/dd3/group___communication_utilities.html#d8/dfc/struct_esp_to_pico_packet", [
+      [ "imageIncluded", "d3/dd3/group___communication_utilities.html#afe8d5e2cbeeb440efdb6f817e5f06d88", null ],
+      [ "packetType", "d3/dd3/group___communication_utilities.html#aafa6af24dc6040cc99f3b2cc29de6ee8", null ],
+      [ "stopDetected", "d3/dd3/group___communication_utilities.html#aa44a593c8038dd48417c3fc1e58b4cf4", null ],
+      [ "whiteDist", "d3/dd3/group___communication_utilities.html#a2fb549469bdd5abd91eb1503fb1f3f1b", null ]
     ] ],
-    [ "PicoToEspPacket", "dc/d61/struct_pico_to_esp_packet.html", [
-      [ "command", "dc/d61/struct_pico_to_esp_packet.html#a708441f122853b7cdfe93c4e83e195e2", null ],
-      [ "data", "dc/d61/struct_pico_to_esp_packet.html#a323b1f4fa0bb8fd9cb0a3bbe4f1b23a8", null ],
-      [ "label", "dc/d61/struct_pico_to_esp_packet.html#a3ed70a9f397f51067f1c9816ab637da2", null ],
-      [ "packetType", "dc/d61/struct_pico_to_esp_packet.html#a252e5f91f57d988fcc1dab8764371cc0", null ]
+    [ "PicoToEspPacket", "d3/dd3/group___communication_utilities.html#dc/d61/struct_pico_to_esp_packet", [
+      [ "command", "d3/dd3/group___communication_utilities.html#a708441f122853b7cdfe93c4e83e195e2", null ],
+      [ "data", "d3/dd3/group___communication_utilities.html#a323b1f4fa0bb8fd9cb0a3bbe4f1b23a8", null ],
+      [ "label", "d3/dd3/group___communication_utilities.html#a3ed70a9f397f51067f1c9816ab637da2", null ],
+      [ "packetType", "d3/dd3/group___communication_utilities.html#a252e5f91f57d988fcc1dab8764371cc0", null ]
     ] ],
     [ "ESP32", "d9/d0a/class_e_s_p32.html", [
       [ "~ESP32", "d9/d0a/class_e_s_p32.html#a176dcd1c846ab587107cf4b747f6e05a", null ],

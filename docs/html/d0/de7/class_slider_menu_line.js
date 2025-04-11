@@ -2,7 +2,7 @@ var class_slider_menu_line =
 [
     [ "SliderMenuLine", "d0/de7/class_slider_menu_line.html#a4a954fed6750447abbb94a367bb526d0", null ],
     [ "getText", "d0/de7/class_slider_menu_line.html#a2fc372dc0db7d6fa061c2faef46acb10", null ],
-    [ "onSelect", "d0/de7/class_slider_menu_line.html#a7591c0c6aaee5d51102047c2828463fd", null ],
+    [ "onSelect", "d0/de7/class_slider_menu_line.html#ac838618ef844ca929a575b14ddad3a5e", null ],
     [ "MenuPage", "d0/de7/class_slider_menu_line.html#a9270650ae8183b52e285736bc8ca6a9e", null ],
     [ "editing", "d0/de7/class_slider_menu_line.html#a910759c799c15590d98a171ff839cd87", null ],
     [ "maxVal", "d0/de7/class_slider_menu_line.html#a8c5a50f0a4611ba9168c8d7d4ef7628a", null ],

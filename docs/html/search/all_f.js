@@ -2,7 +2,7 @@ var searchData=
 [
   ['packetlabel_0',['PacketLabel',['../d3/dd3/group___communication_utilities.html#ga01f4baa15220414b0c15da3c494e5976',1,'communication_types.hpp']]],
   ['packettype_1',['PacketType',['../d3/dd3/group___communication_utilities.html#ga0628f13bcd4685c7a4b4a9f1aad83b56',1,'communication_types.hpp']]],
-  ['packettype_2',['packetType',['../d8/dfc/struct_esp_to_pico_packet.html#aafa6af24dc6040cc99f3b2cc29de6ee8',1,'EspToPicoPacket::packetType'],['../dc/d61/struct_pico_to_esp_packet.html#a252e5f91f57d988fcc1dab8764371cc0',1,'PicoToEspPacket::packetType']]],
+  ['packettype_2',['packetType',['../d3/dd3/group___communication_utilities.html#aafa6af24dc6040cc99f3b2cc29de6ee8',1,'EspToPicoPacket::packetType'],['../d3/dd3/group___communication_utilities.html#a252e5f91f57d988fcc1dab8764371cc0',1,'PicoToEspPacket::packetType']]],
   ['pagechangedevent_3',['PageChangedEvent',['../d4/dc5/struct_event_1_1_page_changed_event.html',1,'Event::PageChangedEvent'],['../d4/dc5/struct_event_1_1_page_changed_event.html#ae180583d44d1e8895e899bef2079f88d',1,'Event::PageChangedEvent::PageChangedEvent()']]],
   ['param_5fpercent_5fto_5fstop_4',['PARAM_PERCENT_TO_STOP',['../d3/dd3/group___communication_utilities.html#gga01f4baa15220414b0c15da3c494e5976a08f2ddf0592366aa0accb8233bf956fa',1,'communication_types.hpp']]],
   ['param_5fstop_5fblue_5ftolerance_5',['PARAM_STOP_BLUE_TOLERANCE',['../d3/dd3/group___communication_utilities.html#gga01f4baa15220414b0c15da3c494e5976a05648d4189ad93556eedf59330e51a68',1,'communication_types.hpp']]],
@@ -17,7 +17,7 @@ var searchData=
   ['param_5fwhite_5fred_5flimit_14',['PARAM_WHITE_RED_LIMIT',['../d3/dd3/group___communication_utilities.html#gga01f4baa15220414b0c15da3c494e5976a6b5cdae0455a9678cee3f2ed8cc816d4',1,'communication_types.hpp']]],
   ['parentmenu_15',['parentMenu',['../d1/d6b/class_menu_page.html#a3d4ef16e6bc51cb8db6be5268b2bc6fb',1,'MenuPage']]],
   ['parentmenulbl_16',['parentMenuLbl',['../d7/d04/class_file_menu_page.html#a3b56eaf7133249da41d4ddb372ae479a',1,'FileMenuPage::parentMenuLbl'],['../df/d9a/class_file_opt_menu_pg.html#aa2709d6480cb7b2c679a59736386a64d',1,'FileOptMenuPg::parentMenuLbl'],['../d6/d51/class_file_stat_page.html#a1585a2520428ad1884e6e70477ce8574',1,'FileStatPage::parentMenuLbl']]],
-  ['picotoesppacket_17',['PicoToEspPacket',['../dc/d61/struct_pico_to_esp_packet.html',1,'']]],
+  ['picotoesppacket_17',['PicoToEspPacket',['../d3/dd3/group___communication_utilities.html#dc/d61/struct_pico_to_esp_packet',1,'']]],
   ['printlines_18',['printLines',['../df/d4d/class_display.html#abad8238b7ac91c480e0aff555aa35113',1,'Display']]],
   ['processevents_19',['processEvents',['../d6/d94/class_event_manager.html#ad40f65674444d1944159dd85888740d3',1,'EventManager']]],
   ['publish_20',['publish',['../d6/d94/class_event_manager.html#aade9a08c532f9ae7b098dd16c87b8428',1,'EventManager']]]

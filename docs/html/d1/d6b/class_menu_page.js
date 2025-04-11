@@ -15,7 +15,6 @@ var class_menu_page =
     [ "select", "d1/d6b/class_menu_page.html#a5d6d0e53beba8c878b77ee74c4f0c632", null ],
     [ "Menu", "d1/d6b/class_menu_page.html#a834cec0fab7efabab3cd53540e4d466d", null ],
     [ "botLine", "d1/d6b/class_menu_page.html#a415b729bd2a199fb19361d813dc5282e", null ],
-    [ "eventManager", "d1/d6b/class_menu_page.html#a2540bfa037dd03f12e05368490760b55", null ],
     [ "label", "d1/d6b/class_menu_page.html#a9a7f0b4fe564ccd53602caeaf0c2d06b", null ],
     [ "lines", "d1/d6b/class_menu_page.html#ae50de058c4d4fdc091e8f780a9f8091b", null ],
     [ "LINESPERSCREEN", "d1/d6b/class_menu_page.html#aa44eb5abb89ffa09b3f0ac0d35e57fdf", null ],

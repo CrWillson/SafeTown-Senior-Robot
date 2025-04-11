@@ -131,12 +131,12 @@ Inheritance diagram for SliderMenuLine:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4a954fed6750447abbb94a367bb526d0" id="r_a4a954fed6750447abbb94a367bb526d0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a954fed6750447abbb94a367bb526d0">SliderMenuLine</a> (const std::string &amp;text, const std::string &amp;<a class="el" href="../../d7/d44/class_menu_line.html#a1d1b0618a545379821701edfd39f7f07">label</a>, int initialValue, int minValue, int maxValue)</td></tr>
 <tr class="separator:a4a954fed6750447abbb94a367bb526d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2fc372dc0db7d6fa061c2faef46acb10" id="r_a2fc372dc0db7d6fa061c2faef46acb10"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2fc372dc0db7d6fa061c2faef46acb10">getText</a> (bool selected) const override</td></tr>
+<tr class="memitem:a2fc372dc0db7d6fa061c2faef46acb10" id="r_a2fc372dc0db7d6fa061c2faef46acb10"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2fc372dc0db7d6fa061c2faef46acb10">getText</a> (bool selected) const override</td></tr>
 <tr class="memdesc:a2fc372dc0db7d6fa061c2faef46acb10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the line as a std::string.  <br /></td></tr>
 <tr class="separator:a2fc372dc0db7d6fa061c2faef46acb10"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7591c0c6aaee5d51102047c2828463fd" id="r_a7591c0c6aaee5d51102047c2828463fd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7591c0c6aaee5d51102047c2828463fd">onSelect</a> () override</td></tr>
-<tr class="memdesc:a7591c0c6aaee5d51102047c2828463fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called upon selecting the menu line.  <br /></td></tr>
-<tr class="separator:a7591c0c6aaee5d51102047c2828463fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac838618ef844ca929a575b14ddad3a5e" id="r_ac838618ef844ca929a575b14ddad3a5e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac838618ef844ca929a575b14ddad3a5e">onSelect</a> () override</td></tr>
+<tr class="memdesc:ac838618ef844ca929a575b14ddad3a5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called upon selecting the menu line.  <br /></td></tr>
+<tr class="separator:ac838618ef844ca929a575b14ddad3a5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_menu_line"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_menu_line')"><img src="../../closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="../../d7/d44/class_menu_line.html">MenuLine</a></td></tr>
 <tr class="memitem:a59292fe05b7a9e4f64b3f49c28410197 inherit pub_methods_class_menu_line" id="r_a59292fe05b7a9e4f64b3f49c28410197"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d44/class_menu_line.html#a59292fe05b7a9e4f64b3f49c28410197">MenuLine</a> (const std::string &amp;text)</td></tr>
 <tr class="separator:a59292fe05b7a9e4f64b3f49c28410197 inherit pub_methods_class_menu_line"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -171,6 +171,8 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="../../d7/d44/class_menu_line.html" title="Abstract base type for a MenuLine.">MenuLine</a> that displays a label followed by some user modifiable value. </p>
 <p>Interacting will begin editing. Once editing, scrolling up and down will instead increment or decrement the value between its upper and lower bounds. Interacting again will confirm the selection and broadcast a notification of the value's change. </p>
+
+<p class="definition">Definition at line <a class="el" href="../../dd/d91/menu__line_8hpp_source.html#l00112">112</a> of file <a class="el" href="../../dd/d91/menu__line_8hpp_source.html">menu_line.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4a954fed6750447abbb94a367bb526d0" name="a4a954fed6750447abbb94a367bb526d0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4a954fed6750447abbb94a367bb526d0">&#9670;&#160;</a></span>SliderMenuLine()</h2>
@@ -214,6 +216,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="../../dd/d91/menu__line_8hpp_source.html#l00114">114</a> of file <a class="el" href="../../dd/d91/menu__line_8hpp_source.html">menu_line.hpp</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -251,10 +255,12 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="../../d7/d44/class_menu_line.html#af22bd470ad257c9bc5b33a09e8656b18">MenuLine</a>.</p>
 
+<p class="definition">Definition at line <a class="el" href="../../d4/d34/menu__line_8cpp_source.html#l00058">58</a> of file <a class="el" href="../../d4/d34/menu__line_8cpp_source.html">menu_line.cpp</a>.</p>
+
 </div>
 </div>
-<a id="a7591c0c6aaee5d51102047c2828463fd" name="a7591c0c6aaee5d51102047c2828463fd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7591c0c6aaee5d51102047c2828463fd">&#9670;&#160;</a></span>onSelect()</h2>
+<a id="ac838618ef844ca929a575b14ddad3a5e" name="ac838618ef844ca929a575b14ddad3a5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac838618ef844ca929a575b14ddad3a5e">&#9670;&#160;</a></span>onSelect()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -263,7 +269,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void SliderMenuLine::onSelect </td>
+          <td class="memname">void SliderMenuLine::onSelect </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -279,6 +285,8 @@ Additional Inherited Members</h2></td></tr>
 <p>Called upon selecting the menu line. </p>
 
 <p>Implements <a class="el" href="../../d7/d44/class_menu_line.html#a313d69d65e70b94d4d00b0399252f3af">MenuLine</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../dd/d91/menu__line_8hpp_source.html#l00118">118</a> of file <a class="el" href="../../dd/d91/menu__line_8hpp_source.html">menu_line.hpp</a>.</p>
 
 </div>
 </div>
@@ -303,6 +311,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="../../dd/d91/menu__line_8hpp_source.html#l00125">125</a> of file <a class="el" href="../../dd/d91/menu__line_8hpp_source.html">menu_line.hpp</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -326,6 +336,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="../../dd/d91/menu__line_8hpp_source.html#l00124">124</a> of file <a class="el" href="../../dd/d91/menu__line_8hpp_source.html">menu_line.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a8c5a50f0a4611ba9168c8d7d4ef7628a" name="a8c5a50f0a4611ba9168c8d7d4ef7628a"></a>
@@ -347,6 +359,8 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../dd/d91/menu__line_8hpp_source.html#l00123">123</a> of file <a class="el" href="../../dd/d91/menu__line_8hpp_source.html">menu_line.hpp</a>.</p>
 
 </div>
 </div>
@@ -370,6 +384,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="../../dd/d91/menu__line_8hpp_source.html#l00122">122</a> of file <a class="el" href="../../dd/d91/menu__line_8hpp_source.html">menu_line.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a75ceada45e89665c164a1e72f0005081" name="a75ceada45e89665c164a1e72f0005081"></a>
@@ -391,6 +407,8 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../dd/d91/menu__line_8hpp_source.html#l00121">121</a> of file <a class="el" href="../../dd/d91/menu__line_8hpp_source.html">menu_line.hpp</a>.</p>
 
 </div>
 </div>
@@ -414,11 +432,13 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="../../dd/d91/menu__line_8hpp_source.html#l00120">120</a> of file <a class="el" href="../../dd/d91/menu__line_8hpp_source.html">menu_line.hpp</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>SafeTown Arduino Workspace/libraries/Menu/<a class="el" href="../../dd/d91/menu__line_8hpp_source.html">menu_line.hpp</a></li>
-<li>SafeTown Arduino Workspace/libraries/Menu/<a class="el" href="../../d4/d34/menu__line_8cpp.html">menu_line.cpp</a></li>
+<li>SafeTown Arduino Workspace/libraries/Menu/<a class="el" href="../../d4/d34/menu__line_8cpp_source.html">menu_line.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -426,7 +446,7 @@ Additional Inherited Members</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../d0/de7/class_slider_menu_line.html">SliderMenuLine</a></li>
-    <li class="footer">Generated on Thu Apr 10 2025 14:18:47 for SafeTown Senior Robot by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Generated on Fri Apr 11 2025 15:38:51 for SafeTown Senior Robot by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>
