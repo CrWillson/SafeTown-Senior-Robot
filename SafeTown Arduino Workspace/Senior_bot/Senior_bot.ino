@@ -73,7 +73,6 @@ const std::unordered_map<DIR, std::string> DirLabel {   // Map to convert from a
   {DIR::RIGHT, ">"}
 };
 
-long cycle = 0;         // Counts the cycles of the main loop
 long oldTime = 0;       // Used to keep track of the time when the current state was entered
 long led_time = 0;
 long obstacleTime = 0;  // Used to keep track of the time when an obstacle was detected
@@ -395,8 +394,8 @@ void loop() {
     //-------------------------------------------------------------------------------------
     case INTERSECTION_LEFT:
       brake = false;
-      leftTurnSig = false;
-      rightTurnSig = true;
+      leftTurnSig = true;
+      rightTurnSig = false;
       
       if (car_detected && !bulldozerMode) { 
         oldState = state;
@@ -503,8 +502,6 @@ void loop() {
   //    intersection based on the angle of the robot
   // error_history[error_hi] = error;
   // error_hi = (error_hi + 1) % error_history.size();
-
-  cycle++;
   
 }
 

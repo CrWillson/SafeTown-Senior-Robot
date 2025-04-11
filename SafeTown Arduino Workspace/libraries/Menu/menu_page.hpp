@@ -88,7 +88,6 @@ protected:
     std::vector<std::shared_ptr<MenuLine>> lines;
 
     Menu* parentMenu;
-    EventManager* eventManager;
     std::string label;
 
     uint8_t selectedLine = 0;

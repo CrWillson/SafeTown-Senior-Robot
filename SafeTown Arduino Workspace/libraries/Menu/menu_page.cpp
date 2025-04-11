@@ -1,9 +1,10 @@
 #include "menu_page.hpp"
 #include "menu.hpp"
+#include "event_manager.hpp"
 
 MenuPage::MenuPage(const std::string& lbl) : label(lbl) 
 {
-    eventManager = &EventManager::getInstance();
+    
 }
 
 std::array<std::string, MenuPage::LINESPERSCREEN> MenuPage::getVisibleText() const
@@ -45,7 +46,7 @@ void MenuPage::onPageLoad()
     for (const auto& menuline : lines) {
         if (auto line = std::dynamic_pointer_cast<ValueMenuLine>(menuline)) {
             auto valReq = Event::ValueRequestEvent(line->valueLabel);
-            eventManager->publish(valReq);
+            EventManager::getInstance().publish(valReq);
         }
     }
 }
@@ -57,7 +58,7 @@ bool MenuPage::onValueRequested(const std::string& reqLabel)
         if (auto line = std::dynamic_pointer_cast<SliderMenuLine>(menuline)) {
             if (line->valueLabel == reqLabel) {
                 auto valResp = Event::ValueChangedEvent(reqLabel, std::to_string(line->value));
-                eventManager->publish(valResp);
+                EventManager::getInstance().publish(valResp);
                 result = true;
             }
         }
@@ -71,7 +72,7 @@ void MenuPage::scrollUp()
         if (line->editing) {
             if (line->value > line->minVal) {
                 line->value--;
-                eventManager->publish(Event::PageChangedEvent(getVisibleText()));
+                EventManager::getInstance().publish(Event::PageChangedEvent(getVisibleText()));
             }
             return;
         }
@@ -87,7 +88,7 @@ void MenuPage::scrollUp()
         botLine--;
     }
 
-    if (result) { eventManager->publish(Event::PageChangedEvent(getVisibleText())); }
+    if (result) { EventManager::getInstance().publish(Event::PageChangedEvent(getVisibleText())); }
 }
 
 void MenuPage::scrollDown()
@@ -96,7 +97,7 @@ void MenuPage::scrollDown()
         if (line->editing) {
             if (line->value < line->maxVal) {
                 line->value++;
-                eventManager->publish(Event::PageChangedEvent(getVisibleText()));
+                EventManager::getInstance().publish(Event::PageChangedEvent(getVisibleText()));
             }
             return;
         }
@@ -112,7 +113,7 @@ void MenuPage::scrollDown()
         topLine++;
     }
 
-    if (result) { eventManager->publish(Event::PageChangedEvent(getVisibleText())); }
+    if (result) { EventManager::getInstance().publish(Event::PageChangedEvent(getVisibleText())); }
 }
 
 void MenuPage::select()
@@ -122,8 +123,8 @@ void MenuPage::select()
     if (auto line = std::dynamic_pointer_cast<SliderMenuLine>(lines.at(selectedLine))) {
         if (!line->editing) {
             auto valUpdate = Event::ValueChangedEvent(line->valueLabel, std::to_string(line->value));
-            eventManager->publish(valUpdate);
+            EventManager::getInstance().publish(valUpdate);
         }
-        eventManager->publish(Event::PageChangedEvent(getVisibleText()));
+        EventManager::getInstance().publish(Event::PageChangedEvent(getVisibleText()));
     }
 }

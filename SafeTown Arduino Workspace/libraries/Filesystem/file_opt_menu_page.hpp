@@ -17,18 +17,19 @@ class FileMenuPage;
  */
 class FileOptMenuPg : public MenuPage {
 public:
+    /**
+    * @brief Construct a new FileOptMenuPg object
+    * @details The constructor is made private so it is only constructable by the FileMenuPage friend class
+    * 
+    * @param lbl - The label to refer to this page by
+    * @param parentLbl - The page label to return to upon selecting the "back" option
+    * @param file - The file being manipulated
+    */
+    FileOptMenuPg(const std::string& lbl, const std::string& parentLbl, const std::string& file);
+    
     ~FileOptMenuPg() = default;
 
 private:
-    /**
-     * @brief Construct a new FileOptMenuPg object
-     * @details The constructor is made private so it is only constructable by the FileMenuPage friend class
-     * 
-     * @param lbl - The label to refer to this page by
-     * @param parentLbl - The page label to return to upon selecting the "back" option
-     * @param file - The file being manipulated
-     */
-    FileOptMenuPg(const std::string& lbl, const std::string& parentLbl, const std::string& file);
     
     /**
      * @brief Called upon requesting the deletion of the selected file. Deletes the file.

@@ -2,9 +2,11 @@
 
 #include <string>
 #include <functional>
+#include <variant>
 #include "Arduino.h"
 #include "event_types.hpp"
 #include "event_manager.hpp"
+
 
 
 /**
@@ -45,9 +47,9 @@ class SpacerMenuLine : public MenuLine {
 public:
     SpacerMenuLine() 
         : MenuLine("-------------------") {}
-        
-    virtual std::string getText(bool selected) const override;
-    virtual void onSelect() override { /* do nothing */ }
+    
+    std::string getText(bool selected) const override;
+    void onSelect() override { /* do nothing */ }
 };
 
 
@@ -60,8 +62,8 @@ public:
     TextMenuLine(const std::string& text) 
         : MenuLine(text) {}
 
-    virtual std::string getText(bool selected) const override;
-    virtual void onSelect() override { /* do nothing */ }
+    std::string getText(bool selected) const override;
+    void onSelect() override { /* do nothing */ }
 private:
     friend class MenuPage;
 };
@@ -75,8 +77,8 @@ public:
     ValueMenuLine(const std::string& text, const std::string valLbl)
         : MenuLine(text), valueLabel(valLbl) {}
 
-    virtual std::string getText(bool selected) const override;
-    virtual void onSelect() override { /* do nothing */ }
+    std::string getText(bool selected) const override;
+    void onSelect() override { /* do nothing */ }
 private:
     std::string value;
     std::string valueLabel;
@@ -92,27 +94,13 @@ public:
     ButtonMenuLine(const std::string& text, std::function<void()> act)
         : MenuLine(text), action(act) {}
 
-    virtual std::string getText(bool selected) const override;
-    virtual void onSelect() override;
+    std::string getText(bool selected) const override;
+    void onSelect() override;
 private:
     std::function<void()> action;
     friend class MenuPage;
 };
 
-/**
- * @brief MenuLine that displays static text. Toggles a boolean value upon interaction
- * @ingroup Menu
- */
-class ToggleMenuLine : public MenuLine {
-public:
-    ToggleMenuLine(const std::string& text, bool initialState)
-      : MenuLine(text), state(initialState) {}
-    virtual std::string getText(bool selected) const override;
-    virtual void onSelect() override { state = !state; };
-private:
-    bool state;
-    friend class MenuPage;
-};
 
 /**
  * @brief MenuLine that displays a label followed by some user modifiable value.
@@ -125,8 +113,9 @@ class SliderMenuLine : public MenuLine {
 public:
     SliderMenuLine(const std::string& text, const std::string& label, int initialValue, int minValue, int maxValue)
       : MenuLine(text), valueLabel(label), value(initialValue), minVal(minValue), maxVal(maxValue), editing(false) {}
-    virtual std::string getText(bool selected) const override;
-    virtual void onSelect() override { editing = !editing; };
+
+    std::string getText(bool selected) const override;
+    void onSelect() override { editing = !editing; };
 private:
     std::string valueLabel;
     int value;
@@ -135,5 +124,3 @@ private:
     bool editing;
     friend class MenuPage;
 };
-
-
