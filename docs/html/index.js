@@ -1,7 +1,5 @@
 var index =
 [
-    [ "Introduction", "index.html#intro_sec", null ],
-    [ "Dependencies", "index.html#dependencies", null ],
-    [ "Author", "index.html#author", null ],
-    [ "License", "index.html#license", null ]
+    [ "Features", "index.html#autotoc_md2", null ],
+    [ "Compilation Instructions", "index.html#autotoc_md3", null ]
 ];

@@ -112,7 +112,6 @@ var NAVTREEINDEX0 =
 "d4/dc5/struct_event_1_1_page_changed_event.html#adb0587ae86ccaa35d275fd1c0447298a":[3,0,0,4,1],
 "d4/dc5/struct_event_1_1_page_changed_event.html#ae180583d44d1e8895e899bef2079f88d":[2,0,0,4,0],
 "d4/dc5/struct_event_1_1_page_changed_event.html#ae180583d44d1e8895e899bef2079f88d":[3,0,0,4,0],
-"d5/d15/serial__monitor_8py.html":[4,0,0,0,1,3],
 "d5/db5/file__stats__page_8cpp.html":[4,0,0,0,3,4],
 "d6/d0b/file__opt__menu__page_8cpp.html":[4,0,0,0,3,2],
 "d6/d51/class_file_stat_page.html":[1,3,3],
@@ -218,10 +217,6 @@ var NAVTREEINDEX0 =
 "d9/d0a/class_e_s_p32.html#ad5a9d8f4ad6683fd26bc8529abe41cf6":[1,0,2,7],
 "d9/d0a/class_e_s_p32.html#ad91e0bba121cf85d29f6fe7f58cfc662":[1,0,2,21],
 "d9/d0a/class_e_s_p32.html#aec0fb09478d4a9a046868d212f066f8b":[1,0,2,16],
-"d9/d40/namespaceserial__monitor.html":[2,0,1],
-"d9/d40/namespaceserial__monitor.html#a04d0244511f5772027e4e6b8f771791d":[2,0,1,0],
-"d9/d40/namespaceserial__monitor.html#a9f7c8c0d31e873c23823c7415ec46cae":[2,0,1,1],
-"d9/d40/namespaceserial__monitor.html#aece07d499c768ee526497e72668d7356":[2,0,1,2],
 "d9/d8f/menu_8hpp.html":[4,0,0,0,5,1],
 "d9/d8f/menu_8hpp_source.html":[4,0,0,0,5,1],
 "d9/dcf/file__stats__page_8hpp.html":[4,0,0,0,3,5],
@@ -249,5 +244,10 @@ var NAVTREEINDEX0 =
 "da/dd2/struct_event_1_1_value_changed_event.html#a3bf346674cd3fcaae9770bc35b37b6e5":[2,0,0,6,1],
 "da/dd2/struct_event_1_1_value_changed_event.html#a3bf346674cd3fcaae9770bc35b37b6e5":[3,0,0,6,1],
 "da/dd2/struct_event_1_1_value_changed_event.html#a532cf6bfe9cc1783aac42a53554da565":[2,0,0,6,0],
-"da/dd2/struct_event_1_1_value_changed_event.html#a532cf6bfe9cc1783aac42a53554da565":[3,0,0,6,0]
+"da/dd2/struct_event_1_1_value_changed_event.html#a532cf6bfe9cc1783aac42a53554da565":[3,0,0,6,0],
+"da/dd2/struct_event_1_1_value_changed_event.html#ae640437423a43d45a16bf4ca5700e678":[2,0,0,6,2],
+"da/dd2/struct_event_1_1_value_changed_event.html#ae640437423a43d45a16bf4ca5700e678":[3,0,0,6,2],
+"db/d25/group___core_utilities.html":[1,1],
+"db/d86/display_8cpp.html":[4,0,0,0,0,0],
+"db/d86/display_8cpp.html#a2cd109632a6dcccaa80b43561b1ab700":[4,0,0,0,0,0,3]
 };

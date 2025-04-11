@@ -9,6 +9,5 @@ var searchData=
   ['display_6',['Display',['../df/d4d/class_display.html',1,'Display'],['../df/d4d/class_display.html#a46094310ba411f6fea561f799c4d0754',1,'Display::Display()']]],
   ['display_2ecpp_7',['display.cpp',['../db/d86/display_8cpp.html',1,'']]],
   ['display_2ehpp_8',['display.hpp',['../d2/da4/display_8hpp.html',1,'']]],
-  ['draw_9',['draw',['../df/d4d/class_display.html#acff48341fb98664dee78b74f86d88145',1,'Display']]],
-  ['dump_5fserial_5fto_5ffile_10',['dump_serial_to_file',['../d9/d40/namespaceserial__monitor.html#a04d0244511f5772027e4e6b8f771791d',1,'serial_monitor']]]
+  ['draw_9',['draw',['../df/d4d/class_display.html#acff48341fb98664dee78b74f86d88145',1,'Display']]]
 ];

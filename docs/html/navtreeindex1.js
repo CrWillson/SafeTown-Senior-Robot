@@ -1,10 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"da/dd2/struct_event_1_1_value_changed_event.html#ae640437423a43d45a16bf4ca5700e678":[2,0,0,6,2],
-"da/dd2/struct_event_1_1_value_changed_event.html#ae640437423a43d45a16bf4ca5700e678":[3,0,0,6,2],
-"db/d25/group___core_utilities.html":[1,1],
-"db/d86/display_8cpp.html":[4,0,0,0,0,0],
-"db/d86/display_8cpp.html#a2cd109632a6dcccaa80b43561b1ab700":[4,0,0,0,0,0,3],
 "db/d86/display_8cpp.html#a47ba942f3bb259acb2a7f9fdf3777881":[4,0,0,0,0,0,4],
 "db/d86/display_8cpp.html#a4dc358585abdaa9531e340bab60ae0b5":[4,0,0,0,0,0,1],
 "db/d86/display_8cpp.html#a619e07239fb3b9b14d40646ab41d5b4f":[4,0,0,0,0,0,0],
@@ -90,9 +85,8 @@ var NAVTREEINDEX1 =
 "hierarchy.html":[3,2],
 "index.html":[],
 "index.html":[0],
-"namespacemembers.html":[2,1,0],
-"namespacemembers_func.html":[2,1,1],
-"namespacemembers_vars.html":[2,1,2],
+"index.html#autotoc_md2":[0,0],
+"index.html#autotoc_md3":[0,1],
 "namespaces.html":[2,0],
 "pages.html":[],
 "topics.html":[1]

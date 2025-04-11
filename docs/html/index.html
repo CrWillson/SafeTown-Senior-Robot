@@ -111,7 +111,35 @@ $(function(){initNavTree('index.html',''); initResizable(true); });
 <h2><a class="anchor" id="autotoc_md1"></a>
 Cedarville Senior Design 2024-25</h2>
 <p>Author: Caleb Willson</p>
-<p>This repository contains the arduino workspace for development of the SafeTown Senior Robot. </p>
+<p>This repository contains the arduino workspace for development of the SafeTown Senior Robot.</p>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Features</h1>
+<ul>
+<li>Basic line following</li>
+<li>Basic stop line detection and intersection navigation</li>
+<li><a class="el" href="d4/d99/namespace_event.html" title="Namespace containing several common event types shared among all components.">Event</a> management system for thread safe inter-compnent communication</li>
+<li>Lazily refreshed display</li>
+<li>Fully customizable, dynamically constructed menu</li>
+<li>File explorer for navigating the virtual file system</li>
+<li><a class="el" href="d9/d0a/class_e_s_p32.html" title="Class to manage the communication with the attached ESP32.">ESP32</a> packet based communication protocol</li>
+<li>Photo requesting and saving</li>
+</ul>
+<p>Note that the following features from the Junior robot are currently not supported by the Senior robot</p>
+<ul>
+<li>Route management</li>
+<li>Data logging</li>
+<li>Tile prediction and advanced intersection navigation</li>
+<li>Obstacle detection</li>
+<li>PID Controller based line following</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md3"></a>
+Compilation Instructions</h1>
+<p>This project uses the same Pi Pico board in the Arduino IDE as the Junior robot. Refer to the Junior robot set up instructions for initializing the Arduino IDE for programming the Pi Pico.</p>
+<p>Once the Arduino IDE has been set up for programming the Junior robot, the following steps must be followed:</p>
+<ol type="1">
+<li>Increase the file system size to larger than the minimum size. It does not need to be as large as possible but it should be big.</li>
+<li>Enable run time type information (RTTI). The Senior robot uses RTTI for distinguishing between different types of lines in the menu during run time. This can be done through the same drop down menu where you set the file system size. </li>
+</ol>
 </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->
@@ -119,7 +147,7 @@ Cedarville Senior Design 2024-25</h2>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Apr 8 2025 23:13:54 for SafeTown Senior Robot by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Generated on Thu Apr 10 2025 14:18:48 for SafeTown Senior Robot by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>

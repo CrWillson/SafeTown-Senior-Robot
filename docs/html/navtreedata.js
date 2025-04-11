@@ -25,15 +25,10 @@
 var NAVTREE =
 [
   [ "SafeTown Senior Robot", "index.html", [
-    [ "Safetown Senior Robot Arduino Workspace", "index.html", null ],
+    [ "Safetown Senior Robot Arduino Workspace", "index.html", "index" ],
     [ "Topics", "topics.html", "topics" ],
     [ "Namespaces", "namespaces.html", [
-      [ "Namespace List", "namespaces.html", "namespaces_dup" ],
-      [ "Namespace Members", "namespacemembers.html", [
-        [ "All", "namespacemembers.html", null ],
-        [ "Functions", "namespacemembers_func.html", null ],
-        [ "Variables", "namespacemembers_vars.html", null ]
-      ] ]
+      [ "Namespace List", "namespaces.html", "namespaces_dup" ]
     ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
@@ -64,7 +59,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"da/dd2/struct_event_1_1_value_changed_event.html#ae640437423a43d45a16bf4ca5700e678"
+"db/d86/display_8cpp.html#a47ba942f3bb259acb2a7f9fdf3777881"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

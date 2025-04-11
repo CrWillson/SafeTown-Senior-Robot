@@ -9,8 +9,9 @@ var searchData=
   ['command_5fpacket_6',['COMMAND_PACKET',['../d3/dd3/group___communication_utilities.html#gga0628f13bcd4685c7a4b4a9f1aad83b56af68058dde21e2fcf28889f418acbed54',1,'communication_types.hpp']]],
   ['communication_5ftypes_2ehpp_7',['communication_types.hpp',['../de/d69/communication__types_8hpp.html',1,'']]],
   ['communicationutilities_8',['CommunicationUtilities',['../d3/dd3/group___communication_utilities.html',1,'']]],
-  ['config_5ffile_9',['CONFIG_FILE',['../d9/d0a/class_e_s_p32.html#a4b74dcff5096158df84a59f06389545e',1,'ESP32']]],
-  ['coreutilities_10',['CoreUtilities',['../db/d25/group___core_utilities.html',1,'']]],
-  ['currentpage_11',['currentPage',['../d2/db8/class_menu.html#a3577416b5190419d2072e31f25304c14',1,'Menu']]],
-  ['currentpath_12',['currentPath',['../d7/d04/class_file_menu_page.html#a9d3bce4cd2dea46a25d61efd5ac5004e',1,'FileMenuPage']]]
+  ['compilation_20instructions_9',['Compilation Instructions',['../index.html#autotoc_md3',1,'']]],
+  ['config_5ffile_10',['CONFIG_FILE',['../d9/d0a/class_e_s_p32.html#a4b74dcff5096158df84a59f06389545e',1,'ESP32']]],
+  ['coreutilities_11',['CoreUtilities',['../db/d25/group___core_utilities.html',1,'']]],
+  ['currentpage_12',['currentPage',['../d2/db8/class_menu.html#a3577416b5190419d2072e31f25304c14',1,'Menu']]],
+  ['currentpath_13',['currentPath',['../d7/d04/class_file_menu_page.html#a9d3bce4cd2dea46a25d61efd5ac5004e',1,'FileMenuPage']]]
 ];
