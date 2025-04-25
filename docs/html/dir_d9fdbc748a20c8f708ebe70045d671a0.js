@@ -6,6 +6,5 @@ var dir_d9fdbc748a20c8f708ebe70045d671a0 =
     [ "Filesystem", "dir_0f49e31d3c9acf5752e49042545c3ddc.html", "dir_0f49e31d3c9acf5752e49042545c3ddc" ],
     [ "Logger", "dir_d0f065a0566ba38d34654e2e9f4f4218.html", "dir_d0f065a0566ba38d34654e2e9f4f4218" ],
     [ "Menu", "dir_e69c1dee880966f83a12f696c1f13e0d.html", "dir_e69c1dee880966f83a12f696c1f13e0d" ],
-    [ "RouteManager", "dir_2beeea742e345e369069ee6449196f8c.html", "dir_2beeea742e345e369069ee6449196f8c" ],
     [ "UserInput", "dir_5edcf8fb2293e8c18b58f5ed4b1c0dd7.html", "dir_5edcf8fb2293e8c18b58f5ed4b1c0dd7" ]
 ];

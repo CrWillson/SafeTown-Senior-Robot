@@ -76,7 +76,7 @@ private:
     std::string imageSuffix = ".bin";                       // image file extension
     uint8_t imageNumber;                                    // The number of the next image file
 
-    const int BAUD_RATE = 250000;           //serial for the UART connection to the ESP32 CAM
+    const int BAUD_RATE = 115200;           //serial for the UART connection to the ESP32 CAM
 
     const uint8_t IMAGE_ROWS = 96;          // Number of rows in an image
     const uint8_t IMAGE_COLS = 96;          // Number of columns in an image

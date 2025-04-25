@@ -23,7 +23,6 @@ var annotated_dup =
     [ "MenuLine", "d7/d44/class_menu_line.html", "d7/d44/class_menu_line" ],
     [ "MenuPage", "d1/d6b/class_menu_page.html", "d1/d6b/class_menu_page" ],
     [ "PicoToEspPacket", "d3/dd3/group___communication_utilities.html#dc/d61/struct_pico_to_esp_packet", "d3/dd3/group___communication_utilities_dc/d61/struct_pico_to_esp_packet" ],
-    [ "RouteManager", "d2/deb/class_route_manager.html", "d2/deb/class_route_manager" ],
     [ "SliderMenuLine", "d0/de7/class_slider_menu_line.html", "d0/de7/class_slider_menu_line" ],
     [ "SpacerMenuLine", "d8/deb/class_spacer_menu_line.html", "d8/deb/class_spacer_menu_line" ],
     [ "SrMenu", "d6/dfb/class_sr_menu.html", "d6/dfb/class_sr_menu" ],

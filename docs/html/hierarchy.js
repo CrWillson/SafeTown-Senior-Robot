@@ -30,6 +30,5 @@ var hierarchy =
       [ "FileStatPage", "d6/d51/class_file_stat_page.html", null ]
     ] ],
     [ "PicoToEspPacket", "d3/dd3/group___communication_utilities.html#dc/d61/struct_pico_to_esp_packet", null ],
-    [ "RouteManager", "d2/deb/class_route_manager.html", null ],
     [ "UIManager", "d7/d75/class_u_i_manager.html", null ]
 ];

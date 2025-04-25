@@ -4,6 +4,9 @@ Author: Caleb Willson
 
 This repository contains the arduino workspace for development of the SafeTown Senior Robot.
 
+## Documentation
+Full Doxygen documentation can be found in [docs.html](./docs.html)
+
 ## Features
 * Basic line following
 * Basic stop line detection and intersection navigation
@@ -23,6 +26,14 @@ Note that the following features from the Junior robot are currently not support
 * PID Controller based line following
 
 ## Compilation Instructions
+
+### Cloning from Github
+The repository and its submodules can be cloned with the following command.
+
+```bash
+git clone --recurse-submodules https://github.com/CrWillson/ESPPhotoProcessor.git
+```
+
 This project uses the same Pi Pico board in the Arduino IDE as the Junior robot. Refer to the Junior robot set up instructions for initializing the Arduino IDE for programming the Pi Pico.
 
 Once the Arduino IDE has been set up for programming the Junior robot, the following steps must be followed:
