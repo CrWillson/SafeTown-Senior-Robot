@@ -105,9 +105,12 @@ $(function(){initNavTree('d2/deb/class_route_manager.html','../../'); initResiza
 
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="../../d6/ddb/class_route_manager-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">RouteManager Class Reference</div></div>
 </div><!--header-->
@@ -115,14 +118,50 @@ $(function(){initNavTree('d2/deb/class_route_manager.html','../../'); initResiza
 
 <p><code>#include &lt;<a class="el" href="../../da/d64/route__manager_8hpp_source.html">route_manager.hpp</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a1b785fe093154ccf4d878e4273c2f37d" id="r_a1b785fe093154ccf4d878e4273c2f37d"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b785fe093154ccf4d878e4273c2f37d">DIR</a> : uint8_t { <a class="el" href="#a1b785fe093154ccf4d878e4273c2f37da8c5e50fab3748e9c53a6863b3dce1401">STRAIGHT</a>
+, <a class="el" href="#a1b785fe093154ccf4d878e4273c2f37da684d325a7303f52e64011467ff5c5758">LEFT</a>
+, <a class="el" href="#a1b785fe093154ccf4d878e4273c2f37da21507b40c80068eda19865706fdc2403">RIGHT</a>
+ }</td></tr>
+<tr class="separator:a1b785fe093154ccf4d878e4273c2f37d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3105c700d9c67de5b7d285c6ef2fcb8" id="r_ad3105c700d9c67de5b7d285c6ef2fcb8"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3105c700d9c67de5b7d285c6ef2fcb8">route_t</a> = std::vector&lt;<a class="el" href="#a1b785fe093154ccf4d878e4273c2f37d">DIR</a>&gt;</td></tr>
+<tr class="separator:ad3105c700d9c67de5b7d285c6ef2fcb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58dd99320d2a3355062c7ac936a2fc49" id="r_a58dd99320d2a3355062c7ac936a2fc49"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a58dd99320d2a3355062c7ac936a2fc49">routemap_t</a> = std::unordered_map&lt;std::string, <a class="el" href="#ad3105c700d9c67de5b7d285c6ef2fcb8">route_t</a>&gt;</td></tr>
+<tr class="separator:a58dd99320d2a3355062c7ac936a2fc49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a160738a704bb4c07b6b3c7246396a108" id="r_a160738a704bb4c07b6b3c7246396a108"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a160738a704bb4c07b6b3c7246396a108">routeiter_t</a> = routemap_t::iterator</td></tr>
+<tr class="separator:a160738a704bb4c07b6b3c7246396a108"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af78316ac8978e2b36f62b21b2179cceb" id="r_af78316ac8978e2b36f62b21b2179cceb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af78316ac8978e2b36f62b21b2179cceb">~RouteManager</a> ()</td></tr>
-<tr class="separator:af78316ac8978e2b36f62b21b2179cceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba29e945a0d8317510c50b3a045e1221" id="r_aba29e945a0d8317510c50b3a045e1221"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba29e945a0d8317510c50b3a045e1221">~RouteManager</a> ()=default</td></tr>
+<tr class="separator:aba29e945a0d8317510c50b3a045e1221"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a84ca2bc6630d7c7424596ee67b71352e" id="r_a84ca2bc6630d7c7424596ee67b71352e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a84ca2bc6630d7c7424596ee67b71352e">RouteManager</a> (const <a class="el" href="../../d2/deb/class_route_manager.html">RouteManager</a> &amp;)=delete</td></tr>
 <tr class="separator:a84ca2bc6630d7c7424596ee67b71352e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e0d3573bc692de446156cee00f08c0d" id="r_a0e0d3573bc692de446156cee00f08c0d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/deb/class_route_manager.html">RouteManager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e0d3573bc692de446156cee00f08c0d">operator=</a> (const <a class="el" href="../../d2/deb/class_route_manager.html">RouteManager</a> &amp;)=delete</td></tr>
 <tr class="separator:a0e0d3573bc692de446156cee00f08c0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee7fa50275b7f84b7953e4ca8f72d4cd" id="r_aee7fa50275b7f84b7953e4ca8f72d4cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aee7fa50275b7f84b7953e4ca8f72d4cd">init</a> (std::string routedir=&quot;/routes/&quot;)</td></tr>
+<tr class="separator:aee7fa50275b7f84b7953e4ca8f72d4cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82a29ce32a42e2c102279832fdd8effe" id="r_a82a29ce32a42e2c102279832fdd8effe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a1b785fe093154ccf4d878e4273c2f37d">DIR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a82a29ce32a42e2c102279832fdd8effe">getCurrTurn</a> () const</td></tr>
+<tr class="separator:a82a29ce32a42e2c102279832fdd8effe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12c4c4313a6124da16e3014ecac8cc2c" id="r_a12c4c4313a6124da16e3014ecac8cc2c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ad3105c700d9c67de5b7d285c6ef2fcb8">route_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a12c4c4313a6124da16e3014ecac8cc2c">getCurrentRoute</a> () const</td></tr>
+<tr class="separator:a12c4c4313a6124da16e3014ecac8cc2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5966ea8bae13f6fcc094bfd4618f80e7" id="r_a5966ea8bae13f6fcc094bfd4618f80e7"><td class="memItemLeft" align="right" valign="top">std::optional&lt; <a class="el" href="#ad3105c700d9c67de5b7d285c6ef2fcb8">route_t</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5966ea8bae13f6fcc094bfd4618f80e7">getRoute</a> (std::string label) const</td></tr>
+<tr class="separator:a5966ea8bae13f6fcc094bfd4618f80e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7445f2fab1e61d3035eab4ef6a014ad9" id="r_a7445f2fab1e61d3035eab4ef6a014ad9"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="#a58dd99320d2a3355062c7ac936a2fc49">routemap_t</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7445f2fab1e61d3035eab4ef6a014ad9">getAllRoutes</a> () const</td></tr>
+<tr class="separator:a7445f2fab1e61d3035eab4ef6a014ad9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99bdd587a8fcaa6c1d038071c06190a6" id="r_a99bdd587a8fcaa6c1d038071c06190a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a99bdd587a8fcaa6c1d038071c06190a6">incRouteStep</a> ()</td></tr>
+<tr class="separator:a99bdd587a8fcaa6c1d038071c06190a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae313721e1a5aa1619936b1877ff87ee0" id="r_ae313721e1a5aa1619936b1877ff87ee0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae313721e1a5aa1619936b1877ff87ee0">resetRoute</a> ()</td></tr>
+<tr class="separator:ae313721e1a5aa1619936b1877ff87ee0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15e60e489de3e6a39279b71e0dd589ce" id="r_a15e60e489de3e6a39279b71e0dd589ce"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15e60e489de3e6a39279b71e0dd589ce">setCurrentRoute</a> (std::string label)</td></tr>
+<tr class="separator:a15e60e489de3e6a39279b71e0dd589ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a659ba82098ac5e68ec366377586f7aaf" id="r_a659ba82098ac5e68ec366377586f7aaf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a659ba82098ac5e68ec366377586f7aaf">addRoute</a> (std::string label, <a class="el" href="#ad3105c700d9c67de5b7d285c6ef2fcb8">route_t</a> turns)</td></tr>
+<tr class="separator:a659ba82098ac5e68ec366377586f7aaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a500e7e7e8ce08d838b58df666e645104" id="r_a500e7e7e8ce08d838b58df666e645104"><td class="memItemLeft" align="right" valign="top">std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a500e7e7e8ce08d838b58df666e645104">dirToArrow</a> (<a class="el" href="#a1b785fe093154ccf4d878e4273c2f37d">DIR</a> dir)</td></tr>
+<tr class="separator:a500e7e7e8ce08d838b58df666e645104"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59949e5b1de5dda3f2b2b5c6024a4516" id="r_a59949e5b1de5dda3f2b2b5c6024a4516"><td class="memItemLeft" align="right" valign="top">std::optional&lt; <a class="el" href="#a1b785fe093154ccf4d878e4273c2f37d">DIR</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a59949e5b1de5dda3f2b2b5c6024a4516">charToDir</a> (char c)</td></tr>
+<tr class="separator:a59949e5b1de5dda3f2b2b5c6024a4516"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -134,16 +173,132 @@ Static Public Member Functions</h2></td></tr>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a016073620ef5c5591a6964f85bb096a6" id="r_a016073620ef5c5591a6964f85bb096a6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a016073620ef5c5591a6964f85bb096a6">RouteManager</a> ()</td></tr>
 <tr class="separator:a016073620ef5c5591a6964f85bb096a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaaba05c09def53a5ff8dd8eb75ef4831" id="r_aaaba05c09def53a5ff8dd8eb75ef4831"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaaba05c09def53a5ff8dd8eb75ef4831">publishCurrentStep</a> ()</td></tr>
+<tr class="separator:aaaba05c09def53a5ff8dd8eb75ef4831"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05f2bbe5a8a7e6a62a23e85641b8bf0e" id="r_a05f2bbe5a8a7e6a62a23e85641b8bf0e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05f2bbe5a8a7e6a62a23e85641b8bf0e">onValueChange</a> (const <a class="el" href="../../da/dd2/struct_event_1_1_value_changed_event.html">Event::ValueChangedEvent</a> &amp;e)</td></tr>
+<tr class="separator:a05f2bbe5a8a7e6a62a23e85641b8bf0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a168c273d757edae1768f7408d5eb81e5" id="r_a168c273d757edae1768f7408d5eb81e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a168c273d757edae1768f7408d5eb81e5">onValueRequest</a> (const <a class="el" href="../../d1/d76/struct_event_1_1_value_request_event.html">Event::ValueRequestEvent</a> &amp;e)</td></tr>
+<tr class="separator:a168c273d757edae1768f7408d5eb81e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a20bbc0a20f297371d3185e7e9ea30484" id="r_a20bbc0a20f297371d3185e7e9ea30484"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a20bbc0a20f297371d3185e7e9ea30484">_defaultRouteLabel</a> = &quot;D&quot;</td></tr>
+<tr class="separator:a20bbc0a20f297371d3185e7e9ea30484"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab42e2505cbf949d3a06b98ce72bcd26a" id="r_ab42e2505cbf949d3a06b98ce72bcd26a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ad3105c700d9c67de5b7d285c6ef2fcb8">route_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab42e2505cbf949d3a06b98ce72bcd26a">_defaultRoute</a> = {<a class="el" href="#a1b785fe093154ccf4d878e4273c2f37da684d325a7303f52e64011467ff5c5758">DIR::LEFT</a>, <a class="el" href="#a1b785fe093154ccf4d878e4273c2f37da21507b40c80068eda19865706fdc2403">DIR::RIGHT</a>, <a class="el" href="#a1b785fe093154ccf4d878e4273c2f37da684d325a7303f52e64011467ff5c5758">DIR::LEFT</a>, <a class="el" href="#a1b785fe093154ccf4d878e4273c2f37da8c5e50fab3748e9c53a6863b3dce1401">DIR::STRAIGHT</a>}</td></tr>
+<tr class="separator:ab42e2505cbf949d3a06b98ce72bcd26a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b803885dd9f5207a8ff1a50d10e9e22" id="r_a0b803885dd9f5207a8ff1a50d10e9e22"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a58dd99320d2a3355062c7ac936a2fc49">routemap_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0b803885dd9f5207a8ff1a50d10e9e22">_allRoutes</a></td></tr>
+<tr class="separator:a0b803885dd9f5207a8ff1a50d10e9e22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08fb250580714522c760f16c2544833c" id="r_a08fb250580714522c760f16c2544833c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a160738a704bb4c07b6b3c7246396a108">routeiter_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08fb250580714522c760f16c2544833c">_currRoute</a> = _allRoutes.end()</td></tr>
+<tr class="separator:a08fb250580714522c760f16c2544833c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e3e351bac0bd0cf4d2dc76c5cdbece6" id="r_a0e3e351bac0bd0cf4d2dc76c5cdbece6"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e3e351bac0bd0cf4d2dc76c5cdbece6">_currStep</a> = 0</td></tr>
+<tr class="separator:a0e3e351bac0bd0cf4d2dc76c5cdbece6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afad272e5edd1128e1011c7716c56df06" id="r_afad272e5edd1128e1011c7716c56df06"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afad272e5edd1128e1011c7716c56df06">_currRouteLabel</a> = <a class="el" href="#a20bbc0a20f297371d3185e7e9ea30484">_defaultRouteLabel</a></td></tr>
+<tr class="separator:afad272e5edd1128e1011c7716c56df06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfb2ce3311c44148ad8715a8a471cfda" id="r_abfb2ce3311c44148ad8715a8a471cfda"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abfb2ce3311c44148ad8715a8a471cfda">_currRouteStep</a> = 0</td></tr>
+<tr class="separator:abfb2ce3311c44148ad8715a8a471cfda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6374457d2eca3e537eb2ce81319a8b9b" id="r_a6374457d2eca3e537eb2ce81319a8b9b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6374457d2eca3e537eb2ce81319a8b9b">_routeDir</a> = &quot;/routes/&quot;</td></tr>
+<tr class="separator:a6374457d2eca3e537eb2ce81319a8b9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:acc7776462cd1ac709cbb915abcd0d1ff" id="r_acc7776462cd1ac709cbb915abcd0d1ff"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc7776462cd1ac709cbb915abcd0d1ff">RouteMenuPage</a></td></tr>
+<tr class="separator:acc7776462cd1ac709cbb915abcd0d1ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb69306f9a0e86f94f76879260d095c4" id="r_adb69306f9a0e86f94f76879260d095c4"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb69306f9a0e86f94f76879260d095c4">RouteMenuLine</a></td></tr>
+<tr class="separator:adb69306f9a0e86f94f76879260d095c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5056661ab9d599cb1aa4a20497bd81b" id="r_ab5056661ab9d599cb1aa4a20497bd81b"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab5056661ab9d599cb1aa4a20497bd81b">RouteOptPage</a></td></tr>
+<tr class="separator:ab5056661ab9d599cb1aa4a20497bd81b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="../../da/d64/route__manager_8hpp_source.html#l00003">3</a> of file <a class="el" href="../../da/d64/route__manager_8hpp_source.html">route_manager.hpp</a>.</p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="af78316ac8978e2b36f62b21b2179cceb" name="af78316ac8978e2b36f62b21b2179cceb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af78316ac8978e2b36f62b21b2179cceb">&#9670;&#160;</a></span>~RouteManager()</h2>
+<p class="definition">Definition at line <a class="el" href="../../da/d64/route__manager_8hpp_source.html#l00011">11</a> of file <a class="el" href="../../da/d64/route__manager_8hpp_source.html">route_manager.hpp</a>.</p>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="ad3105c700d9c67de5b7d285c6ef2fcb8" name="ad3105c700d9c67de5b7d285c6ef2fcb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3105c700d9c67de5b7d285c6ef2fcb8">&#9670;&#160;</a></span>route_t</h2>
 
 <div class="memitem">
 <div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#ad3105c700d9c67de5b7d285c6ef2fcb8">RouteManager::route_t</a> = std::vector&lt;<a class="el" href="#a1b785fe093154ccf4d878e4273c2f37d">DIR</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../da/d64/route__manager_8hpp_source.html#l00016">16</a> of file <a class="el" href="../../da/d64/route__manager_8hpp_source.html">route_manager.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a160738a704bb4c07b6b3c7246396a108" name="a160738a704bb4c07b6b3c7246396a108"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a160738a704bb4c07b6b3c7246396a108">&#9670;&#160;</a></span>routeiter_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a160738a704bb4c07b6b3c7246396a108">RouteManager::routeiter_t</a> = routemap_t::iterator</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../da/d64/route__manager_8hpp_source.html#l00018">18</a> of file <a class="el" href="../../da/d64/route__manager_8hpp_source.html">route_manager.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a58dd99320d2a3355062c7ac936a2fc49" name="a58dd99320d2a3355062c7ac936a2fc49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58dd99320d2a3355062c7ac936a2fc49">&#9670;&#160;</a></span>routemap_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a58dd99320d2a3355062c7ac936a2fc49">RouteManager::routemap_t</a> = std::unordered_map&lt;std::string, <a class="el" href="#ad3105c700d9c67de5b7d285c6ef2fcb8">route_t</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../da/d64/route__manager_8hpp_source.html#l00017">17</a> of file <a class="el" href="../../da/d64/route__manager_8hpp_source.html">route_manager.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a id="a1b785fe093154ccf4d878e4273c2f37d" name="a1b785fe093154ccf4d878e4273c2f37d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b785fe093154ccf4d878e4273c2f37d">&#9670;&#160;</a></span>DIR</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#a1b785fe093154ccf4d878e4273c2f37d">RouteManager::DIR</a> : uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a1b785fe093154ccf4d878e4273c2f37da8c5e50fab3748e9c53a6863b3dce1401" name="a1b785fe093154ccf4d878e4273c2f37da8c5e50fab3748e9c53a6863b3dce1401"></a>STRAIGHT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a1b785fe093154ccf4d878e4273c2f37da684d325a7303f52e64011467ff5c5758" name="a1b785fe093154ccf4d878e4273c2f37da684d325a7303f52e64011467ff5c5758"></a>LEFT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a1b785fe093154ccf4d878e4273c2f37da21507b40c80068eda19865706fdc2403" name="a1b785fe093154ccf4d878e4273c2f37da21507b40c80068eda19865706fdc2403"></a>RIGHT&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="../../da/d64/route__manager_8hpp_source.html#l00014">14</a> of file <a class="el" href="../../da/d64/route__manager_8hpp_source.html">route_manager.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aba29e945a0d8317510c50b3a045e1221" name="aba29e945a0d8317510c50b3a045e1221"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba29e945a0d8317510c50b3a045e1221">&#9670;&#160;</a></span>~RouteManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">RouteManager::~RouteManager </td>
@@ -152,6 +307,11 @@ Private Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -199,14 +359,156 @@ Private Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel private">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="../../da/d64/route__manager_8hpp_source.html#l00070">70</a> of file <a class="el" href="../../da/d64/route__manager_8hpp_source.html">route_manager.hpp</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a659ba82098ac5e68ec366377586f7aaf" name="a659ba82098ac5e68ec366377586f7aaf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a659ba82098ac5e68ec366377586f7aaf">&#9670;&#160;</a></span>addRoute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RouteManager::addRoute </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>label</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#ad3105c700d9c67de5b7d285c6ef2fcb8">route_t</a></td>          <td class="paramname"><span class="paramname"><em>turns</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a59949e5b1de5dda3f2b2b5c6024a4516" name="a59949e5b1de5dda3f2b2b5c6024a4516"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59949e5b1de5dda3f2b2b5c6024a4516">&#9670;&#160;</a></span>charToDir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; <a class="el" href="#a1b785fe093154ccf4d878e4273c2f37d">DIR</a> &gt; RouteManager::charToDir </td>
+          <td>(</td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>c</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../da/d64/route__manager_8hpp_source.html#l00058">58</a> of file <a class="el" href="../../da/d64/route__manager_8hpp_source.html">route_manager.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a500e7e7e8ce08d838b58df666e645104" name="a500e7e7e8ce08d838b58df666e645104"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a500e7e7e8ce08d838b58df666e645104">&#9670;&#160;</a></span>dirToArrow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; std::string &gt; RouteManager::dirToArrow </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a1b785fe093154ccf4d878e4273c2f37d">DIR</a></td>          <td class="paramname"><span class="paramname"><em>dir</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../da/d64/route__manager_8hpp_source.html#l00049">49</a> of file <a class="el" href="../../da/d64/route__manager_8hpp_source.html">route_manager.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a7445f2fab1e61d3035eab4ef6a014ad9" name="a7445f2fab1e61d3035eab4ef6a014ad9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7445f2fab1e61d3035eab4ef6a014ad9">&#9670;&#160;</a></span>getAllRoutes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="#a58dd99320d2a3355062c7ac936a2fc49">routemap_t</a> &amp; RouteManager::getAllRoutes </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../da/d64/route__manager_8hpp_source.html#l00039">39</a> of file <a class="el" href="../../da/d64/route__manager_8hpp_source.html">route_manager.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a12c4c4313a6124da16e3014ecac8cc2c" name="a12c4c4313a6124da16e3014ecac8cc2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12c4c4313a6124da16e3014ecac8cc2c">&#9670;&#160;</a></span>getCurrentRoute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ad3105c700d9c67de5b7d285c6ef2fcb8">RouteManager::route_t</a> RouteManager::getCurrentRoute </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d5/d0e/route__manager_8cpp_source.html#l00051">51</a> of file <a class="el" href="../../d5/d0e/route__manager_8cpp_source.html">route_manager.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a82a29ce32a42e2c102279832fdd8effe" name="a82a29ce32a42e2c102279832fdd8effe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82a29ce32a42e2c102279832fdd8effe">&#9670;&#160;</a></span>getCurrTurn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a1b785fe093154ccf4d878e4273c2f37d">RouteManager::DIR</a> RouteManager::getCurrTurn </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d5/d0e/route__manager_8cpp_source.html#l00046">46</a> of file <a class="el" href="../../d5/d0e/route__manager_8cpp_source.html">route_manager.cpp</a>.</p>
+
+</div>
+</div>
 <a id="a0b4ddb3d5639616258798d002c8325b6" name="a0b4ddb3d5639616258798d002c8325b6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0b4ddb3d5639616258798d002c8325b6">&#9670;&#160;</a></span>getInstance()</h2>
 
@@ -233,7 +535,114 @@ Private Member Functions</h2></td></tr>
 <p>Get the Meyer's singleton instance of the <a class="el" href="../../d2/deb/class_route_manager.html">RouteManager</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../d2/deb/class_route_manager.html">RouteManager</a>&amp; </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../da/d64/route__manager_8hpp_source.html#l00015">15</a> of file <a class="el" href="../../da/d64/route__manager_8hpp_source.html">route_manager.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../da/d64/route__manager_8hpp_source.html#l00029">29</a> of file <a class="el" href="../../da/d64/route__manager_8hpp_source.html">route_manager.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a5966ea8bae13f6fcc094bfd4618f80e7" name="a5966ea8bae13f6fcc094bfd4618f80e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5966ea8bae13f6fcc094bfd4618f80e7">&#9670;&#160;</a></span>getRoute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; <a class="el" href="#ad3105c700d9c67de5b7d285c6ef2fcb8">RouteManager::route_t</a> &gt; RouteManager::getRoute </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>label</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d5/d0e/route__manager_8cpp_source.html#l00056">56</a> of file <a class="el" href="../../d5/d0e/route__manager_8cpp_source.html">route_manager.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a99bdd587a8fcaa6c1d038071c06190a6" name="a99bdd587a8fcaa6c1d038071c06190a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99bdd587a8fcaa6c1d038071c06190a6">&#9670;&#160;</a></span>incRouteStep()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RouteManager::incRouteStep </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d5/d0e/route__manager_8cpp_source.html#l00064">64</a> of file <a class="el" href="../../d5/d0e/route__manager_8cpp_source.html">route_manager.cpp</a>.</p>
+
+</div>
+</div>
+<a id="aee7fa50275b7f84b7953e4ca8f72d4cd" name="aee7fa50275b7f84b7953e4ca8f72d4cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee7fa50275b7f84b7953e4ca8f72d4cd">&#9670;&#160;</a></span>init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RouteManager::init </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>routedir</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;/routes/&quot;</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d5/d0e/route__manager_8cpp_source.html#l00005">5</a> of file <a class="el" href="../../d5/d0e/route__manager_8cpp_source.html">route_manager.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a05f2bbe5a8a7e6a62a23e85641b8bf0e" name="a05f2bbe5a8a7e6a62a23e85641b8bf0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05f2bbe5a8a7e6a62a23e85641b8bf0e">&#9670;&#160;</a></span>onValueChange()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RouteManager::onValueChange </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../da/dd2/struct_event_1_1_value_changed_event.html">Event::ValueChangedEvent</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>e</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a168c273d757edae1768f7408d5eb81e5" name="a168c273d757edae1768f7408d5eb81e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a168c273d757edae1768f7408d5eb81e5">&#9670;&#160;</a></span>onValueRequest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RouteManager::onValueRequest </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d1/d76/struct_event_1_1_value_request_event.html">Event::ValueRequestEvent</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>e</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -262,8 +671,340 @@ Private Member Functions</h2></td></tr>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<a id="aaaba05c09def53a5ff8dd8eb75ef4831" name="aaaba05c09def53a5ff8dd8eb75ef4831"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaaba05c09def53a5ff8dd8eb75ef4831">&#9670;&#160;</a></span>publishCurrentStep()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RouteManager::publishCurrentStep </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d5/d0e/route__manager_8cpp_source.html#l00092">92</a> of file <a class="el" href="../../d5/d0e/route__manager_8cpp_source.html">route_manager.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ae313721e1a5aa1619936b1877ff87ee0" name="ae313721e1a5aa1619936b1877ff87ee0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae313721e1a5aa1619936b1877ff87ee0">&#9670;&#160;</a></span>resetRoute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RouteManager::resetRoute </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d5/d0e/route__manager_8cpp_source.html#l00074">74</a> of file <a class="el" href="../../d5/d0e/route__manager_8cpp_source.html">route_manager.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a15e60e489de3e6a39279b71e0dd589ce" name="a15e60e489de3e6a39279b71e0dd589ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15e60e489de3e6a39279b71e0dd589ce">&#9670;&#160;</a></span>setCurrentRoute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool RouteManager::setCurrentRoute </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>label</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d5/d0e/route__manager_8cpp_source.html#l00080">80</a> of file <a class="el" href="../../d5/d0e/route__manager_8cpp_source.html">route_manager.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Friends And Related Symbol Documentation</h2>
+<a id="adb69306f9a0e86f94f76879260d095c4" name="adb69306f9a0e86f94f76879260d095c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb69306f9a0e86f94f76879260d095c4">&#9670;&#160;</a></span>RouteMenuLine</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class RouteMenuLine</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel friend">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../da/d64/route__manager_8hpp_source.html#l00091">91</a> of file <a class="el" href="../../da/d64/route__manager_8hpp_source.html">route_manager.hpp</a>.</p>
+
+</div>
+</div>
+<a id="acc7776462cd1ac709cbb915abcd0d1ff" name="acc7776462cd1ac709cbb915abcd0d1ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc7776462cd1ac709cbb915abcd0d1ff">&#9670;&#160;</a></span>RouteMenuPage</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class RouteMenuPage</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel friend">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../da/d64/route__manager_8hpp_source.html#l00090">90</a> of file <a class="el" href="../../da/d64/route__manager_8hpp_source.html">route_manager.hpp</a>.</p>
+
+</div>
+</div>
+<a id="ab5056661ab9d599cb1aa4a20497bd81b" name="ab5056661ab9d599cb1aa4a20497bd81b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5056661ab9d599cb1aa4a20497bd81b">&#9670;&#160;</a></span>RouteOptPage</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class RouteOptPage</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel friend">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../da/d64/route__manager_8hpp_source.html#l00092">92</a> of file <a class="el" href="../../da/d64/route__manager_8hpp_source.html">route_manager.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a0b803885dd9f5207a8ff1a50d10e9e22" name="a0b803885dd9f5207a8ff1a50d10e9e22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b803885dd9f5207a8ff1a50d10e9e22">&#9670;&#160;</a></span>_allRoutes</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a58dd99320d2a3355062c7ac936a2fc49">routemap_t</a> RouteManager::_allRoutes</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../da/d64/route__manager_8hpp_source.html#l00080">80</a> of file <a class="el" href="../../da/d64/route__manager_8hpp_source.html">route_manager.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a08fb250580714522c760f16c2544833c" name="a08fb250580714522c760f16c2544833c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08fb250580714522c760f16c2544833c">&#9670;&#160;</a></span>_currRoute</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a160738a704bb4c07b6b3c7246396a108">routeiter_t</a> RouteManager::_currRoute = _allRoutes.end()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../da/d64/route__manager_8hpp_source.html#l00081">81</a> of file <a class="el" href="../../da/d64/route__manager_8hpp_source.html">route_manager.hpp</a>.</p>
+
+</div>
+</div>
+<a id="afad272e5edd1128e1011c7716c56df06" name="afad272e5edd1128e1011c7716c56df06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afad272e5edd1128e1011c7716c56df06">&#9670;&#160;</a></span>_currRouteLabel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string RouteManager::_currRouteLabel = <a class="el" href="#a20bbc0a20f297371d3185e7e9ea30484">_defaultRouteLabel</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../da/d64/route__manager_8hpp_source.html#l00084">84</a> of file <a class="el" href="../../da/d64/route__manager_8hpp_source.html">route_manager.hpp</a>.</p>
+
+</div>
+</div>
+<a id="abfb2ce3311c44148ad8715a8a471cfda" name="abfb2ce3311c44148ad8715a8a471cfda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfb2ce3311c44148ad8715a8a471cfda">&#9670;&#160;</a></span>_currRouteStep</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t RouteManager::_currRouteStep = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../da/d64/route__manager_8hpp_source.html#l00085">85</a> of file <a class="el" href="../../da/d64/route__manager_8hpp_source.html">route_manager.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a0e3e351bac0bd0cf4d2dc76c5cdbece6" name="a0e3e351bac0bd0cf4d2dc76c5cdbece6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e3e351bac0bd0cf4d2dc76c5cdbece6">&#9670;&#160;</a></span>_currStep</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t RouteManager::_currStep = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../da/d64/route__manager_8hpp_source.html#l00082">82</a> of file <a class="el" href="../../da/d64/route__manager_8hpp_source.html">route_manager.hpp</a>.</p>
+
+</div>
+</div>
+<a id="ab42e2505cbf949d3a06b98ce72bcd26a" name="ab42e2505cbf949d3a06b98ce72bcd26a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab42e2505cbf949d3a06b98ce72bcd26a">&#9670;&#160;</a></span>_defaultRoute</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ad3105c700d9c67de5b7d285c6ef2fcb8">route_t</a> RouteManager::_defaultRoute = {<a class="el" href="#a1b785fe093154ccf4d878e4273c2f37da684d325a7303f52e64011467ff5c5758">DIR::LEFT</a>, <a class="el" href="#a1b785fe093154ccf4d878e4273c2f37da21507b40c80068eda19865706fdc2403">DIR::RIGHT</a>, <a class="el" href="#a1b785fe093154ccf4d878e4273c2f37da684d325a7303f52e64011467ff5c5758">DIR::LEFT</a>, <a class="el" href="#a1b785fe093154ccf4d878e4273c2f37da8c5e50fab3748e9c53a6863b3dce1401">DIR::STRAIGHT</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../da/d64/route__manager_8hpp_source.html#l00078">78</a> of file <a class="el" href="../../da/d64/route__manager_8hpp_source.html">route_manager.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a20bbc0a20f297371d3185e7e9ea30484" name="a20bbc0a20f297371d3185e7e9ea30484"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20bbc0a20f297371d3185e7e9ea30484">&#9670;&#160;</a></span>_defaultRouteLabel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string RouteManager::_defaultRouteLabel = &quot;D&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../da/d64/route__manager_8hpp_source.html#l00077">77</a> of file <a class="el" href="../../da/d64/route__manager_8hpp_source.html">route_manager.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a6374457d2eca3e537eb2ce81319a8b9b" name="a6374457d2eca3e537eb2ce81319a8b9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6374457d2eca3e537eb2ce81319a8b9b">&#9670;&#160;</a></span>_routeDir</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string RouteManager::_routeDir = &quot;/routes/&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../da/d64/route__manager_8hpp_source.html#l00088">88</a> of file <a class="el" href="../../da/d64/route__manager_8hpp_source.html">route_manager.hpp</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>SafeTown Arduino Workspace/libraries/RouteManager/<a class="el" href="../../da/d64/route__manager_8hpp_source.html">route_manager.hpp</a></li>
+<li>SafeTown Arduino Workspace/libraries/RouteManager/<a class="el" href="../../d5/d0e/route__manager_8cpp_source.html">route_manager.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -271,7 +1012,7 @@ Private Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../d2/deb/class_route_manager.html">RouteManager</a></li>
-    <li class="footer">Generated on Fri Apr 11 2025 15:38:51 for SafeTown Senior Robot by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Generated on Mon Apr 28 2025 18:35:28 for SafeTown Senior Robot by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>

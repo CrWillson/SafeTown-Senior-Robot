@@ -10,5 +10,7 @@ var searchData=
   ['_7efilestatpage_7',['~FileStatPage',['../d6/d51/class_file_stat_page.html#acdf1afb3bb6047d2f61f32b388f4f8c9',1,'FileStatPage']]],
   ['_7emenu_8',['~Menu',['../d2/db8/class_menu.html#a8fc4104b08c9a24d1dab18b82a82b7da',1,'Menu']]],
   ['_7emenuline_9',['~MenuLine',['../d7/d44/class_menu_line.html#aa341c47767ab5e1dc9a515ee2c593db7',1,'MenuLine']]],
-  ['_7emenupage_10',['~MenuPage',['../d1/d6b/class_menu_page.html#adc82350a32b0964def8b98e7e7fe9f8c',1,'MenuPage']]]
+  ['_7emenupage_10',['~MenuPage',['../d1/d6b/class_menu_page.html#adc82350a32b0964def8b98e7e7fe9f8c',1,'MenuPage']]],
+  ['_7eroutemanager_11',['~RouteManager',['../d2/deb/class_route_manager.html#aba29e945a0d8317510c50b3a045e1221',1,'RouteManager']]],
+  ['_7erouteselectpage_12',['~RouteSelectPage',['../d5/d97/class_route_select_page.html#a173fbc906339c695f1e29ac3b5c2e236',1,'RouteSelectPage']]]
 ];

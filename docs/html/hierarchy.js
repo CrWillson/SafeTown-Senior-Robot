@@ -19,6 +19,7 @@ var hierarchy =
     ] ],
     [ "MenuLine", "d7/d44/class_menu_line.html", [
       [ "ButtonMenuLine", "de/de2/class_button_menu_line.html", null ],
+      [ "RouteLine", "da/d88/class_route_line.html", null ],
       [ "SliderMenuLine", "d0/de7/class_slider_menu_line.html", null ],
       [ "SpacerMenuLine", "d8/deb/class_spacer_menu_line.html", null ],
       [ "TextMenuLine", "dc/df8/class_text_menu_line.html", null ],
@@ -27,8 +28,10 @@ var hierarchy =
     [ "MenuPage", "d1/d6b/class_menu_page.html", [
       [ "FileMenuPage", "d7/d04/class_file_menu_page.html", null ],
       [ "FileOptMenuPg", "df/d9a/class_file_opt_menu_pg.html", null ],
-      [ "FileStatPage", "d6/d51/class_file_stat_page.html", null ]
+      [ "FileStatPage", "d6/d51/class_file_stat_page.html", null ],
+      [ "RouteSelectPage", "d5/d97/class_route_select_page.html", null ]
     ] ],
     [ "PicoToEspPacket", "d3/dd3/group___communication_utilities.html#dc/d61/struct_pico_to_esp_packet", null ],
+    [ "RouteManager", "d2/deb/class_route_manager.html", null ],
     [ "UIManager", "d7/d75/class_u_i_manager.html", null ]
 ];
