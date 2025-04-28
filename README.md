@@ -31,7 +31,7 @@ Note that the following features from the Junior robot are currently not support
 The repository and its submodules can be cloned with the following command.
 
 ```bash
-git clone --recurse-submodules https://github.com/CrWillson/ESPPhotoProcessor.git
+git clone --recurse-submodules https://github.com/CrWillson/SafeTown-Senior-Robot.git
 ```
 
 This project uses the same Pi Pico board in the Arduino IDE as the Junior robot. Refer to the Junior robot set up instructions for initializing the Arduino IDE for programming the Pi Pico.

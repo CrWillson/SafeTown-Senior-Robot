@@ -3,6 +3,7 @@
 #include "display.hpp"
 #include "user_input.hpp"
 #include "esp32_input.hpp"
+#include "route_manager.hpp"
 #include "sr_bot_menu.hpp"
 
 #include "pico/stdlib.h"
@@ -15,6 +16,7 @@
 #include <array>
 #include <algorithm>
 #include <numeric>
+#include <FS.h>
 #include <LittleFS.h>
 
 
